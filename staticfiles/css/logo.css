@@ -1,0 +1,12 @@
+.container .logo {
+    display: flex;
+    cursor: pointer;
+}
+
+.checkpoint {
+    color: #ffffff;
+    background: #222222;
+    text-shadow: 0 0 1px black, 0 0 10px whitesmoke, 0 0 15px white, 0 0 20px greenyellow, 0 0 30px lawngreen, 0 0 40px lawngreen, 0 0 55px lawngreen, 0 0 75px lawngreen;
+    color: #ffffff;
+    background: #232323;
+}

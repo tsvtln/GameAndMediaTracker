@@ -1,0 +1,109 @@
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 24px;
+}
+
+.nav-left .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-left img {
+    width: 140px;
+    height: 140px;
+    object-fit: fill;
+}
+
+.nav-center {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.nav-center a {
+    padding: 1px 2px;
+    border-radius: 2px;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-center a:hover {
+    background: var(--panel-strong);
+    /*box-shadow: 0 0 6px mediumaquamarine;*/
+    box-shadow: 0 0 12px rgba(19, 219, 110, 1);
+}
+
+.nav-center img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 69px rgba(190, 255, 70, 0.4)) drop-shadow(0 0 15px rgba(73, 255, 24, 0.3));
+    transition: filter 0.2s ease;
+}
+
+.nav-center a:hover img {
+    filter: drop-shadow(0 0 10px rgba(190, 255, 70, 0.8)) drop-shadow(0 0 20px rgba(73, 255, 24, 0.6)) drop-shadow(0 0 30px rgba(73, 255, 24, 0.4));
+}
+
+.nav-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-search input {
+    background: #0e1116;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 6px 10px;
+    min-width: 160px;
+}
+
+.nav-search button {
+    background: var(--panel-strong);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+}
+
+.auth-link {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.auth-links img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+}

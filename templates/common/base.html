@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+    <title>{% block title %}CheckPoint{% endblock %}</title>
+</head>
+<body>
+<header class="site-header">
+    {% include 'common/navigation.html' %}
+</header>
+
+<main class="site-main">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="#">🪙 About</a>
+        <a href="#">🪙 Contacts</a>
+        <a href="#">🪙 Website News</a>
+    </div>
+    <span>©HECKPOINT 2026</span>
+</footer>
+</body>
+</html>

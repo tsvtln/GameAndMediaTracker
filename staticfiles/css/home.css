@@ -1,0 +1,30 @@
+.hero {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+}
+
+.hero h1 {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: var(--muted);
+    margin-bottom: 24px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+

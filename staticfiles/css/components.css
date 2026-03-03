@@ -1,0 +1,42 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #0b0d10;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text);
+}
+
+.quick-card {
+    background: var(--panel-strong);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.quick-card h2 {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.quick-card p {
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.quick-card a {
+    color: var(--accent);
+    font-weight: 600;
+}
+

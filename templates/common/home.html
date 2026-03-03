@@ -1,0 +1,34 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Home | CheckPoint{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <h1>Welcome to <span class="checkpoint">CHECKPOINT</span></h1>
+        <p>Your gaming hub for ROMs, BIOS files, saves, community guides and all gaming things.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="#">Browse ROMs</a>
+            <a class="btn btn-ghost" href="#">Join Community</a>
+        </div>
+    </div>
+</section>
+
+<section class="quick-links">
+    <div class="quick-card">
+        <h2>Latest Drops</h2>
+        <p>Fresh uploads, curated collections, and hidden gems.</p>
+        <a href="#">See what is new</a>
+    </div>
+    <div class="quick-card">
+        <h2>Save Vault</h2>
+        <p>Track progress, trade saves, and keep your runs safe.</p>
+        <a href="#">Open the vault</a>
+    </div>
+    <div class="quick-card">
+        <h2>Guides</h2>
+        <p>Setups, BIOS checks, emulator tips, and community notes.</p>
+        <a href="#">Read guides</a>
+    </div>
+</section>
+{% endblock %}

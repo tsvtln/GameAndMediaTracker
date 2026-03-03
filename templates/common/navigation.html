@@ -1,0 +1,32 @@
+{% load static %}
+<nav class="site-nav">
+    <div class="nav-left">
+        <a class="brand" href="#">
+            <img src="{% static 'images/images_banners/logo3.png' %}" alt="CheckPoint logo">
+        </a>
+    </div>
+
+    <ul class="nav-center">
+        <li><a href="#"><img src="{% static 'images/icons/home.png' %}" alt="HOME"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/roms.png' %}" alt="ROMS"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/bios.png' %}" alt="BIOS"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/saves.png' %}" alt="SAVES"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/community.png' %}" alt="Community"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/screenshots_gallery.png' %}" alt="Screenshots"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/reviews.png' %}" alt="Reviews"></a></li>
+        <li><a href="#"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a></li>
+    </ul>
+
+    <div class="nav-right">
+        <div class="auth-links">
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT"></a>
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
+        </div>
+        <form class="nav-search" action="#" method="get">
+            <input type="text" name="q" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</nav>
