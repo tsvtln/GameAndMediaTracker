@@ -6,9 +6,8 @@
 - Created a contact form (HTML only, ready for Django integration).
 - Improved navigation bar by adding dropdown menu with styling and relevant places to go.
 - Added Website News page displaying the changelog.
-
+========
 ## 2026-03-03
 - Created the initial `common` Django app.
 - Added base layout, navigation, and home page HTML templates.
 - Built modular CSS for site layout, navigation, and home page styling.
-

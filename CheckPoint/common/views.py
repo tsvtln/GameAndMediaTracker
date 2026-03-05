@@ -16,7 +16,7 @@ def contacts(request):
 
 
 def website_news(request):
-    changelog_url = "https://raw.githubusercontent.com/tsvtln/GameAndMediaTracker/main/CHANGELOG.md"
+    changelog_url = "https://raw.githubusercontent.com/tsvtln/GameAndMediaTracker/refs/heads/main/CHANGELOG.md"
     changelog_md = ""
     changelog_html = ""
     try:
