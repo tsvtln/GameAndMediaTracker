@@ -8,8 +8,11 @@
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/website_news.css' %}">
     <link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
-    <title>{% block title %}CheckPoint{% endblock %}</title>
+    <title>{% block title %}CHECKPOINT{% endblock %}</title>
 </head>
 <body>
 <header class="site-header">
@@ -22,11 +25,11 @@
 
 <footer class="site-footer">
     <div class="footer-links">
-        <a href="#">🪙 About</a>
-        <a href="#">🪙 Contacts</a>
-        <a href="#">🪙 Website News</a>
+        <a href="{% url 'about' %}">🪙 About</a>
+        <a href="{% url 'contacts' %}">📫 Contacts</a>
+        <a href="{% url 'website_news' %}">🗞️ Website News</a>
     </div>
-    <span>©HECKPOINT 2026</span>
+    <span>CHECKPOINT©2026</span>
 </footer>
 </body>
 </html>

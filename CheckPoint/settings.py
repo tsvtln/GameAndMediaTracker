@@ -53,6 +53,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'CheckPoint.common.apps.CommonConfig',
+    'CheckPoint.accounts.apps.AccountsConfig',
+    'CheckPoint.bios.apps.BiosConfig',
+    'CheckPoint.reviews.apps.ReviewsConfig',
+    'CheckPoint.roms.apps.RomsConfig',
+    'CheckPoint.saves.apps.SavesConfig',
 ]
 
 MIDDLEWARE = [

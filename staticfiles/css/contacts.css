@@ -1,0 +1,75 @@
+.contacts-section {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 32px;
+    background: var(--panel-strong, #232323);
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(73,255,24,0.12);
+}
+
+.contacts-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.contacts-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.contacts-link {
+    color: #49ff18;
+    text-decoration: underline;
+    font-weight: bold;
+    word-break: break-all;
+}
+
+.contacts-form {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contacts-form input,
+.contacts-form textarea {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border, #333);
+    background: #181818;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.contacts-form textarea {
+    resize: vertical;
+}
+
+.contacts-submit {
+    align-self: flex-end;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 8px #49ff18;
+    transition: background 0.2s, color 0.2s;
+}
+
+.contacts-submit:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+}

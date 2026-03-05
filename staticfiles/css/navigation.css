@@ -28,6 +28,23 @@
     flex-wrap: wrap;
 }
 
+.nav-center li {
+    position: relative;
+}
+
+.has-dropdown {
+    padding-bottom: 0;
+}
+
+.has-dropdown::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 10px;
+}
+
 .nav-center a {
     padding: 1px 2px;
     border-radius: 2px;
@@ -37,23 +54,51 @@
     justify-content: center;
 }
 
-.nav-center a:hover {
-    background: var(--panel-strong);
-    /*box-shadow: 0 0 6px mediumaquamarine;*/
-    box-shadow: 0 0 12px rgba(19, 219, 110, 1);
-}
-
 .nav-center img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 0 69px rgba(190, 255, 70, 0.4)) drop-shadow(0 0 15px rgba(73, 255, 24, 0.3));
+    filter: drop-shadow(0 0 8px rgba(190, 255, 70, 0.4)) drop-shadow(0 0 15px rgba(73, 255, 24, 0.3));
     transition: filter 0.2s ease;
 }
 
 .nav-center a:hover img {
-    filter: drop-shadow(0 0 10px rgba(190, 255, 70, 0.8)) drop-shadow(0 0 20px rgba(73, 255, 24, 0.6)) drop-shadow(0 0 30px rgba(73, 255, 24, 0.4));
+    filter: drop-shadow(0 0 50px rgba(190, 255, 70, 0.8)) drop-shadow(0 0 20px rgba(73, 255, 24, 0.6)) drop-shadow(0 0 30px rgba(73, 255, 24, 0.4));
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--panel-strong);
+    border: 1px solid var(--border);
+    box-shadow: 0 0 12px rgba(19, 219, 110, 0.9);
+    list-style: none;
+    display: none;
+    z-index: 20;
+}
+
+.dropdown-menu li {
+    margin: 6px 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu {
+    display: block;
 }
 
 .nav-right {
@@ -76,7 +121,8 @@
     border-radius: 6px;
     color: var(--text);
     padding: 6px 10px;
-    min-width: 160px;
+    min-width: 50px;
+    max-width: 130px;
 }
 
 .nav-search button {

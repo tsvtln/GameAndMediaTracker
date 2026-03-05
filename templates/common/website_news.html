@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+{% block title %}Website News | CheckPoint{% endblock %}
+{% block content %}
+<section class="website-news-section">
+    <h1 class="website-news-title">Website News</h1>
+    <div class="website-news-content">
+        <pre class="website-news-changelog">{{ changelog_html|safe }}</pre>
+    </div>
+</section>
+{% endblock %}
+</body>
+</html>

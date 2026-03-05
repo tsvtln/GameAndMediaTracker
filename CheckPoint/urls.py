@@ -20,4 +20,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('CheckPoint.common.urls'), name='home page'),
+    path('accounts/', include('CheckPoint.accounts.urls'), name='accounts page'),
+    path('bios/', include('CheckPoint.bios.urls'), name='bios page'),
+    path('reviews/', include('CheckPoint.reviews.urls'), name='reviews page'),
+    path('roms/', include('CheckPoint.roms.urls'), name='roms page'),
+    path('saves/', include('CheckPoint.saves.urls'), name='saves page'),
 ]
