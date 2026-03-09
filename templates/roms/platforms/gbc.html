@@ -1,0 +1,50 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}GameBoy Color | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="most-downloaded-section">
+    <div class="most-downloaded-header">
+        <h1 class="most-downloaded-title">Game Boy Color</h1>
+        <div class="most-downloaded-subtitle">Released: 1998</div>
+        <div class="most-downloaded-subtitle">Total Games: 446</div>
+    </div>
+    <form class="platform-search-form" method="get" action="#">
+        <input type="text" name="q" class="platform-search-input" placeholder="Search Game Boy Color games...">
+        <button type="submit" class="platform-search-btn">Search</button>
+    </form>
+    <div class="most-downloaded-list nes-most-downloaded-list">
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/pokemon_gold.webp' %}" alt="Pokémon Gold" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Pokémon Gold</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 1,000,000 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/zelda_oracle.jpg' %}" alt="The Legend of Zelda: Oracle of Ages" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">The Legend of Zelda: Oracle of Ages</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 800,000 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/Super_Mario_Bros._Deluxe_Cover.jpg' %}" alt="Super Mario Bros. Deluxe" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Super Mario Bros. Deluxe</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 600,000 downloads</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="most-downloaded-list nes-most-downloaded-list no-games-uploaded centered-upload-box centered-flex">
+        <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
+        <a href="#" class="upload-game-btn"><span>Upload Now</span></a>
+    </div>
+</section>
+{% endblock %}

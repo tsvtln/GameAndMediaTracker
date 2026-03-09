@@ -1,0 +1,50 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Wii | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="most-downloaded-section">
+    <div class="most-downloaded-header">
+        <h1 class="most-downloaded-title">Wii</h1>
+        <div class="most-downloaded-subtitle">Released: 2006</div>
+        <div class="most-downloaded-subtitle">Total Games: 1590</div>
+    </div>
+    <form class="platform-search-form" method="get" action="#">
+        <input type="text" name="q" class="platform-search-input" placeholder="Search Wii games...">
+        <button type="submit" class="platform-search-btn">Search</button>
+    </form>
+    <div class="most-downloaded-list nes-most-downloaded-list">
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/Wii_Sports_Europe.jpg' %}" alt="Wii Sports" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Wii Sports</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 1,200,000 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/mario_galaxy.jpg' %}" alt="Super Mario Galaxy" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Super Mario Galaxy</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 1,000,000 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/zelda_tp.jpg' %}" alt="The Legend of Zelda: Twilight Princess" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">The Legend of Zelda: Twilight Princess</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 900,000 downloads</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="most-downloaded-list nes-most-downloaded-list no-games-uploaded centered-upload-box centered-flex">
+        <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
+        <a href="#" class="upload-game-btn"><span>Upload Now</span></a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,86 @@
+.platforms-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px 32px 16px;
+    box-sizing: border-box;
+}
+
+.platforms-container h1 {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 24px;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.platform-card-link {
+    display: block;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.platform-card-link .platform-card {
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.platform-card-link:hover .platform-card,
+.platform-card-link:focus .platform-card {
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+    transform: translateY(-2px) scale(1.02);
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.platform-card {
+    background: var(--panel-strong, #232323);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(73,255,24,0.12);
+    padding: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    min-height: 140px;
+}
+
+.platform-card-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    background: #111;
+}
+
+.platform-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.platform-card-title {
+    font-size: 1.1rem;
+    font-family: 'Press Start 2P', monospace;
+    color: #49ff18;
+    margin: 0 0 2px 0;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.platform-card, .platform-card *, .platform-card::before, .platform-card::after {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.platform-card-link:hover .platform-card *, .platform-card-link:focus .platform-card *,
+.platform-card-link:hover .platform-card::before, .platform-card-link:focus .platform-card::before,
+.platform-card-link:hover .platform-card::after, .platform-card-link:focus .platform-card::after {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+

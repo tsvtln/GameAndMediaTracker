@@ -6,3 +6,8 @@
 @import "navigation.css";
 @import "components.css";
 @import "home.css";
+@import "trending.css";
+@import "most-downloaded.css";
+@import "genres.css";
+@import "genre-detail.css";
+@import url('upload_rom.css');

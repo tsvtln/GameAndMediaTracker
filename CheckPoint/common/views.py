@@ -28,4 +28,4 @@ def website_news(request):
             changelog_html = "<p>No News here at the moment ¯\_(ツ)_/¯</p>"
     except Exception:
         changelog_html = "<p>No News here at the moment ¯\_(ツ)_/¯</p>"
-    return render(request, 'common/website_news.html', {'changelog_html': changelog_html})
+    return render(request, 'common/website-news.html', {'changelog_html': changelog_html})

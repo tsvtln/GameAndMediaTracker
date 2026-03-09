@@ -1,3 +1,19 @@
+[2026-03-09]
+- Added ROMs main page and all related ROMs pages
+- Implemented modular HTML and CSS for all ROMs subpages: 
+  - top games
+  - newly added
+  - trending
+  - most downloaded
+  - genres
+  - platforms
+  - ROM details
+  - upload ROM
+- Added custom file upload buttons and live preview for box art
+- Improved navigation and dropdown menus for ROMs
+- Enhanced cursor and glow effects for interactive elements
+- Refined layout and responsiveness for ROMs pages
+
 [2026-03-05]
 - Created the django apps: `accounts`, `bios`, `reviews`, `roms`, `saves`
 - Created very minimal and simple views and urls for each app, just to have a visualization during HTML and CSS development.

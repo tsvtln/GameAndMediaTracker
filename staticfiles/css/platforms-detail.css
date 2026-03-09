@@ -1,0 +1,103 @@
+.platform-detail-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: var(--panel-strong, #232323);
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+}
+
+.platform-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.platform-detail-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 0 12px #49ff18;
+    background: #111;
+}
+
+.platform-detail-info {
+    flex: 1;
+}
+
+.platform-detail-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2.2rem;
+    color: #49ff18;
+    margin: 0 0 12px 0;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.platform-detail-meta {
+    font-size: 1.1rem;
+    color: #b0ffb0;
+    margin: 0 0 4px 0;
+}
+
+.platform-detail-banner {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 24px auto;
+    padding: 32px 24px 18px 24px;
+    background: var(--panel-strong, #232323);
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+    text-align: center;
+}
+
+.platform-detail-game-grid {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+.platform-card {
+    background: var(--panel-strong, #232323);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(73,255,24,0.12);
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.platform-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.platform-card-title {
+    font-size: 1.1rem;
+    font-family: 'Press Start 2P', monospace;
+    color: #49ff18;
+    margin: 0 0 2px 0;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.platform-card:hover {
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+    transform: translateY(-2px) scale(1.02);
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.platform-card, .platform-card *, .platform-card::before, .platform-card::after {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.platform-card:hover *, .platform-card:hover::before, .platform-card:hover::after {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}

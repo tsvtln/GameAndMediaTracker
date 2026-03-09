@@ -1,0 +1,140 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Top Games | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="top-games-section">
+    <div class="top-games-header">
+        <h1 class="top-games-title">TOP GAMES</h1>
+        <p class="top-games-subtitle">The most popular games across all platforms</p>
+    </div>
+
+    <div class="top-games-banner">
+        <a href="#" class="top-games-trophy">🏆 #1 Super Mario Bros</a>
+        <a href="#" class="top-games-trophy">🏆 #2 Legend of Zelda</a>
+        <a href="#" class="top-games-trophy">🏆 #3 Mega Man 2</a>
+    </div>
+
+    <form class="top-games-filters" method="get" action="#">
+        <label>Platform:
+            <select name="platform">
+                <option value="">All</option>
+                <option>NES</option>
+                <option>Famicom</option>
+                <option>SNES</option>
+                <option>Super Famicom</option>
+                <option>Nintendo 64</option>
+                <option>GameCube</option>
+                <option>Wii</option>
+                <option>Wii U</option>
+                <option>Nintendo Switch</option>
+                <option>Game Boy</option>
+                <option>Game Boy Color</option>
+                <option>Game Boy Advance</option>
+                <option>Nintendo DS</option>
+                <option>Nintendo 3DS</option>
+                <option>Sega Master System</option>
+                <option>Sega Genesis / Mega Drive</option>
+                <option>Sega CD</option>
+                <option>32X</option>
+                <option>Sega Saturn</option>
+                <option>Sega Dreamcast</option>
+                <option>Game Gear</option>
+                <option>PlayStation</option>
+                <option>PlayStation 2</option>
+                <option>PlayStation 3</option>
+                <option>PlayStation Portable (PSP)</option>
+                <option>PlayStation Vita</option>
+                <option>Xbox</option>
+                <option>Xbox 360</option>
+                <option>Xbox One</option>
+                <options>Atari</options>
+            </select>
+        </label>
+        <label>Genre:
+            <select name="genre">
+                <option value="">All</option>
+                <option>Action</option>
+                <option>Adventure</option>
+                <option>Platformer</option>
+                <option>RPG</option>
+                <option>Fighting</option>
+                <option>Shooter</option>
+                <option>Puzzle</option>
+                <option>Sports</option>
+                <option>Racing</option>
+                <option>Strategy</option>
+                <option>Simulation</option>
+                <option>Horror</option>
+            </select>
+        </label>
+        <label>Year:
+            <select name="year">
+                <option value="">All</option>
+                <option>1985</option>
+                <option>1986</option>
+                <option>1987</option>
+                <option>1988</option>
+                <option>1989</option>
+                <option>1990</option>
+                <option>1991</option>
+                <option>1992</option>
+                <option>1993</option>
+            </select>
+        </label>
+        <label>Sort by:
+            <select name="sort">
+                <option value="rating">Rating</option>
+                <option value="downloads">Downloads</option>
+                <option value="reviews">Reviews</option>
+                <option value="popularity">Popularity</option>
+            </select>
+        </label>
+        <button type="submit" class="top-games-filter-btn">Apply</button>
+    </form>
+
+    <div class="top-games-list">
+        <a href="#" class="game-card-link">
+            <div class="game-card">
+                <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="game-card-img">
+                <div class="game-card-info">
+                    <h2 class="game-card-title">Super Mario Bros</h2>
+                    <div class="game-card-meta">Platform: NES</div>
+                    <div class="game-card-stats">
+                        <span class="game-card-rating">⭐ 4.9</span>
+                        <span class="game-card-downloads">⬇ 12,430 downloads</span>
+                        <span class="game-card-reviews">💬 342 reviews</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="game-card-link">
+            <div class="game-card">
+                <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda" class="game-card-img">
+                <div class="game-card-info">
+                    <h2 class="game-card-title">Legend of Zelda</h2>
+                    <div class="game-card-meta">Platform: NES</div>
+                    <div class="game-card-stats">
+                        <span class="game-card-rating">⭐ 4.8</span>
+                        <span class="game-card-downloads">⬇ 10,210 downloads</span>
+                        <span class="game-card-reviews">💬 298 reviews</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="game-card-link">
+            <div class="game-card">
+                <img src="{% static 'images/temp_images/Megaman2_box.jpg' %}" alt="Mega Man 2" class="game-card-img">
+                <div class="game-card-info">
+                    <h2 class="game-card-title">Mega Man 2</h2>
+                    <div class="game-card-meta">Platform: NES</div>
+                    <div class="game-card-stats">
+                        <span class="game-card-rating">⭐ 4.7</span>
+                        <span class="game-card-downloads">⬇ 8,900 downloads</span>
+                        <span class="game-card-reviews">💬 210 reviews</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}

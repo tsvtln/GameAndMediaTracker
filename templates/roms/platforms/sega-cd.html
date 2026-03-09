@@ -1,0 +1,50 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Sega CD | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="most-downloaded-section">
+    <div class="most-downloaded-header">
+        <h1 class="most-downloaded-title">Sega CD</h1>
+        <div class="most-downloaded-subtitle">Released: 1991</div>
+        <div class="most-downloaded-subtitle">Total Games: 205</div>
+    </div>
+    <form class="platform-search-form" method="get" action="#">
+        <input type="text" name="q" class="platform-search-input" placeholder="Search Sega CD games...">
+        <button type="submit" class="platform-search-btn">Search</button>
+    </form>
+    <div class="most-downloaded-list nes-most-downloaded-list">
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/sonic-the-hedgehog-sega-master-system-front-cover.jpg' %}" alt="Sonic CD" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Sonic CD</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 400,000 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/lunar_silver_star.jpg' %}" alt="Lunar: The Silver Star" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Lunar: The Silver Star</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 300,000 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/final_fight.jpg' %}" alt="Final Fight CD" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Final Fight CD</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 250,000 downloads</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="most-downloaded-list nes-most-downloaded-list no-games-uploaded centered-upload-box centered-flex">
+        <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
+        <a href="#" class="upload-game-btn"><span>Upload Now</span></a>
+    </div>
+</section>
+{% endblock %}

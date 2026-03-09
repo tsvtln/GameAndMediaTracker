@@ -1,0 +1,80 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Strategy Games | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="genre-detail-section">
+    <div class="genre-detail-header">
+        <h1 class="genre-detail-title">STRATEGY GAMES</h1>
+        <p class="genre-detail-subtitle">Explore the best strategy games across all platforms</p>
+    </div>
+    <form class="genre-detail-filters" method="get" action="#">
+        <label>Platform:
+            <select name="platform">
+                <option value="">All</option>
+                <option>NES</option>
+                <option>Famicom</option>
+                <option>SNES</option>
+                <option>Super Famicom</option>
+                <option>Nintendo 64</option>
+                <option>GameCube</option>
+                <option>Wii</option>
+                <option>Wii U</option>
+                <option>Nintendo Switch</option>
+                <option>Game Boy</option>
+                <option>Game Boy Color</option>
+                <option>Game Boy Advance</option>
+                <option>Nintendo DS</option>
+                <option>Nintendo 3DS</option>
+                <option>Sega Master System</option>
+                <option>Sega Genesis / Mega Drive</option>
+                <option>Sega CD</option>
+                <option>32X</option>
+                <option>Sega Saturn</option>
+                <option>Sega Dreamcast</option>
+                <option>Game Gear</option>
+                <option>PlayStation</option>
+                <option>PlayStation 2</option>
+                <option>PlayStation 3</option>
+                <option>PlayStation Portable (PSP)</option>
+                <option>PlayStation Vita</option>
+                <option>Xbox</option>
+                <option>Xbox 360</option>
+                <option>Xbox One</option>
+                <options>Atari</options>
+            </select>
+        </label>
+        <label>Year:
+            <select name="year">
+                <option value="">All</option>
+                <option>1993</option>
+                <option>1998</option>
+                <option>2004</option>
+            </select>
+        </label>
+        <label>Rating:
+            <select name="rating">
+                <option value="">All</option>
+                <option>5</option>
+                <option>4</option>
+                <option>3</option>
+                <option>2</option>
+                <option>1</option>
+            </select>
+        </label>
+        <button type="submit" class="genre-detail-filter-btn">Apply</button>
+    </form>
+    <div class="genre-detail-list">
+        <a href="#" class="genre-detail-card-link">
+            <div class="genre-detail-card">
+                <img src="{% static 'images/temp_images/spiro_the_dragon.png' %}" alt="Spiro The Dragon" class="genre-detail-card-img">
+                <div class="genre-detail-card-info">
+                    <h2 class="genre-detail-card-title">Spiro The Dragon</h2>
+                    <div class="genre-detail-card-meta">Platform: PlayStation</div>
+                    <div class="genre-detail-card-rating">⭐ 4.7</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}
+

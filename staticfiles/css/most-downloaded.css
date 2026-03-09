@@ -1,0 +1,243 @@
+.most-downloaded-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px 32px 16px;
+    box-sizing: border-box;
+}
+
+.most-downloaded-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.most-downloaded-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.most-downloaded-subtitle {
+    font-size: 1.1rem;
+    color: #b0ffb0;
+    margin-bottom: 0;
+}
+
+.most-downloaded-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+    background: #232323;
+    border-radius: 10px;
+    padding: 18px 16px;
+    box-shadow: 0 0 8px #49ff1822;
+}
+
+.most-downloaded-filters label {
+    font-size: 1rem;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.most-downloaded-filters select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #49ff18;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.most-downloaded-filter-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 8px #49ff18;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Press Start 2P', monospace;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.most-downloaded-filter-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.most-downloaded-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.nes-most-downloaded-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.most-downloaded-card-link {
+    display: block;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.most-downloaded-card-link .most-downloaded-card {
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.most-downloaded-card-link:hover .most-downloaded-card,
+.most-downloaded-card-link:focus .most-downloaded-card {
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+    transform: translateY(-2px) scale(1.02);
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.most-downloaded-card {
+    background: var(--panel-strong, #232323);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(73,255,24,0.12);
+    padding: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    min-height: 140px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.most-downloaded-rank {
+    font-size: 1.2rem;
+    color: #ffe066;
+    font-weight: bold;
+    margin-right: 16px;
+}
+
+.most-downloaded-card-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    background: #111;
+}
+
+.most-downloaded-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.most-downloaded-card-title {
+    font-size: 1.1rem;
+    font-family: 'Press Start 2P', monospace;
+    color: #49ff18;
+    margin: 0 0 2px 0;
+    text-shadow: 0 0 8px #49ff18;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.2;
+    max-width: 220px;
+}
+
+.most-downloaded-card-downloads {
+    color: #49ff18;
+    font-weight: bold;
+}
+
+.most-downloaded-card, .most-downloaded-card *, .most-downloaded-card::before, .most-downloaded-card::after {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.most-downloaded-card-link:hover .most-downloaded-card *, .most-downloaded-card-link:focus .most-downloaded-card *,
+.most-downloaded-card-link:hover .most-downloaded-card::before, .most-downloaded-card-link:focus .most-downloaded-card::before,
+.most-downloaded-card-link:hover .most-downloaded-card::after, .most-downloaded-card-link:focus .most-downloaded-card::after {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.most-downloaded-filter-btn, .most-downloaded-filter-btn * {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.most-downloaded-filter-btn:hover, .most-downloaded-filter-btn:focus, .most-downloaded-filter-btn:hover *, .most-downloaded-filter-btn:focus * {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.most-downloaded-filters select, .most-downloaded-filters select * {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.most-downloaded-filters select:hover, .most-downloaded-filters select:focus, .most-downloaded-filters select:hover *, .most-downloaded-filters select:focus * {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.most-downloaded-filters select option, .most-downloaded-filters select optgroup {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+.most-downloaded-filters select option:hover, .most-downloaded-filters select optgroup:hover {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.platform-search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 0 auto 32px auto;
+    max-width: 500px;
+}
+
+.platform-search-input {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #49ff18;
+    font-size: 1rem;
+    font-family: 'Press Start 2P', monospace;
+    outline: none;
+    box-shadow: 0 0 8px #49ff18;
+    transition: border 0.2s, box-shadow 0.2s;
+    min-width: 0;
+}
+
+.platform-search-input:focus {
+    border: 1.5px solid #b0ffb0;
+    box-shadow: 0 0 16px #49ff18;
+}
+
+.platform-search-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 8px #49ff18;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Press Start 2P', monospace;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.platform-search-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}

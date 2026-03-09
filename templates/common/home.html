@@ -8,7 +8,7 @@
         <h1>Welcome to <span class="checkpoint">CHECKPOINT</span></h1>
         <p>Your gaming hub for ROMs, BIOS files, saves, community guides and all gaming things.</p>
         <div class="hero-actions">
-            <a class="btn btn-primary" href="#">Browse ROMs</a>
+            <a class="btn btn-primary" href="{% url 'roms genres' %}">Browse ROMs</a>
             <a class="btn btn-ghost" href="#">Join Community</a>
         </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="quick-card">
         <h2>Latest Drops</h2>
         <p>Fresh uploads, curated collections, and hidden gems.</p>
-        <a href="#">See what is new</a>
+        <a href="{% url 'roms newly added' %}">See what is new</a>
     </div>
     <div class="quick-card">
         <h2>Save Vault</h2>

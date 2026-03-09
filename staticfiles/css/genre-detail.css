@@ -1,0 +1,148 @@
+.genre-detail-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px 32px 16px;
+    box-sizing: border-box;
+}
+
+.genre-detail-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.genre-detail-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.genre-detail-subtitle {
+    font-size: 1.1rem;
+    color: #b0ffb0;
+    margin-bottom: 0;
+}
+
+.genre-detail-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+    background: #232323;
+    border-radius: 10px;
+    padding: 18px 16px;
+    box-shadow: 0 0 8px #49ff1822;
+}
+
+.genre-detail-filters label {
+    font-size: 1rem;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.genre-detail-filters select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #49ff18;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.genre-detail-filter-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 8px #49ff18;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Press Start 2P', monospace;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.genre-detail-filter-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.genre-detail-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.genre-detail-card-link {
+    display: block;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.genre-detail-card-link .genre-detail-card {
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.genre-detail-card-link:hover .genre-detail-card,
+.genre-detail-card-link:focus .genre-detail-card {
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+    transform: translateY(-2px) scale(1.02);
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.genre-detail-card {
+    background: var(--panel-strong, #232323);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(73,255,24,0.12);
+    padding: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    min-height: 140px;
+}
+
+.genre-detail-card-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    background: #111;
+}
+
+.genre-detail-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.genre-detail-card-title {
+    font-size: 1.1rem;
+    font-family: 'Press Start 2P', monospace;
+    color: #49ff18;
+    margin: 0 0 2px 0;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.genre-detail-card-meta {
+    font-size: 0.95rem;
+    color: #b0ffb0;
+    margin-bottom: 2px;
+}
+
+.genre-detail-card-rating {
+    color: #ffe066;
+    font-weight: bold;
+}
+

@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Genres | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="genres-section">
+    <div class="genres-header">
+        <h1 class="genres-title">GENRES</h1>
+        <p class="genres-subtitle">Browse games by type of gameplay</p>
+    </div>
+    <div class="genres-grid">
+        <a href="{% url 'roms genres action' %}" class="genre-box">🎦<br>Action</a>
+        <a href="{% url 'roms genres adventure' %}" class="genre-box">🥾<br>Adventure</a>
+        <a href="{% url 'roms genres platformer' %}" class="genre-box">🧗‍♂<br>Platformer</a>
+        <a href="{% url 'roms genres rpg' %}" class="genre-box">⚔️<br>RPG</a>
+        <a href="{% url 'roms genres fighting' %}" class="genre-box">🤼‍♂️<br>Fighting</a>
+        <a href="{% url 'roms genres shooter' %}" class="genre-box">🏹<br>Shooter</a>
+        <a href="{% url 'roms genres puzzle' %}" class="genre-box">🧩<br>Puzzle</a>
+        <a href="{% url 'roms genres sports' %}" class="genre-box">🏋️‍♀️<br>Sports</a>
+        <a href="{% url 'roms genres racing' %}" class="genre-box">🏎️<br>Racing</a>
+        <a href="{% url 'roms genres strategy' %}" class="genre-box">♟️<br>Strategy</a>
+        <a></a>
+        <a href="{% url 'roms genres simulation' %}" class="genre-box">👨‍💻<br>Simulation</a>
+        <a></a>
+        <a href="{% url 'roms genres horror' %}" class="genre-box">😱<br>Horror</a>
+    </div>
+</section>
+{% endblock %}
+

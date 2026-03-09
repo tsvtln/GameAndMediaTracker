@@ -1,0 +1,791 @@
+.roms-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.roms-title {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 32px;
+}
+
+.roms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.roms-box {
+    background: var(--panel-strong, #232323);
+    border-radius: 10px;
+    border: 1px solid var(--border, #333);
+    box-shadow: 0 0 12px rgba(73, 255, 24, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    min-height: 180px;
+}
+
+.roms-box:hover {
+    box-shadow: 0 0 20px rgba(73, 255, 24, 0.35);
+}
+
+.roms-box-title,
+.roms-box-title:link,
+.roms-box-title:visited,
+.roms-box-title:active,
+.roms-box-title:hover,
+.roms-box-title:focus {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: text-shadow 0.2s ease;
+}
+
+.roms-box-title:hover,
+.roms-box-title:focus {
+    text-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}
+
+.roms-box-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.roms-box-list li a,
+.roms-box-list li a:link,
+.roms-box-list li a:visited,
+.roms-box-list li a:active,
+.roms-box-list li a:hover,
+.roms-box-list li a:focus {
+    color: #ccc !important;
+    text-decoration: none !important;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.roms-box-list li a:hover,
+.roms-box-list li a:focus {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+}
+
+.roms-box-more {
+    display: inline-block;
+    align-self: flex-end;
+    margin-top: 24px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #181818;
+    border: 1px solid #49ff18;
+    color: #49ff18;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.roms-box-more:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 10px #49ff18;
+}
+
+.roms-box-random {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.roms-box-random-text {
+    font-size: 0.85rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.roms-box-random-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.roms-box-random-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 1px black;
+}
+
+.roms-box-upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.roms-box-upload-btn:hover {
+    background: #232323;
+    color: #FFFFFF;
+}
+
+.roms-box-upload-btn:hover span {
+    text-shadow: 0 0 5px #000000, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+}
+
+.no-games-uploaded {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    background: #181818;
+    border-radius: 12px;
+    border: 1px solid #49ff18;
+    box-shadow: 0 0 16px #49ff1833;
+    margin: 32px auto;
+    max-width: 400px;
+}
+
+.no-games-message {
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    text-align: center;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.upload-game-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.upload-game-btn:hover {
+    background: #232323;
+    color: #fff;
+}
+
+.upload-game-btn:hover span {
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+}
+
+.most-downloaded-list.centered-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.bottom-right {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    margin: 0;
+}
+
+.rom-details-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff1833;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.rom-details-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.rom-details-main {
+    flex: 1 1 350px;
+    min-width: 350px;
+}
+
+.rom-details-title {
+    font-size: 2rem;
+    color: #49ff18;
+    margin-bottom: 16px;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.rom-details-meta span {
+    display: block;
+}
+
+.rom-details-actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.rom-details-download-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-download-btn:hover {
+    background: #232323;
+    color: #fff;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-favorite-btn {
+    background: #f5e9d6;
+    border-radius: 6px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rom-details-heart-icon {
+    width: 32px;
+    height: 32px;
+    transition: filter 0.2s, box-shadow 0.2s;
+    filter: drop-shadow(0 0 6px #49ff18) brightness(1.2) contrast(1.2);
+    background: #f5e9d6;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 4px;
+    display: block;
+}
+
+.rom-details-favorite-btn:hover .rom-details-heart-icon {
+    filter: drop-shadow(0 0 12px #49ff18) brightness(1.4) contrast(1.4);
+    box-shadow: 0 0 16px #49ff18;
+}
+
+.rom-details-screenshots {
+    display: flex;
+    gap: 16px;
+    flex: 1 1 300px;
+    min-width: 300px;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.rom-details-screenshot {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    background: #181818;
+    overflow: hidden;
+}
+
+.rom-details-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.rom-details-screenshot-more {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #181818;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    color: #49ff18;
+    font-size: 2rem;
+    font-family: 'Press Start 2P', monospace;
+    text-decoration: none;
+    transition: box-shadow 0.2s, color 0.2s;
+}
+
+.rom-details-screenshot-more:hover {
+    color: #fff;
+    box-shadow: 0 0 16px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 80px);
+    gap: 16px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 24px auto;
+}
+
+.rom-details-screenshot,
+.rom-details-screenshot-more {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    background: #181818;
+}
+
+.rom-details-screenshot-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #49ff18;
+    font-size: 2rem;
+    font-family: 'Press Start 2P', monospace;
+    text-decoration: none;
+    transition: box-shadow 0.2s, color 0.2s;
+}
+
+.rom-details-screenshot-more:hover {
+    color: #fff;
+    box-shadow: 0 0 16px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-community {
+    margin-bottom: 32px;
+}
+
+.rom-details-reviews {
+    margin-bottom: 24px;
+}
+
+.rom-details-review {
+    background: #181818;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    color: #fff;
+    box-shadow: 0 0 8px #49ff18;
+    position: relative;
+    padding-right: 80px;
+    padding-bottom: 40px;
+}
+
+.rom-details-review-actions {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.rom-details-review-action-btn {
+    background: #232323;
+    color: #49ff18;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    cursor: pointer;
+    box-shadow: 0 0 6px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+
+.rom-details-review-action-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+}
+
+.rom-details-review-delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.rom-details-review-delete-modal-content {
+    background: #232323;
+    border-radius: 12px;
+    box-shadow: 0 0 16px #49ff18;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.rom-details-review-delete-modal-text {
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.rom-details-review-delete-modal-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.rom-details-review-delete-yes,
+.rom-details-review-delete-no {
+    background: #49ff18;
+    color: #232323;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-review-delete-yes:hover,
+.rom-details-review-delete-no:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-comment {
+    background: #181818;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    color: #fff;
+    box-shadow: 0 0 6px #49ff18;
+    position: relative;
+    padding-right: 80px;
+}
+
+.rom-details-comment-actions {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.rom-details-comment-action-btn {
+    background: #232323;
+    color: #49ff18;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    cursor: pointer;
+    box-shadow: 0 0 6px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+
+.rom-details-comment-action-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+}
+
+.rom-details-comment-delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.rom-details-comment-delete-modal-content {
+    background: #232323;
+    border-radius: 12px;
+    box-shadow: 0 0 16px #49ff18;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.rom-details-comment-delete-modal-text {
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.rom-details-comment-delete-modal-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.rom-details-comment-delete-yes,
+.rom-details-comment-delete-no {
+    background: #49ff18;
+    color: #232323;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-comment-delete-yes:hover,
+.rom-details-comment-delete-no:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-interactive {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.rom-details-interactive-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.rom-details-write-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-write-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-comment-form,
+.rom-details-review-form {
+    width: 100%;
+    max-width: 420px;
+    background: #181818;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rom-details-comment-form label,
+.rom-details-review-form label {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+}
+
+.rom-details-comment-form textarea,
+.rom-details-review-form textarea {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #232323;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px;
+    resize: vertical;
+}
+
+.rom-details-submit-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-submit-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-rating-stars {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.rom-details-rating-stars .star {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.rom-details-rating-stars .star.selected,
+.rom-details-rating-stars .star:hover {
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-rating-star {
+    color: #49ff18;
+    font-size: 1.3rem;
+    margin-left: 4px;
+    padding-bottom: 17px;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.rom-details-write-btn,
+.rom-details-submit-btn,
+.rom-details-comment-action-btn,
+.rom-details-review-action-btn,
+.rom-details-comment-delete-yes,
+.rom-details-comment-delete-no,
+.rom-details-review-delete-yes,
+.rom-details-review-delete-no {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.rom-details-review-favorite-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: #f5e9d6;
+    border-radius: 6px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    box-shadow: 0 0 8px #49ff18;
+    z-index: 2;
+}
+.rom-details-review-heart-icon {
+    width: 28px;
+    height: 28px;
+    transition: filter 0.2s, box-shadow 0.2s;
+    filter: drop-shadow(0 0 6px #49ff18) brightness(1.2) contrast(1.2);
+    background: #f5e9d6;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 4px;
+    display: block;
+}
+.rom-details-review-favorite-btn:hover .rom-details-review-heart-icon {
+    filter: drop-shadow(0 0 12px #49ff18) brightness(1.4) contrast(1.4);
+    box-shadow: 0 0 16px #49ff18;
+}
+.rom-details-review-favorite-wrapper {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    flex-direction: row;
+}
+.rom-details-review-favorite-count {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px #49ff18;
+    background: #232323;
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-right: 2px;
+    display: inline-block;
+}

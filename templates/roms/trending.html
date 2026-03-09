@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Trending Games | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="trending-section">
+    <div class="trending-header">
+        <h1 class="trending-title">TRENDING GAMES</h1>
+        <p class="trending-subtitle">Games currently popular in the community</p>
+    </div>
+    <div class="trending-list">
+{#        note: to add 6 games in total for trending ascending by downloads this month#}
+        <a href="#" class="trending-card-link">
+            <div class="trending-card">
+                <img src="{% static 'images/temp_images/castlevania3.jpg' %}" alt="Castlevania III" class="trending-card-img">
+                <div class="trending-card-info">
+                    <h2 class="trending-card-title">Castlevania III</h2>
+                    <div class="trending-card-meta">
+                        <span class="trending-card-downloads">🔥 430 downloads this month</span>
+                        <span class="trending-card-rating">⭐ 4.7</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}
+

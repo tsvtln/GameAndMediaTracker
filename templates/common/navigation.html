@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="site-nav">
     <div class="nav-left">
-        <a class="brand" href="#">
+        <a class="brand" href="{% url 'home' %}">
             <img src="{% static 'images/images_banners/logo3.png' %}" alt="CheckPoint logo">
         </a>
     </div>
@@ -9,16 +9,15 @@
     <ul class="nav-center">
         <li><a href="{% url 'home' %}"><img src="{% static 'images/icons/home.png' %}" alt="HOME"></a></li>
         <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/roms.png' %}" alt="ROMS"></a>
+            <a href="{% url 'roms page' %}"><img src="{% static 'images/icons/roms.png' %}" alt="ROMS"></a>
             <ul class="dropdown-menu">
-                <li><a href="#">Top Games</a></li>
-                <li><a href="#">Newly Added</a></li>
-                <li><a href="#">Trending</a></li>
-                <li><a href="#">Most Downloaded</a></li>
-                <li><a href="#">Genres</a></li>
-                <li><a href="#">Platforms</a></li>
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">Random Rom</a></li>
+                <li><a href="{% url 'roms top games' %}">Top Games</a></li>
+                <li><a href="{% url 'roms newly added' %}">Newly Added</a></li>
+                <li><a href="{% url 'roms trending' %}">Trending</a></li>
+                <li><a href="{% url 'roms most downloaded' %}">Most Downloaded</a></li>
+                <li><a href="{% url 'roms genres' %}">Genres</a></li>
+                <li><a href="{% url 'roms platforms' %}">Platforms</a></li>
+                <li><a href="{% url 'roms upload' %}">ROM Upload</a></li>
             </ul>
         </li>
         <li class="nav-item has-dropdown">

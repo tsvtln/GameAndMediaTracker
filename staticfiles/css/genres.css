@@ -1,0 +1,57 @@
+/* Genres page styles */
+.genres-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px 32px 16px;
+    box-sizing: border-box;
+}
+
+.genres-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.genres-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.genres-subtitle {
+    font-size: 1.1rem;
+    color: #b0ffb0;
+    margin-bottom: 0;
+}
+
+.genres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.genre-box {
+    background: #181818;
+    color: #49ff18;
+    border-radius: 10px;
+    padding: 32px 0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none !important;
+    box-shadow: 0 0 8px #49ff18;
+    transition: box-shadow 0.2s, filter 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.genre-box:hover,
+.genre-box:focus,
+.genre-box:active {
+    box-shadow: 0 0 18px #49ff18, 0 0 8px #49ff18;
+    filter: brightness(1.1);
+    color: #49ff18 !important;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+

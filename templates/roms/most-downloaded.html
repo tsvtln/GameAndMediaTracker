@@ -1,0 +1,87 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Most Downloaded ROMs | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="most-downloaded-section">
+    <div class="most-downloaded-header">
+        <h1 class="most-downloaded-title">MOST DOWNLOADED ROMS</h1>
+        <p class="most-downloaded-subtitle">All-time download leaders</p>
+    </div>
+    <form class="most-downloaded-filters" method="get" action="#">
+        <label>Platform:
+            <select name="platform">
+                <option value="">All</option>
+                <option>NES</option>
+                <option>Famicom</option>
+                <option>SNES</option>
+                <option>Super Famicom</option>
+                <option>Nintendo 64</option>
+                <option>GameCube</option>
+                <option>Wii</option>
+                <option>Wii U</option>
+                <option>Nintendo Switch</option>
+                <option>Game Boy</option>
+                <option>Game Boy Color</option>
+                <option>Game Boy Advance</option>
+                <option>Nintendo DS</option>
+                <option>Nintendo 3DS</option>
+                <option>Sega Master System</option>
+                <option>Sega Genesis / Mega Drive</option>
+                <option>Sega CD</option>
+                <option>32X</option>
+                <option>Sega Saturn</option>
+                <option>Sega Dreamcast</option>
+                <option>Game Gear</option>
+                <option>PlayStation</option>
+                <option>PlayStation 2</option>
+                <option>PlayStation 3</option>
+                <option>PlayStation Portable (PSP)</option>
+                <option>PlayStation Vita</option>
+                <option>Xbox</option>
+                <option>Xbox 360</option>
+                <option>Xbox One</option>
+                <options>Atari</options>
+            </select>
+        </label>
+        <label>Year:
+            <select name="year">
+                <option value="">All</option>
+                <option>1985</option>
+                <option>1996</option>
+                <option>2004</option>
+            </select>
+        </label>
+        <label>Sorting:
+            <select name="sort">
+                <option value="all-time">All Time</option>
+                <option value="year">This Year</option>
+                <option value="month">This Month</option>
+            </select>
+        </label>
+        <button type="submit" class="most-downloaded-filter-btn">Apply</button>
+    </form>
+    <div class="most-downloaded-list">
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <span class="most-downloaded-rank">#1</span>
+                <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Super Mario Bros</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 1,230,122 downloads</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <span class="most-downloaded-rank">#2</span>
+                <img src="{% static 'images/temp_images/pokemon_fire_red.jpg' %}" alt="Pokemon Fire Red" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Pokémon Fire Red</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 1,012,442 downloads</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}
+

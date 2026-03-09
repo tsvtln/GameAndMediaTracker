@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
 
-</body>
-</html>
+{% block title %}ROMs | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="roms-section">
+    <h1 class="roms-title">ROMs</h1>
+    <div class="roms-grid">
+
+        <div class="roms-box">
+            <a href="{% url 'roms top games' %}" class="roms-box-title">Top Games</a>
+            <ul class="roms-box-list">
+                <li><a href="{% url 'roms details' %}">Super Mario World</a></li>
+                <li><a href="#">The Legend of Zelda: A Link to the Past</a></li>
+                <li><a href="#">Mega Man 2</a></li>
+            </ul>
+            <a href="{% url 'roms top games' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+
+        <div class="roms-box">
+            <a href="{% url 'roms newly added' %}" class="roms-box-title">Newly Added</a>
+            <ul class="roms-box-list">
+                <li><a href="#">Mega Man X</a></li>
+                <li><a href="#">Donkey Kong Country</a></li>
+                <li><a href="#">Castlevania: Symphony of the Night</a></li>
+            </ul>
+            <a href="{% url 'roms newly added' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+
+        <div class="roms-box">
+            <a href="{% url 'roms trending' %}" class="roms-box-title">Trending</a>
+            <ul class="roms-box-list">
+                <li><a href="#">Final Fantasy VI</a></li>
+                <li><a href="#">Chrono Trigger</a></li>
+                <li><a href="#">Street Fighter II</a></li>
+            </ul>
+            <a href="{% url 'roms trending' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+
+        <div class="roms-box">
+            <a href="{% url 'roms most downloaded' %}" class="roms-box-title">Most Downloaded</a>
+            <ul class="roms-box-list">
+                <li><a href="#">Pokémon Red</a></li>
+                <li><a href="#">Pokémon Gold</a></li>
+                <li><a href="#">Tetris</a></li>
+            </ul>
+            <a href="{% url 'roms most downloaded' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+
+        <div class="roms-box">
+            <a href="{% url 'roms genres' %}" class="roms-box-title">Genres</a>
+            <ul class="roms-box-list">
+                <li><a href="#">Action / Adventure</a></li>
+                <li><a href="#">RPG</a></li>
+                <li><a href="#">Platformer</a></li>
+            </ul>
+            <a href="{% url 'roms genres' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+
+        <div class="roms-box">
+            <a href="{% url 'roms platforms' %}" class="roms-box-title">Platforms</a>
+            <ul class="roms-box-list">
+                <li><a href="#">SNES</a></li>
+                <li><a href="#">Game Boy Advance</a></li>
+                <li><a href="#">Sega Genesis</a></li>
+            </ul>
+            <a href="{% url 'roms platforms' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+        <div>
+{#            empty, just to make the collection be in the middle#}
+        </div>
+        <div class="roms-box">
+            <a class="roms-box-title">Upload ROM</a>
+            <p class="roms-box-description">Share your favorite ROMs with the community</p>
+            <a href="{% url 'roms upload' %}" class="roms-box-upload-btn"><span>Upload Now</span></a>
+        </div>
+
+
+
+    </div>
+</section>
+{% endblock %}

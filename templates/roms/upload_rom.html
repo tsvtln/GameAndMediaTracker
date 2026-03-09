@@ -1,0 +1,111 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Upload ROM | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="upload-rom-section">
+    <h1 class="upload-rom-title">UPLOAD ROM</h1>
+    <p class="upload-rom-subtitle">Share a ROM with the community.<br>Make sure the file is verified and properly labeled.</p>
+    <div class="upload-rom-rules">
+        <ul>
+            <li>🚩 Only clean ROM dumps</li>
+            <li>🚩 No malware or modified files</li>
+            <li>🚩 Correct platform selection required</li>
+        </ul>
+    </div>
+    <div class="upload-rom-main">
+        <div class="upload-rom-form-col">
+            <form class="upload-rom-form" enctype="multipart/form-data">
+                <label for="rom-file">ROM File</label>
+                <label for="rom-file" class="upload-rom-file-label">Select ROM File</label>
+                <input type="file" id="rom-file" name="rom_file" accept=".zip,.7z,.rar,.nes,.sfc,.gba,.iso" required style="display:none;">
+                <small class="upload-rom-accept">Accepted: .zip .7z .rar .nes .sfc .gba .iso</small>
+
+                <label for="game-title">Game Title</label>
+                <input type="text" id="game-title" name="game_title" placeholder="Super Mario Bros" required>
+
+                <label for="platform">Platform</label>
+                <select id="platform" name="platform" required>
+                    <option value="">Select Platform</option>
+                    <option>NES</option>
+                    <option>Famicom</option>
+                    <option>SNES</option>
+                    <option>Super Famicom</option>
+                    <option>Nintendo 64</option>
+                    <option>GameCube</option>
+                    <option>Wii</option>
+                    <option>Wii U</option>
+                    <option>Nintendo Switch</option>
+                    <option>Game Boy</option>
+                    <option>Game Boy Color</option>
+                    <option>Game Boy Advance</option>
+                    <option>Nintendo DS</option>
+                    <option>Nintendo 3DS</option>
+                    <option>Sega Master System</option>
+                    <option>Sega Genesis / Mega Drive</option>
+                    <option>Sega CD</option>
+                    <option>32X</option>
+                    <option>Sega Saturn</option>
+                    <option>Sega Dreamcast</option>
+                    <option>Game Gear</option>
+                    <option>PlayStation</option>
+                    <option>PlayStation 2</option>
+                    <option>PlayStation 3</option>
+                    <option>PlayStation Portable (PSP)</option>
+                    <option>PlayStation Vita</option>
+                    <option>Xbox</option>
+                    <option>Xbox 360</option>
+                    <option>Xbox One</option>
+                    <option>Atari</option>
+                </select>
+
+                <label for="box-art">BOX ART (REQUIRED)</label>
+                <label for="box-art" class="upload-rom-file-label">Select Box Art</label>
+                <div class="upload-rom-boxart-drop" id="boxart-drop">
+                    <div class="upload-rom-boxart-preview" id="boxart-preview">BOX ART PREVIEW</div>
+                    <input type="file" id="box-art" name="box_art" accept=".png,.jpg,.jpeg,.webp" required style="display:none;">
+                    <small>Allowed: .png .jpg .webp 5MB MAX</small>
+                    <div class="upload-rom-boxart-drag">Drag box art here or click to upload</div>
+                </div>
+
+                <label for="genre">Genre</label>
+                <select id="genre" name="genre" required>
+                    <option value="">Select Genre</option>
+                    <option>Action</option>
+                    <option>Adventure</option>
+                    <option>Platformer</option>
+                    <option>RPG</option>
+                    <option>Fighting</option>
+                    <option>Shooter</option>
+                    <option>Puzzle</option>
+                    <option>Sports</option>
+                    <option>Racing</option>
+                    <option>Strategy</option>
+                    <option>Simulation</option>
+                    <option>Horror</option>
+                </select>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="5" placeholder="Classic NES platformer where Mario must rescue Princess Peach." required></textarea>
+
+                <button type="submit" class="upload-rom-submit-btn">SUBMIT ROM</button>
+            </form>
+        </div>
+        <div class="upload-rom-guidelines-col">
+            <div class="upload-rom-guidelines-box">
+                <h2 class="upload-rom-guidelines-title">UPLOAD GUIDELINES</h2>
+                <ul class="upload-rom-guidelines-list">
+                    <li>⚠️ Use correct platform</li>
+                    <li>⚠️ Upload clean ROM dumps</li>
+                    <li>⚠️ Provide correct title</li>
+                    <li>⚠️ Add screenshots if possible</li>
+                    <li>⚠️ Avoid duplicates</li>
+                </ul>
+                <div class="upload-rom-maxsize">Max file size: 500MB</div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/upload_rom.js' %}"></script>
+</section>
+{% endblock %}

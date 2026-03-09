@@ -1,0 +1,43 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Newly Added ROMs | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="newly-added-section">
+    <div class="newly-added-header">
+        <h1 class="newly-added-title">NEWLY ADDED ROMS</h1>
+        <p class="newly-added-subtitle">Recently uploaded games</p>
+    </div>
+
+    <div class="newly-added-highlight">
+        <a href="#" class="newly-added-badge">🆕 Added Today</a>
+        <a href="#" class="newly-added-badge">🆕 Added This Week</a>
+    </div>
+
+    <form class="newly-added-sorting" method="get" action="#">
+        <label>Sort by:
+            <select name="sort">
+                <option value="date">Date Added (default)</option>
+                <option value="platform">Platform</option>
+                <option value="downloads">Downloads</option>
+            </select>
+        </label>
+        <button type="submit" class="newly-added-sort-btn">Sort</button>
+    </form>
+
+    <div class="newly-added-list">
+        <a href="#" class="newly-added-card-link">
+            <div class="newly-added-card">
+                <img src="{% static 'images/temp_images/chrono_trigger.jpg' %}" alt="Chrono Trigger" class="newly-added-card-img">
+                <div class="newly-added-card-info">
+                    <h2 class="newly-added-card-title">Chrono Trigger</h2>
+                    <div class="newly-added-card-meta">Platform: SNES</div>
+                    <div class="newly-added-card-added">Added: 2 hours ago</div>
+                    <div class="newly-added-card-stats">
+                        <span class="newly-added-card-downloads">⬇ 23 downloads</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}

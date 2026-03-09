@@ -1,0 +1,32 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}PlayStation | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="most-downloaded-section">
+    <div class="most-downloaded-header">
+        <h1 class="most-downloaded-title">PlayStation</h1>
+        <div class="most-downloaded-subtitle">Released: 1994</div>
+        <div class="most-downloaded-subtitle">Total Games: 2545</div>
+    </div>
+    <form class="platform-search-form" method="get" action="#">
+        <input type="text" name="q" class="platform-search-input" placeholder="Search PlayStation games...">
+        <button type="submit" class="platform-search-btn">Search</button>
+    </form>
+    <div class="most-downloaded-list nes-most-downloaded-list">
+        <a href="#" class="most-downloaded-card-link">
+            <div class="most-downloaded-card">
+                <img src="{% static 'images/temp_images/ff7-vii-cover.webp' %}" alt="Final Fantasy VII" class="most-downloaded-card-img">
+                <div class="most-downloaded-card-info">
+                    <h2 class="most-downloaded-card-title">Final Fantasy VII</h2>
+                    <div class="most-downloaded-card-downloads">⬇ 1,500,000 downloads</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="most-downloaded-list nes-most-downloaded-list no-games-uploaded centered-upload-box centered-flex">
+        <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
+        <a href="#" class="upload-game-btn"><span>Upload Now</span></a>
+    </div>
+</section>
+{% endblock %}
