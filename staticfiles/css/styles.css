@@ -10,4 +10,10 @@
 @import "most-downloaded.css";
 @import "genres.css";
 @import "genre-detail.css";
-@import url('upload_rom.css');
+@import "upload_rom.css";
+@import "bios.css";
+@import "bios_faq.css";
+@import "bios_legal.css";
+@import "bios_comp.css";
+@import "bios_upload.css";
+@import "bios_all_files.css";

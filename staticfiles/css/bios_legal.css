@@ -1,0 +1,49 @@
+.bios-legal-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff1833;
+    font-family: 'Press Start 2P', monospace;
+}
+.bios-legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.bios-legal-item {
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 18px 24px;
+    color: #fff;
+}
+.bios-legal-item h2 {
+    color: #49ff18;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-legal-item ul {
+    margin: 8px 0 0 18px;
+    color: #fff;
+    font-size: 1rem;
+}
+.bios-legal-link,
+.bios-legal-link:link,
+.bios-legal-link:visited,
+.bios-legal-link:active {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+    transition: text-shadow 0.2s, color 0.2s;
+}
+.bios-legal-link:hover,
+.bios-legal-link:focus {
+    color: #fff !important;
+    text-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}
+

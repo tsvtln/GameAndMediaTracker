@@ -1,0 +1,90 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}BIOS Legal Information | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="bios-legal-section">
+    <h1 class="bios-title">BIOS Legal Information</h1>
+    <div class="bios-legal-content">
+        <div class="bios-legal-item">
+            <h2>What is a BIOS?</h2>
+            <p>
+                A BIOS (Basic Input/Output System) is firmware originally stored inside a video game console.<br>
+                It contains essential system code required to start the hardware and load games.<br>
+                Some emulators require the original BIOS to properly reproduce the behavior of the real console.
+            </p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>Legal Ownership of BIOS Files</h2>
+            <p>
+                BIOS files are copyrighted software owned by the console manufacturer.
+                In most countries, distributing or downloading BIOS files without permission
+                from the copyright holder may violate copyright law.
+            </p>
+            <p>
+                Generally, BIOS files should only be used if you legally own the original hardware and have created
+                a personal backup from your own device.
+            </p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>Personal Backups</h2>
+            <p>
+                Some users choose to create their own BIOS backups from hardware they own.
+                Laws regarding personal backups vary by country and jurisdiction.
+            </p>
+            <p>
+                It is the responsibility of the user to ensure that their use of BIOS
+                files complies with the laws in their region.
+            </p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>Educational and Preservation Purposes</h2>
+            <p>Many BIOS files are used by developers, researchers, and enthusiasts for purposes such as:</p>
+            <ul>
+                <li>studying historical gaming hardware</li>
+                <li>software preservation</li>
+                <li>emulator development</li>
+                <li>compatibility testing</li>
+            </ul>
+            <p>These activities help preserve the history of video game systems and digital media.</p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>No Affiliation</h2>
+            <p>This website is not affiliated with, endorsed by, or associated with any console manufacturer,
+                including but not limited to:</p>
+            <ul>
+                <li>Nintendo</li>
+                <li>Sony</li>
+                <li>Sega</li>
+                <li>Microsoft</li>
+                <li>Atari</li>
+            </ul>
+            <p>All trademarks and copyrighted materials belong to their respective owners.</p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>Responsibility of the User</h2>
+            <p>By downloading or using BIOS files from this website, you agree that:</p>
+            <ul>
+                <li>you are responsible for how you use the files</li>
+                <li>you comply with all applicable laws in your country</li>
+                <li>you own the required hardware when necessary</li>
+            </ul>
+            <p>This website does not take responsibility for misuse of files provided by users.</p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>Content Removal</h2>
+            <p>
+                If you are a copyright holder and believe that content on this site violates your rights,
+                please contact me through the <a href="{% url 'contacts' %}" class="bios-legal-link">Contact</a>
+                page so I can review and remove the material if necessary.
+            </p>
+        </div>
+        <div class="bios-legal-item">
+            <h2>Disclaimer</h2>
+            <p>All files provided on this website are intended for educational purposes only.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

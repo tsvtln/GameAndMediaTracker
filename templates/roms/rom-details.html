@@ -14,6 +14,10 @@
                 <span class="rom-details-genre">Genre: Platformer</span>
                 <span class="rom-details-developer">Developer: Nintendo</span>
                 <span class="rom-details-publisher">Publisher: Nintendo</span>
+                <span class="rom-details-uploader">Uploaded by: GoombaLover</span>
+                <div class="rom-details-delete-wrapper">
+                    <a href="#" class="rom-details-delete-btn" id="rom-delete-btn">delete</a>
+                </div>
             </div>
             <div class="rom-details-actions">
                 <a href="#" class="rom-details-download-btn">Download ROM</a>
@@ -135,5 +139,14 @@
         </div>
     </div>
 </section>
+<div class="rom-details-review-delete-modal" id="rom-delete-modal" style="display: none;">
+    <div class="rom-details-review-delete-modal-content">
+        <span class="rom-details-review-delete-modal-text">Are you sure you want to delete this ROM?</span>
+        <div class="rom-details-review-delete-modal-buttons">
+            <button type="button" class="rom-details-review-delete-yes">Yes</button>
+            <button type="button" class="rom-details-review-delete-no">No</button>
+        </div>
+    </div>
+</div>
 <script src="{% static 'js/rom-details.js' %}"></script>
 {% endblock %}

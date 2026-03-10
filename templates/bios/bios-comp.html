@@ -1,0 +1,206 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}BIOS Compatibility | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="bios-comp-section">
+    <h1 class="bios-title">BIOS Compatibility</h1>
+    <div class="bios-comp-content">
+        <div class="bios-comp-item">
+            <h2>Overview</h2>
+            <p>
+                Some emulators require BIOS files in order to properly run games.
+                A BIOS is firmware taken from the original console hardware and is used by the emulator to replicate
+                the system startup and internal functions.
+            </p>
+            <p>
+                Not all emulators require BIOS files, but using the correct BIOS can significantly
+                improve compatibility and accuracy.
+            </p>
+        </div>
+        <div class="bios-comp-item">
+            <h2>Systems That Commonly Require BIOS Files</h2>
+            <ul>
+                <li>PlayStation (PS1)</li>
+                <li>PlayStation 2</li>
+                <li>Sega CD</li>
+                <li>Sega Saturn</li>
+                <li>Sega Dreamcast</li>
+                <li>Neo Geo</li>
+                <li>Nintendo DS (in some emulators)</li>
+                <li>Game Boy Advance (optional in some cases)</li>
+            </ul>
+            <p>Some emulators may provide internal replacements, but original BIOS files are often recommended.</p>
+        </div>
+        <div class="bios-comp-item">
+            <h2>Emulator Compatibility</h2>
+            <div class="bios-comp-emulator">
+                <h3>PlayStation (PS1)</h3>
+                <p>Common BIOS file examples:</p>
+                <ul>
+                    <li>scph1001.bin</li>
+                    <li>scph5500.bin</li>
+                    <li>scph5501.bin</li>
+                    <li>scph5502.bin</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>DuckStation</li>
+                    <li>PCSX-Reloaded</li>
+                    <li>ePSXe</li>
+                </ul>
+                <p><strong>BIOS Required:</strong> Yes</p>
+            </div>
+            <div class="bios-comp-emulator">
+                <h3>PlayStation 2</h3>
+                <p>Common BIOS file examples:</p>
+                <ul>
+                    <li>SCPH-70012_BIOS.bin</li>
+                    <li>SCPH-39001_BIOS.bin</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>PCSX2</li>
+                </ul>
+                <p><strong>BIOS Required:</strong> Yes</p>
+            </div>
+            <div class="bios-comp-emulator">
+                <h3>Sega CD</h3>
+                <p>Common BIOS examples:</p>
+                <ul>
+                    <li>bios_CD_E.bin</li>
+                    <li>bios_CD_J.bin</li>
+                    <li>bios_CD_U.bin</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>Kega Fusion</li>
+                    <li>RetroArch (Genesis Plus GX core)</li>
+                </ul>
+                <p><strong>BIOS Required:</strong> Yes</p>
+            </div>
+            <div class="bios-comp-emulator">
+                <h3>Sega Saturn</h3>
+                <p>Common BIOS examples:</p>
+                <ul>
+                    <li>saturn_bios.bin</li>
+                    <li>mpr-17933.bin</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>Yabause</li>
+                    <li>Mednafen</li>
+                    <li>Kronos</li>
+                </ul>
+                <p><strong>BIOS Required:</strong> Yes</p>
+            </div>
+            <div class="bios-comp-emulator">
+                <h3>Sega Dreamcast</h3>
+                <p>Common BIOS examples:</p>
+                <ul>
+                    <li>dc_boot.bin</li>
+                    <li>dc_flash.bin</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>Flycast</li>
+                    <li>Redream</li>
+                    <li>Demul</li>
+                </ul>
+                <p>
+                    <strong>BIOS Required:</strong> Usually Yes<br>
+                    <small>(Some emulators provide built-in alternatives.)</small>
+                </p>
+            </div>
+            <div class="bios-comp-emulator">
+                <h3>Neo Geo</h3>
+                <p>Neo Geo systems require a BIOS package.</p>
+                <ul>
+                    <li>neogeo.zip</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>MAME</li>
+                    <li>FinalBurn Neo</li>
+                    <li>RetroArch</li>
+                </ul>
+                <p><strong>BIOS Required:</strong> Yes</p>
+            </div>
+            <div class="bios-comp-emulator">
+                <h3>Nintendo DS</h3>
+                <p>Some emulators require BIOS files.</p>
+                <ul>
+                    <li>bios7.bin</li>
+                    <li>bios9.bin</li>
+                    <li>firmware.bin</li>
+                </ul>
+                <p>Popular emulators:</p>
+                <ul>
+                    <li>melonDS</li>
+                    <li>DeSmuME</li>
+                </ul>
+                <p>
+                    <strong>BIOS Required:</strong> Sometimes<br>
+                    <small>(Some emulators can run without them.)</small>
+                </p>
+            </div>
+        </div>
+        <div class="bios-comp-item">
+            <h2>Systems That Usually Do NOT Require BIOS</h2>
+            <ul>
+                <li>NES</li>
+                <li>SNES</li>
+                <li>Game Boy</li>
+                <li>Game Boy Color</li>
+                <li>Nintendo 64</li>
+                <li>Game Boy Advance (optional)</li>
+                <li>Sega Genesis / Mega Drive</li>
+            </ul>
+            <p>Emulators for these systems include their own startup routines.</p>
+        </div>
+        <div class="bios-comp-item">
+            <h2>BIOS File Placement</h2>
+            <p>Most emulators require BIOS files to be placed in a bios folder.</p>
+            <p>Example directory:</p>
+            <code>./emulator/bios/</code>
+            <p>Some emulators allow you to configure the BIOS location in the settings menu.</p>
+        </div>
+        <div class="bios-comp-item">
+            <h2>Common BIOS Problems</h2>
+            <h3>BIOS Not Detected</h3>
+            <p>Possible causes:</p>
+            <ul>
+                <li>incorrect filename</li>
+                <li>wrong folder location</li>
+                <li>unsupported BIOS version</li>
+            </ul><hr><br>
+            <h3>Game Does Not Boot</h3>
+            <p>Possible causes:</p>
+            <ul>
+                <li>missing BIOS</li>
+                <li>corrupted BIOS file</li>
+                <li>incorrect region BIOS</li>
+            </ul><hr><br>
+            <h3>Region Issues</h3>
+            <p>Some games require BIOS files matching their region:</p>
+            <ul>
+                <li>USA</li>
+                <li>Europe</li>
+                <li>Japan</li>
+            </ul>
+            <p>Using the correct BIOS region can improve compatibility.</p>
+        </div>
+        <div class="bios-comp-item">
+            <h2>Recommended Practice</h2>
+            <ul>
+                <li>use verified BIOS files</li>
+                <li>keep BIOS filenames unchanged</li>
+                <li>place them in the correct folder</li>
+                <li>ensure the emulator supports the BIOS version</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

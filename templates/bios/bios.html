@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}BIOS | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="bios-section">
+    <h1 class="bios-title">BIOS</h1>
+    <div class="bios-grid">
+        <div class="roms-box">
+            <a href="{% url 'bios all files' %}" class="roms-box-title">All BIOS Files</a>
+            <ul class="roms-box-list">
+                <li><a href="#">MAME</a></li>
+                <li><a href="#">PlayStation 1</a></li>
+                <li><a href="#">XBOX</a></li>
+            </ul>
+            <a href="{% url 'bios all files' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+        <div class="roms-box">
+            {# note: to send this to forums>guides when its done #}
+            {# throw the top 3 by upvotes guides in the list #}
+            <a href="#" class="roms-box-title">Installation Guides</a>
+            <ul class="roms-box-list">
+                <li><a href="#">EmuDECK installation</a></li>
+                <li><a href="#">XBOX PC Installation</a></li>
+                <li><a href="#">PlayStation 1 BIOS Installation</a></li>
+            </ul>
+            <a href="#" class="roms-box-more bottom-right">...</a>
+        </div>
+        <div class="roms-box">
+            <a href="{% url 'bios faq' %}" class="roms-box-title">BIOS FAQ</a>
+            <ul class="roms-box-list">
+                <li><a href="{% url 'bios faq' %}">Common Questions</a></li>
+                <li><a href="{% url 'bios legal' %}">Legal Info</a></li>
+                <li><a href="{% url 'bios compatibility' %}">BIOS Compatibility</a></li>
+            </ul>
+        </div>
+        <div></div>
+        <div class="roms-box">
+            <a href="{% url 'bios upload' %}" class="roms-box-title">BIOS Upload</a>
+            <p class="roms-box-description">Share a BIOS with the community</p>
+            <a href="{% url 'bios upload' %}" class="roms-box-upload-btn"><span>Upload Now</span></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

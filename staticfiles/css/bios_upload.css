@@ -1,0 +1,172 @@
+.bios-upload-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff1833;
+    font-family: 'Press Start 2P', monospace;
+}
+.bios-upload-title {
+    color: #49ff18;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-upload-subtitle {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+.bios-upload-warning {
+    color: #ff3b7b;
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ff3b7b;
+}
+.bios-upload-main {
+    display: flex;
+    gap: 40px;
+    margin-top: 24px;
+}
+.bios-upload-form-col {
+    flex: 2;
+}
+.bios-upload-guidelines-col {
+    flex: 1;
+    min-width: 260px;
+}
+.bios-upload-form label {
+    color: #49ff18;
+    font-size: 1rem;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    display: block;
+}
+.bios-upload-form input[type="file"] {
+    width: 100%;
+    background: #232323;
+    margin-bottom: 8px;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    padding: 8px 12px;
+    box-shadow: 0 0 8px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.bios-upload-form input[type="file"]:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 16px #49ff18;
+}
+.bios-upload-file-label {
+    display: inline-block;
+    background: #49ff18;
+    color: #232323 !important;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px 28px;
+    margin-bottom: 8px;
+    margin-top: 6px;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    border: none;
+    text-align: center;
+}
+.bios-upload-file-label:hover {
+    background: #232323;
+    color: #49ff18 !important;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-upload-accept {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: block;
+}
+.bios-upload-form textarea,
+.bios-upload-form select {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.bios-upload-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+.bios-upload-submit-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    margin-top: 18px;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.bios-upload-submit-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-upload-guidelines-box {
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 24px 18px;
+    margin-top: 0;
+}
+.bios-upload-guidelines-title {
+    color: #49ff18;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    text-align: center;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-upload-guidelines-list {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    padding-left: 18px;
+}
+.bios-upload-guidelines-list li {
+    margin-bottom: 6px;
+}
+.bios-upload-maxsize {
+    color: #ffeb3b;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+}
+@media (max-width: 900px) {
+    .bios-upload-main {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .bios-upload-form-col, .bios-upload-guidelines-col {
+        min-width: 0;
+    }
+}
+

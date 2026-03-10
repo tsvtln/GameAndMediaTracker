@@ -1,0 +1,79 @@
+.bios-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.bios-title {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 32px;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+.bios-box {
+    background: #232323;
+    border-radius: 10px;
+    border: 1px solid #333;
+    box-shadow: 0 0 12px rgba(73, 255, 24, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    min-height: 180px;
+}
+.bios-box:hover {
+    box-shadow: 0 0 20px rgba(73, 255, 24, 0.35);
+}
+.bios-box-title,
+.bios-box-title:link,
+.bios-box-title:visited,
+.bios-box-title:active,
+.bios-box-title:hover,
+.bios-box-title:focus {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: text-shadow 0.2s ease;
+}
+.bios-box-title:hover,
+.bios-box-title:focus {
+    text-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}
+.bios-box-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.bios-box-list li a,
+.bios-box-list li a:link,
+.bios-box-list li a:visited,
+.bios-box-list li a:active,
+.bios-box-list li a:hover,
+.bios-box-list li a:focus {
+    color: #ccc !important;
+    text-decoration: none !important;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+.bios-box-list li a:hover,
+.bios-box-list li a:focus {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+}
+

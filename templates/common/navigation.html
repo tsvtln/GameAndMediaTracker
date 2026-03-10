@@ -21,12 +21,12 @@
             </ul>
         </li>
         <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/bios.png' %}" alt="BIOS"></a>
+            <a href="{% url 'bios page' %}"><img src="{% static 'images/icons/bios.png' %}" alt="BIOS"></a>
             <ul class="dropdown-menu">
-                <li><a href="#">All BIOS Files</a></li>
-                <li><a href="#">Installation Guides</a></li>
-                <li><a href="#">BIOS Upload</a></li>  {# if logged in #}
-                <li><a href="#">BIOS FAQ</a></li>
+                <li><a href="{% url 'bios all files' %}">All BIOS Files</a></li>
+                <li><a href="#">Installation Guides</a></li>  {# note: to add the link when forums>guides is done #}
+                <li><a href="{% url 'bios faq' %}">BIOS FAQ</a></li>
+                <li><a href="{% url 'bios upload' %}">BIOS Upload</a></li>  {# note: if logged in #}
             </ul>
         </li>
         <li class="nav-item has-dropdown">
@@ -36,8 +36,8 @@
                 <li><a href="#">Latest Saves</a></li>
                 <li><a href="#">Most Downloaded</a></li>
                 <li><a href="#">100% Completed Saves</a></li>
-                <li><a href="#">Upload Save</a></li>  {# if logged in #}
-                <li><a href="#">My Vault</a></li>  {# if logged in #}
+                <li><a href="#">Upload Save</a></li>  {# note: if logged in #}
+                <li><a href="#">My Vault</a></li>  {# note: if logged in #}
             </ul>
         </li>
         <li class="sav-item has-dropdown">
@@ -46,14 +46,13 @@
                 <li><a href="#">Latest Reviews</a></li>
                 <li><a href="#">Top Rated Reviews</a></li>
                 <li><a href="#">Most Discussed</a></li>
-                <li><a href="#">Submit Review</a></li>  {# if logged in #}
-                <li><a href="#">My Reviews</a></li>  {# if logged in #}
+                <li><a href="#">Submit Review</a></li>  {# note: if logged in #}
+                <li><a href="#">My Reviews</a></li>  {# note: if logged in #}
             </ul>
         </li>
         <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>  {# if logged in #}
+            <a href="#"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>  {# note: if logged in #}
             <ul class="dropdown-menu">
-                <li><a href="#">Favorite Games</a></li>
                 <li><a href="#">Favorite ROMs</a></li>
                 <li><a href="#">Favorite Reviews</a></li>
                 <li><a href="#">Favorite Screenshots</a></li>
@@ -72,8 +71,8 @@
             <ul class="dropdown-menu">
                 <li><a href="#">Latest Screenshots</a></li>
                 <li><a href="#">Top Rated Screenshots</a></li>
-                <li><a href="#">Submit Screenshot</a></li>  {# if logged in #}
-                <li><a href="#">My Screenshots</a></li>  {# if logged in #}
+                <li><a href="#">Submit Screenshot</a></li>  {# note: if logged in #}
+                <li><a href="#">My Screenshots</a></li>  {# note: if logged in #}
             </ul>
         </li>
     </ul>
@@ -81,8 +80,8 @@
     <div class="nav-right">
         <div class="auth-links">
             <a class="auth-link" href="#"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# if logged in #}
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT"></a>  {# if logged in #}
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# note: if logged in #}
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT"></a>  {# note: if logged in #}
             <a class="auth-link" href="#"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
         </div>
         <form class="nav-search" action="#" method="get">

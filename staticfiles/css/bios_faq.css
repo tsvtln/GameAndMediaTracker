@@ -1,0 +1,68 @@
+.bios-faq-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff1833;
+    font-family: 'Press Start 2P', monospace;
+}
+.bios-faq-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.bios-faq-item {
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 18px 24px;
+    color: #fff;
+}
+.bios-faq-q {
+    color: #49ff18;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 1rem;
+}
+.bios-faq-a {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+.bios-faq-item h2 {
+    color: #49ff18;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px #49ff18;
+}
+.bios-faq-item ul {
+    margin: 8px 0 0 18px;
+    color: #fff;
+    font-size: 1rem;
+}
+.bios-faq-item code {
+    background: #232323;
+    color: #49ff18;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.bios-faq-link,
+.bios-faq-link:link,
+.bios-faq-link:visited,
+.bios-faq-link:active {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+    transition: text-shadow 0.2s, color 0.2s;
+}
+.bios-faq-link:hover,
+.bios-faq-link:focus {
+    color: #fff !important;
+    text-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}

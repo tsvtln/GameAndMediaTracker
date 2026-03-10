@@ -453,6 +453,35 @@
     box-shadow: 0 0 12px #49ff18;
 }
 
+.rom-details-delete-wrapper {
+    margin-top: 8px;
+}
+
+.rom-details-delete-btn {
+    background: #ff3b3b;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.85em;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-weight: bold;
+    box-shadow: 0 0 6px #ff3b3b44;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    z-index: 2;
+    text-decoration: none;
+    display: inline-block;
+    width: fit-content;
+}
+
+.rom-details-delete-btn:hover {
+    background: #b80000;
+    box-shadow: 0 0 12px #ff3b3b;
+    color: #fff;
+    text-decoration: none;
+}
+
 .rom-details-review-delete-modal {
     position: fixed;
     top: 0;

@@ -1,0 +1,86 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}BIOS Upload | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="bios-upload-section">
+    <h1 class="bios-title">UPLOAD BIOS FILE</h1>
+    <p class="bios-upload-subtitle">
+        Share BIOS files required for console emulators.<br>
+        Please ensure the file is correct and properly labeled.
+    </p>
+    <div class="bios-upload-warning">
+        Incorrect or corrupted BIOS files may prevent emulators from working properly.
+    </div>
+    <div class="bios-upload-main">
+        <div class="bios-upload-form-col">
+            <form class="bios-upload-form" enctype="multipart/form-data">
+                <label for="bios-file">BIOS File</label>
+                <label for="bios-file" class="bios-upload-file-label">Select BIOS File</label>
+                <input type="file" id="bios-file" name="bios_file" accept=".bin,.rom,.zip" required style="display:none;">
+                <small class="bios-upload-accept">Accepted: .bin .rom .zip</small>
+
+                <label for="platform">System / Platform</label>
+                <select id="platform" name="platform" required>
+                    <option value="">Select Platform</option>
+                    <option>Famicom</option>
+                    <option>Super Famicom</option>
+                    <option>GameCube</option>
+                    <option>Wii</option>
+                    <option>Wii U</option>
+                    <option>Nintendo Switch</option>
+                    <option>Game Boy Advance</option>
+                    <option>Nintendo DS</option>
+                    <option>Nintendo 3DS</option>
+                    <option>Sega Master System</option>
+                    <option>Sega CD</option>
+                    <option>32X</option>
+                    <option>Sega Saturn</option>
+                    <option>Sega Dreamcast</option>
+                    <option>Game Gear</option>
+                    <option>PlayStation</option>
+                    <option>PlayStation 2</option>
+                    <option>PlayStation 3</option>
+                    <option>PlayStation Portable (PSP)</option>
+                    <option>PlayStation Vita</option>
+                    <option>Xbox</option>
+                    <option>Xbox 360</option>
+                    <option>Xbox One</option>
+                    <option>Atari</option>
+                    <option>MAME</option>
+                    <option>FinalBurn NEO</option>
+                    <option>RetroArch</option>
+                </select>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="5" placeholder="PlayStation BIOS used by many PS1 emulators. Compatible with DuckStation and PCSX." required></textarea>
+
+                <label for="source">Upload Source</label>
+                <select id="source" name="source" required>
+                    <option value="">Select Source</option>
+                    <option>Dumped from original hardware</option>
+                    <option>Unknown source</option>
+                    <option>Other</option>
+                </select>
+
+                <button type="submit" class="bios-upload-submit-btn">SUBMIT BIOS</button>
+            </form>
+        </div>
+        <div class="bios-upload-guidelines-col">
+            <div class="bios-upload-guidelines-box">
+                <h2 class="bios-upload-guidelines-title">BIOS UPLOAD GUIDELINES</h2>
+                <ul class="bios-upload-guidelines-list">
+                    <li>⚠️ Upload verified BIOS dumps</li>
+                    <li>⚠️ Use correct filename</li>
+                    <li>⚠️ Select the correct platform</li>
+                    <li>⚠️ Avoid duplicate uploads</li>
+                    <li>⚠️ Provide region information if possible</li>
+                </ul>
+                <div class="bios-upload-maxsize">Maximum file size: 5GB</div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/bios_upload.js' %}"></script>
+{% endblock %}

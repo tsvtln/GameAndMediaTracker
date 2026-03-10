@@ -1,3 +1,15 @@
+[2026-03-10]
+- Added delete button for a rom with confirmation popup modal
+- Improved delete button styling for ROM and BIOS pages to match site style
+- Fixed delete button modal placement and behavior for ROM details page
+- Added BIOS main page and all related BIOS pages
+- Implemented modular HTML and CSS for all BIOS subpages:
+  - all files
+  - compatibility
+  - FAQ
+  - legal
+  - upload
+
 [2026-03-09]
 - Added ROMs main page and all related ROMs pages
 - Implemented modular HTML and CSS for all ROMs subpages: 
@@ -15,7 +27,7 @@
 - Refined layout and responsiveness for ROMs pages
 
 [2026-03-05]
-- Created the django apps: `accounts`, `bios`, `reviews`, `roms`, `saves`
+- Created the django apps: 'accounts', 'bios', 'reviews', 'roms', 'saves'
 - Created very minimal and simple views and urls for each app, just to have a visualization during HTML and CSS development.
 - Added About and Contacts info pages with CSS.
 - Implemented About and Contacts views and URLs in the common app.
@@ -25,6 +37,6 @@
 
 
 [2026-03-03]
-- Created the initial `common` Django app.
+- Created the initial 'common' Django app.
 - Added base layout, navigation, and home page HTML templates.
 - Built modular CSS for site layout, navigation, and home page styling.

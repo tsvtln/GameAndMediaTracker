@@ -99,4 +99,28 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewToDelete = null;
         });
     }
+
+    // ROM delete button
+    const romDeleteBtn = document.getElementById('rom-delete-btn');
+    const romDeleteModal = document.getElementById('rom-delete-modal');
+    const romDeleteYes = romDeleteModal.querySelector('.rom-details-review-delete-yes');
+    const romDeleteNo = romDeleteModal.querySelector('.rom-details-review-delete-no');
+
+    if (romDeleteBtn && romDeleteModal) {
+        romDeleteBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            romDeleteModal.style.display = 'flex';
+        });
+    }
+    if (romDeleteNo) {
+        romDeleteNo.addEventListener('click', function() {
+            romDeleteModal.style.display = 'none';
+        });
+    }
+    if (romDeleteYes) {
+        romDeleteYes.addEventListener('click', function() {
+            romDeleteModal.style.display = 'none';
+            // note: add real delete logic here later
+        });
+    }
 });
