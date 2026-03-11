@@ -30,14 +30,11 @@
             </ul>
         </li>
         <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/saves.png' %}" alt="SAVES"></a>
+            <a href="{% url 'saves main page' %}"><img src="{% static 'images/icons/saves.png' %}" alt="SAVES"></a>
             <ul class="dropdown-menu">
-                <li><a href="#">All Saves</a></li>
-                <li><a href="#">Latest Saves</a></li>
-                <li><a href="#">Most Downloaded</a></li>
-                <li><a href="#">100% Completed Saves</a></li>
-                <li><a href="#">Upload Save</a></li>  {# note: if logged in #}
-                <li><a href="#">My Vault</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'saves all page' %}">All Saves</a></li>
+                <li><a href="{% url 'saves vault page' %}">My Vault</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'saves upload page' %}">Upload Save</a></li>  {# note: if logged in #}
             </ul>
         </li>
         <li class="sav-item has-dropdown">
@@ -46,15 +43,14 @@
                 <li><a href="#">Latest Reviews</a></li>
                 <li><a href="#">Top Rated Reviews</a></li>
                 <li><a href="#">Most Discussed</a></li>
-                <li><a href="#">Submit Review</a></li>  {# note: if logged in #}
                 <li><a href="#">My Reviews</a></li>  {# note: if logged in #}
+                <li><a href="#">Submit Review</a></li>  {# note: if logged in #}
             </ul>
         </li>
         <li class="nav-item has-dropdown">
             <a href="#"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>  {# note: if logged in #}
             <ul class="dropdown-menu">
                 <li><a href="#">Favorite ROMs</a></li>
-                <li><a href="#">Favorite Reviews</a></li>
                 <li><a href="#">Favorite Screenshots</a></li>
             </ul>
         </li>
@@ -71,8 +67,8 @@
             <ul class="dropdown-menu">
                 <li><a href="#">Latest Screenshots</a></li>
                 <li><a href="#">Top Rated Screenshots</a></li>
-                <li><a href="#">Submit Screenshot</a></li>  {# note: if logged in #}
                 <li><a href="#">My Screenshots</a></li>  {# note: if logged in #}
+                <li><a href="#">Submit Screenshot</a></li>  {# note: if logged in #}
             </ul>
         </li>
     </ul>

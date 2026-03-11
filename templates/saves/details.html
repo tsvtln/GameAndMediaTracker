@@ -1,0 +1,33 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Save Details | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="save-details-section">
+    <h1 class="save-details-title">SAVE DETAILS</h1>
+    <div class="save-details-main">
+        <div class="save-details-cover-col">
+            <img src="{% static 'images/temp_images/grand_theft_auto_san_andreas_playstation_2__2004__by_sonicloud1213_dig2fm4-fullview.jpg' %}" alt="GTA San Andreas Cover" class="save-details-cover-img">
+        </div>
+        <div class="save-details-info-col">
+            <h2 class="save-details-game-title">GTA San Andreas</h2>
+            <div class="save-details-meta">
+                <span class="save-details-uploader">Uploaded by: CarlJohnson</span>
+                <span class="save-details-platform">Platform: PC</span>
+                <span class="save-details-type">Save Type: Story Progress</span>
+                <span class="save-details-progress">Progress: 78%</span>
+                <span class="save-details-uploaded">Uploaded: Jan 14, 2026</span>
+                <span class="save-details-size">Size: 45 KB</span>
+            </div>
+            <div class="save-details-description">
+                <strong>Description:</strong> Save file after mission "Black Project". All side missions completed. 78% game progress.
+            </div>
+            <div class="save-details-actions">
+                <a href="#" class="save-details-download-btn">Download Save</a>
+                <a href="#" class="save-details-delete-btn">Delete</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

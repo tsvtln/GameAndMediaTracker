@@ -1,0 +1,397 @@
+.vault-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.vault-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.vault-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    margin-bottom: 8px;
+}
+.vault-desc {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+.vault-upload-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    font-family: 'Press Start 2P', monospace;
+    margin-top: 8px;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+}
+.vault-upload-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.vault-summary-panel {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #49ff1833;
+    padding: 18px 32px;
+    margin-bottom: 32px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.vault-summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.vault-summary-label {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+}
+.vault-summary-value {
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+}
+.vault-filters-section {
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #49ff1833;
+    padding: 24px 32px 12px 32px;
+    margin-bottom: 32px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.vault-filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.vault-filter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.vault-filter-row label {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+}
+.vault-filter-row input,
+.vault-filter-row select {
+    background: #232323;
+    color: #fff;
+    border: 1px solid #49ff18;
+    border-radius: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px 12px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.vault-filter-row input:focus,
+.vault-filter-row select:focus {
+    border: 1.5px solid #49ff18;
+    box-shadow: 0 0 8px #49ff18;
+}
+.vault-filter-row select:hover {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.vault-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 32px;
+    margin-bottom: 32px;
+}
+.vault-card {
+    background: #232f3e;
+    border-radius: 12px;
+    box-shadow: 0 0 16px #49ff1833;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    position: relative;
+}
+.vault-card:hover {
+    box-shadow: 0 0 32px #49ff18;
+}
+.vault-card-cover {
+    width: 120px;
+    min-width: 120px;
+    height: 120px;
+    background: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.vault-card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}
+.vault-card-content {
+    flex: 1 1 auto;
+    padding: 18px 20px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+}
+.vault-card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2px;
+}
+.vault-card-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.vault-card-title,
+.vault-card-title:link,
+.vault-card-title:visited,
+.vault-card-title:active {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.vault-card-title:hover,
+.vault-card-title:focus {
+    color: #49ff18 !important;
+    text-shadow: 0 0 8px #49ff18, 0 0 16px #49ff18;
+    text-decoration: none !important;
+}
+.vault-card-label {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-weight: bold;
+    margin-left: 6px;
+    box-shadow: 0 0 6px #49ff18;
+    letter-spacing: 1px;
+}
+.vault-card-label.private {
+    background: #ff3b3b;
+    color: #fff;
+    box-shadow: 0 0 6px #ff3b3b44;
+}
+.vault-card-meta {
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: 'Press Start 2P', monospace;
+    margin-bottom: 1px;
+}
+.vault-card-actions {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.vault-card-download-btn,
+.vault-card-edit-btn,
+.vault-card-delete-btn,
+.vault-card-toggle-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+    margin-left: 0;
+    margin-right: 0;
+}
+.vault-card-download-btn {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 10px #49ff18;
+}
+.vault-card-download-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.vault-card-edit-btn {
+    background: #181818;
+    color: #49ff18;
+    border: 1px solid #49ff18;
+    box-shadow: 0 0 6px #49ff1833;
+}
+.vault-card-edit-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+    text-decoration: none;
+}
+.vault-card-delete-btn {
+    background: #ff3b3b;
+    color: #fff;
+    box-shadow: 0 0 6px #ff3b3b44;
+}
+.vault-card-delete-btn:hover {
+    background: #b80000;
+    color: #fff;
+    box-shadow: 0 0 12px #ff3b3b;
+    text-decoration: none;
+}
+.vault-card-toggle-btn {
+    background: #181818;
+    color: #49ff18;
+    border: 1px solid #49ff18;
+    box-shadow: 0 0 6px #49ff1833;
+}
+.vault-card-toggle-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+    text-decoration: none;
+}
+.vault-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+.vault-page-link {
+    background: #181818;
+    color: #49ff18;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 6px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.vault-page-link.active,
+.vault-page-link:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 16px #49ff18;
+    text-decoration: none;
+}
+.vault-page-ellipsis {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    padding: 0 6px;
+}
+.vault-empty-state {
+    text-align: center;
+    margin: 48px 0;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+}
+.vault-empty-state .vault-upload-btn {
+    margin-top: 16px;
+}
+
+.vault-delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+}
+.vault-delete-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.vault-delete-modal-content {
+    background: #181818;
+    border-radius: 12px;
+    box-shadow: 0 0 24px #49ff18;
+    padding: 32px 24px;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.25s, opacity 0.25s;
+}
+.vault-delete-modal.show .vault-delete-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+.vault-delete-modal-text {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    display: block;
+}
+.vault-delete-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 18px;
+}
+.vault-delete-yes,
+.vault-delete-no {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+.vault-delete-yes:hover,
+.vault-delete-no:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}

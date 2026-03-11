@@ -1,3 +1,12 @@
+[2026-03-11]
+- Added SAVES main page and all related SAVE pages
+- Implemented modular HTML and CSS for all SAVE subpages:
+  - all saves
+  - details for a save file
+  - upload
+  - vault (my saves)
+- Removed some future pages from the navigation dropdown to focus on core features and avoid clutter
+
 [2026-03-10]
 - Added delete button for a rom with confirmation popup modal
 - Improved delete button styling for ROM and BIOS pages to match site style

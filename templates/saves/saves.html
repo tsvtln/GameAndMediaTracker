@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-   <h1 style="text-align: center">HELLO WORLD</h1>
-</body>
-</html>
+{% extends 'common/base.html' %}
+
+{% block title %}Saves | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="roms-section">
+    <h1 class="roms-title">Saves</h1>
+    <div class="roms-grid">
+        <div class="roms-box">
+            <a href="{% url 'saves all page' %}" class="roms-box-title">All Saves</a>
+            <ul class="roms-box-list">
+                <li><a href="{% url 'saves details' %}">Super Mario World (100%)</a></li>
+                <li><a href="#">Pokémon Red (Elite Four)</a></li>
+                <li><a href="#">Zelda: Link to the Past (Final Boss)</a></li>
+            </ul>
+            <a href="{% url 'saves all page' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+        <div class="roms-box">
+            <a href="{% url 'saves vault page' %}" class="roms-box-title">My Vault</a>
+            <ul class="roms-box-list">
+                <li><a href="#">My Mario Save</a></li>
+                <li><a href="#">My Pokémon Save</a></li>
+                <li><a href="#">My Zelda Save</a></li>
+            </ul>
+            <a href="{% url 'saves vault page' %}" class="roms-box-more bottom-right">...</a>
+        </div>
+        <div class="roms-box">
+            <a class="roms-box-title">Upload Save</a>
+            <p class="roms-box-description">Share your favorite game saves with the community</p>
+            <a href="{% url 'saves upload page' %}" class="roms-box-upload-btn"><span>Upload Now</span></a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

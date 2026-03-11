@@ -1,0 +1,142 @@
+.save-details-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff1833;
+    font-family: 'Press Start 2P', monospace;
+}
+.save-details-title {
+    color: #49ff18;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px #49ff18;
+}
+.save-details-main {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+}
+.save-details-cover-col {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.save-details-cover-img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 0 16px #49ff18;
+}
+.save-details-info-col {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.save-details-game-title {
+    color: #49ff18;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px #49ff18;
+}
+.save-details-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+.save-details-description {
+    color: #fff;
+    font-size: 1rem;
+    background: #181818;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 0 8px #49ff18;
+}
+.save-details-actions {
+    display: flex;
+    gap: 18px;
+    margin-top: 16px;
+}
+.save-details-download-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+.save-details-download-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.save-details-delete-btn {
+    background: #ff3b3b;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ff3b3b44;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+.save-details-delete-btn:hover {
+    background: #b80000;
+    color: #fff;
+    box-shadow: 0 0 20px #ff3b3b;
+    text-shadow: 0 0 8px #ff3b3b;
+}
+.save-details-guidelines {
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 24px 18px;
+    margin-top: 32px;
+}
+.save-details-guidelines-title {
+    color: #49ff18;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-align: center;
+    text-shadow: 0 0 8px #49ff18;
+}
+.save-details-guidelines-list {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0;
+    padding-left: 18px;
+}
+.save-details-guidelines-list li {
+    margin-bottom: 6px;
+}
+@media (max-width: 900px) {
+    .save-details-main {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .save-details-cover-img {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+    }
+}
+

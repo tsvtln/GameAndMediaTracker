@@ -1,0 +1,84 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Upload Save | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="save-upload-section">
+    <h1 class="save-upload-title">UPLOAD SAVE FILE</h1>
+    <p class="save-upload-subtitle">Share your game progress with the community. Upload save files for PC games, consoles, or emulators.</p>
+    <div class="save-upload-main">
+        <div class="save-upload-form-col">
+            <form class="save-upload-form" enctype="multipart/form-data">
+                <label for="save-file">Save File</label>
+                <label for="save-file" class="save-upload-file-label">Select Save File</label>
+                <input type="file" id="save-file" name="save_file" accept=".zip,.rar,.7z,.sav,.srm,.state,.dat" required style="display:none;">
+                <small class="save-upload-accept">Accepted: .zip .rar .7z .sav .srm .state .dat</small>
+                <label for="save-image">Upload Picture</label>
+                <label for="save-image" class="save-upload-file-label">Select Image</label>
+                <input type="file" id="save-image" name="save_image" accept=".png,.jpg,.jpeg,.webp" style="display:none;">
+                <small class="save-upload-accept">Accepted: .png .jpg .jpeg .webp</small>
+                <div id="save-image-preview" style="display:none; margin-bottom: 10px;"></div>
+                <label for="game-title">Game Title</label>
+                <input type="text" id="game-title" name="game_title" placeholder="GTA San Andreas" required>
+
+                <label for="platform">Platform</label>
+                <select id="platform" name="platform" required>
+                    <option value="">All</option>
+                    <option>PC</option>
+                    <option>PlayStation</option>
+                    <option>PlayStation 2</option>
+                    <option>PlayStation 3</option>
+                    <option>Xbox</option>
+                    <option>Switch</option>
+                    <option>SNES</option>
+                    <option>Other</option>
+                </select>
+
+                <label for="save-type">Save Type</label>
+                <select id="save-type" name="save_type" required>
+                    <option value="pc">PC</option>
+                    <option value="emulator">Emulator</option>
+                </select>
+
+                <label for="progress">Game Progress</label>
+                <select id="progress" name="progress" required onchange="toggleMissionField()">
+                    <option value="early">Early Game</option>
+                    <option value="mid">Mid Game</option>
+                    <option value="late">Late Game</option>
+                    <option value="100">100% Completed</option>
+                    <option value="mission">Specific Mission/Custom</option>
+                </select>
+                <div id="mission-field" style="display:none; margin-top:8px;">
+                    <label for="mission-detail">Specific Mission:</label>
+                    <input type="text" id="mission-detail" name="mission_detail" placeholder="After mission 'Black Project'">
+                </div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" placeholder="Describe your save file, progress, or any special instructions..." class="save-upload-description"></textarea>
+
+                <label for="completion">Completion Percentage</label>
+                <div class="save-upload-completion-row">
+                    <input type="range" id="completion" name="completion" min="0" max="100" value="0" step="1" oninput="document.getElementById('completion-value').textContent = this.value + '%'">
+                    <span id="completion-value">0%</span>
+                </div>
+
+
+                <button type="submit" class="save-upload-submit-btn">SUBMIT SAVE</button>
+            </form>
+        </div>
+        <div class="save-upload-guidelines-col">
+            <div class="save-upload-guidelines-box">
+                <h2 class="save-upload-guidelines-title">SAVE UPLOAD GUIDELINES</h2>
+                <ul class="save-upload-guidelines-list">
+                    <li>⚠️ Upload clean save files</li>
+                    <li>⚠️ Provide correct game title and platform</li>
+                    <li>⚠️ Avoid duplicate uploads</li>
+                    <li>⚠️ Do not upload malicious files</li>
+                </ul>
+                <div class="save-upload-maxsize">Maximum file size: 50 MB</div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/save_upload.js' %}"></script>
+{% endblock %}

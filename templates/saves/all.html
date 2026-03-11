@@ -1,0 +1,150 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}All Saves | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="saves-section">
+    <h1 class="saves-title">All Game Saves</h1>
+    <p class="saves-desc">Browse user-uploaded save files for console and PC games.</p>
+    <div class="saves-filters-section">
+        <form class="saves-filters-form">
+            <div class="saves-filter-row">
+                <label for="save-search">Search Saves:</label>
+                <input type="text" id="save-search" name="save-search" placeholder="Enter save or game name...">
+            </div>
+            <div class="saves-filter-row">
+                <label for="platform">Platform:</label>
+                <select id="platform" name="platform">
+                    <option value="">All Platforms</option>
+                    <option>PC</option>
+                    <option>PlayStation</option>
+                    <option>PlayStation 2</option>
+                    <option>PlayStation 3</option>
+                    <option>Xbox</option>
+                    <option>Switch</option>
+                    <option>SNES</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="saves-filter-row">
+                <label for="game">Game:</label>
+                <input type="text" id="game" name="game" placeholder="Game Name">
+            </div>
+            <div class="saves-filter-row">
+                <label for="type">Type:</label>
+                <select id="type" name="type">
+                    <option value="all">All</option>
+                    <option value="emulator">Emulator</option>
+                    <option value="pc">PC</option>
+                </select>
+            </div>
+            <div class="saves-filter-row">
+                <label for="sort">Sort By:</label>
+                <select id="sort" name="sort">
+                    <option value="latest">Latest</option>
+                    <option value="downloads">Most Downloaded</option>
+                    <option value="liked">Most Liked</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="saves-cards-grid">
+        <div class="save-card">
+            <div class="save-card-cover">
+                <a href="#">
+                    <img src="{% static 'images/temp_images/grand_theft_auto_san_andreas_playstation_2__2004__by_sonicloud1213_dig2fm4-fullview.jpg' %}" alt="GTA San Andreas Cover">
+                </a>
+            </div>
+            <div class="save-card-content">
+                <div class="save-card-title-row">
+                    <a href="#" class="save-card-title">GTA San Andreas</a>
+                    <span class="save-card-label">Story Progress</span>
+                </div>
+                <div class="save-card-meta">Platform: PC</div>
+                <div class="save-card-meta">Save Type: Story (78%)</div>
+                <div class="save-card-meta">Uploaded by: CarlJohnson</div>
+                <div class="save-card-meta">Upload Date: 2026-03-10</div>
+                <div class="save-card-meta">Downloads: 542</div>
+                <div class="save-card-meta">File Size: 1.2 MB</div>
+                <div class="save-card-meta">Rating: <span class="rom-details-rating-star">⭐</span>4</div>
+                <div class="save-card-actions">
+                    <button class="save-card-vote-btn save-card-upvote-btn" type="button">
+                        <img src="{% static 'images/icons/upvote.webp' %}" alt="Upvote" class="save-card-vote-icon">
+                    </button>
+                    <button class="save-card-vote-btn save-card-downvote-btn" type="button">
+                        <img src="{% static 'images/icons/downvote.webp' %}" alt="Downvote" class="save-card-vote-icon">
+                    </button>
+                    <a href="#" class="save-card-download-btn">Download Save</a>
+                </div>
+            </div>
+        </div>
+        <div class="save-card">
+            <div class="save-card-cover">
+                <a href="#">
+                    <img src="{% static 'images/temp_images/super_mario_64.jpg' %}" alt="Super Mario 64 Cover">
+                </a>
+            </div>
+            <div class="save-card-content">
+                <div class="save-card-title-row">
+                    <a href="#" class="save-card-title">Super Mario 64</a>
+                    <span class="save-card-label">100% Completion</span>
+                </div>
+                <div class="save-card-meta">Platform: Nintendo 64</div>
+                <div class="save-card-meta">Save Type: 120 Stars (100%)</div>
+                <div class="save-card-meta">Uploaded by: MarioFan</div>
+                <div class="save-card-meta">Upload Date: 2026-03-09</div>
+                <div class="save-card-meta">Downloads: 430</div>
+                <div class="save-card-meta">File Size: 512 KB</div>
+                <div class="save-card-meta">Rating: <span class="rom-details-rating-star">⭐</span>5</div>
+                <div class="save-card-actions">
+                    <button class="save-card-vote-btn save-card-upvote-btn" type="button">
+                        <img src="{% static 'images/icons/upvote.webp' %}" alt="Upvote" class="save-card-vote-icon">
+                    </button>
+                    <button class="save-card-vote-btn save-card-downvote-btn" type="button">
+                        <img src="{% static 'images/icons/downvote.webp' %}" alt="Downvote" class="save-card-vote-icon">
+                    </button>
+                    <a href="#" class="save-card-download-btn">Download Save</a>
+                </div>
+            </div>
+        </div>
+        <div class="save-card">
+            <div class="save-card-cover">
+                <a href="#">
+                    <img src="{% static 'images/temp_images/pokemon_fire_red.jpg' %}" alt="Pokemon Fire Red Cover">
+                </a>
+            </div>
+            <div class="save-card-content">
+                <div class="save-card-title-row">
+                    <a href="#" class="save-card-title">Pokemon Fire Red</a>
+                    <span class="save-card-label">Elite Four Ready</span>
+                </div>
+                <div class="save-card-meta">Platform: Game Boy Advance</div>
+                <div class="save-card-meta">Save Type: Elite Four Ready</div>
+                <div class="save-card-meta">Uploaded by: AshKetchum</div>
+                <div class="save-card-meta">Upload Date: 2026-03-08</div>
+                <div class="save-card-meta">Downloads: 1,023</div>
+                <div class="save-card-meta">File Size: 256 KB</div>
+                <div class="save-card-meta">Rating: <span class="rom-details-rating-star">⭐</span>4</div>
+                <div class="save-card-actions">
+                    <button class="save-card-vote-btn save-card-upvote-btn" type="button">
+                        <img src="{% static 'images/icons/upvote.webp' %}" alt="Upvote" class="save-card-vote-icon">
+                    </button>
+                    <button class="save-card-vote-btn save-card-downvote-btn" type="button">
+                        <img src="{% static 'images/icons/downvote.webp' %}" alt="Downvote" class="save-card-vote-icon">
+                    </button>
+                    <a href="#" class="save-card-download-btn">Download Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vault-pagination">
+        <a href="#" class="vault-page-link">&lt;&lt; Previous</a>
+        <a href="#" class="vault-page-link active">1</a>
+        <a href="#" class="vault-page-link">2</a>
+        <a href="#" class="vault-page-link">3</a>
+        <span class="vault-page-ellipsis">...</span>
+        <a href="#" class="vault-page-link">Next &gt;&gt;</a>
+    </div>
+</section>
+{% endblock %}
