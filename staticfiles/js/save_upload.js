@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const saveInput = document.getElementById('save-file');
-    const saveLabel = document.querySelector('label.save-upload-file-label[for="save-file"]');
+    const saveLabel = document.querySelector('label.upload-file-label[for="save-file"]');
     if (saveInput && saveLabel) {
         saveInput.addEventListener('change', function() {
             if (saveInput.files.length > 0) {
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
     // mission field toggle
     const progressSelect = document.getElementById('progress');
     const missionField = document.getElementById('mission-field');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const imageInput = document.getElementById('save-image');
-    const imageLabel = document.querySelector('label.save-upload-file-label[for="save-image"]');
+    const imageLabel = document.querySelector('label.upload-file-label[for="save-image"]');
     const imagePreview = document.getElementById('save-image-preview');
     if (imageInput && imageLabel && imagePreview) {
         imageInput.addEventListener('change', function() {

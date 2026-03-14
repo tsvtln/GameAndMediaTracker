@@ -1,0 +1,77 @@
+.community-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.community-desc {
+    font-size: 1.1rem;
+    color: #b6c2d2;
+    margin-bottom: 24px;
+}
+.community-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.community-box-title,
+.community-box-title:link,
+.community-box-title:visited,
+.community-box-title:active,
+.community-box-title:hover,
+.community-box-title:focus {
+    color: #49ff18 !important;
+    text-decoration: none !important;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: text-shadow 0.2s ease;
+}
+.community-box-title:hover,
+.community-box-title:focus {
+    text-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}
+.community-box-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.community-box-list li a,
+.community-box-list li a:link,
+.community-box-list li a:visited,
+.community-box-list li a:active,
+.community-box-list li a:hover,
+.community-box-list li a:focus {
+    color: #ccc !important;
+    text-decoration: none !important;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+.community-box-more {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    color: #49ff18;
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    text-decoration: none;
+    transition: text-shadow 0.2s;
+}
+.community-box-more:hover {
+    text-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}
+.community-box-description {
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-family: 'Press Start 2P', monospace;
+    text-align: left;
+}

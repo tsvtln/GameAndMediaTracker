@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Community | CHECKPOINT{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/community.css' %}">
+<section class="community-section">
+    <h1 class="bios-title">COMMUNITY</h1>
+    <p class="community-desc">Connect and participate in the CheckPoint community.</p>
+    <div class="community-grid">
+        <div class="community-box">
+            <a href="#" class="community-box-title">FORUMS</a>
+            <p class="community-box-desc">Discuss games, share progress, and ask questions.</p>
+        </div>
+        <div class="community-box">
+            <a href="#" class="community-box-title">GUIDES</a>
+            <p class="community-box-desc">Browse and contribute game guides, emulator tips, and walkthroughs.</p>
+        </div>
+        <div class="community-box">
+            <a href="{% url 'community events page' %}" class="community-box-title">EVENTS</a>
+            <p class="community-box-desc">See upcoming and past community events, join activities, and participate.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

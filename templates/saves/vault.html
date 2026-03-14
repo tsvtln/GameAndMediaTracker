@@ -8,7 +8,7 @@
     <div class="vault-header">
         <h1 class="vault-title">My Vault</h1>
         <p class="vault-desc">Your personal collection of uploaded and saved game files.<br>Manage, download, or delete your saves.</p>
-        <a href="{% url 'saves upload page' %}" class="vault-upload-btn">Upload New Save</a>
+        <a href="{% url 'saves upload page' %}" class="saves-vault-btn">Upload New Save</a>
     </div>
     <div class="vault-summary-panel">
         <div class="vault-summary-item">
@@ -146,7 +146,7 @@
 {# note: if vault is empty to display this instead #}
     <div class="vault-empty-state">
         <p>Your Vault is empty.</p>
-        <a href="{% url 'saves upload page' %}" class="vault-upload-btn">Upload Save</a>
+        <a href="{% url 'saves upload page' %}" class="saves-vault-btn">Upload Save</a>
     </div>
 </section>
 
@@ -154,8 +154,8 @@
     <div class="vault-delete-modal-content">
         <span class="vault-delete-modal-text">Are you sure you want to delete this save?</span>
         <div class="vault-delete-modal-buttons">
-            <button type="button" class="vault-delete-yes">Yes</button>
-            <button type="button" class="vault-delete-no">No</button>
+            <button type="button" class="download-btn-small vault-delete-yes">Yes</button>
+            <button type="button" class="download-btn-small vault-delete-no">No</button>
         </div>
     </div>
 </div>

@@ -15,3 +15,367 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+.bios-title {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    margin-bottom: 32px;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.download-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    margin-top: 18px;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+.download-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.download-btn-small {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+.download-btn-small:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.delete-btn {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    background: #ff3b3b;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.85em;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-weight: bold;
+    box-shadow: 0 0 6px #ff3b3b44;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    z-index: 2;
+    text-decoration: none;
+    display: inline-block;
+}
+.delete-btn:hover {
+    background: #b80000;
+    box-shadow: 0 0 12px #ff3b3b;
+    color: #fff;
+    text-decoration: none;
+}
+.search-btn {
+    background: #49ff18;
+    color: #232323;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+    margin-top: 8px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 0 8px #49ff18;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+.search-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
+}
+.filters-section {
+    margin-bottom: 2em;
+    background: #181818;
+    padding: 1em;
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.filters-section .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+.filters-section label {
+    width: 140px;
+    margin-right: 0;
+    font-family: 'Press Start 2P', monospace;
+    color: #49ff18;
+    font-size: 1rem;
+    text-align: left;
+    flex-shrink: 0;
+    display: inline-block;
+}
+.filters-section input,
+.filters-section select {
+    background: #232323;
+    color: #fff;
+    border: 1px solid #49ff18;
+    border-radius: 4px;
+    padding: 0.3em 0.6em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    min-width: 220px;
+    box-shadow: 0 0 8px #49ff18;
+    margin-left: 12px;
+    display: inline-block;
+}
+.favorite-card-btn,
+.favorite-card-fav-btn,
+.favorite-screenshots-view-btn,
+.favorite-screenshots-remove-btn,
+.favorite-screenshot-modal-remove,
+.favorite-screenshot-modal-download,
+.favorites-empty-link,
+.favorite-screenshots-empty-link {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #49ff18;
+    color: #232a3a;
+    font-weight: 600;
+    font-family: 'Press Start 2P', monospace;
+    box-shadow: 0 0 8px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+.favorite-card-btn:hover,
+.favorite-card-fav-btn:hover,
+.favorite-screenshots-view-btn:hover,
+.favorite-screenshots-remove-btn:hover,
+.favorite-screenshot-modal-remove:hover,
+.favorite-screenshot-modal-download:hover,
+.favorites-empty-link:hover,
+.favorite-screenshots-empty-link:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.favorite-pagination,
+.favorite-screenshots-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+.favorite-page-link,
+.favorite-screenshots-page-link,
+.vault-page-link {
+    background: #181818;
+    color: #49ff18;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 6px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.favorite-page-link.active,
+.favorite-page-link:hover,
+.favorite-screenshots-page-link.active,
+.favorite-screenshots-page-link:hover,
+.vault-page-link.active,
+.vault-page-link:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 16px #49ff18;
+    text-decoration: none;
+}
+.favorite-page-ellipsis,
+.favorite-screenshots-page-ellipsis {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    padding: 0 6px;
+}
+.favorites-empty-state,
+.favorite-screenshots-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 48px auto;
+    min-height: 180px;
+    width: 100%;
+    max-width: 600px;
+}
+.saves-vault-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    font-family: 'Press Start 2P', monospace;
+    margin-top: 8px;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+}
+.saves-vault-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.upload-file-input {
+    display: none;
+}
+.upload-form-file-input {
+    width: 100%;
+    background: #232323;
+    margin-bottom: 8px;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    padding: 8px 12px;
+    box-shadow: 0 0 8px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.upload-form-file-input:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 16px #49ff18;
+}
+.upload-file-label {
+    display: inline-block;
+    background: #49ff18;
+    color: #232323 !important;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px 28px;
+    margin-bottom: 8px;
+    margin-top: 6px;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    border: none;
+    text-align: center;
+}
+.upload-file-label:hover {
+    background: #232323;
+    color: #49ff18 !important;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.roms-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+.roms-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 1px black;
+}
+.rom-details-action-btn {
+    background: #232323;
+    color: #49ff18;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    cursor: pointer;
+    box-shadow: 0 0 6px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+.rom-details-action-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+}
+
+.platforms-container h1,
+.top-games-title,
+.newly-added-title,
+.trending-title,
+.most-downloaded-title,
+.genres-title,
+.favorite-screenshots-title,
+.favorite-roms-title,
+.events-title{
+    color: #49ff18;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.genres-subtitle,
+.favorite-screenshots-desc,
+.favorite-roms-desc,
+.newly-added-header,
+.newly-added-subtitle,
+.upload-rom-subtitle,
+.top-games-subtitle,
+.trending-subtitle,
+.events-subtitle,
+.events-desc,
+.genre-detail-subtitle,
+.most-downloaded-subtitle,
+.save-upload-subtitle,
+.bios-upload-subtitle
+{
+    font-size: 1.1rem;
+    color: #b0ffb0;
+    margin-bottom: 18px;
+    text-align: center;
+}

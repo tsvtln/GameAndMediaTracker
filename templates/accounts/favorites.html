@@ -1,0 +1,94 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Favorites | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="favorites-section">
+    <h1 class="bios-title">FAVORITES</h1>
+    <p class="favorites-desc">Your personal collection of favorite ROMs and screenshots.</p>
+    <div class="favorites-main-grid">
+        <div class="favorites-box">
+            <h2 class="favorites-box-title">Favorite ROMs</h2>
+            <div class="favorites-roms-list">
+                <!-- Empty state for favorite ROMs -->
+                <div class="favorites-empty-state">
+                    <p>You don't have any, go add some!</p>
+                    <a href="{% url 'roms most downloaded' %}" class="favorites-empty-link">Browse ROMs</a>
+                </div>
+                <div class="favorites-rom-item">
+                    <a href="{% url 'roms details' %}" class="favorites-rom-link">
+                        <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="favorites-rom-img">
+                        <span class="favorites-rom-name">Super Mario Bros</span>
+                    </a>
+                </div>
+                <div class="favorites-rom-item">
+                    <a href="{% url 'roms details' %}" class="favorites-rom-link">
+                        <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda" class="favorites-rom-img">
+                        <span class="favorites-rom-name">Legend of Zelda</span>
+                    </a>
+                </div>
+                <div class="favorites-rom-item favorites-rom-more">
+                    <a href="{% url 'accounts favorite roms page' %}" class="favorites-rom-link">
+                        <span class="favorites-rom-more-text">View all your favorite ROMs</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="favorites-box">
+            <h2 class="favorites-box-title">Favorite Screenshots</h2>
+            <div class="favorites-empty-state">
+                <p>You don't have any favorite screenshots yet!</p>
+                <a href="#" class="favorites-empty-link favorites-screenshot-link">Browse Screenshots</a>
+            </div>
+            <div class="favorites-screenshots-list">
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 1" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 2" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 3" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 4" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 5" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 6" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 7" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link">
+                        <img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 8" class="favorites-screenshot-img">
+                    </a>
+                </div>
+                <div class="favorites-screenshot-item">
+                    <a href="#" class="favorites-screenshot-link favorites-screenshot-more">
+                        <span class="favorites-screenshot-more-text">...</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

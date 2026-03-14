@@ -11,12 +11,12 @@
         <div class="save-upload-form-col">
             <form class="save-upload-form" enctype="multipart/form-data">
                 <label for="save-file">Save File</label>
-                <label for="save-file" class="save-upload-file-label">Select Save File</label>
-                <input type="file" id="save-file" name="save_file" accept=".zip,.rar,.7z,.sav,.srm,.state,.dat" required style="display:none;">
+                <label for="save-file" class="upload-file-label">Select Save File</label>
+                <input type="file" class="upload-file-input" id="save-file" name="save_file" accept=".zip,.rar,.7z,.sav,.srm,.state,.dat" required style="display:none;">
                 <small class="save-upload-accept">Accepted: .zip .rar .7z .sav .srm .state .dat</small>
                 <label for="save-image">Upload Picture</label>
-                <label for="save-image" class="save-upload-file-label">Select Image</label>
-                <input type="file" id="save-image" name="save_image" accept=".png,.jpg,.jpeg,.webp" style="display:none;">
+                <label for="save-image" class="upload-file-label">Select Image</label>
+                <input type="file" class="upload-file-input" id="save-image" name="save_image" accept=".png,.jpg,.jpeg,.webp" style="display:none;">
                 <small class="save-upload-accept">Accepted: .png .jpg .jpeg .webp</small>
                 <div id="save-image-preview" style="display:none; margin-bottom: 10px;"></div>
                 <label for="game-title">Game Title</label>
@@ -63,7 +63,7 @@
                 </div>
 
 
-                <button type="submit" class="save-upload-submit-btn">SUBMIT SAVE</button>
+                <button type="submit" class="download-btn">SUBMIT SAVE</button>
             </form>
         </div>
         <div class="save-upload-guidelines-col">

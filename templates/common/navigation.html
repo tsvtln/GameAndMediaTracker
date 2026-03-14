@@ -2,7 +2,7 @@
 <nav class="site-nav">
     <div class="nav-left">
         <a class="brand" href="{% url 'home' %}">
-            <img src="{% static 'images/images_banners/logo3.png' %}" alt="CheckPoint logo">
+            <img src="{% static 'images/images_banners/logo3.webp' %}" alt="CheckPoint logo">
         </a>
     </div>
 
@@ -37,29 +37,19 @@
                 <li><a href="{% url 'saves upload page' %}">Upload Save</a></li>  {# note: if logged in #}
             </ul>
         </li>
-        <li class="sav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/reviews.png' %}" alt="Reviews"></a>
+        <li class="nav-item has-dropdown">
+            <a href="{% url 'accounts favorites page' %}"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>  {# note: if logged in #}
             <ul class="dropdown-menu">
-                <li><a href="#">Latest Reviews</a></li>
-                <li><a href="#">Top Rated Reviews</a></li>
-                <li><a href="#">Most Discussed</a></li>
-                <li><a href="#">My Reviews</a></li>  {# note: if logged in #}
-                <li><a href="#">Submit Review</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'accounts favorite roms page' %}">Favorite ROMs</a></li>
+                <li><a href="{% url 'accounts favorite screenshots page' %}">Favorite Screenshots</a></li>
             </ul>
         </li>
         <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>  {# note: if logged in #}
-            <ul class="dropdown-menu">
-                <li><a href="#">Favorite ROMs</a></li>
-                <li><a href="#">Favorite Screenshots</a></li>
-            </ul>
-        </li>
-        <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/community.png' %}" alt="Community"></a>
+            <a href="{% url 'community page' %}"><img src="{% static 'images/icons/community.png' %}" alt="Community"></a>
             <ul class="dropdown-menu">
                 <li><a href="#">Forums</a></li>
                 <li><a href="#">Guides</a></li>
-                <li><a href="#">Events</a></li>
+                <li><a href="{% url 'community events page' %}">Events</a></li>
             </ul>
         </li>
         <li class="nav-item has-dropdown">
@@ -76,8 +66,9 @@
     <div class="nav-right">
         <div class="auth-links">
             <a class="auth-link" href="#"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# note: if logged in #}
             <a class="auth-link" href="#"><img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT"></a>  {# note: if logged in #}
+            <a class="auth-link" href="#"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# note: if logged in #}
+            <a class="auth-link" href="{% url 'admin page' %}"><img src="{% static 'images/icons/admin.webp' %}" alt="ADMIN"></a>  {# note: if logged in and super/admin #}
             <a class="auth-link" href="#"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
         </div>
         <form class="nav-search" action="#" method="get">

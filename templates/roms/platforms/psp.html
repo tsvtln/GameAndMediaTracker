@@ -14,7 +14,7 @@
         <button type="submit" class="platform-search-btn">Search</button>
     </form>
     <div class="most-downloaded-list nes-most-downloaded-list">
-        <a href="#" class="most-downloaded-card-link">
+        <a href="{% url 'roms details' %}" class="most-downloaded-card-link">
             <div class="most-downloaded-card">
                 <img src="{% static 'images/temp_images/gow_coo.jpg' %}" alt="God of War: Chains of Olympus" class="most-downloaded-card-img">
                 <div class="most-downloaded-card-info">
@@ -26,7 +26,7 @@
     </div>
     <div class="most-downloaded-list nes-most-downloaded-list no-games-uploaded centered-upload-box centered-flex">
         <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
-        <a href="#" class="upload-game-btn"><span>Upload Now</span></a>
+        <a href="{% url 'roms upload' %}" class="upload-game-btn"><span>Upload Now</span></a>
     </div>
 </section>
 {% endblock %}

@@ -1,3 +1,13 @@
+[2026-03-14]
+- Due to heavy amount of copy-pasting the same thing, there was a lot of duplicated CSS when scanned with 'jscpd'
+  - Refactored the CSS to not have duplicates and to re-use the same styles for certain elements across the project
+- Added Favorites main page and all relates Favorites pages
+- Implemented modular HTML and CSS for all Favorites subpages:
+  - Favorite ROMs
+  - Favorite Screenshots
+- Added Community main page
+- Added Events subpage under Community
+
 [2026-03-11]
 - Added SAVES main page and all related SAVE pages
 - Implemented modular HTML and CSS for all SAVE subpages:

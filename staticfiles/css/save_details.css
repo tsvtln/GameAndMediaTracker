@@ -65,26 +65,6 @@
     gap: 18px;
     margin-top: 16px;
 }
-.save-details-download-btn {
-    background: #49ff18;
-    color: #232323;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 28px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #49ff18;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-}
-.save-details-download-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-}
 .save-details-delete-btn {
     background: #ff3b3b;
     color: #fff;
@@ -139,4 +119,3 @@
         height: auto;
     }
 }
-

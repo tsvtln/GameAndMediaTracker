@@ -1,0 +1,106 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Favorite ROMs | CHECKPOINT{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/favorite-roms.css' %}">
+<div class="favorite-roms-section">
+    <h1 class="favorite-roms-title">FAVORITE ROMS</h1>
+    <div class="favorite-roms-desc">Your personal collection of saved ROMs.</div>
+    <div class="favorite-roms-stats">Total Favorites: 18</div>
+    <div class="favorite-roms-filters">
+        <form class="favorite-roms-filter-form">
+            <input type="text" id="favorite-roms-search" class="favorite-roms-search" placeholder="Search...">
+            <select id="favorite-roms-platform" class="favorite-roms-platform" name="platform">
+                <option>All</option>
+                <option>NES</option>
+                <option>Famicom</option>
+                <option>SNES</option>
+                <option>Super Famicom</option>
+                <option>Nintendo 64</option>
+                <option>GameCube</option>
+                <option>Wii</option>
+                <option>Wii U</option>
+                <option>Nintendo Switch</option>
+                <option>Game Boy</option>
+                <option>Game Boy Color</option>
+                <option>Game Boy Advance</option>
+                <option>Nintendo DS</option>
+                <option>Nintendo 3DS</option>
+                <option>Sega Master System</option>
+                <option>Sega Genesis / Mega Drive</option>
+                <option>Sega CD</option>
+                <option>32X</option>
+                <option>Sega Saturn</option>
+                <option>Sega Dreamcast</option>
+                <option>Game Gear</option>
+                <option>PlayStation</option>
+                <option>PlayStation 2</option>
+                <option>PlayStation 3</option>
+                <option>PlayStation Portable (PSP)</option>
+                <option>PlayStation Vita</option>
+                <option>Xbox</option>
+                <option>Xbox 360</option>
+                <option>Xbox One</option>
+                <option>Atari</option>
+            </select>
+            <select id="favorite-roms-sort" class="favorite-roms-sort" name="sort">
+                <option>Recently Added</option>
+                <option>Name</option>
+                <option>Platform</option>
+            </select>
+        </form>
+    </div>
+    <div class="favorite-roms-grid">
+        <div class="favorite-rom-card">
+            <div class="favorite-rom-card-art">
+                <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros">
+            </div>
+            <div class="favorite-rom-card-title">Super Mario Bros</div>
+            <div class="favorite-rom-card-meta">Platform: NES</div>
+            <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> 4.8</div>
+            <div class="favorite-rom-card-actions">
+                <a href="#" class="favorite-rom-card-btn">Download</a>
+                <button class="favorite-rom-card-fav-btn">♥ Remove</button>
+            </div>
+        </div>
+        <div class="favorite-rom-card">
+            <div class="favorite-rom-card-art">
+                <img src="{% static 'images/temp_images/pokemon_fire_red.jpg' %}" alt="Pokemon Fire Red">
+            </div>
+            <div class="favorite-rom-card-title">Pokemon Fire Red</div>
+            <div class="favorite-rom-card-meta">Platform: Game Boy Advance</div>
+            <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> 4.7</div>
+            <div class="favorite-rom-card-actions">
+                <a href="#" class="favorite-rom-card-btn">Download</a>
+                <button class="favorite-rom-card-fav-btn">♥ Remove</button>
+            </div>
+        </div>
+        <div class="favorite-rom-card">
+            <div class="favorite-rom-card-art">
+                <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda">
+            </div>
+            <div class="favorite-rom-card-title">Legend of Zelda</div>
+            <div class="favorite-rom-card-meta">Platform: NES</div>
+            <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> 4.9</div>
+            <div class="favorite-rom-card-actions">
+                <a href="#" class="favorite-rom-card-btn">Download</a>
+                <button class="favorite-rom-card-fav-btn">♥ Remove</button>
+            </div>
+        </div>
+    </div>
+    <div class="favorite-roms-pagination">
+        <a href="#" class="favorite-roms-page-link">&lt;&lt; Previous</a>
+        <a href="#" class="favorite-roms-page-link active">1</a>
+        <a href="#" class="favorite-roms-page-link">2</a>
+        <a href="#" class="favorite-roms-page-link">3</a>
+        <span class="favorite-roms-page-ellipsis">...</span>
+        <a href="#" class="favorite-roms-page-link">Next &gt;&gt;</a>
+    </div>
+    <div class="favorites-empty-state">
+        <p>You don't have any 👾<br> Go add some!</p>
+        <a href="{% url 'roms most downloaded' %}" class="favorites-empty-link">Browse Most Downloaded ROMs</a>
+    </div>
+</div>
+{% endblock %}

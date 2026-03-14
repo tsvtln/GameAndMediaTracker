@@ -12,18 +12,6 @@
     margin-bottom: 18px;
 }
 
-.genres-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 2rem;
-    margin-bottom: 8px;
-}
-
-.genres-subtitle {
-    font-size: 1.1rem;
-    color: #b0ffb0;
-    margin-bottom: 0;
-}
-
 .genres-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));

@@ -17,11 +17,6 @@
     margin-bottom: 8px;
 }
 
-.genre-detail-subtitle {
-    font-size: 1.1rem;
-    color: #b0ffb0;
-    margin-bottom: 0;
-}
 
 .genre-detail-filters {
     display: flex;
@@ -54,26 +49,6 @@
     font-size: 1rem;
     font-family: inherit;
     cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
-}
-
-.genre-detail-filter-btn {
-    padding: 10px 24px;
-    border-radius: 8px;
-    background: #49ff18;
-    color: #232323;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 8px #49ff18;
-    transition: background 0.2s, color 0.2s;
-    font-family: 'Press Start 2P', monospace;
-    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
-}
-
-.genre-detail-filter-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 16px #49ff18;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 
 .genre-detail-list {

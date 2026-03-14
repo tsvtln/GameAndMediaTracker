@@ -14,12 +14,7 @@
     margin-bottom: 8px;
     text-shadow: 0 0 8px #49ff18;
 }
-.save-upload-subtitle {
-    color: #fff;
-    text-align: center;
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-}
+
 .save-upload-main {
     display: flex;
     gap: 40px;
@@ -38,42 +33,6 @@
     margin-top: 18px;
     margin-bottom: 4px;
     display: block;
-}
-.save-upload-form input[type="file"] {
-    width: 100%;
-    background: #232323;
-    margin-bottom: 8px;
-    color: #49ff18;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #49ff18;
-    padding: 8px 12px;
-    box-shadow: 0 0 8px #49ff18;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.save-upload-file-label {
-    display: inline-block;
-    background: #49ff18;
-    color: #232323 !important;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    border-radius: 8px;
-    padding: 10px 28px;
-    margin-bottom: 8px;
-    margin-top: 6px;
-    box-shadow: 0 0 10px #49ff18;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    border: none;
-    text-align: center;
-}
-.save-upload-file-label:hover {
-    background: #232323;
-    color: #49ff18 !important;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
 }
 .save-upload-accept {
     color: #ccc;
@@ -98,26 +57,6 @@
 .save-upload-form select:focus {
     border: 1.5px solid #49ff18;
     box-shadow: 0 0 8px #49ff18;
-}
-.save-upload-submit-btn {
-    background: #49ff18;
-    color: #232323;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 32px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #49ff18;
-    margin-top: 18px;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.save-upload-submit-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
 }
 .save-upload-guidelines-box {
     background: #181818;

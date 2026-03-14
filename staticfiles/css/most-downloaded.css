@@ -11,17 +11,6 @@
     margin-bottom: 18px;
 }
 
-.most-downloaded-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 2rem;
-    margin-bottom: 8px;
-}
-
-.most-downloaded-subtitle {
-    font-size: 1.1rem;
-    color: #b0ffb0;
-    margin-bottom: 0;
-}
 
 .most-downloaded-filters {
     display: flex;
@@ -56,7 +45,11 @@
     cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
 }
 
-.most-downloaded-filter-btn {
+.most-downloaded-filter-btn,
+.genre-detail-filter-btn,
+.platform-search-btn,
+.top-games-filter-btn,
+.newly-added-sort-btn {
     padding: 10px 24px;
     border-radius: 8px;
     background: #49ff18;
@@ -69,7 +62,11 @@
     cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
 }
 
-.most-downloaded-filter-btn:hover {
+.most-downloaded-filter-btn:hover,
+.genre-detail-filter-btn:hover,
+.platform-search-btn:hover,
+.top-games-filter-btn:hover,
+.newly-added-sort-btn:hover {
     background: #232323;
     color: #49ff18;
     box-shadow: 0 0 16px #49ff18;
@@ -220,24 +217,4 @@
 .platform-search-input:focus {
     border: 1.5px solid #b0ffb0;
     box-shadow: 0 0 16px #49ff18;
-}
-
-.platform-search-btn {
-    padding: 10px 24px;
-    border-radius: 8px;
-    background: #49ff18;
-    color: #232323;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 8px #49ff18;
-    transition: background 0.2s, color 0.2s;
-    font-family: 'Press Start 2P', monospace;
-    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
-}
-
-.platform-search-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 16px #49ff18;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }

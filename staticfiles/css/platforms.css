@@ -6,15 +6,6 @@
     box-sizing: border-box;
 }
 
-.platforms-container h1 {
-    text-align: center;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 2rem;
-    margin-bottom: 24px;
-    color: #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-}
-
 .platform-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -59,20 +50,6 @@
     background: #111;
 }
 
-.platform-card-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.platform-card-title {
-    font-size: 1.1rem;
-    font-family: 'Press Start 2P', monospace;
-    color: #49ff18;
-    margin: 0 0 2px 0;
-    text-shadow: 0 0 8px #49ff18;
-}
 
 .platform-card, .platform-card *, .platform-card::before, .platform-card::after {
     cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
@@ -83,4 +60,3 @@
 .platform-card-link:hover .platform-card::after, .platform-card-link:focus .platform-card::after {
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
-

@@ -42,21 +42,6 @@ body {
     margin-bottom: 2em;
 }
 
-.bios-comp-emulator {
-    margin-bottom: 18px;
-    background: #222;
-    border-radius: 8px;
-    padding: 12px 16px;
-    box-shadow: 0 0 6px #49ff18;
-}
-
-.bios-comp-emulator h3 {
-    color: #49ff18;
-    font-size: 1rem;
-    margin-bottom: 4px;
-    text-shadow: 0 0 6px #49ff18;
-}
-
 .bios-title {
     font-weight: bold;
     font-size: 1.1em;
@@ -72,31 +57,6 @@ body {
     position: relative;
 }
 
-.download-btn {
-    background: #49ff18;
-    color: #232323;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 32px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #49ff18;
-    margin-top: 18px;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.download-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-    text-decoration: none;
-}
-
 .legal-notice {
     font-size: 0.9em;
     color: #888;
@@ -106,111 +66,4 @@ body {
 .note {
     color: #888;
     font-size: 0.95em;
-}
-
-.filters-section {
-    margin-bottom: 2em;
-    background: #181818;
-    padding: 1em;
-    border-radius: 8px;
-    color: #fff;
-}
-
-.filters-section label {
-    margin-right: 0.5em;
-}
-
-.filters-section input,
-.filters-section select {
-    margin-right: 1em;
-    background: #232323;
-    color: #fff;
-    border: 1px solid #49ff18;
-    border-radius: 4px;
-    padding: 0.3em 0.6em;
-}
-
-.filters-section select:hover {
-    cursor: url("/staticfiles/images/cursor/cursor-click.png"), pointer;
-}
-
-.bios-comp-emulator.bios-card {
-    transition: box-shadow 0.2s, background 0.2s;
-}
-
-.bios-comp-emulator.bios-card:hover {
-    box-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
-    background: #262626;
-    cursor: url("/staticfiles/images/cursor/cursor-click.png"), pointer;
-}
-
-.search-btn {
-    background: #49ff18;
-    color: #232323;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    cursor: url("/staticfiles/images/cursor/cursor-click.png"), pointer;
-    margin-top: 8px;
-    font-family: inherit;
-    font-size: 1em;
-    font-weight: bold;
-    box-shadow: 0 0 8px #49ff18;
-    transition: box-shadow 0.2s, background 0.2s;
-}
-
-.search-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 16px #49ff18, 0 0 32px #49ff18;
-}
-
-.filters-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.filter-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 8px;
-}
-
-.filter-row label {
-    margin-bottom: 2px;
-}
-
-.filter-row input,
-.filter-row select {
-    width: 100%;
-    max-width: 400px;
-}
-
-.delete-btn {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    background: #ff3b3b;
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.85em;
-    border: none;
-    border-radius: 6px;
-    padding: 4px 12px;
-    font-weight: bold;
-    box-shadow: 0 0 6px #ff3b3b44;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    z-index: 2;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.delete-btn:hover {
-    background: #b80000;
-    box-shadow: 0 0 12px #ff3b3b;
-    color: #fff;
-    text-decoration: none;
 }

@@ -18,8 +18,9 @@
         <div class="upload-rom-form-col">
             <form class="upload-rom-form" enctype="multipart/form-data">
                 <label for="rom-file">ROM File</label>
-                <label for="rom-file" class="upload-rom-file-label">Select ROM File</label>
-                <input type="file" id="rom-file" name="rom_file" accept=".zip,.7z,.rar,.nes,.sfc,.gba,.iso" required style="display:none;">
+                <label for="rom-file" class="upload-file-label">Select ROM File</label>
+                <input type="file" class="upload-file-input" id="rom-file" name="rom_file" accept=".zip,.7z,.rar,.nes,.sfc,.gba,.iso" required>
+
                 <small class="upload-rom-accept">Accepted: .zip .7z .rar .nes .sfc .gba .iso</small>
 
                 <label for="game-title">Game Title</label>
@@ -61,10 +62,10 @@
                 </select>
 
                 <label for="box-art">BOX ART (REQUIRED)</label>
-                <label for="box-art" class="upload-rom-file-label">Select Box Art</label>
+                <label for="box-art" class="upload-file-label">Select Box Art</label>
                 <div class="upload-rom-boxart-drop" id="boxart-drop">
                     <div class="upload-rom-boxart-preview" id="boxart-preview">BOX ART PREVIEW</div>
-                    <input type="file" id="box-art" name="box_art" accept=".png,.jpg,.jpeg,.webp" required style="display:none;">
+                    <input type="file" class="upload-file-input" id="box-art" name="box_art" accept=".png,.jpg,.jpeg,.webp" required>
                     <small>Allowed: .png .jpg .webp 5MB MAX</small>
                     <div class="upload-rom-boxart-drag">Drag box art here or click to upload</div>
                 </div>
@@ -89,7 +90,7 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" rows="5" placeholder="Classic NES platformer where Mario must rescue Princess Peach." required></textarea>
 
-                <button type="submit" class="upload-rom-submit-btn">SUBMIT ROM</button>
+                <button type="submit" class="download-btn">SUBMIT ROM</button>
             </form>
         </div>
         <div class="upload-rom-guidelines-col">
@@ -99,7 +100,7 @@
                     <li>⚠️ Use correct platform</li>
                     <li>⚠️ Upload clean ROM dumps</li>
                     <li>⚠️ Provide correct title</li>
-                    <li>⚠️ Add screenshots if possible</li>
+                    <li>⚠️ Add screenshots</li>
                     <li>⚠️ Avoid duplicates</li>
                 </ul>
                 <div class="upload-rom-maxsize">Max file size: 500MB</div>

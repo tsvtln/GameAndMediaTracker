@@ -1,0 +1,238 @@
+.events-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #232a3a;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+.events-admin-bar {
+    text-align: right;
+    margin-bottom: 24px;
+}
+.events-add-btn {
+    padding: 8px 18px;
+    background: #49ff18;
+    color: #232a3a;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 600;
+    box-shadow: 0 0 8px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.events-add-btn:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.event-card {
+    background: #2a3344;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #49ff18;
+    padding: 18px 24px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.event-card:hover {
+    box-shadow: 0 0 16px #49ff18, 0 2px 8px #49ff18;
+    transform: translateY(-2px) scale(1.02);
+}
+.event-title {
+    font-size: 1.2rem;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 6px #49ff18;
+    font-weight: 700;
+}
+.event-date, .event-platform, .event-status {
+    font-size: 1rem;
+    color: #b6c2d2;
+    font-family: 'Press Start 2P', monospace;
+}
+.event-desc {
+    font-size: 1rem;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    margin-bottom: 4px;
+}
+.event-countdown {
+    font-size: 1rem;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    margin-bottom: 4px;
+    text-shadow: 0 0 6px #49ff18;
+}
+.event-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+.event-view-btn, .event-pass-btn, .event-delete-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    background: #49ff18;
+    color: #232a3a;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 500;
+    box-shadow: 0 0 6px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.event-view-btn:hover, .event-pass-btn:hover, .event-delete-btn:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 12px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.event-passed {
+    opacity: 0.7;
+    background: #232a3a;
+}
+.events-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 48px auto;
+    min-height: 120px;
+    width: 100%;
+    max-width: 600px;
+}
+.events-empty-text {
+    color: #b6c2d2;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-family: 'Press Start 2P', monospace;
+}
+.add-event-section {
+    max-width: 600px;
+    margin: 48px auto;
+    padding: 32px;
+    background: #232a3a;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    text-align: center;
+}
+.add-event-title {
+    font-size: 2rem;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 8px #49ff18;
+    margin-bottom: 8px;
+}
+.add-event-desc {
+    font-size: 1.1rem;
+    color: #b6c2d2;
+    margin-bottom: 8px;
+}
+.add-event-note {
+    font-size: 1rem;
+    color: #49ff18;
+    margin-bottom: 24px;
+}
+.add-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+}
+.add-event-form-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+.add-event-form-row label {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+}
+.add-event-form-row input,
+.add-event-form-row select,
+.add-event-form-row textarea {
+    width: 100%;
+    background: #181e2a;
+    color: #fff;
+    border: 1px solid #49ff18;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px 12px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.add-event-form-row input:focus,
+.add-event-form-row select:focus,
+.add-event-form-row textarea:focus {
+    border: 1.5px solid #49ff18;
+    box-shadow: 0 0 8px #49ff18;
+}
+.add-event-form-row select:hover {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.add-event-optional {
+    color: #b6c2d2;
+    font-size: 0.9rem;
+    font-family: 'Press Start 2P', monospace;
+}
+.add-event-form-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 18px;
+}
+.add-event-submit-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232a3a;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 0 0 10px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+}
+.add-event-submit-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+.add-event-cancel-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #181e2a;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid #49ff18;
+    box-shadow: 0 0 6px #49ff1833;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
+}
+.add-event-cancel-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+    text-decoration: none;
+}

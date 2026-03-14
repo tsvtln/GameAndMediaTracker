@@ -1,17 +1,3 @@
-.bios-comp-section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 24px;
-    background: #232323;
-    border-radius: 16px;
-    box-shadow: 0 0 24px #49ff1833;
-    font-family: 'Press Start 2P', monospace;
-}
-.bios-comp-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
 .bios-comp-item {
     background: #181818;
     border-radius: 10px;
@@ -58,4 +44,3 @@
     border-radius: 6px;
     font-size: 0.95rem;
 }
-

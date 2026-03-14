@@ -5,14 +5,6 @@
     padding: 0 16px;
     box-sizing: border-box;
 }
-.bios-title {
-    text-align: center;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 2rem;
-    margin-bottom: 32px;
-    color: #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-}
 .bios-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -76,4 +68,3 @@
     color: #49ff18 !important;
     text-decoration: none !important;
 }
-

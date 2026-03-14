@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+.rom-details-delete-btn {
+    position: static;
+    width: fit-content;
+    margin-top: 8px;
+}
+
 .roms-title {
     text-align: center;
     font-family: 'Press Start 2P', monospace;
@@ -19,7 +25,8 @@
     gap: 24px;
 }
 
-.roms-box {
+.roms-box,
+.community-box {
     background: var(--panel-strong, #232323);
     border-radius: 10px;
     border: 1px solid var(--border, #333);
@@ -33,7 +40,8 @@
     min-height: 180px;
 }
 
-.roms-box:hover {
+.roms-box:hover,
+.community-box:hover {
     box-shadow: 0 0 20px rgba(73, 255, 24, 0.35);
 }
 
@@ -118,47 +126,31 @@
     line-height: 1.6;
 }
 
-.roms-box-random-btn {
+.roms-box-upload-btn,
+.upload-game-btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 28px;
     border-radius: 8px;
     background: #49ff18;
     color: #232323;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-decoration: none;
     box-shadow: 0 0 10px #49ff18;
-    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.roms-box-random-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 1px black;
-}
-
-.roms-box-upload-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 8px;
-    background: #49ff18;
-    color: #232323;
-    font-weight: bold;
-    font-size: 0.9rem;
-    text-decoration: none;
-    box-shadow: 0 0 10px #49ff18;
-    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     overflow: hidden;
+    font-family: 'Press Start 2P', monospace;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 
 .roms-box-upload-btn:hover {
     background: #232323;
-    color: #FFFFFF;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
 }
 
 .roms-box-upload-btn:hover span {
-    text-shadow: 0 0 5px #000000, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+    text-shadow: 0 0 5px #0a0a0e, 0 0 10px #49ff18, 0 0 15px #49ff18, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49ff18, 0 0 75px #49ff18;
 }
 
 .no-games-uploaded {
@@ -184,27 +176,13 @@
     text-shadow: 0 0 8px #49ff18;
 }
 
-.upload-game-btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 8px;
-    background: #49ff18;
-    color: #232323;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 0 10px #49ff18;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    overflow: hidden;
-}
-
 .upload-game-btn:hover {
     background: #232323;
     color: #fff;
 }
 
 .upload-game-btn:hover span {
-    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+    text-shadow: 0 0 5px #0b0d10, 0 0 10px #49ff18, 0 0 15px #49ff18, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49ff18, 0 0 75px #49ff18;
 }
 
 .most-downloaded-list.centered-flex {
@@ -270,26 +248,6 @@
     margin-bottom: 18px;
 }
 
-.rom-details-download-btn {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 8px;
-    background: #49ff18;
-    color: #232323;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 0 10px #49ff18;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-
-.rom-details-download-btn:hover {
-    background: #232323;
-    color: #fff;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-}
-
 .rom-details-favorite-btn {
     background: #f5e9d6;
     border-radius: 6px;
@@ -299,9 +257,8 @@
     justify-content: center;
 }
 
-.rom-details-heart-icon {
-    width: 32px;
-    height: 32px;
+.rom-details-heart-icon,
+.rom-details-review-heart-icon {
     transition: filter 0.2s, box-shadow 0.2s;
     filter: drop-shadow(0 0 6px #49ff18) brightness(1.2) contrast(1.2);
     background: #f5e9d6;
@@ -311,7 +268,18 @@
     display: block;
 }
 
-.rom-details-favorite-btn:hover .rom-details-heart-icon {
+.rom-details-heart-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.rom-details-review-heart-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.rom-details-favorite-btn:hover .rom-details-heart-icon,
+.rom-details-review-favorite-btn:hover .rom-details-review-heart-icon {
     filter: drop-shadow(0 0 12px #49ff18) brightness(1.4) contrast(1.4);
     box-shadow: 0 0 16px #49ff18;
 }
@@ -433,53 +401,8 @@
     gap: 8px;
 }
 
-.rom-details-review-action-btn {
-    background: #232323;
-    color: #49ff18;
-    border: none;
-    border-radius: 6px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.85rem;
-    padding: 4px 12px;
-    cursor: pointer;
-    box-shadow: 0 0 6px #49ff18;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-}
-
-.rom-details-review-action-btn:hover {
-    background: #49ff18;
-    color: #232323;
-    box-shadow: 0 0 12px #49ff18;
-}
-
 .rom-details-delete-wrapper {
     margin-top: 8px;
-}
-
-.rom-details-delete-btn {
-    background: #ff3b3b;
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.85em;
-    border: none;
-    border-radius: 6px;
-    padding: 4px 12px;
-    font-weight: bold;
-    box-shadow: 0 0 6px #ff3b3b44;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-    z-index: 2;
-    text-decoration: none;
-    display: inline-block;
-    width: fit-content;
-}
-
-.rom-details-delete-btn:hover {
-    background: #b80000;
-    box-shadow: 0 0 12px #ff3b3b;
-    color: #fff;
-    text-decoration: none;
 }
 
 .rom-details-review-delete-modal {
@@ -519,7 +442,9 @@
 }
 
 .rom-details-review-delete-yes,
-.rom-details-review-delete-no {
+.rom-details-review-delete-no,
+.rom-details-comment-delete-yes,
+.rom-details-comment-delete-no {
     background: #49ff18;
     color: #232323;
     border: none;
@@ -534,7 +459,9 @@
 }
 
 .rom-details-review-delete-yes:hover,
-.rom-details-review-delete-no:hover {
+.rom-details-review-delete-no:hover,
+.rom-details-comment-delete-yes:hover,
+.rom-details-comment-delete-no:hover {
     background: #232323;
     color: #49ff18;
     box-shadow: 0 0 20px #49ff18;
@@ -558,26 +485,6 @@
     right: 12px;
     display: flex;
     gap: 8px;
-}
-
-.rom-details-comment-action-btn {
-    background: #232323;
-    color: #49ff18;
-    border: none;
-    border-radius: 6px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.85rem;
-    padding: 4px 12px;
-    cursor: pointer;
-    box-shadow: 0 0 6px #49ff18;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-}
-
-.rom-details-comment-action-btn:hover {
-    background: #49ff18;
-    color: #232323;
-    box-shadow: 0 0 12px #49ff18;
 }
 
 .rom-details-comment-delete-modal {
@@ -616,29 +523,6 @@
     gap: 16px;
 }
 
-.rom-details-comment-delete-yes,
-.rom-details-comment-delete-no {
-    background: #49ff18;
-    color: #232323;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    padding: 10px 24px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #49ff18;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-
-.rom-details-comment-delete-yes:hover,
-.rom-details-comment-delete-no:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-}
-
 .rom-details-interactive {
     margin-top: 32px;
     display: flex;
@@ -652,7 +536,8 @@
     gap: 16px;
 }
 
-.rom-details-write-btn {
+.rom-details-write-btn,
+.rom-details-submit-btn {
     background: #49ff18;
     color: #232323;
     font-family: 'Press Start 2P', monospace;
@@ -666,14 +551,14 @@
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.rom-details-write-btn:hover {
+.rom-details-write-btn:hover,
+.rom-details-submit-btn:hover {
     background: #232323;
     color: #49ff18;
     box-shadow: 0 0 20px #49ff18;
     text-shadow: 0 0 8px #49ff18;
 }
 
-.rom-details-comment-form,
 .rom-details-review-form {
     width: 100%;
     max-width: 420px;
@@ -704,27 +589,6 @@
     font-size: 1rem;
     padding: 8px;
     resize: vertical;
-}
-
-.rom-details-submit-btn {
-    background: #49ff18;
-    color: #232323;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 24px;
-    font-weight: bold;
-    box-shadow: 0 0 10px #49ff18;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-
-.rom-details-submit-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
 }
 
 .rom-details-rating-stars {
@@ -780,21 +644,6 @@
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
     box-shadow: 0 0 8px #49ff18;
     z-index: 2;
-}
-.rom-details-review-heart-icon {
-    width: 28px;
-    height: 28px;
-    transition: filter 0.2s, box-shadow 0.2s;
-    filter: drop-shadow(0 0 6px #49ff18) brightness(1.2) contrast(1.2);
-    background: #f5e9d6;
-    border-radius: 6px;
-    box-shadow: 0 0 8px #49ff18;
-    padding: 4px;
-    display: block;
-}
-.rom-details-review-favorite-btn:hover .rom-details-review-heart-icon {
-    filter: drop-shadow(0 0 12px #49ff18) brightness(1.4) contrast(1.4);
-    box-shadow: 0 0 16px #49ff18;
 }
 .rom-details-review-favorite-wrapper {
     position: absolute;

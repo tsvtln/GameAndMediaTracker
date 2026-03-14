@@ -155,60 +155,6 @@
     font-family: 'Press Start 2P', monospace;
     margin-bottom: 1px;
 }
-.save-card-download-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 24px;
-    border-radius: 8px;
-    background: #49ff18;
-    color: #232323;
-    font-weight: bold;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 0 10px #49ff18;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    font-family: 'Press Start 2P', monospace;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer;
-}
-.save-card-download-btn:hover {
-    background: #232323;
-    color: #49ff18;
-    box-shadow: 0 0 20px #49ff18;
-    text-shadow: 0 0 8px #49ff18;
-    text-decoration: none;
-}
-.saves-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 32px;
-}
-.saves-page-link {
-    background: #181818;
-    color: #49ff18;
-    border-radius: 6px;
-    padding: 6px 16px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 0 6px #49ff18;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.saves-page-link.active,
-.saves-page-link:hover {
-    background: #49ff18;
-    color: #232323;
-    box-shadow: 0 0 16px #49ff18;
-    text-decoration: none;
-}
-.saves-page-ellipsis {
-    color: #49ff18;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1.1rem;
-    padding: 0 6px;
-}
 .save-card-actions {
     display: flex;
     align-items: center;
@@ -235,7 +181,4 @@
     width: 28px;
     height: 28px;
     display: block;
-}
-.save-card-download-btn {
-    margin-left: 8px;
 }

@@ -1,0 +1,281 @@
+.favorite-screenshots-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #232a3a;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+
+.favorite-screenshots-stats {
+    font-size: 1rem;
+    color: #49ff18;
+    margin-bottom: 16px;
+}
+
+.favorite-screenshots-quicklink {
+    margin-bottom: 16px;
+    text-align: right;
+}
+
+.favorite-screenshots-browse-link {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #49ff18;
+    color: #232a3a;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 0 8px #49ff18;
+}
+.favorite-screenshots-browse-link:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 16px #49ff18;
+}
+
+.favorite-screenshots-filters {
+    margin-bottom: 24px;
+}
+
+.favorite-screenshots-filter-form {
+    display: flex;
+    gap: 12px;
+}
+
+.favorite-screenshots-filter-form select {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    font-size: 0.65rem;
+    background: #181e2a;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    box-shadow: 0 0 6px #49ff18;
+    outline: none;
+    margin-right: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-width: 193px;
+    max-width: 240px;
+    width: auto;
+}
+.favorite-screenshots-filter-form select:hover,
+.favorite-screenshots-filter-form select:focus {
+    border-color: #49ff18;
+    box-shadow: 0 0 12px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.favorite-screenshots-filter-form select {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%2349ff18' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px 18px;
+}
+.favorite-screenshots-search,
+.favorite-screenshots-platform,
+.favorite-screenshots-game,
+.favorite-screenshots-sort {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    font-size: 1rem;
+    background: #181e2a;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 8px #49ff18;
+    appearance: none;
+    outline: none;
+    margin-right: 8px;
+}
+.favorite-screenshots-platform:hover,
+.favorite-screenshots-game:hover,
+.favorite-screenshots-sort:hover,
+.favorite-screenshots-platform:focus,
+.favorite-screenshots-game:focus,
+.favorite-screenshots-sort:focus {
+    border-color: #49ff18;
+    box-shadow: 0 0 12px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.favorite-screenshots-game,
+.favorite-screenshots-platform {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+.favorite-screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.favorite-screenshots-card {
+    background: #2a3344;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #49ff18;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.favorite-screenshots-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 0 16px #49ff18, 0 2px 8px #49ff18;
+}
+.favorite-screenshots-img img {
+    width: 160px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 0 8px #49ff18;
+}
+.favorite-screenshots-info {
+    font-size: 1rem;
+    color: #b6c2d2;
+    margin-bottom: 8px;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0 0 0 4px;
+    box-shadow: none;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 4px #232a3a;
+    line-height: 1.5;
+    width: 100%;
+    word-break: break-all;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+.favorite-screenshots-game {
+    display: block;
+    margin-bottom: 2px;
+    color: #b6c2d2;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 2px #232a3a;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+    word-break: break-all;
+    white-space: normal;
+    overflow-wrap: break-word;
+    font-size: clamp(0.7rem, 2vw, 0.95rem);
+    text-align: left;
+}
+.favorite-screenshots-platform {
+    display: block;
+    margin-bottom: 2px;
+    color: #b6c2d2;
+    font-size: 0.95rem;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 2px #232a3a;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+    word-break: break-all;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: left;
+}
+.favorite-screenshots-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+.favorite-screenshot-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 20, 20, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+.favorite-screenshot-modal-content {
+    background: #232a3a;
+    border-radius: 16px;
+    box-shadow: 0 0 32px #49ff18;
+    padding: 32px 24px;
+    min-width: 340px;
+    max-width: 95vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+.favorite-screenshot-modal-img img {
+    width: auto;
+    max-width: 90vw;
+    max-height: 60vh;
+    border-radius: 8px;
+    box-shadow: 0 0 16px #49ff18;
+    margin-bottom: 18px;
+    display: block;
+}
+.favorite-screenshot-modal-info {
+    font-family: 'Press Start 2P', monospace;
+    color: #49ff18;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+.favorite-screenshot-modal-game,
+.favorite-screenshot-modal-platform,
+.favorite-screenshot-modal-uploader {
+    display: block;
+    margin-bottom: 0;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    padding-left: 0;
+}
+.favorite-screenshot-modal-uploader-link {
+    color: #49ff18;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 8px #49ff18;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.favorite-screenshot-modal-uploader-link:hover {
+    color: #fff;
+    text-shadow: 0 0 16px #49ff18;
+}
+.favorite-screenshot-modal-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+.favorite-screenshot-modal-remove:hover,
+.favorite-screenshot-modal-download:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.favorite-screenshot-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    font-size: 2.2rem;
+    color: #49ff18;
+    cursor: pointer;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}

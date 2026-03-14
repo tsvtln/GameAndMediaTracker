@@ -1,0 +1,38 @@
+.admin-section {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 32px;
+    background: #232323;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(73, 255, 24, 0.12);
+    box-sizing: border-box;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+}
+.admin-title {
+    color: #49ff18;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 24px;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.admin-text {
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    text-align: left;
+}
+.admin-link {
+    color: #49ff18;
+    text-decoration: underline;
+    font-weight: bold;
+    word-break: break-all;
+}
+.admin-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+}

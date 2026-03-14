@@ -17,8 +17,8 @@
         <div class="bios-upload-form-col">
             <form class="bios-upload-form" enctype="multipart/form-data">
                 <label for="bios-file">BIOS File</label>
-                <label for="bios-file" class="bios-upload-file-label">Select BIOS File</label>
-                <input type="file" id="bios-file" name="bios_file" accept=".bin,.rom,.zip" required style="display:none;">
+                <label for="bios-file" class="upload-file-label">Select BIOS File</label>
+                <input type="file" class="upload-file-input" id="bios-file" name="bios_file" accept=".bin,.rom,.zip" required>
                 <small class="bios-upload-accept">Accepted: .bin .rom .zip</small>
 
                 <label for="platform">System / Platform</label>
@@ -64,7 +64,7 @@
                     <option>Other</option>
                 </select>
 
-                <button type="submit" class="bios-upload-submit-btn">SUBMIT BIOS</button>
+                <button type="submit" class="download-btn">SUBMIT BIOS</button>
             </form>
         </div>
         <div class="bios-upload-guidelines-col">

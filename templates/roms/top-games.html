@@ -9,9 +9,9 @@
     </div>
 
     <div class="top-games-banner">
-        <a href="#" class="top-games-trophy">🏆 #1 Super Mario Bros</a>
-        <a href="#" class="top-games-trophy">🏆 #2 Legend of Zelda</a>
-        <a href="#" class="top-games-trophy">🏆 #3 Mega Man 2</a>
+        <a href="{% url 'roms details' %}" class="top-games-trophy">🏆 #1 Super Mario Bros</a>
+        <a href="{% url 'roms details' %}" class="top-games-trophy">🏆 #2 Legend of Zelda</a>
+        <a href="{% url 'roms details' %}" class="top-games-trophy">🏆 #3 Mega Man 2</a>
     </div>
 
     <form class="top-games-filters" method="get" action="#">
@@ -93,7 +93,7 @@
     </form>
 
     <div class="top-games-list">
-        <a href="#" class="game-card-link">
+        <a href="{% url 'roms details' %}" class="game-card-link">
             <div class="game-card">
                 <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="game-card-img">
                 <div class="game-card-info">
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="game-card-link">
+        <a href="{% url 'roms details' %}" class="game-card-link">
             <div class="game-card">
                 <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda" class="game-card-img">
                 <div class="game-card-info">
@@ -121,7 +121,7 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="game-card-link">
+        <a href="{% url 'roms details' %}" class="game-card-link">
             <div class="game-card">
                 <img src="{% static 'images/temp_images/Megaman2_box.jpg' %}" alt="Mega Man 2" class="game-card-img">
                 <div class="game-card-info">

@@ -11,18 +11,6 @@
     margin-bottom: 18px;
 }
 
-.trending-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 2rem;
-    margin-bottom: 8px;
-}
-
-.trending-subtitle {
-    font-size: 1.1rem;
-    color: #b0ffb0;
-    margin-bottom: 0;
-}
-
 .trending-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

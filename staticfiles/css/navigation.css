@@ -134,8 +134,8 @@
     border-radius: 6px;
     color: var(--text);
     padding: 6px 10px;
-    min-width: 50px;
-    max-width: 130px;
+    min-width: 140px;
+    max-width: 200px;
 }
 
 .nav-search button {
