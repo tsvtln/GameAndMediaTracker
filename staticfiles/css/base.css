@@ -152,11 +152,25 @@ a {
     margin-left: 12px;
     display: inline-block;
 }
+.styled-input,
+.styled-select {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
 .favorite-card-btn,
 .favorite-card-fav-btn,
 .favorite-screenshots-view-btn,
 .favorite-screenshots-remove-btn,
 .favorite-screenshot-modal-remove,
+.favorite-screenshot-modal-add,
 .favorite-screenshot-modal-download,
 .favorites-empty-link,
 .favorite-screenshots-empty-link {
@@ -177,6 +191,7 @@ a {
 .favorite-card-fav-btn:hover,
 .favorite-screenshots-view-btn:hover,
 .favorite-screenshots-remove-btn:hover,
+.favorite-screenshots-add-btn:hover,
 .favorite-screenshot-modal-remove:hover,
 .favorite-screenshot-modal-download:hover,
 .favorites-empty-link:hover,

@@ -1,0 +1,64 @@
+.forum-new-topic-form {
+    max-width: 520px;
+    margin: 40px auto;
+    background: #232323;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(73,255,24,0.12);
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.forum-new-topic-form label {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.forum-new-topic-form input[type="text"],
+.forum-new-topic-form textarea,
+.forum-new-topic-form select {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 0 8px #49ff18;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.forum-new-topic-form input[type="text"]:focus,
+.forum-new-topic-form textarea:focus,
+.forum-new-topic-form select:focus {
+    border: 1.5px solid #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    outline: none;
+}
+
+.forum-new-topic-form button[type="submit"] {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.forum-new-topic-form button[type="submit"]:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+

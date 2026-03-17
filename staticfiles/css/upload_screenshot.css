@@ -1,0 +1,157 @@
+.upload-screenshot-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff1833;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.upload-screenshot-title {
+    color: #49ff18;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.upload-screenshot-subtitle {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.upload-screenshot-main {
+    display: flex;
+    gap: 40px;
+    margin-top: 24px;
+}
+
+.upload-screenshot-form-col {
+    flex: 2;
+}
+
+.upload-screenshot-guidelines-col {
+    flex: 1;
+    min-width: 260px;
+}
+
+.upload-screenshot-form label {
+    color: #49ff18;
+    font-size: 1rem;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.upload-screenshot-form input[type="text"],
+.upload-screenshot-form select {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.upload-screenshot-accept {
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+
+.upload-screenshot-drop {
+    background: #181818;
+    border: 2px dashed #49ff18;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.upload-screenshot-drop.drag-active {
+    border-color: #ffeb3b;
+}
+
+.upload-screenshot-preview {
+    width: 100%;
+    min-height: 140px;
+    background: #232323;
+    border-radius: 8px;
+    margin: 0 auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9rem;
+    box-shadow: 0 0 8px #49ff18;
+    overflow: hidden;
+}
+
+.upload-screenshot-preview img {
+    max-width: 100%;
+    max-height: 220px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.upload-screenshot-drag {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.upload-screenshot-guidelines-box {
+    background: #181818;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 24px 18px;
+}
+
+.upload-screenshot-guidelines-title {
+    color: #49ff18;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    text-align: center;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.upload-screenshot-guidelines-list {
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    padding-left: 18px;
+}
+
+.upload-screenshot-guidelines-list li {
+    margin-bottom: 6px;
+}
+
+.upload-screenshot-maxsize {
+    color: #ffeb3b;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+    .upload-screenshot-main {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .upload-screenshot-form-col,
+    .upload-screenshot-guidelines-col {
+        min-width: 0;
+    }
+}

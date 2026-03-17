@@ -15,3 +15,15 @@ def favorite_roms(request):
 
 def favorite_screenshots(request):
     return render(request, 'accounts/favorite-screenshots.html')
+
+
+def login(request):
+    return render(request, 'accounts/login.html')
+
+
+def register(request):
+    return render(request, 'accounts/register.html')
+
+
+def profile(request):
+    return render(request, 'accounts/profile.html')

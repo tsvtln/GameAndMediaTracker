@@ -1,0 +1,86 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Top Rated Screenshots | CHECKPOINT{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/favorite-screenshots.css' %}">
+<div class="favorite-screenshots-section">
+    <h1 class="favorite-screenshots-title">TOP RATED SCREENSHOTS</h1>
+    <div class="favorite-screenshots-desc">Screenshots with the highest ratings from the community.</div>
+    <div class="favorite-screenshots-grid">
+        <div class="favorite-screenshots-card">
+            <div class="favorite-screenshots-img">
+                <img src="{% static 'images/temp_images/grand_theft_auto_san_andreas_playstation_2__2004__by_sonicloud1213_dig2fm4-fullview.jpg' %}" alt="GTA San Andreas Screenshot">
+            </div>
+            <div class="favorite-screenshots-info">
+                <span class="favorite-screenshots-game">Game:<br> GTA San Andreas</span>
+                <span class="favorite-screenshots-platform">Platform:<br> PC</span>
+                <span class="favorite-screenshots-uploader">Uploaded by:<br> user123</span>
+            </div>
+            <div class="favorite-screenshots-actions">
+                <button class="favorite-screenshots-view-btn">View</button>
+                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
+            </div>
+        </div>
+        <div class="favorite-screenshots-card">
+            <div class="favorite-screenshots-img">
+                <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Super Mario Screenshot">
+            </div>
+            <div class="favorite-screenshots-info">
+                <span class="favorite-screenshots-game">Game:<br> Super Mario Bros</span>
+                <span class="favorite-screenshots-platform">Platform:<br> NES</span>
+                <span class="favorite-screenshots-uploader">Uploaded by:<br> user456</span>
+            </div>
+            <div class="favorite-screenshots-actions">
+                <button class="favorite-screenshots-view-btn">View</button>
+                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
+            </div>
+        </div>
+        <div class="favorite-screenshots-card">
+            <div class="favorite-screenshots-img">
+                <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Pokemon Fire Red Screenshot">
+            </div>
+            <div class="favorite-screenshots-info">
+                <span class="favorite-screenshots-game">Game:<br> Pokémon Fire Red</span>
+                <span class="favorite-screenshots-platform">Platform:<br> Game Boy Advance</span>
+                <span class="favorite-screenshots-uploader">Uploaded by:<br> user789</span>
+            </div>
+            <div class="favorite-screenshots-actions">
+                <button class="favorite-screenshots-view-btn">View</button>
+                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
+            </div>
+        </div>
+    </div>
+    <div class="favorite-screenshots-pagination">
+        <a href="#" class="favorite-screenshots-page-link">&lt;&lt; Previous</a>
+        <a href="#" class="favorite-screenshots-page-link active">1</a>
+        <a href="#" class="favorite-screenshots-page-link">2</a>
+        <a href="#" class="favorite-screenshots-page-link">3</a>
+        <span class="favorite-screenshots-page-ellipsis">...</span>
+        <a href="#" class="favorite-screenshots-page-link">Next &gt;&gt;</a>
+    </div>
+    <div class="favorite-screenshots-empty-state">
+        <p>No top-rated screenshots yet.<br> Upload and rate your favorites!</p>
+        <a href="{% url 'upload screenshot' %}" class="download-btn">Upload Screenshot</a>
+    </div>
+    <div id="favorite-screenshot-modal" class="favorite-screenshot-modal" style="display:none;">
+        <div class="favorite-screenshot-modal-content">
+            <span class="favorite-screenshot-modal-close">&times;</span>
+            <div class="favorite-screenshot-modal-img">
+                <img src="" alt="Full Screenshot" id="favorite-screenshot-modal-img">
+            </div>
+            <div class="favorite-screenshot-modal-info">
+                <span class="favorite-screenshot-modal-game"></span>
+                <span class="favorite-screenshot-modal-platform"></span>
+                <span class="favorite-screenshot-modal-uploader"></span>
+            </div>
+            <div class="favorite-screenshot-modal-actions">
+                <button class="favorite-screenshot-modal-add">❤ Add to Favorites</button>
+                <button class="favorite-screenshot-modal-remove" style="display:none;">❤ Remove from Favorites</button>
+                <button class="favorite-screenshot-modal-download">Download</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/favorite-screenshots.js' %}"></script>
+{% endblock %}
+

@@ -43,3 +43,39 @@ def add_event(request):
 
 def community(request):
     return render(request, 'common/community.html')
+
+
+def forum_index(request):
+    return render(request, 'forums/forum-index.html')
+
+
+def forum_board(request, board_slug):
+    return render(request, 'forums/forum-board.html', {'board_slug': board_slug})
+
+
+def forum_thread(request, board_slug, thread_slug):
+    return render(request, 'forums/forum-thread.html', {'board_slug': board_slug, 'thread_slug': thread_slug})
+
+
+def forum_new_topic(request):
+    return render(request, 'forums/forum-new-topic.html')
+
+
+def screenshots_main(request):
+    return render(request, 'screenshots/screenshots.html')
+
+
+def latest_screenshots(request):
+    return render(request, 'screenshots/latest.html')
+
+
+def top_rated_screenshots(request):
+    return render(request, 'screenshots/top-rated.html')
+
+
+def upload_screenshot(request):
+    return render(request, 'screenshots/upload-screenshot.html')
+
+
+def my_screenshots(request):
+    return render(request, 'screenshots/my-screenshots.html')

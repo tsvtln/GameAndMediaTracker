@@ -1,0 +1,24 @@
+{% extends 'common/base.html' %}
+{% block title %}Create New Topic | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="forum-section">
+    <h1 class="bios-title">CREATE NEW TOPIC</h1>
+    <form class="forum-new-topic-form">
+        <label for="topic-title">Title:</label>
+        <input type="text" id="topic-title" name="topic-title" placeholder="Enter topic title...">
+        <label for="topic-board">Board:</label>
+        <select id="topic-board" name="topic-board">
+            <option>Game Guides</option>
+            <option>Emulator Setup</option>
+            <option>Retro Gaming</option>
+            <option>Off Topic</option>
+            <option>Emulator Help</option>
+            <option>BIOS Help</option>
+        </select>
+        <label for="topic-content">Content:</label>
+        <textarea id="topic-content" name="topic-content" rows="6" placeholder="Write your post..."></textarea>
+        <button type="submit" class="download-btn">Create Topic</button>
+    </form>
+</section>
+{% endblock %}
+

@@ -123,4 +123,61 @@ document.addEventListener('DOMContentLoaded', function() {
             // note: add real delete logic here later
         });
     }
+
+    // screenshot modal logic
+    const modal = document.getElementById('rom-details-screenshot-modal');
+    const modalImg = document.getElementById('rom-details-screenshot-modal-img');
+    const modalGame = document.querySelector('.rom-details-screenshot-modal-game');
+    const modalPlatform = document.querySelector('.rom-details-screenshot-modal-platform');
+    const modalUploader = document.querySelector('.rom-details-screenshot-modal-uploader');
+    const modalClose = document.querySelector('.rom-details-screenshot-modal-close');
+    const modalAdd = document.querySelector('.rom-details-screenshot-modal-add');
+    const modalRemove = document.querySelector('.rom-details-screenshot-modal-remove');
+    const modalDownload = document.querySelector('.rom-details-screenshot-modal-download');
+    let isFavorited = false;
+
+    document.querySelectorAll('.rom-details-screenshot').forEach(function(link) {
+        if (link.classList.contains('rom-details-screenshot-more')) return;
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const img = link.querySelector('img');
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modalGame.textContent = 'Game: Super Mario World';
+            modalPlatform.textContent = 'Platform: SNES';
+            modalUploader.textContent = 'Uploaded by: GoombaLover';
+            isFavorited = false;
+            modalAdd.style.display = 'inline-block';
+            modalRemove.style.display = 'none';
+            modal.style.display = 'flex';
+        });
+    });
+
+    modalClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    if (modalAdd) {
+        modalAdd.addEventListener('click', function() {
+            isFavorited = true;
+            modalAdd.style.display = 'none';
+            modalRemove.style.display = 'inline-block';
+        });
+    }
+    if (modalRemove) {
+        modalRemove.addEventListener('click', function() {
+            isFavorited = false;
+            modalRemove.style.display = 'none';
+            modalAdd.style.display = 'inline-block';
+        });
+    }
+    if (modalDownload) {
+        modalDownload.addEventListener('click', function() {
+            alert('Download functionality coming soon!');
+        });
+    }
 });

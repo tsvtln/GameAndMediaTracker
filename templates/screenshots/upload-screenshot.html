@@ -1,0 +1,87 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Upload Screenshot | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="upload-screenshot-section">
+    <h1 class="upload-screenshot-title">UPLOAD SCREENSHOT</h1>
+    <p class="upload-screenshot-subtitle">Share your game screenshots with the community.<br>Make sure the file is correct and properly labeled.</p>
+
+    <div class="upload-screenshot-main">
+        <div class="upload-screenshot-form-col">
+            <form class="upload-screenshot-form" enctype="multipart/form-data">
+
+                <label for="screenshot-file">Screenshot File</label>
+                <label for="screenshot-file" class="upload-file-label">Select Screenshot</label>
+                <input type="file" class="upload-file-input" id="screenshot-file" name="screenshot_file" accept=".png,.jpg,.jpeg,.webp" required>
+                <small class="upload-screenshot-accept">Accepted: .png .jpg .jpeg .webp</small>
+
+                <div class="upload-screenshot-drop" id="screenshot-drop">
+                    <div class="upload-screenshot-preview" id="screenshot-preview">SCREENSHOT PREVIEW</div>
+                    <small>Max file size: 5MB</small>
+                    <div class="upload-screenshot-drag">Drag screenshot here or click to upload</div>
+                </div>
+
+                <label for="game-name">Game Name</label>
+                <input type="text" id="game-name" name="game_name" class="styled-input" placeholder="e.g. Chrono Trigger" required>
+
+                <label for="platform">Platform</label>
+                <select id="platform" name="platform" class="styled-select" required>
+                    <option value="">Select Platform</option>
+                    <option>PC</option>
+                    <option>NES</option>
+                    <option>Famicom</option>
+                    <option>SNES</option>
+                    <option>Super Famicom</option>
+                    <option>Nintendo 64</option>
+                    <option>GameCube</option>
+                    <option>Wii</option>
+                    <option>Wii U</option>
+                    <option>Nintendo Switch</option>
+                    <option>Game Boy</option>
+                    <option>Game Boy Color</option>
+                    <option>Game Boy Advance</option>
+                    <option>Nintendo DS</option>
+                    <option>Nintendo 3DS</option>
+                    <option>Sega Master System</option>
+                    <option>Sega Genesis / Mega Drive</option>
+                    <option>Sega CD</option>
+                    <option>32X</option>
+                    <option>Sega Saturn</option>
+                    <option>Sega Dreamcast</option>
+                    <option>Game Gear</option>
+                    <option>PlayStation</option>
+                    <option>PlayStation 2</option>
+                    <option>PlayStation 3</option>
+                    <option>PlayStation Portable (PSP)</option>
+                    <option>PlayStation Vita</option>
+                    <option>Xbox</option>
+                    <option>Xbox 360</option>
+                    <option>Xbox One</option>
+                    <option>Atari</option>
+                    <option>Other</option>
+                </select>
+
+                <button type="submit" class="download-btn">SUBMIT SCREENSHOT</button>
+            </form>
+        </div>
+
+        <div class="upload-screenshot-guidelines-col">
+            <div class="upload-screenshot-guidelines-box">
+                <h2 class="upload-screenshot-guidelines-title">UPLOAD GUIDELINES</h2>
+                <ul class="upload-screenshot-guidelines-list">
+                    <li>⚠️ Upload only gameplay screenshots</li>
+                    <li>⚠️ Use correct platform and game name</li>
+                    <li>⚠️ Upload clean images</li>
+                    <li>⚠️ Provide correct game title</li>
+                    <li>⚠️ Avoid duplicates</li>
+                </ul>
+                <div class="upload-screenshot-maxsize">Max file size: 5MB</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/upload_screenshot.js' %}"></script>
+</section>
+{% endblock %}

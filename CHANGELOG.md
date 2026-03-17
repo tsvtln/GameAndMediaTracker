@@ -1,3 +1,27 @@
+[2026-03-17]
+- Screenshots
+  - Implemented consistent screenshot grid and modal popout across ROM details, My Screenshots, 
+      Latest and Top Rated pages; clicking a thumbnail opens a centered modal with full image, info and actions.
+  - Added Add/Remove Favorites toggle in screenshot modals (behaves like Favorites page) 
+      and synced behavior across all screenshot pages.
+  - Standardized screenshot box sizing and object-fit behavior so thumbnails are uniform and contained.
+
+- Forums
+  - Added forum pages: index, board, thread, new-topic templates and basic views/urls in 'common' for display during HTML/CSS development.
+  - Thread posts show a small left avatar with username/date inline and message on the next line. Replies use the same layout.
+  - Adjusted a bit the Forum index layout.
+  - Basic reply form, create topic form and thread view implemented (HTML-only).
+
+- Accounts (login / register / profile)
+  - Styled and completed login, profile and register pages.
+  - Implemented avatar upload modal with preview and a Change Avatar flow (JS + CSS).
+  - Implemented Change Password modal (fields + basic client-side behavior) to match avatar modal UX.
+
+- Other fixes & improvements
+  - Added/updated JS handlers for multiple pages (favorite-screenshots, rom-details) to improve UX and match behaviors.
+  - Small layout and interaction fixes across ROMs, BIOS, SAVES, Favorites and Community pages (dropdowns, cursors, hover effects, buttons etc.).
+
+
 [2026-03-14]
 - Due to heavy amount of copy-pasting the same thing, there was a lot of duplicated CSS when scanned with 'jscpd'
   - Refactored the CSS to not have duplicates and to re-use the same styles for certain elements across the project
@@ -53,7 +77,6 @@
 - Created a contact form (HTML only, ready for Django integration).
 - Improved navigation bar by adding dropdown menu with styling and relevant places to go.
 - Added Website News page displaying the changelog.
-
 
 [2026-03-03]
 - Created the initial 'common' Django app.

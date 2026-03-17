@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Screenshots | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="screenshots-section">
+    <h1 class="bios-title">SCREENSHOTS</h1>
+    <div class="screenshots-boxes">
+        <div class="roms-box">
+            <a href="{% url 'latest screenshots' %}" class="roms-box-title">Latest Screenshots</a>
+            <div class="screenshots-box-desc">See the newest uploads from the community.</div>
+        </div>
+        <div class="roms-box">
+            <a href="{% url 'top rated screenshots' %}" class="roms-box-title">Top Rated Screenshots</a>
+            <div class="screenshots-box-desc">Browse the most liked and highest rated screenshots.</div>
+        </div>
+        <div class="roms-box">
+            <a href="{% url 'my screenshots' %}" class="roms-box-title">My Screenshots</a>
+            <div class="screenshots-box-desc">View and manage your own uploaded screenshots.</div>
+        </div>
+        <div></div>
+        <div class="roms-box">
+            <a href="{% url 'upload screenshot' %}" class="roms-box-title">Submit Screenshot</a>
+            <div class="screenshots-box-desc">
+                <a href="{% url 'upload screenshot' %}" class="download-btn">Upload Screenshot</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

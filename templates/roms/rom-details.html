@@ -4,6 +4,7 @@
 {% block title %}ROM Details | CHECKPOINT{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/rom-details.css' %}">
 <section class="rom-details-section">
     <div class="rom-details-header">
         <div class="rom-details-main">
@@ -139,6 +140,25 @@
         </div>
     </div>
 </section>
+<!-- Screenshot Modal: must be outside all containers -->
+<div id="rom-details-screenshot-modal" class="rom-details-screenshot-modal" style="display:none;">
+    <div class="rom-details-screenshot-modal-content">
+        <span class="rom-details-screenshot-modal-close">&times;</span>
+        <div class="rom-details-screenshot-modal-img">
+            <img src="" alt="Full Screenshot" id="rom-details-screenshot-modal-img">
+        </div>
+        <div class="rom-details-screenshot-modal-info">
+            <span class="rom-details-screenshot-modal-game"></span>
+            <span class="rom-details-screenshot-modal-platform"></span>
+            <span class="rom-details-screenshot-modal-uploader"></span>
+        </div>
+        <div class="rom-details-screenshot-modal-actions">
+            <button class="rom-details-screenshot-modal-add">❤ Add to Favorites</button>
+            <button class="rom-details-screenshot-modal-remove" style="display:none;">❤ Remove from Favorites</button>
+            <button class="rom-details-screenshot-modal-download">Download</button>
+        </div>
+    </div>
+</div>
 <div class="rom-details-review-delete-modal" id="rom-delete-modal" style="display: none;">
     <div class="rom-details-review-delete-modal-content">
         <span class="rom-details-review-delete-modal-text">Are you sure you want to delete this ROM?</span>

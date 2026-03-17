@@ -1,0 +1,24 @@
+{% extends 'common/base.html' %}
+{% block title %}Forum Board | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="forum-section">
+    <h1 class="bios-title">FORUM BOARD</h1>
+    <div class="forum-thread-list">
+        <div class="forum-thread-card">
+            <a href="{% url 'forum thread' board_slug 'how-to-configure-pcsx2' %}" class="forum-thread-title">How to configure PCSX2</a>
+            <div class="forum-thread-meta">Author: user123 | Replies: 4 | Last Post: 2026-03-14</div>
+        </div>
+        <div class="forum-thread-card">
+            <a href="{% url 'forum thread' board_slug 'bios-not-detected' %}" class="forum-thread-title">BIOS not detected</a>
+            <div class="forum-thread-meta">Author: user456 | Replies: 2 | Last Post: 2026-03-13</div>
+        </div>
+        <div class="forum-thread-card">
+            <a href="{% url 'forum thread' board_slug 'best-retroarch-settings' %}" class="forum-thread-title">Best RetroArch settings</a>
+            <div class="forum-thread-meta">Author: user789 | Replies: 7 | Last Post: 2026-03-12</div>
+        </div>
+    </div>
+    <div class="forum-new-topic-btn">
+        <a href="{% url 'forum new topic' %}" class="download-btn">Create New Topic</a>
+    </div>
+</section>
+{% endblock %}

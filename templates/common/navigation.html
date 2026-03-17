@@ -24,7 +24,7 @@
             <a href="{% url 'bios page' %}"><img src="{% static 'images/icons/bios.png' %}" alt="BIOS"></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'bios all files' %}">All BIOS Files</a></li>
-                <li><a href="#">Installation Guides</a></li>  {# note: to add the link when forums>guides is done #}
+                <li><a href="{% url 'forum board' 'bios_setup' %}">Installation Guides</a></li>  {# note: to add the link when forums>guides is done #}
                 <li><a href="{% url 'bios faq' %}">BIOS FAQ</a></li>
                 <li><a href="{% url 'bios upload' %}">BIOS Upload</a></li>  {# note: if logged in #}
             </ul>
@@ -47,29 +47,28 @@
         <li class="nav-item has-dropdown">
             <a href="{% url 'community page' %}"><img src="{% static 'images/icons/community.png' %}" alt="Community"></a>
             <ul class="dropdown-menu">
-                <li><a href="#">Forums</a></li>
-                <li><a href="#">Guides</a></li>
+                <li><a href="{% url 'forum index' %}">Forums</a></li>
                 <li><a href="{% url 'community events page' %}">Events</a></li>
             </ul>
         </li>
         <li class="nav-item has-dropdown">
-            <a href="#"><img src="{% static 'images/icons/screenshots_gallery.png' %}" alt="Screenshots"></a>
+            <a href="{% url 'screenshots main' %}"><img src="{% static 'images/icons/screenshots_gallery.png' %}" alt="Screenshots"></a>
             <ul class="dropdown-menu">
-                <li><a href="#">Latest Screenshots</a></li>
-                <li><a href="#">Top Rated Screenshots</a></li>
-                <li><a href="#">My Screenshots</a></li>  {# note: if logged in #}
-                <li><a href="#">Submit Screenshot</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'latest screenshots' %}">Latest Screenshots</a></li>
+                <li><a href="{% url 'top rated screenshots' %}">Top Rated Screenshots</a></li>
+                <li><a href="{% url 'my screenshots' %}">My Screenshots</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'upload screenshot' %}">Submit Screenshot</a></li>  {# note: if logged in #}
             </ul>
         </li>
     </ul>
 
     <div class="nav-right">
         <div class="auth-links">
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
+            <a class="auth-link" href="{% url 'login' %}"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
             <a class="auth-link" href="#"><img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT"></a>  {# note: if logged in #}
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# note: if logged in #}
+            <a class="auth-link" href="{% url 'profile' %}"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# note: if logged in #}
             <a class="auth-link" href="{% url 'admin page' %}"><img src="{% static 'images/icons/admin.webp' %}" alt="ADMIN"></a>  {# note: if logged in and super/admin #}
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
+            <a class="auth-link" href="{% url 'register' %}"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
         </div>
         <form class="nav-search" action="#" method="get">
             <input type="text" name="q" placeholder="Search">

@@ -1,0 +1,393 @@
+.login-section {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 32px 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.accounts-title {
+    color: #49ff18;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 18px;
+    text-shadow: 0 0 8px #49ff18;
+}
+.login-desc {
+    color: #b0ffb0;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 24px;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.login-label {
+    color: #49ff18;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    font-family: 'Press Start 2P', monospace;
+}
+.styled-input {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.download-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    margin-top: 18px;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+.download-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.login-link {
+    color: #49ff18;
+    font-size: 1rem;
+    text-decoration: underline;
+    font-family: 'Press Start 2P', monospace;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.login-link:hover {
+    color: #b0ffb0;
+    text-shadow: 0 0 8px #49ff18;
+}
+.register-links {
+    margin-top: 18px;
+    text-align: center;
+}
+.register-link {
+    color: #49ff18;
+    font-size: 1rem;
+    text-decoration: underline;
+    font-family: 'Press Start 2P', monospace;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.register-link:hover {
+    color: #b0ffb0;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.profile-section {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 48px 36px;
+    background: #232323;
+    border-radius: 24px;
+    box-shadow: 0 0 36px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    padding: 64px 48px;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px #49ff18;
+    background: #2a3344;
+}
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    width: 100%;
+}
+.profile-avatar img {
+    margin: 0 auto;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    box-shadow: 0 0 16px #49ff18;
+    background: #181818;
+}
+.profile-info {
+    text-align: center;
+    color: #49ff18;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+.profile-info-inner {
+    background: transparent;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 24px 32px;
+    margin-bottom: 18px;
+    font-size: 1.2rem;
+    color: #49ff18;
+    text-align: center;
+    width: 100%;
+}
+.profile-username span,
+.profile-email span {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 8px #49ff18;
+}
+.profile-stats {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 8px;
+}
+.profile-stats div {
+    color: #b0ffb0;
+    font-size: 1rem;
+    background: #181818;
+    border-radius: 8px;
+    padding: 6px 18px;
+    box-shadow: 0 0 8px #49ff18;
+}
+.profile-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 18px;
+}
+.profile-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+.profile-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+
+.avatar-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 20, 20, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+.avatar-modal-content {
+    background: #232a3a;
+    border-radius: 16px;
+    box-shadow: 0 0 32px #49ff18;
+    padding: 48px 36px;
+    min-width: 480px;
+    max-width: 700px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.avatar-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    font-size: 2.2rem;
+    color: #49ff18;
+    cursor: pointer;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.avatar-modal-title {
+    color: #49ff18;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.avatar-modal-preview {
+    margin-bottom: 18px;
+}
+#avatar-preview-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    box-shadow: 0 0 16px #49ff18;
+    background: #181818;
+}
+.avatar-modal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.avatar-modal-save-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 8px;
+    text-align: center;
+}
+.avatar-modal-save-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+.avatar-upload-label {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 8px;
+    text-align: center;
+}
+.avatar-upload-label:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}
+
+.password-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 20, 20, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+.password-modal-content {
+    background: #232a3a;
+    border-radius: 16px;
+    box-shadow: 0 0 32px #49ff18;
+    padding: 48px 36px;
+    min-width: 480px;
+    max-width: 700px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.password-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    font-size: 2.2rem;
+    color: #49ff18;
+    cursor: pointer;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.password-modal-title {
+    color: #49ff18;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    text-shadow: 0 0 8px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+.password-modal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+.password-modal-input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 12px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.password-modal-save-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 8px;
+    text-align: center;
+}
+.password-modal-save-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+    text-decoration: none;
+}

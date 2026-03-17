@@ -1,0 +1,49 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}Forum Thread | CHECKPOINT{% endblock %}
+{% block content %}
+<section class="forum-section">
+    <h1 class="bios-title">FORUM THREAD</h1>
+    <div class="forum-thread-main">
+        <div class="forum-post">
+            <div class="forum-post-header">
+                <div class="forum-post-avatar">
+                    <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="User Avatar">
+                </div>
+                <div class="forum-post-author">user123</div>
+                <div class="forum-post-date">2026-03-14</div>
+            </div>
+            <div class="forum-post-content">How do I fix BIOS not detected in PCSX2?</div>
+        </div>
+        <div class="forum-replies">
+            <div class="forum-reply">
+                <div class="forum-post-header">
+                    <div class="forum-post-avatar">
+                        <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="User Avatar">
+                    </div>
+                    <div class="forum-post-author">user456</div>
+                    <div class="forum-post-date">2026-03-14</div>
+                </div>
+                <div class="forum-post-content">Check your BIOS folder path.</div>
+            </div>
+            <div class="forum-reply">
+                <div class="forum-post-header">
+                    <div class="forum-post-avatar">
+                        <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="User Avatar">
+                    </div>
+                    <div class="forum-post-author">user789</div>
+                    <div class="forum-post-date">2026-03-14</div>
+                </div>
+                <div class="forum-post-content">Make sure the BIOS file is named correctly.</div>
+            </div>
+        </div>
+        <div class="forum-reply-form">
+            <form>
+                <label for="reply-content">Reply:</label>
+                <textarea id="reply-content" name="reply-content" rows="4" placeholder="Write your reply..."></textarea>
+                <button type="submit" class="download-btn">Submit Reply</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

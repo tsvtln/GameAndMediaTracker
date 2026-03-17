@@ -1,0 +1,60 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Profile | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="profile-section">
+    <h1 class="accounts-title">PROFILE</h1>
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="Profile Avatar">
+        </div>
+        <div class="profile-info">
+            <div class="profile-info-inner">
+                <div class="profile-username">Username: <span>your_username</span></div>
+                <div class="profile-email">E-Mail: <span>your@email.com</span></div>
+            </div>
+            <div class="profile-stats">
+                <div>Favorites: <span>18</span></div>
+                <div>Saves: <span>12</span></div>
+                <div>Screenshots: <span>7</span></div>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <a href="#" class="profile-btn" id="change-avatar-btn">Change Avatar</a>
+            <a href="#" class="profile-btn" id="change-password-btn">Change Password</a>
+            <a href="#" class="profile-btn">Logout</a>
+        </div>
+    </div>
+    <div id="avatar-modal" class="avatar-modal" style="display:none;">
+        <div class="avatar-modal-content">
+            <span class="avatar-modal-close">&times;</span>
+            <h2 class="avatar-modal-title">Change Avatar</h2>
+            <div class="avatar-modal-preview">
+                <img id="avatar-preview-img" src="{% static 'images/placeholders/no_avatar.webp' %}" alt="Avatar Preview">
+            </div>
+            <form class="avatar-modal-form">
+                <input type="file" id="avatar-upload-input" accept="image/*" style="display:none;">
+                <label for="avatar-upload-input" class="avatar-upload-label">Browse...</label>
+                <button type="button" class="avatar-modal-save-btn">Save Avatar</button>
+            </form>
+        </div>
+    </div>
+    <div id="password-modal" class="password-modal" style="display:none;">
+        <div class="password-modal-content">
+            <span class="password-modal-close">&times;</span>
+            <h2 class="password-modal-title">Change Password</h2>
+            <form class="password-modal-form">
+                <input type="password" class="password-modal-input" placeholder="Current Password">
+                <input type="password" class="password-modal-input" placeholder="New Password">
+                <input type="password" class="password-modal-input" placeholder="Confirm New Password">
+                <button type="button" class="password-modal-save-btn">Save Password</button>
+            </form>
+        </div>
+    </div>
+</section>
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<script src="{% static 'js/profile-avatar.js' %}"></script>
+<script src="{% static 'js/profile-password.js' %}"></script>
+{% endblock %}

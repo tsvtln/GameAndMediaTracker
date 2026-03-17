@@ -24,3 +24,10 @@
 @import "admin.css";
 @import "favorites.css";
 @import "favorite-roms.css";
+@import "forum.css";
+@import "forum_new_topic.css";
+@import "forum_board.css";
+@import "forum_thread.css";
+@import "screenshots.css";
+@import "screenshots_main.css";
+@import "upload_screenshot.css";

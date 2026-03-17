@@ -1,0 +1,118 @@
+.forum-thread-main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #232323;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(73,255,24,0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.forum-post, .forum-reply {
+    background: #2a3344;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 18px 24px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.forum-post-avatar img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: 0 0 4px #49ff18;
+    background: #181818;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Forum post header layout */
+.forum-post-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.forum-post-author {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.forum-post-date {
+    color: #b6ffb6;
+    font-size: 0.95rem;
+    font-family: 'Press Start 2P', monospace;
+    opacity: 0.85;
+}
+
+.forum-post-content {
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 8px #49ff18;
+    margin-top: 6px;
+    margin-left: 6px;
+}
+
+.forum-reply-form {
+    background: #232323;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 18px 24px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.forum-reply-form label {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+}
+
+.forum-reply-form textarea {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 8px;
+    resize: vertical;
+    box-shadow: 0 0 8px #49ff18;
+}
+
+.forum-reply-form textarea:focus {
+    border: 1.5px solid #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    outline: none;
+}
+
+.forum-reply-form button[type="submit"] {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.forum-reply-form button[type="submit"]:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}

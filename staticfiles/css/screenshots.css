@@ -1,0 +1,115 @@
+.screenshots-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 32px;
+}
+
+.screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.screenshot-card {
+    background: #232323;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(73,255,24,0.12);
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    transition: box-shadow 0.2s;
+}
+
+.screenshot-img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    margin-bottom: 12px;
+}
+
+.screenshot-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.screenshot-game {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.screenshot-actions {
+    display: flex;
+    gap: 18px;
+    margin-top: 8px;
+}
+
+.screenshot-view-btn, .screenshot-download-btn {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+
+.screenshot-view-btn:hover, .screenshot-download-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.screenshot-favorite-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.screenshot-favorite-btn img {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 6px #49ff18) brightness(1.2) contrast(1.2);
+    background: #f5e9d6;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #49ff18;
+    padding: 4px;
+    display: block;
+}
+
+.screenshot-favorite-btn:hover img {
+    filter: drop-shadow(0 0 12px #49ff18) brightness(1.4) contrast(1.4);
+    box-shadow: 0 0 16px #49ff18;
+}
+
+.screenshots-empty-state {
+    text-align: center;
+    margin-top: 48px;
+}
+
+.screenshots-empty-state p {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+}
+
+.screenshots-upload-btn {
+    text-align: center;
+    margin-top: 32px;
+}
+

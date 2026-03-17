@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Login | CHECKPOINT{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <h1 class="accounts-title">LOGIN</h1>
+    <div class="login-desc">Sign in to your account to access your saves, favorites, and more.</div>
+    <form class="login-form" method="post">
+        {% csrf_token %}
+        <label for="username" class="login-label">Username</label>
+        <input type="text" id="username" name="username" class="styled-input" placeholder="Enter your username" required>
+
+        <label for="password" class="login-label">Password</label>
+        <input type="password" id="password" name="password" class="styled-input" placeholder="Enter your password" required>
+
+        <button type="submit" class="download-btn">LOGIN</button>
+        <div class="login-links">
+            <a href="#" class="login-link">Forgot password?</a>
+            <a href="{% url 'register' %}" class="login-link">Register</a>
+        </div>
+    </form>
+</section>
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock %}
