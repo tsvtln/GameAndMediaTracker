@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,25 +25,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'elena-septivalent-sunnily.ngrok-free.dev',
-    'tsvtln.com',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://elena-septivalent-sunnily.ngrok-free.dev",
-    "http://127.0.0.1",
-    "http://tsvtln.com",
-    "https://tsvtln.com",
-    "http://www.tsvtln.com",
-    "https://www.tsvtln.com",
-]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', cast=Csv())
 
 # Application definition
+
+PROJECT_APPS = [
+    'CheckPoint.common.apps.CommonConfig',
+    'CheckPoint.accounts.apps.AccountsConfig',
+    'CheckPoint.bios.apps.BiosConfig',
+    'CheckPoint.roms.apps.RomsConfig',
+    'CheckPoint.saves.apps.SavesConfig',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -52,12 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'CheckPoint.common.apps.CommonConfig',
-    'CheckPoint.accounts.apps.AccountsConfig',
-    'CheckPoint.bios.apps.BiosConfig',
-    'CheckPoint.roms.apps.RomsConfig',
-    'CheckPoint.saves.apps.SavesConfig',
-]
+] + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
