@@ -1,0 +1,294 @@
+/* Responsive Design for CHECKPOINT */
+
+/* (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    /* nav adjustments */
+    .nav-list {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-item {
+        font-size: 0.85rem;
+    }
+
+    /* game grids - 2 columns instead of 3 */
+    .roms-grid,
+    .genre-grid,
+    .platform-grid,
+    .trending-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    /* screenshot grids - 2 columns */
+    .rom-details-screenshots-grid,
+    .screenshots-main-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* reduce padding on sections */
+    .rom-details-section,
+    .saves-section,
+    .bios-section,
+    .about-section {
+        padding: 24px 16px;
+    }
+
+    /* m,ake boxes narrower */
+    .top-games-content,
+    .most-downloaded-content,
+    .genre-detail-content {
+        max-width: 90%;
+    }
+
+    /* forum adjustments */
+    .forum-board-grid,
+    .forum-category-boards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    /* base font size reduction */
+    body {
+        font-size: 0.85rem;
+    }
+
+    /* Navigation becomes vertical/burger */
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* all grids become single column */
+    .roms-grid,
+    .genre-grid,
+    .platform-grid,
+    .trending-content,
+    .most-downloaded-content,
+    .favorite-roms-grid,
+    .screenshots-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* screenshot grids stay 2 columns on mobile */
+    .rom-details-screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    /* upload forms */
+    .upload-rom-container,
+    .bios-upload-container,
+    .save-upload-container {
+        flex-direction: column;
+    }
+
+    .upload-rom-form,
+    .upload-rom-guidelines,
+    .bios-upload-form,
+    .bios-upload-guidelines,
+    .save-upload-form,
+    .save-upload-guidelines {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* reduce title sizes */
+    .rom-details-title,
+    .saves-title,
+    .bios-title,
+    .roms-title {
+        font-size: 1.5rem;
+    }
+
+    /* game cards */
+    .game-card,
+    .save-card,
+    .vault-card {
+        padding: 12px;
+    }
+
+    /* top games banner - stack vertically */
+    .top-games-banner {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* filter rows stack */
+    .top-games-filter-row,
+    .saves-filter-row,
+    .most-downloaded-filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .top-games-filter-group,
+    .saves-filter-group,
+    .most-downloaded-filter-group {
+        width: 100%;
+    }
+
+    /* pagination */
+    .saves-pagination,
+    .vault-pagination,
+    .favorite-screenshots-pagination {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    /* profile page */
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-card,
+    .profile-details {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* events */
+    .events-card {
+        padding: 16px;
+    }
+
+    /* comments and reviews */
+    .rom-details-review,
+    .rom-details-comment {
+        padding: 12px;
+    }
+
+    /* modal adjustments */
+    .rom-details-screenshot-modal-content,
+    .favorite-screenshots-modal-content {
+        width: 95%;
+        max-width: 95%;
+        padding: 16px;
+    }
+
+    /* footer */
+    .site-footer {
+        padding: 16px;
+        font-size: 0.75rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* small mobile (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 0.75rem;
+    }
+
+    .rom-details-title,
+    .saves-title,
+    .bios-title,
+    .roms-title {
+        font-size: 1.2rem;
+    }
+
+    /* nav icons */
+    .nav-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* buttons */
+    .rom-details-write-btn,
+    .rom-details-submit-btn,
+    .top-games-filter-btn,
+    .download-btn-small {
+        padding: 8px 16px;
+        font-size: 0.7rem;
+    }
+
+    /* search bars */
+    .nav-search input,
+    .top-games-search input,
+    .saves-search input {
+        font-size: 0.7rem;
+        padding: 6px;
+    }
+
+    /* game cards compact */
+    .game-card-title {
+        font-size: 0.9rem;
+    }
+
+    .game-card-meta,
+    .game-card-stats {
+        font-size: 0.65rem;
+    }
+
+    /* screenshot grid on very small screens - still 2 columns but smaller */
+    .rom-details-screenshots-grid {
+        gap: 4px;
+    }
+
+    /* modals take full screen */
+    .rom-details-screenshot-modal-content,
+    .favorite-screenshots-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    /* upload preview boxes */
+    .upload-rom-preview,
+    .upload-screenshot-preview {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* forum posts */
+    .forum-post-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* ERROR 404 page */
+    .error-404-gif-wrapper {
+        max-width: 100%;
+    }
+
+    .error-404-home-btn {
+        font-size: 0.8rem;
+        padding: 10px 20px;
+    }
+}
+
+/* large screens (min-width: 1920px) */
+@media screen and (min-width: 1920px) {
+    /* allow content to breathe on large monitors */
+    .rom-details-section,
+    .saves-section,
+    .bios-section {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    /* grids can show 4 columns */
+    .roms-grid,
+    .genre-grid,
+    .platform-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* screenshot grids can show 4 columns */
+    .rom-details-screenshots-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+

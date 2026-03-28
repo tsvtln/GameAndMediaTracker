@@ -25,3 +25,6 @@ urlpatterns = [
     path('roms/', include('CheckPoint.roms.urls'), name='roms page'),
     path('saves/', include('CheckPoint.saves.urls'), name='saves page'),
 ]
+
+handler404 = 'CheckPoint.common.views.custom_404'
+

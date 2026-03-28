@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}404 - Page Not Found | CHECKPOINT{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+<section class="error-404-section">
+    <div class="error-404-container">
+        <div class="error-404-gif-wrapper">
+            <img src="{% static 'images/placeholders/404.gif' %}" alt="404 Not Found" class="error-404-gif">
+        </div>
+        <a href="{% url 'home' %}" class="error-404-home-btn">Return to Home</a>
+    </div>
+</section>
+{% endblock %}
+

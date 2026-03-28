@@ -79,3 +79,8 @@ def upload_screenshot(request):
 
 def my_screenshots(request):
     return render(request, 'screenshots/my-screenshots.html')
+
+
+def custom_404(request, exception=None):
+    return render(request, 'common/404.html', status=404)
+

@@ -19,4 +19,5 @@ urlpatterns = [
     path('screenshots/top-rated/', views.top_rated_screenshots, name='top rated screenshots'),
     path('screenshots/upload/', views.upload_screenshot, name='upload screenshot'),
     path('screenshots/my/', views.my_screenshots, name='my screenshots'),
+    path('404/', views.custom_404, name='404 page'),
 ]
