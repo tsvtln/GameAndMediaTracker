@@ -96,6 +96,25 @@
 .vault-filter-row select:hover {
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
+.vault-search-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: 'Press Start 2P', monospace;
+    border: none;
+    box-shadow: 0 0 8px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+.vault-search-btn:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
 .vault-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));

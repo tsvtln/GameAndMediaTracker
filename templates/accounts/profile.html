@@ -6,25 +6,41 @@
 {% block content %}
 <section class="profile-section">
     <h1 class="accounts-title">PROFILE</h1>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message message-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="profile-card">
         <div class="profile-avatar">
-            <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="Profile Avatar">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="Profile Avatar">
+            {% else %}
+                <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="Profile Avatar">
+            {% endif %}
         </div>
         <div class="profile-info">
             <div class="profile-info-inner">
-                <div class="profile-username">Username: <span>your_username</span></div>
-                <div class="profile-email">E-Mail: <span>your@email.com</span></div>
+                <div class="profile-username">Username: <span>{{ user.username }}</span></div>
+                <div class="profile-email">E-Mail: <span>{{ user.email }}</span></div>
             </div>
             <div class="profile-stats">
-                <div>Favorites: <span>18</span></div>
-                <div>Saves: <span>12</span></div>
-                <div>Screenshots: <span>7</span></div>
+                <div>Favorites: <span>{{ user.profile.favorites_count }}</span></div>
+                <div>Saves: <span>{{ user.profile.saves_count }}</span></div>
+                <div>Screenshots: <span>{{ user.profile.screenshots_count }}</span></div>
             </div>
         </div>
         <div class="profile-actions">
             <a href="#" class="profile-btn" id="change-avatar-btn">Change Avatar</a>
             <a href="#" class="profile-btn" id="change-password-btn">Change Password</a>
-            <a href="#" class="profile-btn">Logout</a>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="profile-btn">Logout</button>
+            </form>
         </div>
     </div>
     <div id="avatar-modal" class="avatar-modal" style="display:none;">
@@ -32,12 +48,17 @@
             <span class="avatar-modal-close">&times;</span>
             <h2 class="avatar-modal-title">Change Avatar</h2>
             <div class="avatar-modal-preview">
-                <img id="avatar-preview-img" src="{% static 'images/placeholders/no_avatar.webp' %}" alt="Avatar Preview">
+                {% if user.profile.avatar %}
+                    <img id="avatar-preview-img" src="{{ user.profile.avatar.url }}" alt="Avatar Preview">
+                {% else %}
+                    <img id="avatar-preview-img" src="{% static 'images/placeholders/no_avatar.webp' %}" alt="Avatar Preview">
+                {% endif %}
             </div>
-            <form class="avatar-modal-form">
-                <input type="file" id="avatar-upload-input" accept="image/*" style="display:none;">
+            <form class="avatar-modal-form" method="post" enctype="multipart/form-data" id="avatar-upload-form">
+                {% csrf_token %}
+                <input type="file" id="avatar-upload-input" name="avatar" accept="image/*" style="display:none;">
                 <label for="avatar-upload-input" class="avatar-upload-label">Browse...</label>
-                <button type="button" class="avatar-modal-save-btn">Save Avatar</button>
+                <button type="submit" class="avatar-modal-save-btn">Save Avatar</button>
             </form>
         </div>
     </div>
@@ -45,11 +66,19 @@
         <div class="password-modal-content">
             <span class="password-modal-close">&times;</span>
             <h2 class="password-modal-title">Change Password</h2>
-            <form class="password-modal-form">
-                <input type="password" class="password-modal-input" placeholder="Current Password">
-                <input type="password" class="password-modal-input" placeholder="New Password">
-                <input type="password" class="password-modal-input" placeholder="Confirm New Password">
-                <button type="button" class="password-modal-save-btn">Save Password</button>
+            <form class="password-modal-form" method="post" action="{% url 'change password' %}" id="password-change-form">
+                {% csrf_token %}
+                <input type="password" name="old_password" class="password-modal-input" placeholder="Current Password" required>
+                <div id="old-password-errors" class="field-errors" style="display: none;"></div>
+
+                <input type="password" name="new_password1" class="password-modal-input" placeholder="New Password" required>
+                <div id="new-password1-errors" class="field-errors" style="display: none;"></div>
+                <small class="help-text">At least 8 characters with 1 uppercase, 1 lowercase, 1 number and 1 special symbol (@#$%^&+=!)</small>
+
+                <input type="password" name="new_password2" class="password-modal-input" placeholder="Confirm New Password" required>
+                <div id="new-password2-errors" class="field-errors" style="display: none;"></div>
+
+                <button type="submit" class="password-modal-save-btn">Save Password</button>
             </form>
         </div>
     </div>

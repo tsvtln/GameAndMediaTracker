@@ -1,3 +1,18 @@
+[2026-04-10]
+- Accounts app backend implementation
+  - Created AppUser model extending AbstractUser with username-based authentication
+  - Added Profile model with one-to-one relationship to AppUser (avatar, statistics counters)
+  - Implemented custom user manager (AppUserManager) for user creation
+  - Created user groups with permissions: Regular Users, Moderators, Verified Users
+  - Built registration form with strong password validation (uppercase, lowercase, number, special char)
+  - Implemented login/logout with proper error handling and message display
+  - Added avatar upload with file validation (max 5MB, image formats only)
+  - Implemented password change with same validation requirements
+  - Auto-create profile and assign group on user registration using django signals
+  - Configured media file serving for development and production (not fully tested in prod yet)
+  - Updated profile navigation to show/hide buttons based on authentication and permissions (such as login, logout, register, admin etc.)
+  - Added whitenoise and gunicorn and tested deployment on Azure. App is now live at https://tsvtln.com (but is at DEBUG=True for now until I finish with all the functionality and can focus on the production deployment and security hardening)
+
 [2026-03-28]
 - Added custom 404 error page
   - Created dedicated 404.html template with custom TV-style animation

@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('password-modal');
     const openBtn = document.getElementById('change-password-btn');
     const closeBtn = document.querySelector('.password-modal-close');
-    const saveBtn = document.querySelector('.password-modal-save-btn');
 
     // oopen modal
     openBtn.addEventListener('click', function(e) {
@@ -18,12 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
-    });
-
-    // dummy save handler
-    saveBtn.addEventListener('click', function() {
-        alert('Password changed! (not implemented)');
-        modal.style.display = 'none';
     });
 });
 

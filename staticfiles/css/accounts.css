@@ -98,6 +98,95 @@
     text-shadow: 0 0 8px #49ff18;
 }
 
+.register-section {
+    max-width: 1024px;
+    margin: 80px auto;
+    padding: 32px 24px;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.register-desc {
+    color: #b0ffb0;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.register-label {
+    color: #49ff18;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.message-success {
+    background: rgba(73, 255, 24, 0.2);
+    border: 1px solid #49ff18;
+    color: #49ff18;
+}
+
+.message-error {
+    background: rgba(255, 59, 59, 0.2);
+    border: 1px solid #ff3b3b;
+    color: #ff3b3b;
+}
+
+.message-info {
+    background: rgba(73, 187, 255, 0.2);
+    border: 1px solid #49bbff;
+    color: #49bbff;
+}
+
+.form-errors, .field-errors {
+    background: rgba(255, 59, 59, 0.2);
+    border: 1px solid #ff3b3b;
+    color: #ff3b3b;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.field-errors ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.field-errors li {
+    margin: 4px 0;
+}
+
+.help-text {
+    color: #b0ffb0;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    display: block;
+    line-height: 1.4;
+}
+
 .profile-section {
     max-width: 900px;
     margin: 80px auto;

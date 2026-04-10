@@ -7,13 +7,39 @@
 <section class="login-section">
     <h1 class="accounts-title">LOGIN</h1>
     <div class="login-desc">Sign in to your account to access your saves, favorites, and more.</div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message message-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form class="login-form" method="post">
         {% csrf_token %}
-        <label for="username" class="login-label">Username</label>
-        <input type="text" id="username" name="username" class="styled-input" placeholder="Enter your username" required>
 
-        <label for="password" class="login-label">Password</label>
-        <input type="password" id="password" name="password" class="styled-input" placeholder="Enter your password" required>
+        {% if form.non_field_errors %}
+            <div class="form-errors">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <label for="{{ form.username.id_for_label }}" class="login-label">Username</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="field-errors">
+                {{ form.username.errors }}
+            </div>
+        {% endif %}
+
+        <label for="{{ form.password.id_for_label }}" class="login-label">Password</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+            <div class="field-errors">
+                {{ form.password.errors }}
+            </div>
+        {% endif %}
 
         <button type="submit" class="download-btn">LOGIN</button>
         <div class="login-links">

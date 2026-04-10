@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector('.avatar-modal-close');
     const uploadInput = document.getElementById('avatar-upload-input');
     const previewImg = document.getElementById('avatar-preview-img');
-    const saveBtn = document.querySelector('.avatar-modal-save-btn');
+    const avatarForm = document.getElementById('avatar-upload-form');
 
     // Open modal
     openBtn.addEventListener('click', function(e) {
@@ -32,12 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             reader.readAsDataURL(file);
         }
-    });
-
-    // Save avatar (dummy)
-    saveBtn.addEventListener('click', function() {
-        alert('Avatar saved! (not implemented)');
-        modal.style.display = 'none';
     });
 });
 

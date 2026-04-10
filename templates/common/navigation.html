@@ -64,11 +64,21 @@
 
     <div class="nav-right">
         <div class="auth-links">
-            <a class="auth-link" href="{% url 'login' %}"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
-            <a class="auth-link" href="#"><img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT"></a>  {# note: if logged in #}
-            <a class="auth-link" href="{% url 'profile' %}"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>  {# note: if logged in #}
-            <a class="auth-link" href="{% url 'admin page' %}"><img src="{% static 'images/icons/admin.webp' %}" alt="ADMIN"></a>  {# note: if logged in and super/admin #}
-            <a class="auth-link" href="{% url 'register' %}"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="auth-link logout-btn" style="background: none; border: none; padding: 0;">
+                        <img src="{% static 'images/icons/logout.png' %}" alt="LOGOUT">
+                    </button>
+                </form>
+                <a class="auth-link" href="{% url 'profile' %}"><img src="{% static 'images/icons/profile.png' %}" alt="PROFILE"></a>
+                {% if user.is_staff %}
+                    <a class="auth-link" href="{% url 'admin page' %}"><img src="{% static 'images/icons/admin.webp' %}" alt="ADMIN"></a>
+                {% endif %}
+            {% else %}
+                <a class="auth-link" href="{% url 'login' %}"><img src="{% static 'images/icons/login.png' %}" alt="LOGIN"></a>
+                <a class="auth-link" href="{% url 'register' %}"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
+            {% endif %}
         </div>
         <form class="nav-search" action="#" method="get">
             <input type="text" name="q" placeholder="Search">
