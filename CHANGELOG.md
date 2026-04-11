@@ -14,6 +14,7 @@
   - Improved star rating UX with proper selection persistence
   - Added custom admin login redirect (non-staff users go to profile)
   - A few security improvements to not allow users to be able to access Django admin panel.
+  - Fixed if user manually goes to Login page to be redirected to profile if already logged in.
 
 [2026-04-10]
 - Accounts app backend implementation
