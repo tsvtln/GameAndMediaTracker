@@ -37,17 +37,20 @@
                 <li><a href="{% url 'saves upload page' %}">Upload Save</a></li>  {# note: if logged in #}
             </ul>
         </li>
-        <li class="nav-item has-dropdown">
-            <a href="{% url 'accounts favorites page' %}"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>  {# note: if logged in #}
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'accounts favorite roms page' %}">Favorite ROMs</a></li>
-                <li><a href="{% url 'accounts favorite screenshots page' %}">Favorite Screenshots</a></li>
-            </ul>
-        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item has-dropdown">
+                <a href="{% url 'accounts favorites page' %}"><img src="{% static 'images/icons/favorites.png' %}" alt="Favorites"></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'accounts favorite roms page' %}">Favorite ROMs</a></li>
+                    <li><a href="{% url 'accounts favorite screenshots page' %}">Favorite Screenshots</a></li>
+                </ul>
+            </li>
+        {% endif %}
         <li class="nav-item has-dropdown">
             <a href="{% url 'community page' %}"><img src="{% static 'images/icons/community.png' %}" alt="Community"></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'forum index' %}">Forums</a></li>
+                <li><a href="#">Guides</a></li>
                 <li><a href="{% url 'community events page' %}">Events</a></li>
             </ul>
         </li>

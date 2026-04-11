@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // --- ROM file label ---
-    const romInput = document.getElementById('rom-file');
-    const romLabel = document.querySelector('label.upload-file-label[for="rom-file"]');
+    const romInput = document.getElementById('id_rom_file');
+    const romLabel = document.querySelector('label.upload-file-label[for="id_rom_file"]');
     if (romInput && romLabel) {
         romInput.addEventListener('change', function() {
             if (romInput.files.length > 0) {
@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Box art preview logic ---
-    const boxArtInput = document.getElementById('box-art');
-    const boxArtLabel = document.querySelector('label.upload-file-label[for="box-art"]');
+    const boxArtInput = document.getElementById('id_box_art');
+    const boxArtLabel = document.querySelector('label.upload-file-label[for="id_box_art"]');
     const boxArtPreview = document.getElementById('boxart-preview');
     if (boxArtInput && boxArtLabel && boxArtPreview) {
         boxArtInput.addEventListener('change', function() {

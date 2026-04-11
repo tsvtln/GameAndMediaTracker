@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from CheckPoint.roms import views
 
 urlpatterns = [
     path('', views.roms, name='roms page'),
-    path('top-games/', views.top_games, name='roms top games'),
+    path('top-games/', views.TopGamesView.as_view(), name='roms top games'),
     path('newly-added/', views.newly_added, name='roms newly added'),
     path('trending/', views.trending, name='roms trending'),
     path('most-downloaded/', views.most_downloaded, name='roms most downloaded'),
@@ -54,6 +54,10 @@ urlpatterns = [
     path('platforms/xbox-360/', views.platform_xbox_360, name='roms platforms xbox 360'),
     path('platforms/xbox-one/', views.platform_xbox_one, name='roms platforms xbox one'),
     path('platforms/atari/', views.platform_atari, name='roms platforms atari'),
-    path('details/', views.rom_details, name='roms details'),
-    path('upload/', views.upload_rom, name='roms upload'),
+    path('details/<int:pk>/', views.RomDetailView.as_view(), name='roms details'),
+    path('upload/', views.RomUploadView.as_view(), name='roms upload'),
+    path('delete/<int:pk>/', views.RomDeleteView.as_view(), name='roms delete'),
+    path('download/<int:pk>/', views.RomDownloadView.as_view(), name='roms download'),
+    path('comment/delete/<int:pk>/', views.CommentDeleteView.as_view(), name='comment delete'),
+    path('review/delete/<int:pk>/', views.ReviewDeleteView.as_view(), name='review delete'),
 ]

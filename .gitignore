@@ -206,3 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 *.note
+media/avatars/*
+media/box_art/*
+media/roms/*

@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const commentForm = document.getElementById('comment-form');
     const reviewForm = document.getElementById('review-form');
     const buttons = document.querySelector('.rom-details-interactive-buttons');
+    const cancelCommentBtn = document.getElementById('cancel-comment-btn');
+    const cancelReviewBtn = document.getElementById('cancel-review-btn');
     const stars = document.querySelectorAll('.rom-details-rating-stars .star');
     let selectedRating = 0;
 
@@ -11,6 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
         writeCommentBtn.addEventListener('click', function() {
             buttons.style.display = 'none';
             commentForm.style.display = 'flex';
+
+            const commentIdField = document.getElementById('comment-id');
+            if (commentIdField) {
+                commentIdField.value = '';
+            }
+
+            document.getElementById('comment-text').value = '';
+
+            const submitBtn = commentForm.querySelector('.rom-details-submit-btn');
+            if (submitBtn) {
+                submitBtn.textContent = 'Submit';
+            }
         });
     }
     if (writeReviewBtn) {
@@ -19,11 +33,44 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewForm.style.display = 'flex';
         });
     }
+    
+    // validate review form submission
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            const ratingValue = document.getElementById('review-rating-value');
+            if (!ratingValue || !ratingValue.value || ratingValue.value === '') {
+                e.preventDefault();
+                alert('Please select a rating (1-5 stars) before submitting your review.');
+                return false;
+            }
+        });
+    }
+    if (cancelCommentBtn) {
+        cancelCommentBtn.addEventListener('click', function() {
+            commentForm.style.display = 'none';
+            buttons.style.display = 'flex';
+            document.getElementById('comment-text').value = '';
+        });
+    }
+    if (cancelReviewBtn) {
+        cancelReviewBtn.addEventListener('click', function() {
+            reviewForm.style.display = 'none';
+            buttons.style.display = 'flex';
+            document.getElementById('review-text').value = '';
+            selectedRating = 0;
+            const ratingField = document.getElementById('review-rating-value');
+            if (ratingField) {
+                ratingField.value = '';
+            }
+            stars.forEach(s => s.classList.remove('selected'));
+        });
+    }
     if (stars.length) {
         stars.forEach(function(star) {
             star.addEventListener('mouseenter', function() {
+                const hoverValue = parseInt(star.dataset.value);
                 stars.forEach(s => s.classList.remove('selected'));
-                for (let i = 0; i < parseInt(star.dataset.value); i++) {
+                for (let i = 0; i < hoverValue; i++) {
                     stars[i].classList.add('selected');
                 }
             });
@@ -35,20 +82,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
-            star.addEventListener('click', function() {
+            star.addEventListener('click', function(e) {
+                e.preventDefault();
                 selectedRating = parseInt(star.dataset.value);
                 stars.forEach(s => s.classList.remove('selected'));
                 for (let i = 0; i < selectedRating; i++) {
                     stars[i].classList.add('selected');
+                }
+                // update hidden rating field
+                const ratingField = document.getElementById('review-rating-value');
+                if (ratingField) {
+                    ratingField.value = selectedRating;
                 }
             });
         });
     }
 
 
-    // comments buttons
+    // comments delete buttons
     const deleteBtns = document.querySelectorAll('.rom-details-comment-delete-btn');
     const deleteModal = document.getElementById('comment-delete-modal');
+    const commentDeleteForm = document.getElementById('comment-delete-form');
     const deleteYes = document.querySelector('.rom-details-comment-delete-yes');
     const deleteNo = document.querySelector('.rom-details-comment-delete-no');
     let commentToDelete = null;
@@ -65,17 +119,67 @@ document.addEventListener('DOMContentLoaded', function() {
             commentToDelete = null;
         });
     }
-    if (deleteYes) {
+    if (deleteYes && commentDeleteForm) {
         deleteYes.addEventListener('click', function() {
-            // for now just hide it... later remove comment with django
+            if (commentToDelete) {
+                commentDeleteForm.action = '/roms/comment/delete/' + commentToDelete + '/';
+                commentDeleteForm.submit();
+            }
             deleteModal.style.display = 'none';
             commentToDelete = null;
         });
     }
 
-    // reviews buttons
+    // comments edit buttons - inline editing
+    const editBtns = document.querySelectorAll('.rom-details-comment-edit-btn');
+    editBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const commentId = btn.dataset.comment;
+            const commentDiv = document.querySelector(`.rom-details-comment[data-comment-id="${commentId}"]`);
+
+            if (commentDiv) {
+                const commentText = commentDiv.querySelector('.rom-details-comment-text');
+                const editForm = commentDiv.querySelector('.rom-details-comment-edit-form');
+                const actions = commentDiv.querySelector('.rom-details-comment-actions');
+
+                // Hide text and actions, show form
+                commentText.style.display = 'none';
+                if (actions) actions.style.display = 'none';
+                editForm.style.display = 'block';
+            }
+        });
+    });
+
+    // cancel edit buttons handler
+    const cancelEditBtns = document.querySelectorAll('.rom-details-cancel-edit-btn');
+    cancelEditBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const commentDiv = btn.closest('.rom-details-comment');
+
+            if (commentDiv) {
+                const commentText = commentDiv.querySelector('.rom-details-comment-text');
+                const editForm = commentDiv.querySelector('.rom-details-comment-edit-form');
+                const actions = commentDiv.querySelector('.rom-details-comment-actions');
+
+                // show text and actions, hide form
+                commentText.style.display = 'inline';
+                if (actions) actions.style.display = 'flex';
+                editForm.style.display = 'none';
+
+                // reset textarea to original text
+                const textarea = editForm.querySelector('.rom-details-comment-edit-textarea');
+                const originalText = commentText.textContent;
+                if (textarea) textarea.value = originalText;
+            }
+        });
+    });
+
+    // reviews delete buttons
     const reviewDeleteBtns = document.querySelectorAll('.rom-details-review-delete-btn');
     const reviewDeleteModal = document.getElementById('review-delete-modal');
+    const reviewDeleteForm = document.getElementById('review-delete-form');
     const reviewDeleteYes = document.querySelector('.rom-details-review-delete-yes');
     const reviewDeleteNo = document.querySelector('.rom-details-review-delete-no');
     let reviewToDelete = null;
@@ -92,19 +196,113 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewToDelete = null;
         });
     }
-    if (reviewDeleteYes) {
+    if (reviewDeleteYes && reviewDeleteForm) {
         reviewDeleteYes.addEventListener('click', function() {
-            // for now just hide it... later remove review with django
+            if (reviewToDelete) {
+                reviewDeleteForm.action = '/roms/review/delete/' + reviewToDelete + '/';
+                reviewDeleteForm.submit();
+            }
             reviewDeleteModal.style.display = 'none';
             reviewToDelete = null;
         });
     }
 
+    // reviews edit buttons - inline editing
+    const reviewEditBtns = document.querySelectorAll('.rom-details-review-edit-btn');
+    reviewEditBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const reviewId = btn.dataset.review;
+            const reviewDiv = document.querySelector(`.rom-details-review[data-review-id="${reviewId}"]`);
+
+            if (reviewDiv) {
+                const reviewText = reviewDiv.querySelector('.rom-details-review-text');
+                const reviewAuthor = reviewDiv.querySelector('.rom-details-review-author');
+                const reviewRatingDisplay = reviewDiv.querySelector('.rom-details-rating');
+                const reviewStarDisplay = reviewDiv.querySelector('.rom-details-rating-star');
+                const editForm = reviewDiv.querySelector('.rom-details-review-edit-form');
+                const actions = reviewDiv.querySelector('.rom-details-review-actions');
+
+                // stars for current rating
+                const currentRating = parseInt(reviewDiv.querySelector('.review-rating-input').value);
+                const editStars = editForm.querySelectorAll('.star');
+                for (let i = 0; i < currentRating; i++) {
+                    editStars[i].classList.add('selected');
+                }
+
+                // gide text and actions, show form
+                reviewText.style.display = 'none';
+                reviewAuthor.style.display = 'none';
+                if (reviewRatingDisplay) reviewRatingDisplay.style.display = 'none';
+                if (reviewStarDisplay) reviewStarDisplay.style.display = 'none';
+                if (actions) actions.style.display = 'none';
+                editForm.style.display = 'block';
+            }
+        });
+    });
+
+    // handle edit stars click for inline edit
+    document.querySelectorAll('.rom-details-rating-stars-edit').forEach(starsContainer => {
+        const editStars = starsContainer.querySelectorAll('.star');
+        let editSelectedRating = 0;
+
+        editStars.forEach(star => {
+            star.addEventListener('click', function() {
+                editSelectedRating = parseInt(star.dataset.value);
+                editStars.forEach(s => s.classList.remove('selected'));
+                for (let i = 0; i < editSelectedRating; i++) {
+                    editStars[i].classList.add('selected');
+                }
+                // Update hidden rating field in the form
+                const form = star.closest('.rom-details-review-edit-form');
+                const ratingInput = form.querySelector('.review-rating-input');
+                if (ratingInput) {
+                    ratingInput.value = editSelectedRating;
+                }
+            });
+        });
+    });
+
+    // cancel review edit buttons handler
+    const cancelReviewEditBtns = document.querySelectorAll('.rom-details-cancel-review-edit-btn');
+    cancelReviewEditBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const reviewDiv = btn.closest('.rom-details-review');
+
+            if (reviewDiv) {
+                const reviewText = reviewDiv.querySelector('.rom-details-review-text');
+                const reviewAuthor = reviewDiv.querySelector('.rom-details-review-author');
+                const reviewRatingDisplay = reviewDiv.querySelector('.rom-details-rating');
+                const reviewStarDisplay = reviewDiv.querySelector('.rom-details-rating-star');
+                const editForm = reviewDiv.querySelector('.rom-details-review-edit-form');
+                const actions = reviewDiv.querySelector('.rom-details-review-actions');
+
+                // show text and actions, hide form
+                reviewText.style.display = 'block';
+                reviewAuthor.style.display = 'inline';
+                if (reviewRatingDisplay) reviewRatingDisplay.style.display = 'inline';
+                if (reviewStarDisplay) reviewStarDisplay.style.display = 'inline';
+                if (actions) actions.style.display = 'flex';
+                editForm.style.display = 'none';
+
+                // reset textarea and stars to original
+                const textarea = editForm.querySelector('.rom-details-review-edit-textarea');
+                const originalText = reviewText.textContent;
+                if (textarea) textarea.value = originalText;
+
+                const editStars = editForm.querySelectorAll('.star');
+                editStars.forEach(s => s.classList.remove('selected'));
+            }
+        });
+    });
+
     // ROM delete button
     const romDeleteBtn = document.getElementById('rom-delete-btn');
     const romDeleteModal = document.getElementById('rom-delete-modal');
-    const romDeleteYes = romDeleteModal.querySelector('.rom-details-review-delete-yes');
-    const romDeleteNo = romDeleteModal.querySelector('.rom-details-review-delete-no');
+    const romDeleteForm = document.getElementById('rom-delete-form');
+    const romDeleteYes = romDeleteModal ? romDeleteModal.querySelector('.rom-details-review-delete-yes') : null;
+    const romDeleteNo = romDeleteModal ? romDeleteModal.querySelector('.rom-details-review-delete-no') : null;
 
     if (romDeleteBtn && romDeleteModal) {
         romDeleteBtn.addEventListener('click', function(e) {
@@ -117,10 +315,10 @@ document.addEventListener('DOMContentLoaded', function() {
             romDeleteModal.style.display = 'none';
         });
     }
-    if (romDeleteYes) {
+    if (romDeleteYes && romDeleteForm) {
         romDeleteYes.addEventListener('click', function() {
             romDeleteModal.style.display = 'none';
-            // note: add real delete logic here later
+            romDeleteForm.submit();
         });
     }
 

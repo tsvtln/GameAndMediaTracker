@@ -132,3 +132,7 @@ AUTH_USER_MODEL = 'accounts.AppUser'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
+
+# override admin login to use the app login page
+ADMIN_LOGIN_URL = '/accounts/login/'
+

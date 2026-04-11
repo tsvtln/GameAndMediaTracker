@@ -9,9 +9,9 @@
     </div>
 
     <div class="top-games-banner">
-        <a href="{% url 'roms details' %}" class="top-games-trophy">🏆 #1 Super Mario Bros</a>
-        <a href="{% url 'roms details' %}" class="top-games-trophy">🏆 #2 Legend of Zelda</a>
-        <a href="{% url 'roms details' %}" class="top-games-trophy">🏆 #3 Mega Man 2</a>
+        {% for rom in top_3 %}
+            <a href="{% url 'roms details' rom.pk %}" class="top-games-trophy">🏆 #{{ forloop.counter }} {{ rom.title }}</a>
+        {% endfor %}
     </div>
 
     <form class="top-games-filters" method="get" action="#">
@@ -47,7 +47,7 @@
                 <option>Xbox</option>
                 <option>Xbox 360</option>
                 <option>Xbox One</option>
-                <options>Atari</options>
+                <option>Atari</option>
             </select>
         </label>
         <label>Genre:
@@ -93,48 +93,24 @@
     </form>
 
     <div class="top-games-list">
-        <a href="{% url 'roms details' %}" class="game-card-link">
+        {% for rom in remaining_roms %}
+        <a href="{% url 'roms details' rom.pk %}" class="game-card-link">
             <div class="game-card">
-                <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="game-card-img">
+                <img src="{{ rom.box_art.url }}" alt="{{ rom.title }}" class="game-card-img">
                 <div class="game-card-info">
-                    <h2 class="game-card-title">Super Mario Bros</h2>
-                    <div class="game-card-meta">Platform: NES</div>
+                    <h2 class="game-card-title">{{ rom.title }}</h2>
+                    <div class="game-card-meta">Platform: {{ rom.platform }}</div>
                     <div class="game-card-stats">
-                        <span class="game-card-rating">⭐ 4.9</span>
-                        <span class="game-card-downloads">⬇ 12,430 downloads</span>
-                        <span class="game-card-reviews">💬 342 reviews</span>
+                        <span class="game-card-rating">⭐ {{ rom.rating }}</span>
+                        <span class="game-card-downloads">⬇ {{ rom.downloads }} downloads</span>
+                        <span class="game-card-reviews">💬 {{ rom.review_count }} reviews</span>
                     </div>
                 </div>
             </div>
         </a>
-        <a href="{% url 'roms details' %}" class="game-card-link">
-            <div class="game-card">
-                <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda" class="game-card-img">
-                <div class="game-card-info">
-                    <h2 class="game-card-title">Legend of Zelda</h2>
-                    <div class="game-card-meta">Platform: NES</div>
-                    <div class="game-card-stats">
-                        <span class="game-card-rating">⭐ 4.8</span>
-                        <span class="game-card-downloads">⬇ 10,210 downloads</span>
-                        <span class="game-card-reviews">💬 298 reviews</span>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="{% url 'roms details' %}" class="game-card-link">
-            <div class="game-card">
-                <img src="{% static 'images/temp_images/Megaman2_box.jpg' %}" alt="Mega Man 2" class="game-card-img">
-                <div class="game-card-info">
-                    <h2 class="game-card-title">Mega Man 2</h2>
-                    <div class="game-card-meta">Platform: NES</div>
-                    <div class="game-card-stats">
-                        <span class="game-card-rating">⭐ 4.7</span>
-                        <span class="game-card-downloads">⬇ 8,900 downloads</span>
-                        <span class="game-card-reviews">💬 210 reviews</span>
-                    </div>
-                </div>
-            </div>
-        </a>
+        {% empty %}
+        <p class="rom-details-no-comments">No more ROMs to display.</p>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

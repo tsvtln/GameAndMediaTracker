@@ -85,6 +85,25 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         messages.error(self.request, 'Error updating avatar. Please try again.')
         return super().form_invalid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_own_profile'] = True
+        return context
+
+
+class PublicProfileView(DetailView):
+    model = AppUser
+    template_name = 'accounts/profile.html'
+    context_object_name = 'profile_user'
+    pk_url_kwarg = 'pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_user = self.get_object()
+        context['user'] = profile_user
+        context['is_own_profile'] = self.request.user.is_authenticated and self.request.user == profile_user
+        return context
+
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileUpdateForm

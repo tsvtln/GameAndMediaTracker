@@ -8,27 +8,33 @@
 <section class="rom-details-section">
     <div class="rom-details-header">
         <div class="rom-details-main">
-            <h1 class="rom-details-title">Super Mario World</h1>
+            <h1 class="rom-details-title">{{ rom.title }}</h1>
             <div class="rom-details-meta">
-                <span class="rom-details-platform">Platform: SNES</span>
-                <span class="rom-details-year">Release Year: 1990</span>
-                <span class="rom-details-genre">Genre: Platformer</span>
-                <span class="rom-details-developer">Developer: Nintendo</span>
-                <span class="rom-details-publisher">Publisher: Nintendo</span>
-                <span class="rom-details-uploader">Uploaded by: GoombaLover</span>
-                <div class="rom-details-delete-wrapper">
-                    <a href="#" class="delete-btn rom-details-delete-btn" id="rom-delete-btn">delete</a>
-                </div>
+                <span class="rom-details-platform">Platform: {{ rom.platform }}</span>
+                <span class="rom-details-genre">Genre: {{ rom.genre }}</span>
+                <span class="rom-details-uploader">Uploaded by: <a href="{% url 'public profile' rom.uploaded_by.pk %}">{{ rom.uploaded_by.username }}</a></span>
+                <span class="rom-details-uploaded-date">Uploaded: {{ rom.created_at|date:"M d, Y" }}</span>
+                {% if can_delete %}
+                    <div class="rom-details-delete-wrapper">
+                        <a href="#" class="delete-btn rom-details-delete-btn" id="rom-delete-btn" data-rom-id="{{ rom.pk }}">delete</a>
+                    </div>
+                {% endif %}
             </div>
             <div class="rom-details-actions">
-                <a href="#" class="download-btn-small">Download ROM</a>
+                <a href="{% url 'roms download' rom.pk %}" class="download-btn-small">Download ROM</a>
                 <button class="rom-details-favorite-btn" title="Add to Favorites">
                     <img src="{% static 'images/icons/heart_empty.png' %}" alt="Favorite" class="rom-details-heart-icon">
                 </button>
             </div>
             <div>
-                Rating: 4.5<span class="rom-details-rating-star">🌟</span>  (2 reviews)
+                Rating: {{ rom.rating }}<span class="rom-details-rating-star">🌟</span>  ({{ reviews|length }} reviews)
             </div>
+            {% if rom.description %}
+            <div class="rom-details-description">
+                <h3>Description</h3>
+                <p>{{ rom.description }}</p>
+            </div>
+            {% endif %}
         </div>
         <div class="rom-details-screenshots-grid">
             <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 1"></a>
@@ -46,36 +52,54 @@
         <h2>Community</h2>
         <div class="rom-details-reviews">
             <h3>Reviews</h3>
-            <div class="rom-details-review">
-                <span class="rom-details-rating-star">⭐</span><span class="rom-details-rating"> 5</span>
-                <p class="rom-details-review-text">One of the best platformers ever made!</p>
-                <span class="rom-details-review-author">by RetroFan</span>
-                <div class="rom-details-review-actions">
-                    <a href="#" class="rom-details-action-btn">Edit</a>
-                    <button type="button" class="rom-details-action-btn rom-details-review-delete-btn" data-review="1">Delete</button>
+            {% if reviews %}
+                {% for review in reviews %}
+                <div class="rom-details-review" data-review-id="{{ review.id }}">
+                    <span class="rom-details-rating-star">⭐</span><span class="rom-details-rating"> {{ review.rating }}</span>
+                    <p class="rom-details-review-text">{{ review.text }}</p>
+                    <span class="rom-details-review-author">by <a href="{% url 'public profile' review.user.pk %}">{{ review.user.username }}</a></span>
+                    <form class="rom-details-review-edit-form" method="post" style="display: none;">
+                        {% csrf_token %}
+                        <input type="hidden" name="review_id" value="{{ review.id }}">
+                        <input type="hidden" name="rating" class="review-rating-input" value="{{ review.rating }}">
+                        <div class="rom-details-rating-stars rom-details-rating-stars-edit">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                        <label>
+                            <textarea class="rom-details-review-edit-textarea" name="text" rows="3">{{ review.text }}</textarea>
+                        </label>
+                        <div class="rom-details-form-buttons">
+                            <button type="submit" class="rom-details-submit-btn">Update</button>
+                            <button type="button" class="rom-details-cancel-edit-btn rom-details-cancel-review-edit-btn">Cancel</button>
+                        </div>
+                    </form>
+                    {% if user.is_authenticated %}
+                        {% if user == review.user or user.is_staff or is_moderator %}
+                    <div class="rom-details-review-actions">
+                        {% if user == review.user %}
+                        <a href="#" class="rom-details-action-btn rom-details-review-edit-btn" data-review="{{ review.id }}">Edit</a>
+                        {% endif %}
+                        {% if user == review.user or user.is_staff or is_moderator %}
+                        <button type="button" class="rom-details-action-btn rom-details-review-delete-btn" data-review="{{ review.id }}">Delete</button>
+                        {% endif %}
+                    </div>
+                        {% endif %}
+                    {% endif %}
+                    <div class="rom-details-review-favorite-wrapper">
+                        <button class="rom-details-review-favorite-btn" title="Favorite Review">
+                            <span class="rom-details-review-favorite-count">0</span>
+                            <img src="{% static 'images/icons/heart_empty.png' %}" alt="Favorite" class="rom-details-review-heart-icon">
+                        </button>
+                    </div>
                 </div>
-                <div class="rom-details-review-favorite-wrapper">
-                    <button class="rom-details-review-favorite-btn" title="Favorite Review">
-                        <span class="rom-details-review-favorite-count">12</span>
-                        <img src="{% static 'images/icons/heart_empty.png' %}" alt="Favorite" class="rom-details-review-heart-icon">
-                    </button>
-                </div>
-            </div>
-            <div class="rom-details-review">
-                <span class="rom-details-rating-star">⭐</span><span> 4</span>
-                <p class="rom-details-review-text">Timeless classic, amazing level design.</p>
-                <span class="rom-details-review-author">by MarioLover</span>
-                <div class="rom-details-review-actions">
-                    <a href="#" class="rom-details-action-btn">Edit</a>
-                    <button type="button" class="rom-details-action-btn rom-details-review-delete-btn" data-review="2">Delete</button>
-                </div>
-                <div class="rom-details-review-favorite-wrapper">
-                    <button class="rom-details-review-favorite-btn" title="Favorite Review">
-                        <span class="rom-details-review-favorite-count">7</span>
-                        <img src="{% static 'images/icons/heart_empty.png' %}" alt="Favorite" class="rom-details-review-heart-icon">
-                    </button>
-                </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p class="rom-details-no-comments">No reviews yet. Be the first to review!</p>
+            {% endif %}
             <div class="rom-details-review-delete-modal" id="review-delete-modal" style="display: none;">
                 <div class="rom-details-review-delete-modal-content">
                     <span class="rom-details-review-delete-modal-text">Are you sure?</span>
@@ -88,22 +112,37 @@
         </div>
         <div class="rom-details-comments">
             <h3>Comments</h3>
-            <div class="rom-details-comment">
-                <span class="rom-details-comment-author">PixelHero:</span>
-                <span class="rom-details-comment-text">I love the secret exits!</span>
-                <div class="rom-details-comment-actions">
-                    <a href="#" class="rom-details-action-btn">Edit</a>
-                    <button type="button" class="rom-details-action-btn rom-details-comment-delete-btn" data-comment="1">Delete</button>
+            {% if comments %}
+                {% for comment in comments %}
+                <div class="rom-details-comment" data-comment-id="{{ comment.id }}">
+                    <span class="rom-details-comment-author"><a href="{% url 'public profile' comment.user.pk %}">{{ comment.user.username }}</a>:</span>
+                    <span class="rom-details-comment-text">{{ comment.text }}</span>
+                    <form class="rom-details-comment-edit-form" method="post" style="display: none;">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                        <textarea class="rom-details-comment-edit-textarea" name="text" rows="3">{{ comment.text }}</textarea>
+                        <div class="rom-details-form-buttons">
+                            <button type="submit" class="rom-details-submit-btn">Update</button>
+                            <button type="button" class="rom-details-cancel-edit-btn">Cancel</button>
+                        </div>
+                    </form>
+                    {% if user.is_authenticated %}
+                        {% if user == comment.user or user.is_staff or is_moderator %}
+                    <div class="rom-details-comment-actions">
+                        {% if user == comment.user %}
+                        <a href="#" class="rom-details-action-btn rom-details-comment-edit-btn" data-comment="{{ comment.id }}">Edit</a>
+                        {% endif %}
+                        {% if user == comment.user or user.is_staff or is_moderator %}
+                        <button type="button" class="rom-details-action-btn rom-details-comment-delete-btn" data-comment="{{ comment.id }}">Delete</button>
+                        {% endif %}
+                    </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
-            </div>
-            <div class="rom-details-comment">
-                <span class="rom-details-comment-author">GameMaster:</span>
-                <span class="rom-details-comment-text">Best childhood memories.</span>
-                <div class="rom-details-comment-actions">
-                    <a href="#" class="rom-details-action-btn">Edit</a>
-                    <button type="button" class="rom-details-action-btn rom-details-comment-delete-btn" data-comment="2">Delete</button>
-                </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p class="rom-details-no-comments">No comments yet. Be the first to comment!</p>
+            {% endif %}
             <div class="rom-details-comment-delete-modal" id="comment-delete-modal" style="display: none;">
                 <div class="rom-details-comment-delete-modal-content">
                     <span class="rom-details-comment-delete-modal-text">Are you sure?</span>
@@ -116,15 +155,28 @@
         </div>
         <div class="rom-details-interactive">
             <div class="rom-details-interactive-buttons">
+                {% if user.is_authenticated %}
                 <button type="button" class="rom-details-write-btn" id="write-comment-btn">Write Comment</button>
+                {% if not user_has_reviewed %}
                 <button type="button" class="rom-details-write-btn" id="write-review-btn">Write Review</button>
+                {% endif %}
+                {% endif %}
             </div>
-            <form class="rom-details-comment-form" id="comment-form" style="display: none;">
+            {% if user.is_authenticated %}
+            <form class="rom-details-comment-form" id="comment-form" method="post" style="display: none;">
+                {% csrf_token %}
                 <label for="comment-text">Comment:</label>
-                <textarea id="comment-text" name="comment" rows="3" placeholder="Write your comment..."></textarea>
-                <button type="submit" class="rom-details-submit-btn">Submit</button>
+                <textarea id="comment-text" name="text" rows="3" placeholder="Write your comment..."></textarea>
+                <div class="rom-details-form-buttons">
+                    <button type="submit" class="rom-details-submit-btn">Submit</button>
+                    <button type="button" class="rom-details-cancel-btn" id="cancel-comment-btn">Cancel</button>
+                </div>
             </form>
-            <form class="rom-details-review-form" id="review-form" style="display: none;">
+            {% endif %}
+            {% if user.is_authenticated %}
+            <form class="rom-details-review-form" id="review-form" method="post" style="display: none;">
+                {% csrf_token %}
+                <input type="hidden" name="rating" id="review-rating-value" value="">
                 <label for="review-rating">Rating:</label>
                 <div class="rom-details-rating-stars" id="review-rating">
                     <span class="star" data-value="1">&#9733;</span>
@@ -134,12 +186,31 @@
                     <span class="star" data-value="5">&#9733;</span>
                 </div>
                 <label for="review-text">Write Review:</label>
-                <textarea id="review-text" name="review" rows="3" placeholder="Write your review..."></textarea>
-                <button type="submit" class="rom-details-submit-btn">Submit</button>
+                <textarea id="review-text" name="text" rows="3" placeholder="Write your review..."></textarea>
+                <div class="rom-details-form-buttons">
+                    <button type="submit" class="rom-details-submit-btn">Submit</button>
+                    <button type="button" class="rom-details-cancel-btn" id="cancel-review-btn">Cancel</button>
+                </div>
             </form>
+            {% endif %}
         </div>
     </div>
 </section>
+
+{#hidden form for ROM deletion #}
+{% if can_delete %}
+<form id="rom-delete-form" method="post" action="{% url 'roms delete' rom.pk %}" style="display: none;">
+    {% csrf_token %}
+</form>
+{% endif %}
+{#hidden form for comment deletion #}
+<form id="comment-delete-form" method="post" action="" style="display: none;">
+    {% csrf_token %}
+</form>
+{#hidden form for review deletion #}
+<form id="review-delete-form" method="post" action="" style="display: none;">
+    {% csrf_token %}
+</form>
 <!-- Screenshot Modal: must be outside all containers -->
 <div id="rom-details-screenshot-modal" class="rom-details-screenshot-modal" style="display:none;">
     <div class="rom-details-screenshot-modal-content">

@@ -12,4 +12,5 @@ urlpatterns = [
     path('favorites/', views.FavoritesView.as_view(), name='accounts favorites page'),
     path('favorites/roms/', views.FavoriteRomsView.as_view(), name='accounts favorite roms page'),
     path('favorites/screenshots/', views.FavoriteScreenshotsView.as_view(), name='accounts favorite screenshots page'),
+    path('profile/<int:pk>/', views.PublicProfileView.as_view(), name='public profile'),
 ]

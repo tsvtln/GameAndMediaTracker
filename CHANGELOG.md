@@ -1,3 +1,20 @@
+[2026-04-11]
+- Partial progress on ROMs app functionality
+  - Implemented ROM deletion with permissions (uploader, staff, moderators only)
+  - Created Comment model with CRUD operations
+  - Created Review model with CRUD operations and star ratings (1-5 stars)
+  - Added inline editing for comments and reviews
+  - Implemented automatic rating calculation based on review averages
+  - Added download tracking to count ROM downloads
+  - Created Top Games page showing top 11 ROMs by rating with review counts (filters still not implemented)
+  - Set up Django signals for ROMs app to auto-update ROM ratings when reviews change
+  - Changed description field to be optional on ROM uploads
+  - Added public profile view accessible from usernames in comments/reviews
+  - Fixed permission checks for edit/delete buttons (owner, staff, moderators only)
+  - Improved star rating UX with proper selection persistence
+  - Added custom admin login redirect (non-staff users go to profile)
+  - A few security improvements to not allow users to be able to access Django admin panel.
+
 [2026-04-10]
 - Accounts app backend implementation
   - Created AppUser model extending AbstractUser with username-based authentication

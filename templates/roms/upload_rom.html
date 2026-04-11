@@ -14,81 +14,63 @@
             <li>🚩 Correct platform selection required</li>
         </ul>
     </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message message-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="upload-rom-main">
         <div class="upload-rom-form-col">
-            <form class="upload-rom-form" enctype="multipart/form-data">
-                <label for="rom-file">ROM File</label>
-                <label for="rom-file" class="upload-file-label">Select ROM File</label>
-                <input type="file" class="upload-file-input" id="rom-file" name="rom_file" accept=".zip,.7z,.rar,.nes,.sfc,.gba,.iso" required>
+            <form class="upload-rom-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
+                <label for="{{ form.rom_file.id_for_label }}">ROM File</label>
+                <label for="{{ form.rom_file.id_for_label }}" class="upload-file-label">Select ROM File</label>
+                {{ form.rom_file }}
+                {% if form.rom_file.errors %}
+                    <div class="field-errors">{{ form.rom_file.errors }}</div>
+                {% endif %}
                 <small class="upload-rom-accept">Accepted: .zip .7z .rar .nes .sfc .gba .iso</small>
 
-                <label for="game-title">Game Title</label>
-                <input type="text" id="game-title" name="game_title" placeholder="Super Mario Bros" required>
+                <label for="{{ form.title.id_for_label }}">Game Title</label>
+                {{ form.title }}
+                {% if form.title.errors %}
+                    <div class="field-errors">{{ form.title.errors }}</div>
+                {% endif %}
 
-                <label for="platform">Platform</label>
-                <select id="platform" name="platform" required>
-                    <option value="">Select Platform</option>
-                    <option>NES</option>
-                    <option>Famicom</option>
-                    <option>SNES</option>
-                    <option>Super Famicom</option>
-                    <option>Nintendo 64</option>
-                    <option>GameCube</option>
-                    <option>Wii</option>
-                    <option>Wii U</option>
-                    <option>Nintendo Switch</option>
-                    <option>Game Boy</option>
-                    <option>Game Boy Color</option>
-                    <option>Game Boy Advance</option>
-                    <option>Nintendo DS</option>
-                    <option>Nintendo 3DS</option>
-                    <option>Sega Master System</option>
-                    <option>Sega Genesis / Mega Drive</option>
-                    <option>Sega CD</option>
-                    <option>32X</option>
-                    <option>Sega Saturn</option>
-                    <option>Sega Dreamcast</option>
-                    <option>Game Gear</option>
-                    <option>PlayStation</option>
-                    <option>PlayStation 2</option>
-                    <option>PlayStation 3</option>
-                    <option>PlayStation Portable (PSP)</option>
-                    <option>PlayStation Vita</option>
-                    <option>Xbox</option>
-                    <option>Xbox 360</option>
-                    <option>Xbox One</option>
-                    <option>Atari</option>
-                </select>
+                <label for="{{ form.platform.id_for_label }}">Platform</label>
+                {{ form.platform }}
+                {% if form.platform.errors %}
+                    <div class="field-errors">{{ form.platform.errors }}</div>
+                {% endif %}
 
-                <label for="box-art">BOX ART (REQUIRED)</label>
-                <label for="box-art" class="upload-file-label">Select Box Art</label>
+                <label for="{{ form.box_art.id_for_label }}">BOX ART (REQUIRED)</label>
+                <label for="{{ form.box_art.id_for_label }}" class="upload-file-label">Select Box Art</label>
                 <div class="upload-rom-boxart-drop" id="boxart-drop">
                     <div class="upload-rom-boxart-preview" id="boxart-preview">BOX ART PREVIEW</div>
-                    <input type="file" class="upload-file-input" id="box-art" name="box_art" accept=".png,.jpg,.jpeg,.webp" required>
+                    {{ form.box_art }}
+                    {% if form.box_art.errors %}
+                        <div class="field-errors">{{ form.box_art.errors }}</div>
+                    {% endif %}
                     <small>Allowed: .png .jpg .webp 5MB MAX</small>
                     <div class="upload-rom-boxart-drag">Drag box art here or click to upload</div>
                 </div>
 
-                <label for="genre">Genre</label>
-                <select id="genre" name="genre" required>
-                    <option value="">Select Genre</option>
-                    <option>Action</option>
-                    <option>Adventure</option>
-                    <option>Platformer</option>
-                    <option>RPG</option>
-                    <option>Fighting</option>
-                    <option>Shooter</option>
-                    <option>Puzzle</option>
-                    <option>Sports</option>
-                    <option>Racing</option>
-                    <option>Strategy</option>
-                    <option>Simulation</option>
-                    <option>Horror</option>
-                </select>
+                <label for="{{ form.genre.id_for_label }}">Genre</label>
+                {{ form.genre }}
+                {% if form.genre.errors %}
+                    <div class="field-errors">{{ form.genre.errors }}</div>
+                {% endif %}
 
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="5" placeholder="Classic NES platformer where Mario must rescue Princess Peach." required></textarea>
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="field-errors">{{ form.description.errors }}</div>
+                {% endif %}
 
                 <button type="submit" class="download-btn">SUBMIT ROM</button>
             </form>

@@ -468,15 +468,73 @@
     text-shadow: 0 0 8px #49ff18;
 }
 
-.rom-details-comment {
+.rom-details-comment,
+.rom-details-review {
     background: #181818;
     border-radius: 8px;
-    padding: 10px 16px;
     margin-bottom: 8px;
     color: #fff;
-    box-shadow: 0 0 6px #49ff18;
+    box-shadow: 0 0 8px #49ff18;
     position: relative;
-    padding-right: 80px;
+    padding: 10px 80px 10px 16px;
+}
+
+.rom-details-review-edit-form {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.rom-details-review-edit-textarea {
+    width: 100%;
+    background: #232323;
+    color: #49ff18;
+    border: 2px solid #49ff18;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+    margin-top: 10px;
+}
+
+.rom-details-review-edit-textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px #49ff18;
+}
+
+.rom-details-rating-stars-edit {
+    margin: 10px 0;
+}
+
+.rom-details-comment-edit-form {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.rom-details-comment-edit-textarea {
+    width: 100%;
+    background: #232323;
+    color: #49ff18;
+    border: 2px solid #49ff18;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+.rom-details-comment-edit-textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px #49ff18;
+}
+
+.rom-details-no-comments {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
 }
 
 .rom-details-comment-actions {
@@ -557,6 +615,50 @@
     color: #49ff18;
     box-shadow: 0 0 20px #49ff18;
     text-shadow: 0 0 8px #49ff18;
+}
+
+.rom-details-cancel-btn {
+    background: #333;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: 2px solid #49ff18;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-cancel-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 20px #49ff18;
+}
+
+.rom-details-cancel-edit-btn {
+    background: #333;
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border: 2px solid #49ff18;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.rom-details-cancel-edit-btn:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 20px #49ff18;
+}
+
+.rom-details-form-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
 }
 
 .rom-details-review-form {

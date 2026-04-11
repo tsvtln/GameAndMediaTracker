@@ -34,6 +34,7 @@
                 <div>Screenshots: <span>{{ user.profile.screenshots_count }}</span></div>
             </div>
         </div>
+        {% if is_own_profile %}
         <div class="profile-actions">
             <a href="#" class="profile-btn" id="change-avatar-btn">Change Avatar</a>
             <a href="#" class="profile-btn" id="change-password-btn">Change Password</a>
@@ -42,7 +43,9 @@
                 <button type="submit" class="profile-btn">Logout</button>
             </form>
         </div>
+        {% endif %}
     </div>
+    {% if is_own_profile %}
     <div id="avatar-modal" class="avatar-modal" style="display:none;">
         <div class="avatar-modal-content">
             <span class="avatar-modal-close">&times;</span>
@@ -82,8 +85,9 @@
             </form>
         </div>
     </div>
+    <script src="{% static 'js/profile-avatar.js' %}"></script>
+    <script src="{% static 'js/profile-password.js' %}"></script>
+    {% endif %}
 </section>
 <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
-<script src="{% static 'js/profile-avatar.js' %}"></script>
-<script src="{% static 'js/profile-password.js' %}"></script>
 {% endblock %}

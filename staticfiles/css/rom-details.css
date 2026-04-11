@@ -150,3 +150,39 @@
 .rom-details-screenshot-more:hover {
     box-shadow: 0 0 16px #49ff18;
 }
+
+.rom-details-description {
+    margin-top: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #232323 100%);
+    border-radius: 12px;
+    border: 2px solid #49ff18;
+    box-shadow: 0 0 16px rgba(73, 255, 24, 0.3),
+                inset 0 0 20px rgba(73, 255, 24, 0.1);
+    transition: all 0.3s ease;
+}
+
+.rom-details-description:hover {
+    box-shadow: 0 0 24px rgba(73, 255, 24, 0.5),
+                inset 0 0 30px rgba(73, 255, 24, 0.15);
+    border-color: #5fff2e;
+}
+
+.rom-details-description h3 {
+    color: #49ff18;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    font-family: 'Press Start 2P', monospace;
+    text-shadow: 0 0 8px rgba(73, 255, 24, 0.5);
+    border-bottom: 1px solid rgba(73, 255, 24, 0.3);
+    padding-bottom: 12px;
+}
+
+.rom-details-description p {
+    color: #c8ffc8;
+    line-height: 1.8;
+    font-size: 1rem;
+    text-align: justify;
+    padding: 8px 0;
+}
+
