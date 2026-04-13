@@ -6,27 +6,60 @@
 <section class="most-downloaded-section">
     <div class="most-downloaded-header">
         <h1 class="most-downloaded-title">Atari</h1>
-        <div class="most-downloaded-subtitle">Released: Various</div>
-        <div class="most-downloaded-subtitle">Total Games: 500+</div>
+        <div class="most-downloaded-subtitle">Released: 1977</div>
+        <div class="most-downloaded-subtitle">Total Games: {{ total_games|default:0 }}</div>
     </div>
-    <form class="platform-search-form" method="get" action="#">
-        <input type="text" name="q" class="platform-search-input" placeholder="Search Atari games...">
+    <form class="platform-search-form" method="get" action="">
+        <label>
+            <input type="text" name="q" class="platform-search-input" placeholder="..." value="{{ request.GET.q }}">
+        </label>
         <button type="submit" class="platform-search-btn">Search</button>
     </form>
     <div class="most-downloaded-list nes-most-downloaded-list">
-        <a href="{% url 'roms details' %}" class="most-downloaded-card-link">
-            <div class="most-downloaded-card">
-                <img src="{% static 'images/temp_images/pacman.webp' %}" alt="Pac-Man" class="most-downloaded-card-img">
-                <div class="most-downloaded-card-info">
-                    <h2 class="most-downloaded-card-title">Pac-Man</h2>
-                    <div class="most-downloaded-card-downloads">⬇ 500,000 downloads</div>
-                </div>
+        {% if roms %}
+            {% for rom in roms %}
+                <a href="{% url 'roms details' rom.pk %}" class="most-downloaded-card-link">
+                    <div class="most-downloaded-card">
+                        <img src="{{ rom.box_art.url }}" alt="{{ rom.title }}" class="most-downloaded-card-img">
+                        <div class="most-downloaded-card-info">
+                            <h2 class="most-downloaded-card-title">{{ rom.title }}</h2>
+                            <div class="most-downloaded-card-downloads">⬇ {{ rom.downloads }} downloads</div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+        {% if not roms %}
+            <div class="no-games-uploaded centered-upload-box centered-flex">
+                <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
+                <a href="{% url 'roms upload' %}" class="upload-game-btn"><span>Upload Now</span></a>
             </div>
-        </a>
+        {% endif %}
+
+    {% if is_paginated %}
+    <div class="vault-pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="vault-page-link">&lt;&lt; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="vault-page-link">&lt; Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="vault-page-link active">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="vault-page-link">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="vault-page-link">Next &gt;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="vault-page-link">Last &gt;&gt;</a>
+        {% endif %}
     </div>
-    <div class="most-downloaded-list nes-most-downloaded-list no-games-uploaded centered-upload-box centered-flex">
-        <p class="no-games-message">No games uploaded yet.<br>Be the first to share a game!</p>
-        <a href="{% url 'roms upload' %}" class="upload-game-btn"><span>Upload Now</span></a>
-    </div>
+    {% endif %}
 </section>
 {% endblock %}
+
+

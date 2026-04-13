@@ -9,8 +9,17 @@
     </div>
 
     <div class="newly-added-highlight">
-        <a href="#" class="newly-added-badge">🆕 Added Today</a>
-        <a href="#" class="newly-added-badge">🆕 Added This Week</a>
+        {% if week_count > 0 %}
+            <a href="?filter=week" class="newly-added-badge {% if current_filter == 'week' %}active{% endif %}">🆕 Added This Week</a>
+        {% else %}
+            <span class="newly-added-badge-empty">No games added this week. <a href="{% url 'roms upload' %}">Upload a game?</a></span>
+        {% endif %}
+
+        {% if month_count > 0 %}
+            <a href="?filter=month" class="newly-added-badge {% if current_filter == 'month' %}active{% endif %}">🆕 Added This Month</a>
+        {% else %}
+            <span class="newly-added-badge-empty">No games added this month. <a href="{% url 'roms upload' %}">Upload a game?</a></span>
+        {% endif %}
     </div>
 
     <form class="newly-added-sorting" method="get" action="#">
@@ -25,19 +34,47 @@
     </form>
 
     <div class="newly-added-list">
-        <a href="{% url 'roms details' %}" class="newly-added-card-link">
-            <div class="newly-added-card">
-                <img src="{% static 'images/temp_images/chrono_trigger.jpg' %}" alt="Chrono Trigger" class="newly-added-card-img">
-                <div class="newly-added-card-info">
-                    <h2 class="newly-added-card-title">Chrono Trigger</h2>
-                    <div class="newly-added-card-meta">Platform: SNES</div>
-                    <div class="newly-added-card-added">Added: 2 hours ago</div>
-                    <div class="newly-added-card-stats">
-                        <span class="newly-added-card-downloads">⬇ 23 downloads</span>
+        {% if roms %}
+            {% for rom in roms %}
+            <a href="{% url 'roms details' rom.pk %}" class="newly-added-card-link">
+                <div class="newly-added-card">
+                    <img src="{{ rom.box_art.url }}" alt="{{ rom.title }}" class="newly-added-card-img">
+                    <div class="newly-added-card-info">
+                        <h2 class="newly-added-card-title">{{ rom.title }}</h2>
+                        <div class="newly-added-card-meta">Platform: {{ rom.platform }}</div>
+                        <div class="newly-added-card-added">Added: {{ rom.created_at|timesince }} ago</div>
+                        <div class="newly-added-card-stats">
+                            <span class="newly-added-card-downloads">⬇ {{ rom.downloads }} downloads</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+            {% endfor %}
+        {% else %}
+            <p style="color: #49ff18; text-align: center; margin-top: 40px;">No ROMs available yet.</p>
+        {% endif %}
     </div>
+
+    {% if is_paginated %}
+    <div class="vault-pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}" class="vault-page-link">&lt;&lt; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}" class="vault-page-link">&lt; Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a href="?page={{ num }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}" class="vault-page-link active">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}" class="vault-page-link">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}" class="vault-page-link">Next &gt;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.filter %}&filter={{ request.GET.filter }}{% endif %}" class="vault-page-link">Last &gt;&gt;</a>
+        {% endif %}
+    </div>
+    {% endif %}
 </section>
 {% endblock %}

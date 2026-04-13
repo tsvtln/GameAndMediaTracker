@@ -1,3 +1,9 @@
+[2026-04-13]
+- Completed dynamic platform pages for ROMs app
+  - Converted all platform pages from static content to dynamic data pulled from DB
+  - Added pagination for platform pages (20 games per page)
+  - Integrated the search functionality for some of the ROMs pages
+
 [2026-04-11]
 - Partial progress on ROMs app functionality
   - Implemented ROM deletion with permissions (uploader, staff, moderators only)

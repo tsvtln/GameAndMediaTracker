@@ -4,15 +4,29 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, DetailView, DeleteView, ListView
 from django.views import View
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy as _
 from django.db.models import Count, Avg
 from django.http import FileResponse, Http404
+from django.utils import timezone
+from datetime import timedelta
 from CheckPoint.roms.models import Rom, Comment, Review
 from CheckPoint.roms.forms import RomUploadForm, CommentForm, ReviewForm
 
 
 def roms(request):
-    return render(request, 'roms/roms.html')
+    # Get top 3 ROMs for each category
+    top_games_list = Rom.objects.order_by('-rating', '-downloads')[:3]
+    newly_added_list = Rom.objects.order_by('-created_at')[:3]
+    trending_list = Rom.objects.order_by('-downloads', '-created_at')[:3]
+    most_downloaded_list = Rom.objects.order_by('-downloads')[:3]
+
+    context = {
+        'top_games': top_games_list,
+        'newly_added': newly_added_list,
+        'trending': trending_list,
+        'most_downloaded': most_downloaded_list,
+    }
+    return render(request, 'roms/roms.html', context)
 
 
 class TopGamesView(ListView):
@@ -40,192 +54,201 @@ class TopGamesView(ListView):
         return context
 
 
-def newly_added(request):
-    return render(request, 'roms/newly-added.html')
+class NewlyAddedView(ListView):
+    model = Rom
+    template_name = 'roms/newly-added.html'
+    context_object_name = 'roms'
+    paginate_by = 20
+
+    def get_queryset(self):
+        queryset = Rom.objects.all()
+        sort_by = self.request.GET.get('sort', 'date')
+        filter_by = self.request.GET.get('filter', '')
+
+        if filter_by == 'week':
+            week_ago = timezone.now() - timedelta(days=7)
+            queryset = queryset.filter(created_at__gte=week_ago)
+        elif filter_by == 'month':
+            month_ago = timezone.now() - timedelta(days=30)
+            queryset = queryset.filter(created_at__gte=month_ago)
+
+        if sort_by == 'platform':
+            queryset = queryset.order_by('platform', '-created_at')
+        elif sort_by == 'downloads':
+            queryset = queryset.order_by('-downloads', '-created_at')
+        else:
+            queryset = queryset.order_by('-created_at')
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # for this week and month calculation
+        week_ago = timezone.now() - timedelta(days=7)
+        month_ago = timezone.now() - timedelta(days=30)
+
+        context['week_count'] = Rom.objects.filter(created_at__gte=week_ago).count()
+        context['month_count'] = Rom.objects.filter(created_at__gte=month_ago).count()
+        context['current_filter'] = self.request.GET.get('filter', '')
+
+        return context
 
 
-def trending(request):
-    return render(request, 'roms/trending.html')
+class TrendingView(ListView):
+    model = Rom
+    template_name = 'roms/trending.html'
+    context_object_name = 'roms'
+
+    def get_queryset(self):
+        month_ago = timezone.now() - timedelta(days=30)
+        return Rom.objects.filter(created_at__gte=month_ago).order_by('-downloads', '-rating')[:6]
 
 
-def most_downloaded(request):
-    return render(request, 'roms/most-downloaded.html')
+class MostDownloadedView(ListView):
+    model = Rom
+    template_name = 'roms/most-downloaded.html'
+    context_object_name = 'roms'
+    paginate_by = 20
+
+    def get_queryset(self):
+        queryset = Rom.objects.all()
+        platform = self.request.GET.get('platform', '')
+
+        if platform:
+            queryset = queryset.filter(platform=platform)
+
+        sort_by = self.request.GET.get('sort', 'all-time')
+        if sort_by == 'year':
+            year_ago = timezone.now() - timedelta(days=365)
+            queryset = queryset.filter(created_at__gte=year_ago)
+        elif sort_by == 'month':
+            month_ago = timezone.now() - timedelta(days=30)
+            queryset = queryset.filter(created_at__gte=month_ago)
+
+        return queryset.order_by('-downloads', '-rating')
 
 
 def genres(request):
     return render(request, 'roms/genres.html')
 
 
-def genre_action(request):
-    return render(request, 'roms/genres/action.html')
+class GenreDetailView(ListView):
+    model = Rom
+    context_object_name = 'roms'
+    paginate_by = 20
 
+    def get_template_names(self):
+        genre = self.kwargs.get('genre')
+        return [f'roms/genres/{genre}.html']
 
-def genre_adventure(request):
-    return render(request, 'roms/genres/adventure.html')
+    def get_queryset(self):
+        genre = self.kwargs.get('genre')
+        all_geners = {
+            'action': 'Action',
+            'adventure': 'Adventure',
+            'platformer': 'Platformer',
+            'rpg': 'RPG',
+            'fighting': 'Fighting',
+            'shooter': 'Shooter',
+            'puzzle': 'Puzzle',
+            'sports': 'Sports',
+            'racing': 'Racing',
+            'strategy': 'Strategy',
+            'simulation': 'Simulation',
+            'horror': 'Horror',
+        }
 
+        genre_name = all_geners.get(genre, '')
+        if not genre_name:
+            return Rom.objects.none()
 
-def genre_platformer(request):
-    return render(request, 'roms/genres/platformer.html')
+        queryset = Rom.objects.filter(genre=genre_name)
 
+        platform = self.request.GET.get('platform', '')
+        if platform:
+            queryset = queryset.filter(platform=platform)
 
-def genre_rpg(request):
-    return render(request, 'roms/genres/rpg.html')
+        rating = self.request.GET.get('rating', '')
+        if rating:
+            queryset = queryset.filter(rating__gte=float(rating))
 
-
-def genre_fighting(request):
-    return render(request, 'roms/genres/fighting.html')
-
-
-def genre_shooter(request):
-    return render(request, 'roms/genres/shooter.html')
-
-
-def genre_puzzle(request):
-    return render(request, 'roms/genres/puzzle.html')
-
-
-def genre_sports(request):
-    return render(request, 'roms/genres/sports.html')
-
-
-def genre_racing(request):
-    return render(request, 'roms/genres/racing.html')
-
-
-def genre_strategy(request):
-    return render(request, 'roms/genres/strategy.html')
-
-
-def genre_simulation(request):
-    return render(request, 'roms/genres/simulation.html')
-
-
-def genre_horror(request):
-    return render(request, 'roms/genres/horror.html')
+        return queryset.order_by('-rating', '-downloads')
 
 
 def platforms(request):
     return render(request, 'roms/platforms.html')
 
 
-def platform_nes(request):
-    return render(request, 'roms/platforms/nes.html')
+class PlatformDetailView(ListView):
+    model = Rom
+    context_object_name = 'roms'
+    paginate_by = 20
+    
+    all_platforms = {
+        '32x': '32X',
+        'nes': 'NES',
+        'famicom': 'Famicom',
+        'snes': 'SNES',
+        'super-famicom': 'Super Famicom',
+        'n64': 'Nintendo 64',
+        'gamecube': 'GameCube',
+        'wii': 'Wii',
+        'wii-u': 'Wii U',
+        'nintendo-switch': 'Nintendo Switch',
+        'gameboy': 'Game Boy',
+        'gbc': 'Game Boy Color',
+        'gba': 'Game Boy Advance',
+        'nintendo-ds': 'Nintendo DS',
+        'nintendo-3ds': 'Nintendo 3DS',
+        'sega-master-system': 'Sega Master System',
+        'genesis': 'Sega Genesis / Mega Drive',
+        'sega-cd': 'Sega CD',
+        'sega-saturn': 'Sega Saturn',
+        'sega-dreamcast': 'Sega Dreamcast',
+        'game-gear': 'Game Gear',
+        'ps1': 'PlayStation',
+        'ps2': 'PlayStation 2',
+        'ps3': 'PlayStation 3',
+        'psp': 'PlayStation Portable (PSP)',
+        'vita': 'PlayStation Vita',
+        'xbox': 'Xbox',
+        'xbox-360': 'Xbox 360',
+        'xbox-one': 'Xbox One',
+        'atari': 'Atari',
+    }
 
+    def get_template_names(self):
+        platform = self.kwargs.get('platform')
+        return [f'roms/platforms/{platform}.html']
 
-def platform_famicom(request):
-    return render(request, 'roms/platforms/famicom.html')
+    def get_queryset(self):
+        platform = self.kwargs.get('platform')
+        platform_name = self.all_platforms.get(platform, '')
+        if not platform_name:
+            return Rom.objects.none()
 
+        queryset = Rom.objects.filter(platform=platform_name)
 
-def platform_snes(request):
-    return render(request, 'roms/platforms/snes.html')
+        # search bar functionality
+        search_query = self.request.GET.get('q', '')
+        if search_query:
+            queryset = queryset.filter(title__icontains=search_query)
 
+        return queryset.order_by('-rating', '-downloads')
 
-def platform_super_famicom(request):
-    return render(request, 'roms/platforms/super-famicom.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        platform = self.kwargs.get('platform')
+        platform_name = self.all_platforms.get(platform, '')
+        
+        if platform_name:
+            context['total_games'] = Rom.objects.filter(platform=platform_name).count()
+        else:
+            context['total_games'] = 0
 
+        return context
 
-def platform_n64(request):
-    return render(request, 'roms/platforms/n64.html')
-
-
-def platform_gamecube(request):
-    return render(request, 'roms/platforms/gamecube.html')
-
-
-def platform_wii(request):
-    return render(request, 'roms/platforms/wii.html')
-
-
-def platform_wii_u(request):
-    return render(request, 'roms/platforms/wii-u.html')
-
-
-def platform_nintendo_switch(request):
-    return render(request, 'roms/platforms/nintendo-switch.html')
-
-
-def platform_gameboy(request):
-    return render(request, 'roms/platforms/gameboy.html')
-
-
-def platform_gbc(request):
-    return render(request, 'roms/platforms/gbc.html')
-
-
-def platform_gba(request):
-    return render(request, 'roms/platforms/gba.html')
-
-
-def platform_nintendo_ds(request):
-    return render(request, 'roms/platforms/nintendo-ds.html')
-
-
-def platform_nintendo_3ds(request):
-    return render(request, 'roms/platforms/nintendo-3ds.html')
-
-
-def platform_sega_master_system(request):
-    return render(request, 'roms/platforms/sega-master-system.html')
-
-
-def platform_genesis(request):
-    return render(request, 'roms/platforms/genesis.html')
-
-
-def platform_sega_cd(request):
-    return render(request, 'roms/platforms/sega-cd.html')
-
-
-def platform_32x(request):
-    return render(request, 'roms/platforms/32x.html')
-
-
-def platform_sega_saturn(request):
-    return render(request, 'roms/platforms/sega-saturn.html')
-
-
-def platform_sega_dreamcast(request):
-    return render(request, 'roms/platforms/sega-dreamcast.html')
-
-
-def platform_game_gear(request):
-    return render(request, 'roms/platforms/game-gear.html')
-
-
-def platform_ps1(request):
-    return render(request, 'roms/platforms/ps1.html')
-
-
-def platform_ps2(request):
-    return render(request, 'roms/platforms/ps2.html')
-
-
-def platform_ps3(request):
-    return render(request, 'roms/platforms/ps3.html')
-
-
-def platform_psp(request):
-    return render(request, 'roms/platforms/psp.html')
-
-
-def platform_vita(request):
-    return render(request, 'roms/platforms/vita.html')
-
-
-def platform_xbox(request):
-    return render(request, 'roms/platforms/xbox.html')
-
-
-def platform_xbox_360(request):
-    return render(request, 'roms/platforms/xbox-360.html')
-
-
-def platform_xbox_one(request):
-    return render(request, 'roms/platforms/xbox-one.html')
-
-
-def platform_atari(request):
-    return render(request, 'roms/platforms/atari.html')
 
 
 class RomDetailView(DetailView):
@@ -252,7 +275,7 @@ class RomDetailView(DetailView):
         context['reviews'] = rom.reviews.select_related('user').all()
         context['comment_form'] = CommentForm()
         context['review_form'] = ReviewForm()
-        
+
         # check if user has already reviewed this ROM so we can hide it in the front end if true
         if user.is_authenticated:
             context['user_has_reviewed'] = rom.reviews.filter(user=user).exists()
@@ -260,7 +283,7 @@ class RomDetailView(DetailView):
         else:
             context['user_has_reviewed'] = False
             context['is_moderator'] = False
-        
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -349,7 +372,7 @@ class RomUploadView(LoginRequiredMixin, CreateView):
     login_url = '/accounts/login/'
 
     def get_success_url(self):
-        return reverse_lazy(
+        return _(
             'roms details',
             kwargs={'pk': self.object.pk}
         )
@@ -367,7 +390,7 @@ class RomUploadView(LoginRequiredMixin, CreateView):
 
 class RomDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Rom
-    success_url = reverse_lazy('roms page')
+    success_url = _('roms page')
     login_url = '/accounts/login/'
     pk_url_kwarg = 'pk'
 
@@ -413,7 +436,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
     def get_success_url(self):
-        return reverse_lazy(
+        return _(
             'roms details',
             kwargs={'pk': self.object.rom.pk}
         )
@@ -443,7 +466,7 @@ class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
     def get_success_url(self):
-        return reverse_lazy(
+        return _(
             'roms details',
             kwargs={'pk': self.object.rom.pk}
         )
@@ -458,7 +481,7 @@ class RomDownloadView(View):
         try:
             rom = Rom.objects.get(pk=pk)
             rom.increment_downloads()
-            
+
             # return file for download
             response = FileResponse(rom.rom_file.open('rb'))
             response['Content-Disposition'] = f'attachment; filename="{rom.title}.{rom.rom_file.name.split(".")[-1]}"'

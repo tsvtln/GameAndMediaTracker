@@ -11,77 +11,86 @@
         <label>Platform:
             <select name="platform">
                 <option value="">All</option>
-                <option>NES</option>
-                <option>Famicom</option>
-                <option>SNES</option>
-                <option>Super Famicom</option>
-                <option>Nintendo 64</option>
-                <option>GameCube</option>
-                <option>Wii</option>
-                <option>Wii U</option>
-                <option>Nintendo Switch</option>
-                <option>Game Boy</option>
-                <option>Game Boy Color</option>
-                <option>Game Boy Advance</option>
-                <option>Nintendo DS</option>
-                <option>Nintendo 3DS</option>
-                <option>Sega Master System</option>
-                <option>Sega Genesis / Mega Drive</option>
-                <option>Sega CD</option>
-                <option>32X</option>
-                <option>Sega Saturn</option>
-                <option>Sega Dreamcast</option>
-                <option>Game Gear</option>
-                <option>PlayStation</option>
-                <option>PlayStation 2</option>
-                <option>PlayStation 3</option>
-                <option>PlayStation Portable (PSP)</option>
-                <option>PlayStation Vita</option>
-                <option>Xbox</option>
-                <option>Xbox 360</option>
-                <option>Xbox One</option>
-                <options>Atari</options>
-            </select>
-        </label>
-        <label>Year:
-            <select name="year">
-                <option value="">All</option>
-                <option>1985</option>
-                <option>1996</option>
-                <option>2004</option>
+                <option {% if request.GET.platform == 'NES' %}selected{% endif %}>NES</option>
+                <option {% if request.GET.platform == 'Famicom' %}selected{% endif %}>Famicom</option>
+                <option {% if request.GET.platform == 'SNES' %}selected{% endif %}>SNES</option>
+                <option {% if request.GET.platform == 'Super Famicom' %}selected{% endif %}>Super Famicom</option>
+                <option {% if request.GET.platform == 'Nintendo 64' %}selected{% endif %}>Nintendo 64</option>
+                <option {% if request.GET.platform == 'GameCube' %}selected{% endif %}>GameCube</option>
+                <option {% if request.GET.platform == 'Wii' %}selected{% endif %}>Wii</option>
+                <option {% if request.GET.platform == 'Wii U' %}selected{% endif %}>Wii U</option>
+                <option {% if request.GET.platform == 'Nintendo Switch' %}selected{% endif %}>Nintendo Switch</option>
+                <option {% if request.GET.platform == 'Game Boy' %}selected{% endif %}>Game Boy</option>
+                <option {% if request.GET.platform == 'Game Boy Color' %}selected{% endif %}>Game Boy Color</option>
+                <option {% if request.GET.platform == 'Game Boy Advance' %}selected{% endif %}>Game Boy Advance</option>
+                <option {% if request.GET.platform == 'Nintendo DS' %}selected{% endif %}>Nintendo DS</option>
+                <option {% if request.GET.platform == 'Nintendo 3DS' %}selected{% endif %}>Nintendo 3DS</option>
+                <option {% if request.GET.platform == 'Sega Master System' %}selected{% endif %}>Sega Master System</option>
+                <option {% if request.GET.platform == 'Sega Genesis / Mega Drive' %}selected{% endif %}>Sega Genesis / Mega Drive</option>
+                <option {% if request.GET.platform == 'Sega CD' %}selected{% endif %}>Sega CD</option>
+                <option {% if request.GET.platform == '32X' %}selected{% endif %}>32X</option>
+                <option {% if request.GET.platform == 'Sega Saturn' %}selected{% endif %}>Sega Saturn</option>
+                <option {% if request.GET.platform == 'Sega Dreamcast' %}selected{% endif %}>Sega Dreamcast</option>
+                <option {% if request.GET.platform == 'Game Gear' %}selected{% endif %}>Game Gear</option>
+                <option {% if request.GET.platform == 'PlayStation' %}selected{% endif %}>PlayStation</option>
+                <option {% if request.GET.platform == 'PlayStation 2' %}selected{% endif %}>PlayStation 2</option>
+                <option {% if request.GET.platform == 'PlayStation 3' %}selected{% endif %}>PlayStation 3</option>
+                <option {% if request.GET.platform == 'PlayStation Portable (PSP)' %}selected{% endif %}>PlayStation Portable (PSP)</option>
+                <option {% if request.GET.platform == 'PlayStation Vita' %}selected{% endif %}>PlayStation Vita</option>
+                <option {% if request.GET.platform == 'Xbox' %}selected{% endif %}>Xbox</option>
+                <option {% if request.GET.platform == 'Xbox 360' %}selected{% endif %}>Xbox 360</option>
+                <option {% if request.GET.platform == 'Xbox One' %}selected{% endif %}>Xbox One</option>
+                <option {% if request.GET.platform == 'Atari' %}selected{% endif %}>Atari</option>
             </select>
         </label>
         <label>Sorting:
             <select name="sort">
-                <option value="all-time">All Time</option>
-                <option value="year">This Year</option>
-                <option value="month">This Month</option>
+                <option value="all-time" {% if request.GET.sort == 'all-time' or not request.GET.sort %}selected{% endif %}>All Time</option>
+                <option value="month" {% if request.GET.sort == 'month' %}selected{% endif %}>This Month</option>
             </select>
         </label>
         <button type="submit" class="most-downloaded-filter-btn">Apply</button>
     </form>
     <div class="most-downloaded-list">
-        <a href="#" class="most-downloaded-card-link">
-            <div class="most-downloaded-card">
-                <span class="most-downloaded-rank">#1</span>
-                <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="most-downloaded-card-img">
-                <div class="most-downloaded-card-info">
-                    <h2 class="most-downloaded-card-title">Super Mario Bros</h2>
-                    <div class="most-downloaded-card-downloads">⬇ 1,230,122 downloads</div>
+        {% if roms %}
+            {% for rom in roms %}
+            <a href="{% url 'roms details' rom.pk %}" class="most-downloaded-card-link">
+                <div class="most-downloaded-card">
+                    <span class="most-downloaded-rank">#{{ page_obj.start_index|add:forloop.counter0 }}</span>
+                    <img src="{{ rom.box_art.url }}" alt="{{ rom.title }}" class="most-downloaded-card-img">
+                    <div class="most-downloaded-card-info">
+                        <h2 class="most-downloaded-card-title">{{ rom.title }}</h2>
+                        <div class="most-downloaded-card-downloads">⬇ {{ rom.downloads }} downloads</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a href="#" class="most-downloaded-card-link">
-            <div class="most-downloaded-card">
-                <span class="most-downloaded-rank">#2</span>
-                <img src="{% static 'images/temp_images/pokemon_fire_red.jpg' %}" alt="Pokemon Fire Red" class="most-downloaded-card-img">
-                <div class="most-downloaded-card-info">
-                    <h2 class="most-downloaded-card-title">Pokémon Fire Red</h2>
-                    <div class="most-downloaded-card-downloads">⬇ 1,012,442 downloads</div>
-                </div>
-            </div>
-        </a>
+            </a>
+            {% endfor %}
+        {% else %}
+            <p style="color: #49ff18; text-align: center; margin-top: 40px;">No ROMs found.</p>
+        {% endif %}
     </div>
+
+    {% if is_paginated %}
+    <div class="vault-pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">&lt;&lt; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">&lt; Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a href="?page={{ num }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link active">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">Next &gt;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">Last &gt;&gt;</a>
+        {% endif %}
+    </div>
+    {% endif %}
 </section>
 {% endblock %}
 

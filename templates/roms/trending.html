@@ -8,19 +8,24 @@
         <p class="trending-subtitle">Games currently popular in the community</p>
     </div>
     <div class="trending-list">
-{#        note: to add 6 games in total for trending ascending by downloads this month#}
-        <a href="{% url 'roms details' %}" class="trending-card-link">
-            <div class="trending-card">
-                <img src="{% static 'images/temp_images/castlevania3.jpg' %}" alt="Castlevania III" class="trending-card-img">
-                <div class="trending-card-info">
-                    <h2 class="trending-card-title">Castlevania III</h2>
-                    <div class="trending-card-meta">
-                        <span class="trending-card-downloads">🔥 430 downloads this month</span>
-                        <span class="trending-card-rating">⭐ 4.7</span>
+        {% if roms %}
+            {% for rom in roms %}
+            <a href="{% url 'roms details' rom.pk %}" class="trending-card-link">
+                <div class="trending-card">
+                    <img src="{{ rom.box_art.url }}" alt="{{ rom.title }}" class="trending-card-img">
+                    <div class="trending-card-info">
+                        <h2 class="trending-card-title">{{ rom.title }}</h2>
+                        <div class="trending-card-meta">
+                            <span class="trending-card-downloads">🔥 {{ rom.downloads }} downloads this month</span>
+                            <span class="trending-card-rating">⭐ {{ rom.rating }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+            {% endfor %}
+        {% else %}
+            <p style="color: #49ff18; text-align: center; margin-top: 40px;">No trending games this month.</p>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

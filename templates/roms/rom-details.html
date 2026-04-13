@@ -57,7 +57,9 @@
                 <div class="rom-details-review" data-review-id="{{ review.id }}">
                     <span class="rom-details-rating-star">⭐</span><span class="rom-details-rating"> {{ review.rating }}</span>
                     <p class="rom-details-review-text">{{ review.text }}</p>
-                    <span class="rom-details-review-author">by <a href="{% url 'public profile' review.user.pk %}">{{ review.user.username }}</a></span>
+                    <span class="rom-details-review-author">by
+                        <a href="{% url 'public profile' review.user.pk %}">{{ review.user.username }}</a>
+                    </span>
                     <form class="rom-details-review-edit-form" method="post" style="display: none;">
                         {% csrf_token %}
                         <input type="hidden" name="review_id" value="{{ review.id }}">
@@ -115,12 +117,23 @@
             {% if comments %}
                 {% for comment in comments %}
                 <div class="rom-details-comment" data-comment-id="{{ comment.id }}">
+                    <div class="rom-details-comment-avatar">
+                        <a href="{% url 'public profile' comment.user.pk %}">
+                            {% if comment.user.profile.avatar %}
+                                <img src="{{ comment.user.profile.avatar.url }}" alt="{{ comment.user.username }}">
+                            {% else %}
+                                <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="{{ comment.user.username }}">
+                            {% endif %}
+                        </a>
+                    </div>
                     <span class="rom-details-comment-author"><a href="{% url 'public profile' comment.user.pk %}">{{ comment.user.username }}</a>:</span>
                     <span class="rom-details-comment-text">{{ comment.text }}</span>
                     <form class="rom-details-comment-edit-form" method="post" style="display: none;">
                         {% csrf_token %}
                         <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                        <textarea class="rom-details-comment-edit-textarea" name="text" rows="3">{{ comment.text }}</textarea>
+                        <label>
+                            <textarea class="rom-details-comment-edit-textarea" name="text" rows="3">{{ comment.text }}</textarea>
+                        </label>
                         <div class="rom-details-form-buttons">
                             <button type="submit" class="rom-details-submit-btn">Update</button>
                             <button type="button" class="rom-details-cancel-edit-btn">Cancel</button>
