@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}403 - Forbidden | CHECKPOINT{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/http_errors.css' %}">
+<section class="error-403-section">
+    <div class="error-403-container">
+        <div class="error-403-gif-wrapper">
+            <img src="{% static 'images/placeholders/http_403.gif' %}" alt="403 Forbidden!" class="error-403-gif">
+        </div>
+        <a href="{% url 'home' %}" class="error-403-home-btn">Return to Home</a>
+    </div>
+</section>
+{% endblock %}

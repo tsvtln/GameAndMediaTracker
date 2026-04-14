@@ -11,6 +11,7 @@ from django.utils import timezone
 from datetime import timedelta
 from CheckPoint.roms.models import Rom, Comment, Review
 from CheckPoint.roms.forms import RomUploadForm, CommentForm, ReviewForm
+from CheckPoint.common.permissions import OwnerOrModeratorMixin
 
 
 def roms(request):
@@ -250,7 +251,6 @@ class PlatformDetailView(ListView):
         return context
 
 
-
 class RomDetailView(DetailView):
     model = Rom
     template_name = 'roms/rom-details.html'
@@ -388,27 +388,12 @@ class RomUploadView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 
-class RomDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class RomDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView):
     model = Rom
     success_url = _('roms page')
     login_url = '/accounts/login/'
     pk_url_kwarg = 'pk'
-
-    def test_func(self):
-        rom = self.get_object()
-        user = self.request.user
-
-        # allow if user is_staff or is in Moderators group
-        if user.is_staff:
-            return True
-
-        if user.groups.filter(name='Moderators').exists():
-            return True
-
-        # allow if user is the uploader
-        if rom.uploaded_by == user:
-            return True
-        return False
+    owner_field = 'uploaded_by'
 
     def delete(self, request, *args, **kwargs):
         rom = self.get_object()
@@ -416,24 +401,10 @@ class RomDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class CommentDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView):
     model = Comment
     pk_url_kwarg = 'pk'
-
-    def test_func(self):
-        comment = self.get_object()
-        user = self.request.user
-
-        # allow if user is_staff or is in Moderators group
-        if user.is_staff:
-            return True
-        if user.groups.filter(name='Moderators').exists():
-            return True
-
-        # allow if user is the comment author
-        if comment.user == user:
-            return True
-        return False
+    owner_field = 'user'
 
     def get_success_url(self):
         return _(
@@ -446,24 +417,10 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ReviewDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView):
     model = Review
     pk_url_kwarg = 'pk'
-
-    def test_func(self):
-        review = self.get_object()
-        user = self.request.user
-
-        # allow if user is_staff or is in Moderators group
-        if user.is_staff:
-            return True
-        if user.groups.filter(name='Moderators').exists():
-            return True
-
-        # allow if user is the review author
-        if review.user == user:
-            return True
-        return False
+    owner_field = 'user'
 
     def get_success_url(self):
         return _(

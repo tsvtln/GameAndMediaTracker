@@ -1,3 +1,16 @@
+[2026-04-14]
+- Implemented BIOS app functionality
+  - Created BIOS model with upload, download, and delete operations
+  - Restricted BIOS uploads to Moderators and Verified Users only
+  - Added search and filter functionality for BIOS files (by platform, filename, date)
+  - BIOS files grouped and displayed by platform on all files page
+  - Delete permissions restricted to file uploader, staff, and moderators
+- Improved code organization
+  - Created reusable permission mixins to eliminate duplicated permission logic
+  - Applied mixins across ROMs and BIOS apps for consistent access control
+- Added custom error pages for 403 and 500 HTTP errors
+- Created custom template tags for group membership checks in templates
+
 [2026-04-13]
 - Completed dynamic platform pages for ROMs app
   - Converted all platform pages from static content to dynamic data pulled from DB

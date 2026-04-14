@@ -1,0 +1,90 @@
+.error-404-section,
+.error-403-section,
+.error-500-section {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.error-404-container,
+.error-403-container,
+.error-500-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.error-404-gif-wrapper,
+.error-403-gif-wrapper,
+.error-500-gif-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    border-radius: 114px;
+}
+
+.error-404-gif,
+.error-403-gif,
+.error-500-gif {
+    width: calc(100% + 60px);
+    height: auto;
+    margin-left: -30px;
+    margin-right: -30px;
+    display: block;
+}
+
+.error-404-home-btn,
+.error-403-home-btn,
+.error-500-home-btn {
+    padding: 14px 32px;
+    background: #232323;
+    color: #49ff18;
+    border: 2px solid #49ff18;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 0 12px rgba(73, 255, 24, 0.4);
+    transition: all 0.3s ease;
+}
+
+.error-404-home-btn:hover,
+.error-403-home-btn:hover,
+.error-500-home-btn:hover {
+    background: #49ff18;
+    color: #000;
+    box-shadow: 0 0 24px rgba(73, 255, 24, 0.8);
+    transform: translateY(-2px);
+}
+
+.error-404-home-btn,
+.error-404-home-btn *,
+.error-403-home-btn,
+.error-403-home-btn *,
+.error-500-home-btn,
+.error-500-home-btn * {
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.error-404-home-btn:hover,
+.error-404-home-btn:focus,
+.error-404-home-btn:hover *,
+.error-404-home-btn:focus *,
+.error-403-home-btn:hover,
+.error-403-home-btn:focus,
+.error-403-home-btn:hover *,
+.error-403-home-btn:focus *,
+.error-500-home-btn:hover,
+.error-500-home-btn:focus,
+.error-500-home-btn:hover *,
+.error-500-home-btn:focus * {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+

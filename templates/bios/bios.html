@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load user_groups %}
 {% load static %}
 
 {% block title %}BIOS | CHECKPOINT{% endblock %}
@@ -10,9 +11,13 @@
         <div class="roms-box">
             <a href="{% url 'bios all files' %}" class="roms-box-title">All BIOS Files</a>
             <ul class="roms-box-list">
-                <li><a href="#">MAME</a></li>
-                <li><a href="#">PlayStation 1</a></li>
-                <li><a href="#">XBOX</a></li>
+                {% if recent_bios %}
+                    {% for bios in recent_bios %}
+                        <li><a href="{% url 'bios download' bios.pk %}">{{ bios.platform }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li>No BIOS files uploaded yet</li>
+                {% endif %}
             </ul>
             <a href="{% url 'bios all files' %}" class="roms-box-more bottom-right">...</a>
         </div>
@@ -36,11 +41,13 @@
             </ul>
         </div>
         <div></div>
-        <div class="roms-box">
-            <a href="{% url 'bios upload' %}" class="roms-box-title">BIOS Upload</a>
-            <p class="roms-box-description">Share a BIOS with the community</p>
-            <a href="{% url 'bios upload' %}" class="roms-box-upload-btn"><span>Upload Now</span></a>
-        </div>
+        {% if user.is_staff or user|in_groups:"Moderators,Verified Users" %}
+            <div class="roms-box">
+                <a href="{% url 'bios upload' %}" class="roms-box-title">BIOS Upload</a>
+                <p class="roms-box-description">Share a BIOS with the community</p>
+                <a href="{% url 'bios upload' %}" class="roms-box-upload-btn"><span>Upload Now</span></a>
+            </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}500 - Internal server error | CHECKPOINT{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/http_errors.css' %}">
+<section class="error-500-section">
+    <div class="error-500-container">
+        <div class="error-500-gif-wrapper">
+            <img src="{% static 'images/placeholders/http_500.gif' %}" alt="500 Internal server error!" class="error-500-gif">
+        </div>
+        <a href="{% url 'home' %}" class="error-500-home-btn">Return to Home</a>
+    </div>
+</section>
+{% endblock %}

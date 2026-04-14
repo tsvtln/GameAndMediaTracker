@@ -9,7 +9,6 @@
     <div class="bios-faq-content">
         <div class="bios-faq-item">
             <h2>What is a BIOS file?</h2>
-            <div class="bios-faq-q">Q: What is a BIOS file?</div>
             <div class="bios-faq-a">
                 A BIOS file is a small piece of firmware required by some consoles to start games.
                 It contains system code from the original hardware and is used by emulators to
@@ -18,7 +17,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>Do all emulators require BIOS files?</h2>
-            <div class="bios-faq-q">Q: Do all emulators need BIOS files?</div>
             <div class="bios-faq-a">
                 No. Some emulators include built-in replacements or can run games without a BIOS.
                 However, many systems such as PlayStation, Sega CD, and Neo Geo require the original
@@ -26,18 +24,16 @@
             </div>
         </div>
         <div class="bios-faq-item">
-            <h2>Where do I put BIOS files?</h2>
-            <div class="bios-faq-q">Q: Where should I place BIOS files for my emulator?</div>
+            <h2>Where should I place BIOS files for my emulator?</h2>
             <div class="bios-faq-a">
                 Most emulators require BIOS files to be placed inside a specific bios folder within the emulator
                 directory. For example:<br><code>./emulator-folder/bios/</code><br>
                 Some emulators allow you to configure the BIOS location in their settings menu.
-                Check the community <a href="#" class="bios-faq-link">GUIDES</a> page to see if there's a specific guide for your emulator.
+                Check the community <a href="{% url 'forum board' 'bios-setup' %}" class="bios-faq-link">GUIDES</a> page to see if there's a specific guide for your emulator.
             </div>
         </div>
         <div class="bios-faq-item">
             <h2>Why is my emulator saying BIOS is missing?</h2>
-            <div class="bios-faq-q">Q: Why does my emulator say the BIOS file is missing?</div>
             <div class="bios-faq-a">
                 This usually happens when:
                 <ul>
@@ -51,7 +47,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>What systems require BIOS files?</h2>
-            <div class="bios-faq-q">Q: Which systems typically require BIOS files?</div>
             <div class="bios-faq-a">
                 Some common systems that require BIOS files include:
                 <ul>
@@ -64,19 +59,18 @@
                     <li>Nintendo DS (for some emulators)</li>
                 </ul>
                 Requirements depend on the emulator you are using.
+                Check if your emulator requires BIOS files <a href="{% url 'bios compatibility' %}" class="bios-faq-link">HERE</a>.
             </div>
         </div>
         <div class="bios-faq-item">
             <h2>Can I run games without BIOS files?</h2>
-            <div class="bios-faq-q">Q: Can I run games without BIOS files?</div>
             <div class="bios-faq-a">
                 Sometimes. Certain emulators can emulate the BIOS internally or skip the boot process.<br>
                 However, using the original BIOS often improves compatibility and accuracy.
             </div>
         </div>
         <div class="bios-faq-item">
-            <h2>Why are there different BIOS versions?</h2>
-            <div class="bios-faq-q">Q: Why are there multiple BIOS versions for the same console?</div>
+            <h2>Why are there different BIOS versions for the same console?</h2>
             <div class="bios-faq-a">
                 Different regions and hardware revisions often had different BIOS versions.
                 For example, a console might have separate BIOS files for Japan, USA, and Europe.<br>
@@ -85,7 +79,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>What file formats do BIOS files use?</h2>
-            <div class="bios-faq-q">Q: What file formats do BIOS files use?</div>
             <div class="bios-faq-a">
                 BIOS files usually come in formats such as:
                 <ul>
@@ -98,7 +91,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>How do I check if my BIOS file works?</h2>
-            <div class="bios-faq-q">Q: How can I verify that my BIOS file is correct?</div>
             <div class="bios-faq-a">
                 Many emulator communities provide MD5 or SHA1 hash values for verified BIOS files.
                 You can compare your file’s hash with the known value to confirm it is authentic and complete.
@@ -106,7 +98,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>Why does my emulator freeze or crash with a BIOS?</h2>
-            <div class="bios-faq-q">Q: Why does my emulator crash when using a BIOS file?</div>
             <div class="bios-faq-a">
                 Possible causes include:
                 <ul>
@@ -120,7 +111,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>Is BIOS the same as firmware?</h2>
-            <div class="bios-faq-q">Q: Is a BIOS file the same as firmware?</div>
             <div class="bios-faq-a">
                 Yes. In most emulation contexts, the BIOS is the console’s firmware.
                 It contains the low-level code used by the hardware to start the system and load games.
@@ -128,7 +118,6 @@
         </div>
         <div class="bios-faq-item">
             <h2>Do I need a BIOS for NES or SNES emulation?</h2>
-            <div class="bios-faq-q">Q: Do NES or SNES emulators require BIOS files?</div>
             <div class="bios-faq-a">
                 No. Most NES and SNES emulators do not require BIOS files because the systems do not rely
                 on a separate boot firmware like some later consoles.

@@ -1,3 +1,4 @@
+{% load user_groups %}
 {% load static %}
 <nav class="site-nav">
     <div class="nav-left">
@@ -24,9 +25,11 @@
             <a href="{% url 'bios page' %}"><img src="{% static 'images/icons/bios.png' %}" alt="BIOS"></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'bios all files' %}">All BIOS Files</a></li>
-                <li><a href="{% url 'forum board' 'bios_setup' %}">Installation Guides</a></li>  {# note: to add the link when forums>guides is done #}
+                <li><a href="{% url 'forum board' 'bios_setup' %}">Installation Guides</a></li>
                 <li><a href="{% url 'bios faq' %}">BIOS FAQ</a></li>
-                <li><a href="{% url 'bios upload' %}">BIOS Upload</a></li>  {# note: if logged in #}
+                {% if user.is_staff or user|in_groups:"Moderators,Verified Users" %}
+                    <li><a href="{% url 'bios upload' %}">BIOS Upload</a></li>
+                {% endif %}
             </ul>
         </li>
         <li class="nav-item has-dropdown">
@@ -84,7 +87,9 @@
             {% endif %}
         </div>
         <form class="nav-search" action="#" method="get">
-            <input type="text" name="q" placeholder="Search">
+            <label>
+                <input type="text" name="q" placeholder="Search">
+            </label>
             <button type="submit">Search</button>
         </form>
     </div>

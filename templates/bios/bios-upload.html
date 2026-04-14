@@ -15,54 +15,34 @@
     </div>
     <div class="bios-upload-main">
         <div class="bios-upload-form-col">
-            <form class="bios-upload-form" enctype="multipart/form-data">
-                <label for="bios-file">BIOS File</label>
-                <label for="bios-file" class="upload-file-label">Select BIOS File</label>
-                <input type="file" class="upload-file-input" id="bios-file" name="bios_file" accept=".bin,.rom,.zip" required>
-                <small class="bios-upload-accept">Accepted: .bin .rom .zip</small>
+            <form class="bios-upload-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
-                <label for="platform">System / Platform</label>
-                <select id="platform" name="platform" class="styled-select" required>
-                    <option value="">Select Platform</option>
-                    <option>Famicom</option>
-                    <option>Super Famicom</option>
-                    <option>GameCube</option>
-                    <option>Wii</option>
-                    <option>Wii U</option>
-                    <option>Nintendo Switch</option>
-                    <option>Game Boy Advance</option>
-                    <option>Nintendo DS</option>
-                    <option>Nintendo 3DS</option>
-                    <option>Sega Master System</option>
-                    <option>Sega CD</option>
-                    <option>32X</option>
-                    <option>Sega Saturn</option>
-                    <option>Sega Dreamcast</option>
-                    <option>Game Gear</option>
-                    <option>PlayStation</option>
-                    <option>PlayStation 2</option>
-                    <option>PlayStation 3</option>
-                    <option>PlayStation Portable (PSP)</option>
-                    <option>PlayStation Vita</option>
-                    <option>Xbox</option>
-                    <option>Xbox 360</option>
-                    <option>Xbox One</option>
-                    <option>Atari</option>
-                    <option>MAME</option>
-                    <option>FinalBurn NEO</option>
-                    <option>RetroArch</option>
-                </select>
+                <label for="{{ form.bios_file.id_for_label }}">BIOS File</label>
+                <label for="{{ form.bios_file.id_for_label }}" class="upload-file-label">Select BIOS File</label>
+                {{ form.bios_file }}
+                {% if form.bios_file.errors %}
+                    <div class="error-message">{{ form.bios_file.errors }}</div>
+                {% endif %}
+                <small class="bios-upload-accept">Accepted: .bin .rom .zip .tar.gz .pup</small>
 
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="5" class="styled-input" placeholder="PlayStation BIOS used by many PS1 emulators. Compatible with DuckStation and PCSX." required></textarea>
+                <label for="{{ form.platform.id_for_label }}">System / Platform</label>
+                {{ form.platform }}
+                {% if form.platform.errors %}
+                    <div class="error-message">{{ form.platform.errors }}</div>
+                {% endif %}
 
-                <label for="source">Upload Source</label>
-                <select id="source" name="source" class="styled-select" required>
-                    <option value="">Select Source</option>
-                    <option>Dumped from original hardware</option>
-                    <option>Unknown source</option>
-                    <option>Other</option>
-                </select>
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="error-message">{{ form.description.errors }}</div>
+                {% endif %}
+
+                <label for="{{ form.source.id_for_label }}">Upload Source</label>
+                {{ form.source }}
+                {% if form.source.errors %}
+                    <div class="error-message">{{ form.source.errors }}</div>
+                {% endif %}
 
                 <button type="submit" class="download-btn">SUBMIT BIOS</button>
             </form>

@@ -20,4 +20,5 @@ if settings.DEBUG:
 
 
 handler404 = 'CheckPoint.common.views.custom_404'
-
+handler403 = 'CheckPoint.common.views.custom_403'
+handler500 = 'CheckPoint.common.views.custom_500'

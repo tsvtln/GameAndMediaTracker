@@ -1,8 +1,18 @@
 from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import CreateView, DeleteView, ListView
+from django.views import View
+from django.urls import reverse_lazy as _
+from django.http import FileResponse, Http404
+from CheckPoint.bios.models import Bios
+from CheckPoint.bios.forms import BiosUploadForm
+from CheckPoint.common.permissions import OwnerOrModeratorMixin, ModeratorOrVerifiedMixin
 
 
 def bios(request):
-    return render(request, 'bios/bios.html')
+    recent_bios = Bios.objects.select_related('uploaded_by').order_by('-created_at')[:3]
+    return render(request, 'bios/bios.html', {'recent_bios': recent_bios})
 
 
 def bios_faq(request):
@@ -17,41 +27,90 @@ def bios_comp(request):
     return render(request, 'bios/bios-comp.html')
 
 
-def bios_upload(request):
-    return render(request, 'bios/bios-upload.html')
+class BiosUploadView(LoginRequiredMixin, ModeratorOrVerifiedMixin, CreateView):
+    model = Bios
+    form_class = BiosUploadForm
+    template_name = 'bios/bios-upload.html'
+    login_url = '/accounts/login/'
+    success_url = _('bios all files')
+
+    def form_valid(self, form):
+        form.instance.uploaded_by = self.request.user
+        messages.success(self.request, f'BIOS file for {form.instance.platform} uploaded successfully!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error uploading BIOS file. Please fill all required fields!')
+        return super().form_invalid(form)
 
 
-def bios_all_files(request):
-    # note: to replace later with actual query, for now its static data to display the html/css
-    bios_by_platform = {
-        'PlayStation': [
-            {
-                'name': 'scph1001.bin',
-                'filename': 'scph1001.bin',
-                'description': 'This is the BIOS file for the original PlayStation console, model SCPH-1001. '
-                               'It is essential for emulating the PlayStation and is required for '
-                               'running games on most emulators.',
-                'uploader': 'CoolLamaUser',
-                'upload_date': '10.03.26',
-                'downloads': 283},
-            {
-                'name': 'scph5501.bin',
-                'filename': 'scph5501.bin',
-                'description': 'This is the BIOS file for the PlayStation console, model SCPH-5501. ',
-                'uploader': 'BIOSMaster',
-                'upload_date': '09.12.25',
-                'downloads': 150
-            },
-        ],
-        'PlayStation 2': [
-            {
-                'name': 'SCPH-39001',
-                'filename': 'SCPH-39001',
-                'description': 'This is the BIOS file for the PlayStation 2 console, model SCPH-39001. ',
-                'uploader': 'PS2Fan',
-                'upload_date': '11.01.15',
-                'downloads': 120
-            },
-        ],
-    }
-    return render(request, 'bios/bios-all-files.html', {'bios_by_platform': bios_by_platform})
+class BiosAllFilesView(ListView):
+    model = Bios
+    template_name = 'bios/bios-all-files.html'
+    context_object_name = 'bios_files'
+
+    def get_queryset(self):
+        # searching
+        queryset = Bios.objects.select_related('uploaded_by').all()
+
+        # by filename
+        search_query = self.request.GET.get('q', '')
+        if search_query:
+            queryset = queryset.filter(bios_file__icontains=search_query)
+
+        # by platform
+        platform = self.request.GET.get('platform', '')
+        if platform:
+            queryset = queryset.filter(platform=platform)
+
+        # sort by
+        sort_by = self.request.GET.get('sort', 'date')
+        if sort_by == 'name':
+            queryset = queryset.order_by('bios_file')
+        elif sort_by == 'platform':
+            queryset = queryset.order_by('platform', '-created_at')
+        else:  # date
+            queryset = queryset.order_by('-created_at')
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # sort BIOS files by platform
+        bios_by_platform = {}
+        for b in self.get_queryset():
+            if b.platform not in bios_by_platform:
+                bios_by_platform[b.platform] = []
+            bios_by_platform[b.platform].append(b)
+
+        context['bios_by_platform'] = bios_by_platform
+        return context
+
+
+class BiosDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView):
+    model = Bios
+    success_url = _('bios all files')
+    login_url = '/accounts/login/'
+    pk_url_kwarg = 'pk'
+    owner_field = 'uploaded_by'
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        bios_object = self.get_object()
+        messages.success(request, f'BIOS file for {bios_object.platform} deleted successfully!')
+        return super().delete(request, *args, **kwargs)
+
+
+class BiosDownloadView(View):
+    def get(self, request, pk):
+        try:
+            bios_object = Bios.objects.get(pk=pk)
+            bios_object.increment_downloads()
+            response = FileResponse(bios_object.bios_file.open('rb'))
+            response['Content-Disposition'] = f'attachment; filename="{bios_object.bios_file.name.split("/")[-1]}"'
+            return response
+        except Bios.DoesNotExist:
+            raise Http404("BIOS file not found")

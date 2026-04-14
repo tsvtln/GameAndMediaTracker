@@ -1,5 +1,6 @@
 {% extends 'common/base.html' %}
 {% load static %}
+{% load user_groups %}
 
 {% block title %}All BIOS Files | CHECKPOINT{% endblock %}
 
@@ -13,61 +14,50 @@
       <p class="note">Make sure to download the correct BIOS for your platform and emulator.</p>
 
       <div class="filters-section">
-        <form id="bios-filters">
+        <form id="bios-filters" method="get" action="">
           <div class="filter-row">
             <label for="bios-search">Search:</label>
-            <input type="text" id="bios-search" name="bios-search" placeholder="Enter BIOS name...">
+            <input type="text" id="bios-search" name="q" placeholder="Enter BIOS name..." value="{{ request.GET.q }}">
           </div>
           <div class="filter-row">
             <label for="platform">Platform:</label>
             <select id="platform" name="platform">
               <option value="">All Platforms</option>
-              <option>Famicom</option>
-              <option>Super Famicom</option>
-              <option>GameCube</option>
-              <option>Wii</option>
-              <option>Wii U</option>
-              <option>Nintendo Switch</option>
-              <option>Game Boy Advance</option>
-              <option>Nintendo DS</option>
-              <option>Nintendo 3DS</option>
-              <option>Sega Master System</option>
-              <option>Sega CD</option>
-              <option>32X</option>
-              <option>Sega Saturn</option>
-              <option>Sega Dreamcast</option>
-              <option>Game Gear</option>
-              <option>PlayStation</option>
-              <option>PlayStation 2</option>
-              <option>PlayStation 3</option>
-              <option>PlayStation Portable (PSP)</option>
-              <option>PlayStation Vita</option>
-              <option>Xbox</option>
-              <option>Xbox 360</option>
-              <option>Xbox One</option>
-              <option>Atari</option>
-              <option>MAME</option>
-              <option>FinalBurn NEO</option>
-              <option>RetroArch</option>
-            </select>
-          </div>
-          <div class="filter-row">
-            <label for="region">Region:</label>
-            <select id="region" name="region">
-              <option value="">All Regions</option>
-              <option>USA</option>
-              <option>Europe</option>
-              <option>Japan</option>
-              <option>Asia</option>
-              <option>Other</option>
+              <option {% if request.GET.platform == 'Famicom' %}selected{% endif %}>Famicom</option>
+              <option {% if request.GET.platform == 'Super Famicom' %}selected{% endif %}>Super Famicom</option>
+              <option {% if request.GET.platform == 'GameCube' %}selected{% endif %}>GameCube</option>
+              <option {% if request.GET.platform == 'Wii' %}selected{% endif %}>Wii</option>
+              <option {% if request.GET.platform == 'Wii U' %}selected{% endif %}>Wii U</option>
+              <option {% if request.GET.platform == 'Nintendo Switch' %}selected{% endif %}>Nintendo Switch</option>
+              <option {% if request.GET.platform == 'Game Boy Advance' %}selected{% endif %}>Game Boy Advance</option>
+              <option {% if request.GET.platform == 'Nintendo DS' %}selected{% endif %}>Nintendo DS</option>
+              <option {% if request.GET.platform == 'Nintendo 3DS' %}selected{% endif %}>Nintendo 3DS</option>
+              <option {% if request.GET.platform == 'Sega Master System' %}selected{% endif %}>Sega Master System</option>
+              <option {% if request.GET.platform == 'Sega CD' %}selected{% endif %}>Sega CD</option>
+              <option {% if request.GET.platform == '32X' %}selected{% endif %}>32X</option>
+              <option {% if request.GET.platform == 'Sega Saturn' %}selected{% endif %}>Sega Saturn</option>
+              <option {% if request.GET.platform == 'Sega Dreamcast' %}selected{% endif %}>Sega Dreamcast</option>
+              <option {% if request.GET.platform == 'Game Gear' %}selected{% endif %}>Game Gear</option>
+              <option {% if request.GET.platform == 'PlayStation' %}selected{% endif %}>PlayStation</option>
+              <option {% if request.GET.platform == 'PlayStation 2' %}selected{% endif %}>PlayStation 2</option>
+              <option {% if request.GET.platform == 'PlayStation 3' %}selected{% endif %}>PlayStation 3</option>
+              <option {% if request.GET.platform == 'PlayStation Portable (PSP)' %}selected{% endif %}>PlayStation Portable (PSP)</option>
+              <option {% if request.GET.platform == 'PlayStation Vita' %}selected{% endif %}>PlayStation Vita</option>
+              <option {% if request.GET.platform == 'Xbox' %}selected{% endif %}>Xbox</option>
+              <option {% if request.GET.platform == 'Xbox 360' %}selected{% endif %}>Xbox 360</option>
+              <option {% if request.GET.platform == 'Xbox One' %}selected{% endif %}>Xbox One</option>
+              <option {% if request.GET.platform == 'Atari' %}selected{% endif %}>Atari</option>
+              <option {% if request.GET.platform == 'MAME' %}selected{% endif %}>MAME</option>
+              <option {% if request.GET.platform == 'FinalBurn NEO' %}selected{% endif %}>FinalBurn NEO</option>
+              <option {% if request.GET.platform == 'RetroArch' %}selected{% endif %}>RetroArch</option>
             </select>
           </div>
           <div class="filter-row">
             <label for="sort">Sort by:</label>
             <select id="sort" name="sort">
-              <option value="name">Name</option>
-              <option value="platform">Platform</option>
-              <option value="date">Date Added</option>
+              <option value="date" {% if request.GET.sort == 'date' or not request.GET.sort %}selected{% endif %}>Date Added</option>
+              <option value="name" {% if request.GET.sort == 'name' %}selected{% endif %}>Name</option>
+              <option value="platform" {% if request.GET.sort == 'platform' %}selected{% endif %}>Platform</option>
             </select>
           </div>
           <div class="filter-row">
@@ -78,25 +68,37 @@
     </div>
 
     <div class="bios-list">
-      {% for platform, bios_files in bios_by_platform.items %}
-        <div class="bios-comp-item">
-          <h2>{{ platform }} BIOS</h2>
-          {% for bios in bios_files %}
-            <div class="bios-comp-emulator bios-card" onclick="toggleDetails(this)">
-              <div class="bios-title">{{ bios.name }}</div>
-              <div class="bios-details" style="display:none;">
-                <p>Filename: {{ bios.filename }}</p>
-                <p>Description: {{ bios.description }}</p>
-                <p>Uploaded by: {{ bios.uploader }}</p>
-                <p>Upload Date: {{ bios.upload_date }}</p>
-                <p>Downloads: {{ bios.downloads }}</p>
-                <a href="#" class="download-btn" onclick="event.stopPropagation()">Download BIOS</a>
-                <a href="#" class="delete-btn" onclick="event.stopPropagation()">delete</a>
+      {% if bios_by_platform %}
+        {% for platform, bios_files in bios_by_platform.items %}
+          <div class="bios-comp-item">
+            <h2>{{ platform }} BIOS</h2>
+            {% for bios in bios_files %}
+              <div class="bios-comp-emulator bios-card" onclick="toggleDetails(this)">
+                <div class="bios-title">{{ bios.bios_file|filename }}</div>
+                <div class="bios-details" style="display:none;">
+                  <p>Filename: {{ bios.bios_file|filename }}</p>
+                  <p>Description: {{ bios.description }}</p>
+                  <p>Uploaded by: <a href="{% url 'public profile' bios.uploaded_by.pk %}">{{ bios.uploaded_by.username }}</a></p>
+                  <p>Upload Date: {{ bios.created_at|date:"d.m.y" }}</p>
+                  <p>Downloads: {{ bios.downloads }}</p>
+                  <p>Source: {{ bios.source }}</p>
+                  <a href="{% url 'bios download' bios.pk %}" class="download-btn" onclick="event.stopPropagation()">Download BIOS</a>
+                  {% if user.is_staff or bios.uploaded_by == user or user|has_group:"Moderators" %}
+                    <a href="{% url 'bios delete' bios.pk %}" class="delete-btn" onclick="event.stopPropagation(); return confirm('Are you sure you want to delete this BIOS file?');">delete</a>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="bios-comp-item">
+          <p>No BIOS files uploaded yet. Be the first to contribute!</p>
+          {% if user.is_staff or user|in_groups:"Moderators,Verified Users" %}
+            <a href="{% url 'bios upload' %}" class="download-btn">Upload BIOS</a>
+          {% endif %}
         </div>
-      {% endfor %}
+      {% endif %}
     </div>
 
     <div class="bios-comp-item legal-notice">
