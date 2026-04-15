@@ -136,3 +136,11 @@ LOGIN_URL = '/accounts/login/'
 # override admin login to use the app login page
 ADMIN_LOGIN_URL = '/accounts/login/'
 
+# Session and CSRF settings
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False
+# CSRF_USE_SESSIONS = True

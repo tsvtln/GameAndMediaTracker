@@ -207,6 +207,10 @@ marimo/_lsp/
 __marimo__/
 *.note
 media/avatars/*
+!media/avatars/.placeholder
 media/box_art/*
+!media/box_art/.placeholder
 media/roms/*
+!media/roms/.placeholder
 media/bios/*
+!media/bios/.placeholder
