@@ -265,3 +265,28 @@
     text-shadow: 0 0 8px #49ff18;
     font-family: 'Press Start 2P', monospace;
 }
+
+.delete-modal-small {
+    max-width: 400px;
+}
+
+.delete-screenshot-modal-close:hover {
+    color: #fff;
+    text-shadow: 0 0 16px #49ff18;
+}
+
+.delete-modal-text {
+    margin-bottom: 30px;
+    color: #e0e0e0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+

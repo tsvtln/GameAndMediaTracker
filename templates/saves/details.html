@@ -1,33 +1,61 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-{% block title %}Save Details | CHECKPOINT{% endblock %}
+{% block title %}{{ save.game_title }} Save | CHECKPOINT{% endblock %}
 
 {% block content %}
 <section class="save-details-section">
     <h1 class="save-details-title">SAVE DETAILS</h1>
     <div class="save-details-main">
         <div class="save-details-cover-col">
-            <img src="{% static 'images/temp_images/grand_theft_auto_san_andreas_playstation_2__2004__by_sonicloud1213_dig2fm4-fullview.jpg' %}" alt="GTA San Andreas Cover" class="save-details-cover-img">
+            {% if save.save_image %}
+                <img src="{{ save.save_image.url }}" alt="{{ save.game_title }} Cover" class="save-details-cover-img">
+            {% else %}
+                <img src="{% static 'images/placeholders/no_image.webp' %}" alt="{{ save.game_title }} Cover" class="save-details-cover-img">
+            {% endif %}
         </div>
         <div class="save-details-info-col">
-            <h2 class="save-details-game-title">GTA San Andreas</h2>
+            <h2 class="save-details-game-title">{{ save.game_title }}</h2>
             <div class="save-details-meta">
-                <span class="save-details-uploader">Uploaded by: CarlJohnson</span>
-                <span class="save-details-platform">Platform: PC</span>
-                <span class="save-details-type">Save Type: Story Progress</span>
-                <span class="save-details-progress">Progress: 78%</span>
-                <span class="save-details-uploaded">Uploaded: Jan 14, 2026</span>
-                <span class="save-details-size">Size: 45 KB</span>
+                <span class="save-details-uploader">Uploaded by: <a href="{% url 'public profile' save.uploaded_by.pk %}">{{ save.uploaded_by.username }}</a></span>
+                <span class="save-details-platform">Platform: {{ save.platform }}</span>
+                <span class="save-details-type">Save Type: {{ save.get_save_type_display }}</span>
+                <span class="save-details-progress">Progress: {{ save.get_progress_display }}{% if save.mission_detail %} - {{ save.mission_detail }}{% endif %}</span>
+                <span class="save-details-progress">Completion: {{ save.completion }}%</span>
+                <span class="save-details-uploaded">Uploaded: {{ save.created_at|date:"M d, Y" }}</span>
+                <span class="save-details-size">Size: {{ save.save_file.size|filesizeformat }}</span>
+                <span class="save-details-downloads">Downloads: {{ save.downloads }}</span>
+                <span class="save-details-rating">Rating: ⭐{{ save.rating }} ({{ save.upvotes }} 👍 / {{ save.downvotes }} 👎)</span>
             </div>
-            <div class="save-details-description">
-                <strong>Description:</strong> Save file after mission "Black Project". All side missions completed. 78% game progress.
-            </div>
+            {% if save.description %}
+                <div class="save-details-description">
+                    <strong>Description:</strong> {{ save.description }}
+                </div>
+            {% endif %}
             <div class="save-details-actions">
-                <a href="#" class="download-btn-small">Download Save</a>
-                <a href="#" class="save-details-delete-btn">Delete</a>
+                {% if user.is_authenticated %}
+                    <button class="save-card-vote-btn save-card-upvote-btn" type="button" data-save-id="{{ save.pk }}" data-vote-type="upvote">
+                        {% if user_vote == 'upvote' %}
+                            <img src="{% static 'images/icons/upvoted.webp' %}" alt="Upvote" class="save-card-vote-icon">
+                        {% else %}
+                            <img src="{% static 'images/icons/upvote.webp' %}" alt="Upvote" class="save-card-vote-icon">
+                        {% endif %}
+                    </button>
+                    <button class="save-card-vote-btn save-card-downvote-btn" type="button" data-save-id="{{ save.pk }}" data-vote-type="downvote">
+                        {% if user_vote == 'downvote' %}
+                            <img src="{% static 'images/icons/downvoted.webp' %}" alt="Downvote" class="save-card-vote-icon">
+                        {% else %}
+                            <img src="{% static 'images/icons/downvote.webp' %}" alt="Downvote" class="save-card-vote-icon">
+                        {% endif %}
+                    </button>
+                {% endif %}
+                <a href="{% url 'saves download' save.pk %}" class="download-btn-small">Download Save</a>
+                {% if can_delete %}
+                    <a href="{% url 'saves delete' save.pk %}" class="save-details-delete-btn" onclick="return confirm('Are you sure you want to delete this save?');">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
+<script src="{% static 'js/save_vote.js' %}"></script>
 {% endblock %}

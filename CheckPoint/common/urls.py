@@ -18,7 +18,6 @@ urlpatterns = [
     path('screenshots/latest/', views.latest_screenshots, name='latest screenshots'),
     path('screenshots/top-rated/', views.top_rated_screenshots, name='top rated screenshots'),
     path('screenshots/upload/', views.upload_screenshot, name='upload screenshot'),
-    path('screenshots/my/', views.my_screenshots, name='my screenshots'),
     path('404/', views.custom_404, name='404 page'),
     path('403/', views.custom_403, name='403 page'),
     path('500/', views.custom_500, name='500 page'),

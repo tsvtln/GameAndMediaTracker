@@ -9,59 +9,72 @@
     <p class="save-upload-subtitle">Share your game progress with the community. Upload save files for PC games, consoles, or emulators.</p>
     <div class="save-upload-main">
         <div class="save-upload-form-col">
-            <form class="save-upload-form" enctype="multipart/form-data">
-                <label for="save-file">Save File</label>
-                <label for="save-file" class="upload-file-label">Select Save File</label>
-                <input type="file" class="upload-file-input" id="save-file" name="save_file" accept=".zip,.rar,.7z,.sav,.srm,.state,.dat" required style="display:none;">
+            <form class="save-upload-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <label for="{{ form.save_file.id_for_label }}">Save File</label>
+                <label for="{{ form.save_file.id_for_label }}" class="upload-file-label">Select Save File</label>
+                {{ form.save_file }}
+                {% if form.save_file.errors %}
+                    <div class="error-message">{{ form.save_file.errors }}</div>
+                {% endif %}
                 <small class="save-upload-accept">Accepted: .zip .rar .7z .sav .srm .state .dat</small>
-                <label for="save-image">Upload Picture</label>
-                <label for="save-image" class="upload-file-label">Select Image</label>
-                <input type="file" class="upload-file-input" id="save-image" name="save_image" accept=".png,.jpg,.jpeg,.webp" style="display:none;">
+
+                <label for="{{ form.save_image.id_for_label }}">Upload Picture</label>
+                <label for="{{ form.save_image.id_for_label }}" class="upload-file-label">Select Image</label>
+                {{ form.save_image }}
+                {% if form.save_image.errors %}
+                    <div class="error-message">{{ form.save_image.errors }}</div>
+                {% endif %}
                 <small class="save-upload-accept">Accepted: .png .jpg .jpeg .webp</small>
                 <div id="save-image-preview" style="display:none; margin-bottom: 10px;"></div>
-                <label for="game-title">Game Title</label>
-                <input type="text" id="game-title" name="game_title" placeholder="GTA San Andreas" required>
 
-                <label for="platform">Platform</label>
-                <select id="platform" name="platform" required>
-                    <option value="">All</option>
-                    <option>PC</option>
-                    <option>PlayStation</option>
-                    <option>PlayStation 2</option>
-                    <option>PlayStation 3</option>
-                    <option>Xbox</option>
-                    <option>Switch</option>
-                    <option>SNES</option>
-                    <option>Other</option>
-                </select>
+                <label for="{{ form.game_title.id_for_label }}">Game Title</label>
+                {{ form.game_title }}
+                {% if form.game_title.errors %}
+                    <div class="error-message">{{ form.game_title.errors }}</div>
+                {% endif %}
 
-                <label for="save-type">Save Type</label>
-                <select id="save-type" name="save_type" required>
-                    <option value="pc">PC</option>
-                    <option value="emulator">Emulator</option>
-                </select>
+                <label for="{{ form.platform.id_for_label }}">Platform</label>
+                {{ form.platform }}
+                {% if form.platform.errors %}
+                    <div class="error-message">{{ form.platform.errors }}</div>
+                {% endif %}
 
-                <label for="progress">Game Progress</label>
-                <select id="progress" name="progress" required onchange="toggleMissionField()">
-                    <option value="early">Early Game</option>
-                    <option value="mid">Mid Game</option>
-                    <option value="late">Late Game</option>
-                    <option value="100">100% Completed</option>
-                    <option value="mission">Specific Mission/Custom</option>
-                </select>
+                <label for="{{ form.save_type.id_for_label }}">Save Type</label>
+                {{ form.save_type }}
+                {% if form.save_type.errors %}
+                    <div class="error-message">{{ form.save_type.errors }}</div>
+                {% endif %}
+
+                <label for="{{ form.progress.id_for_label }}">Game Progress</label>
+                {{ form.progress }}
+                {% if form.progress.errors %}
+                    <div class="error-message">{{ form.progress.errors }}</div>
+                {% endif %}
+
                 <div id="mission-field" style="display:none; margin-top:8px;">
-                    <label for="mission-detail">Specific Mission:</label>
-                    <input type="text" id="mission-detail" name="mission_detail" placeholder="After mission 'Black Project'">
+                    <label for="{{ form.mission_detail.id_for_label }}">Specific Mission:</label>
+                    {{ form.mission_detail }}
+                    {% if form.mission_detail.errors %}
+                        <div class="error-message">{{ form.mission_detail.errors }}</div>
+                    {% endif %}
                 </div>
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" placeholder="Describe your save file, progress, or any special instructions..." class="save-upload-description"></textarea>
 
-                <label for="completion">Completion Percentage</label>
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="error-message">{{ form.description.errors }}</div>
+                {% endif %}
+
+                <label for="{{ form.completion.id_for_label }}">Completion Percentage</label>
                 <div class="save-upload-completion-row">
-                    <input type="range" id="completion" name="completion" min="0" max="100" value="0" step="1" oninput="document.getElementById('completion-value').textContent = this.value + '%'">
+                    {{ form.completion }}
                     <span id="completion-value">0%</span>
                 </div>
-
+                {% if form.completion.errors %}
+                    <div class="error-message">{{ form.completion.errors }}</div>
+                {% endif %}
 
                 <button type="submit" class="download-btn">SUBMIT SAVE</button>
             </form>

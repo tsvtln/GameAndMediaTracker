@@ -1,3 +1,22 @@
+[2026-04-15]
+- Implemented SAVES app backend functionality
+  - Created Save model with upload, download, and delete operations
+  - Added SaveVote model for upvote/downvote system with rating calculation
+  - Implemented saves vault (user's personal collection) with statistics
+  - Added search and filter options (game title, platform, save type)
+  - Implemented sorting (latest, most downloaded, most liked)
+  - Added vote tracking (users can upvote/downvote saves)
+  - Download counter tracks save file downloads
+  - Delete permissions restricted to file uploader, staff, and moderators
+  - Vault shows total saves, platforms, and storage used
+- Some progress on Screenshots backend functionality
+  - Users can view all screenshots they've uploaded
+  - Added delete functionality with confirmation dialog
+  - Screenshots display with game name, platform, and upload date
+  - Added pagination (9 screenshots per page)
+  - Integrated view and download options for each screenshot
+  - Added upload functionality with file validation (max 5MB, image formats only)
+
 [2026-04-14]
 - Implemented BIOS app functionality
   - Created BIOS model with upload, download, and delete operations

@@ -46,3 +46,24 @@ class ModeratorOrVerifiedMixin(UserPassesTestMixin):
         if user.groups.filter(name__in=['Moderators', 'Verified Users']).exists():
             return True
         return False
+
+
+class CanDeleteContextMixin:
+    owner_field = 'uploaded_by'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        obj = self.get_object()
+        user = self.request.user
+
+        can_delete = False
+        if user.is_authenticated:
+            if user.is_staff or user.groups.filter(name='Moderators').exists():
+                can_delete = True
+            else:
+                owner = getattr(obj, self.owner_field, None)
+                if owner == user:
+                    can_delete = True
+
+        context['can_delete'] = can_delete
+        return context

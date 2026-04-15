@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (modalDownload) {
-        modalDownload.addEventListener('click', function() {
-            alert('Download started!');
-        });
-    }
+    // if (modalDownload) {
+    //     modalDownload.addEventListener('click', function() {
+    //         alert('Download started!');
+    //     });
+    // }
 });

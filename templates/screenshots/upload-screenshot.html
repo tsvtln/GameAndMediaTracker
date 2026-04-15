@@ -10,12 +10,16 @@
 
     <div class="upload-screenshot-main">
         <div class="upload-screenshot-form-col">
-            <form class="upload-screenshot-form" enctype="multipart/form-data">
+            <form class="upload-screenshot-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
-                <label for="screenshot-file">Screenshot File</label>
-                <label for="screenshot-file" class="upload-file-label">Select Screenshot</label>
-                <input type="file" class="upload-file-input" id="screenshot-file" name="screenshot_file" accept=".png,.jpg,.jpeg,.webp" required>
+                <label for="{{ form.screenshot.id_for_label }}">Screenshot File</label>
+                <label for="{{ form.screenshot.id_for_label }}" class="upload-file-label">Select Screenshot</label>
+                {{ form.screenshot }}
                 <small class="upload-screenshot-accept">Accepted: .png .jpg .jpeg .webp</small>
+                {% if form.screenshot.errors %}
+                    <div class="error-message">{{ form.screenshot.errors }}</div>
+                {% endif %}
 
                 <div class="upload-screenshot-drop" id="screenshot-drop">
                     <div class="upload-screenshot-preview" id="screenshot-preview">SCREENSHOT PREVIEW</div>
@@ -23,45 +27,17 @@
                     <div class="upload-screenshot-drag">Drag screenshot here or click to upload</div>
                 </div>
 
-                <label for="game-name">Game Name</label>
-                <input type="text" id="game-name" name="game_name" class="styled-input" placeholder="e.g. Chrono Trigger" required>
+                <label for="{{ form.game_name.id_for_label }}">Game Name</label>
+                {{ form.game_name }}
+                {% if form.game_name.errors %}
+                    <div class="error-message">{{ form.game_name.errors }}</div>
+                {% endif %}
 
-                <label for="platform">Platform</label>
-                <select id="platform" name="platform" class="styled-select" required>
-                    <option value="">Select Platform</option>
-                    <option>PC</option>
-                    <option>NES</option>
-                    <option>Famicom</option>
-                    <option>SNES</option>
-                    <option>Super Famicom</option>
-                    <option>Nintendo 64</option>
-                    <option>GameCube</option>
-                    <option>Wii</option>
-                    <option>Wii U</option>
-                    <option>Nintendo Switch</option>
-                    <option>Game Boy</option>
-                    <option>Game Boy Color</option>
-                    <option>Game Boy Advance</option>
-                    <option>Nintendo DS</option>
-                    <option>Nintendo 3DS</option>
-                    <option>Sega Master System</option>
-                    <option>Sega Genesis / Mega Drive</option>
-                    <option>Sega CD</option>
-                    <option>32X</option>
-                    <option>Sega Saturn</option>
-                    <option>Sega Dreamcast</option>
-                    <option>Game Gear</option>
-                    <option>PlayStation</option>
-                    <option>PlayStation 2</option>
-                    <option>PlayStation 3</option>
-                    <option>PlayStation Portable (PSP)</option>
-                    <option>PlayStation Vita</option>
-                    <option>Xbox</option>
-                    <option>Xbox 360</option>
-                    <option>Xbox One</option>
-                    <option>Atari</option>
-                    <option>Other</option>
-                </select>
+                <label for="{{ form.platform.id_for_label }}">Platform</label>
+                {{ form.platform }}
+                {% if form.platform.errors %}
+                    <div class="error-message">{{ form.platform.errors }}</div>
+                {% endif %}
 
                 <button type="submit" class="download-btn">SUBMIT SCREENSHOT</button>
             </form>

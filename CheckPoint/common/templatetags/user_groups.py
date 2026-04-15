@@ -23,3 +23,11 @@ def filename(file_path):
     if hasattr(file_path, 'name'):
         return file_path.name.split('/')[-1]
     return str(file_path).split('/')[-1]
+
+
+@register.filter(name='get_item')
+def get_item(dictionary, key):
+    if dictionary is None:
+        return None
+    return dictionary.get(key)
+

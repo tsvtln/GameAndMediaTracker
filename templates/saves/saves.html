@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block title %}Saves | CHECKPOINT{% endblock %}
 
@@ -9,18 +10,30 @@
         <div class="roms-box">
             <a href="{% url 'saves all page' %}" class="roms-box-title">All Saves</a>
             <ul class="roms-box-list">
-                <li><a href="{% url 'saves details' %}">Super Mario World (100%)</a></li>
-                <li><a href="#">Pokémon Red (Elite Four)</a></li>
-                <li><a href="#">Zelda: Link to the Past (Final Boss)</a></li>
+                {% if recent_saves %}
+                    {% for save in recent_saves %}
+                        <li><a href="{% url 'saves details' save.pk %}">{{ save.game_title }} ({{ save.get_progress_display }})</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li>No saves uploaded yet</li>
+                {% endif %}
             </ul>
             <a href="{% url 'saves all page' %}" class="roms-box-more bottom-right">...</a>
         </div>
         <div class="roms-box">
             <a href="{% url 'saves vault page' %}" class="roms-box-title">My Vault</a>
             <ul class="roms-box-list">
-                <li><a href="#">My Mario Save</a></li>
-                <li><a href="#">My Pokémon Save</a></li>
-                <li><a href="#">My Zelda Save</a></li>
+                {% if user.is_authenticated %}
+                    {% if user_recent_saves %}
+                        {% for save in user_recent_saves %}
+                            <li><a href="{% url 'saves details' save.pk %}">{{ save.game_title }} ({{ save.get_progress_display }})</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <li>You haven't uploaded any saves yet</li>
+                    {% endif %}
+                {% else %}
+                    <li>Login to see your saves</li>
+                {% endif %}
             </ul>
             <a href="{% url 'saves vault page' %}" class="roms-box-more bottom-right">...</a>
         </div>

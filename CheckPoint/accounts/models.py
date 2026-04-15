@@ -1,7 +1,9 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils.translation import gettext_lazy as _
-from .managers import AppUserManager
+from django.utils.translation import gettext_lazy as gtl
+from CheckPoint.accounts.managers import AppUserManager
+from CheckPoint.accounts.choices import PLATFORM_CHOICES
 
 
 class AppUser(AbstractUser):
@@ -10,27 +12,27 @@ class AppUser(AbstractUser):
     email = models.EmailField(
         max_length=255,
         unique=True,
-        verbose_name=_('Email Address'),
-        help_text=_('Required. Must be a valid email address.')
+        verbose_name=gtl('Email Address'),
+        help_text=gtl('Required. Must be a valid email address.')
     )
 
     username = models.CharField(
         max_length=150,
         unique=True,
-        verbose_name=_('Username'),
-        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.')
+        verbose_name=gtl('Username'),
+        help_text=gtl('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.')
     )
 
     is_staff = models.BooleanField(
-        _('staff status'),
+        gtl('staff status'),
         default=False,
-        help_text=_('Designates if the user can login to admin features.')
+        help_text=gtl('Designates if the user can login to admin features.')
     )
 
     is_active = models.BooleanField(
-        _('active'),
+        gtl('active'),
         default=True,
-        help_text=_(
+        help_text=gtl(
             'Designates whether this user should be treated as active. '
             'Unselect this instead of deleting accounts.'
         ),
@@ -42,8 +44,8 @@ class AppUser(AbstractUser):
     objects = AppUserManager()
 
     class Meta:
-        verbose_name = _('User')
-        verbose_name_plural = _('Users')
+        verbose_name = gtl('User')
+        verbose_name_plural = gtl('Users')
         ordering = ['-date_joined']
 
     def __str__(self):
@@ -56,15 +58,15 @@ class Profile(models.Model):
         AppUser,
         on_delete=models.CASCADE,
         related_name='profile',
-        verbose_name=_('User')
+        verbose_name=gtl('User')
     )
 
     avatar = models.ImageField(
         upload_to='avatars/%Y/%m/',
         blank=True,
         null=True,
-        verbose_name=_('Avatar'),
-        help_text=_('Upload a profile picture.')
+        verbose_name=gtl('Avatar'),
+        help_text=gtl('Upload a profile picture.')
     )
 
     # ==========
@@ -72,35 +74,35 @@ class Profile(models.Model):
     # ==========
     favorites_count = models.PositiveIntegerField(
         default=0,
-        verbose_name=_('Favorites Count'),
-        help_text=_('Total number of favorited items.')
+        verbose_name=gtl('Favorites Count'),
+        help_text=gtl('Total number of favorite items.')
     )
 
     saves_count = models.PositiveIntegerField(
         default=0,
-        verbose_name=_('Saves Count'),
-        help_text=_('Total number of uploaded saves.')
+        verbose_name=gtl('Saves Count'),
+        help_text=gtl('Total number of uploaded saves.')
     )
 
     screenshots_count = models.PositiveIntegerField(
         default=0,
-        verbose_name=_('Screenshots Count'),
-        help_text=_('Total number of uploaded screenshots.')
+        verbose_name=gtl('Screenshots Count'),
+        help_text=gtl('Total number of uploaded screenshots.')
     )
 
     created_at = models.DateTimeField(
         auto_now_add=True,
-        verbose_name=_('Created At')
+        verbose_name=gtl('Created At')
     )
 
     updated_at = models.DateTimeField(
         auto_now=True,
-        verbose_name=_('Updated At')
+        verbose_name=gtl('Updated At')
     )
 
     class Meta:
-        verbose_name = _('Profile')
-        verbose_name_plural = _('Profiles')
+        verbose_name = gtl('Profile')
+        verbose_name_plural = gtl('Profiles')
         ordering = ['-created_at']
 
     def __str__(self):
@@ -133,3 +135,79 @@ class Profile(models.Model):
             self.screenshots_count -= 1
             self.save(update_fields=['screenshots_count'])
 
+
+class Screenshot(models.Model):
+    game_name = models.CharField(
+        max_length=255,
+        verbose_name=gtl('Game Name')
+    )
+
+    platform = models.CharField(
+        max_length=200,
+        choices=PLATFORM_CHOICES,
+        verbose_name=gtl('Platform')
+    )
+
+    screenshot = models.ImageField(
+        upload_to='screenshots/%Y/%m/',
+        validators=[FileExtensionValidator(
+            allowed_extensions=['png', 'jpg', 'jpeg', 'webp']
+        )],
+        verbose_name=gtl('Screenshot Image'),
+        help_text=gtl('Max size: 5MB. Allowed formats: .png .jpg .jpeg .webp')
+    )
+
+    uploaded_by = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+        related_name='screenshots',
+        verbose_name=gtl('Uploaded By')
+    )
+
+    likes = models.PositiveIntegerField(
+        default=0,
+        verbose_name=gtl('Likes')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=gtl('Uploaded At')
+    )
+
+    class Meta:
+        verbose_name = gtl('Screenshot')
+        verbose_name_plural = gtl('Screenshots')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.game_name} - {self.platform} by {self.uploaded_by.username}"
+
+
+class FavoriteScreenshot(models.Model):
+    user = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+        related_name='favorite_screenshots',
+        verbose_name=gtl('User')
+    )
+
+    screenshot = models.ForeignKey(
+        Screenshot,
+        on_delete=models.CASCADE,
+        related_name='favorited_by',
+        verbose_name=gtl('Screenshot')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=gtl('Favorited At')
+    )
+
+    class Meta:
+        verbose_name = gtl('Favorite Screenshot')
+        verbose_name_plural = gtl('Favorite Screenshots')
+        unique_together = ('user', 'screenshot')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.screenshot.game_name}"

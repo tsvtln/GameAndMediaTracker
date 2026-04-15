@@ -3,28 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('vault-delete-modal');
     const yesBtn = modal.querySelector('.vault-delete-yes');
     const noBtn = modal.querySelector('.vault-delete-no');
-    let currentDeleteBtn = null;
+    let currentDeleteUrl = null;
 
     deleteBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
-            currentDeleteBtn = btn;
+            currentDeleteUrl = btn.getAttribute('href');
             modal.classList.add('show');
         });
     });
 
     yesBtn.addEventListener('click', function() {
         modal.classList.remove('show');
-        // note: add actual delete logic here later, to remove the records from db and all that
-        if (currentDeleteBtn) {
-            const card = currentDeleteBtn.closest('.vault-card');
-            if (card) card.remove();
+        if (currentDeleteUrl) {
+            window.location.href = currentDeleteUrl;
         }
-        currentDeleteBtn = null;
+        currentDeleteUrl = null;
     });
 
     noBtn.addEventListener('click', function() {
         modal.classList.remove('show');
-        currentDeleteBtn = null;
+        currentDeleteUrl = null;
     });
 });

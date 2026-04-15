@@ -2,7 +2,6 @@ import requests
 import markdown2
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import TemplateView
 
@@ -85,10 +84,6 @@ def top_rated_screenshots(request):
 
 def upload_screenshot(request):
     return render(request, 'screenshots/upload-screenshot.html')
-
-
-def my_screenshots(request):
-    return render(request, 'screenshots/my-screenshots.html')
 
 
 def custom_404(request, exception=None):

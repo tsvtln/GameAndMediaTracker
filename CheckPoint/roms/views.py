@@ -11,7 +11,7 @@ from django.utils import timezone
 from datetime import timedelta
 from CheckPoint.roms.models import Rom, Comment, Review
 from CheckPoint.roms.forms import RomUploadForm, CommentForm, ReviewForm
-from CheckPoint.common.permissions import OwnerOrModeratorMixin
+from CheckPoint.common.permissions import OwnerOrModeratorMixin, CanDeleteContextMixin
 
 
 def roms(request):
@@ -251,26 +251,18 @@ class PlatformDetailView(ListView):
         return context
 
 
-class RomDetailView(DetailView):
+class RomDetailView(CanDeleteContextMixin, DetailView):
     model = Rom
     template_name = 'roms/rom-details.html'
     context_object_name = 'rom'
     pk_url_kwarg = 'pk'
+    owner_field = 'uploaded_by'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         rom = self.get_object()
         user = self.request.user
 
-        # check if user can delete this ROM
-        can_delete = False
-        if user.is_authenticated:
-            if user.is_staff or rom.uploaded_by == user:
-                can_delete = True
-            elif user.groups.filter(name='Moderators').exists():
-                can_delete = True
-
-        context['can_delete'] = can_delete
         context['comments'] = rom.comments.select_related('user').all()
         context['reviews'] = rom.reviews.select_related('user').all()
         context['comment_form'] = CommentForm()
@@ -431,7 +423,6 @@ class ReviewDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(request, 'Review deleted successfully!')
         return super().delete(request, *args, **kwargs)
-
 
 class RomDownloadView(View):
     def get(self, request, pk):

@@ -214,3 +214,7 @@ media/roms/*
 !media/roms/.placeholder
 media/bios/*
 !media/bios/.placeholder
+media/saves/*
+!media/saves/.placeholder
+media/screenshots/*
+!media/screenshots/.placeholder

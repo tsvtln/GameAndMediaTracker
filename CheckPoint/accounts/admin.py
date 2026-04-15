@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.utils.translation import gettext_lazy as _
-
-from .models import AppUser, Profile
+from django.utils.translation import gettext_lazy as gtl
+from CheckPoint.accounts.models import AppUser, Profile, Screenshot, FavoriteScreenshot
 
 
 class ProfileInline(admin.StackedInline):
@@ -25,10 +24,10 @@ class AppUserAdmin(BaseUserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
-        (_('Permissions'), {
+        (gtl('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (gtl('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
     add_fieldsets = (
@@ -49,9 +48,25 @@ class ProfileAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
     fieldsets = (
-        (_('User'), {'fields': ('user',)}),
-        (_('Profile Information'), {'fields': ('avatar',)}),
-        (_('Statistics'), {'fields': ('favorites_count', 'saves_count', 'screenshots_count')}),
-        (_('Timestamps'), {'fields': ('created_at', 'updated_at')}),
+        (gtl('User'), {'fields': ('user',)}),
+        (gtl('Profile Information'), {'fields': ('avatar',)}),
+        (gtl('Statistics'), {'fields': ('favorites_count', 'saves_count', 'screenshots_count')}),
+        (gtl('Timestamps'), {'fields': ('created_at', 'updated_at')}),
     )
 
+
+@admin.register(Screenshot)
+class ScreenshotAdmin(admin.ModelAdmin):
+    list_display = ('game_name', 'platform', 'uploaded_by', 'likes', 'created_at')
+    list_filter = ('platform', 'created_at')
+    search_fields = ('game_name', 'uploaded_by__username')
+    readonly_fields = ('likes', 'created_at')
+    ordering = ('-created_at',)
+
+
+@admin.register(FavoriteScreenshot)
+class FavoriteScreenshotAdmin(admin.ModelAdmin):
+    list_display = ('user', 'screenshot', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('user__username', 'screenshot__game_name')
+    ordering = ('-created_at',)

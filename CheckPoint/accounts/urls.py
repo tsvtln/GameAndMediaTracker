@@ -13,4 +13,12 @@ urlpatterns = [
     path('favorites/roms/', views.FavoriteRomsView.as_view(), name='accounts favorite roms page'),
     path('favorites/screenshots/', views.FavoriteScreenshotsView.as_view(), name='accounts favorite screenshots page'),
     path('profile/<int:pk>/', views.PublicProfileView.as_view(), name='public profile'),
+
+    # Screenshot URLs
+    path('screenshots/', views.ScreenshotListView.as_view(), name='screenshots main'),
+    path('screenshots/latest/', views.LatestScreenshotsView.as_view(), name='latest screenshots'),
+    path('screenshots/top-rated/', views.TopRatedScreenshotsView.as_view(), name='top rated screenshots'),
+    path('screenshots/my/', views.MyScreenshotsView.as_view(), name='my screenshots'),
+    path('screenshots/upload/', views.ScreenshotUploadView.as_view(), name='upload screenshot'),
+    path('screenshots/delete/<int:pk>/', views.ScreenshotDeleteView.as_view(), name='delete screenshot'),
 ]

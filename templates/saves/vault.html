@@ -8,150 +8,134 @@
     <div class="vault-header">
         <h1 class="vault-title">My Vault</h1>
         <p class="vault-desc">Your personal collection of uploaded and saved game files.<br>Manage, download, or delete your saves.</p>
-        <a href="{% url 'saves upload page' %}" class="saves-vault-btn">Upload New Save</a>
+        {% if saves %}
+            <a href="{% url 'saves upload page' %}" class="saves-vault-btn">Upload New Save</a>
+        {% endif %}
     </div>
     <div class="vault-summary-panel">
         <div class="vault-summary-item">
             <span class="vault-summary-label">Total Saves</span>
-            <span class="vault-summary-value">12</span>
+            <span class="vault-summary-value">{{ total_saves|default:0 }}</span>
         </div>
         <div class="vault-summary-item">
             <span class="vault-summary-label">Platforms</span>
-            <span class="vault-summary-value">5</span>
+            <span class="vault-summary-value">{{ total_platforms|default:0 }}</span>
         </div>
         <div class="vault-summary-item">
             <span class="vault-summary-label">Storage</span>
-            <span class="vault-summary-value">34 MB</span>
+            <span class="vault-summary-value">{{ total_storage|default:"0 B" }}</span>
         </div>
     </div>
-    <div class="vault-filters-section">
-        <form class="vault-filters-form">
-            <div class="vault-filter-row">
-                <label for="vault-search">Search Saves:</label>
-                <input type="text" id="vault-search" name="vault-search" placeholder="Enter save or game name...">
-            </div>
-            <div class="vault-filter-row">
-                <label for="vault-platform">Platform:</label>
-                <select id="vault-platform" name="vault-platform">
-                    <option value="">All</option>
-                    <option>PC</option>
-                    <option>PlayStation</option>
-                    <option>PlayStation 2</option>
-                    <option>PlayStation 3</option>
-                    <option>Xbox</option>
-                    <option>Switch</option>
-                    <option>SNES</option>
-                    <option>Other</option>
-                </select>
-            </div>
-            <div class="vault-filter-row">
-                <label for="vault-game">Game:</label>
-                <select id="vault-game" name="vault-game">
-                    <option value="">All</option>
-                    <option>GTA San Andreas</option>
-                    <option>Super Mario 64</option>
-                    <option>Pokemon Fire Red</option>
-                </select>
-            </div>
-            <div class="vault-filter-row">
-                <label for="vault-sort">Sort By:</label>
-                <select id="vault-sort" name="vault-sort">
-                    <option value="latest">Latest</option>
-                    <option value="name">Name</option>
-                    <option value="platform">Platform</option>
-                </select>
-            </div>
-            <div class="vault-filter-row">
-                <label for="vault-type">Save Type:</label>
-                <select id="vault-type" name="vault-type">
-                    <option value="all">All</option>
-                    <option value="emulator">Emulator</option>
-                    <option value="pc">PC</option>
-                </select>
-            </div>
-            <div class="vault-filter-row">
-                <button type="submit" class="vault-search-btn">Search</button>
-            </div>
-        </form>
-    </div>
+    {% if saves %}
+        <div class="vault-filters-section">
+            <form class="vault-filters-form" method="get" action="">
+                <div class="vault-filter-row">
+                    <label for="vault-search">Search Saves:</label>
+                    <input type="text" id="vault-search" name="q" placeholder="Enter save or game name..." value="{{ request.GET.q }}">
+                </div>
+                <div class="vault-filter-row">
+                    <label for="vault-platform">Platform:</label>
+                    <select id="vault-platform" name="platform">
+                        <option value="">All</option>
+                        <option {% if request.GET.platform == 'PC' %}selected{% endif %}>PC</option>
+                        <option {% if request.GET.platform == 'PlayStation' %}selected{% endif %}>PlayStation</option>
+                        <option {% if request.GET.platform == 'PlayStation 2' %}selected{% endif %}>PlayStation 2</option>
+                        <option {% if request.GET.platform == 'PlayStation 3' %}selected{% endif %}>PlayStation 3</option>
+                        <option {% if request.GET.platform == 'Xbox' %}selected{% endif %}>Xbox</option>
+                        <option {% if request.GET.platform == 'Switch' %}selected{% endif %}>Switch</option>
+                        <option {% if request.GET.platform == 'SNES' %}selected{% endif %}>SNES</option>
+                        <option {% if request.GET.platform == 'Other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+                <div class="vault-filter-row">
+                    <label for="vault-game">Game:</label>
+                    <select id="vault-game" name="game">
+                        <option value="">All</option>
+                        {% for game in user_games %}
+                            <option {% if request.GET.game == game %}selected{% endif %}>{{ game }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="vault-filter-row">
+                    <label for="vault-sort">Sort By:</label>
+                    <select id="vault-sort" name="sort">
+                        <option value="latest" {% if request.GET.sort == 'latest' or not request.GET.sort %}selected{% endif %}>Latest</option>
+                        <option value="name" {% if request.GET.sort == 'name' %}selected{% endif %}>Name</option>
+                        <option value="platform" {% if request.GET.sort == 'platform' %}selected{% endif %}>Platform</option>
+                    </select>
+                </div>
+                <div class="vault-filter-row">
+                    <label for="vault-type">Save Type:</label>
+                    <select id="vault-type" name="type">
+                        <option value="all" {% if request.GET.type == 'all' or not request.GET.type %}selected{% endif %}>All</option>
+                        <option value="emulator" {% if request.GET.type == 'emulator' %}selected{% endif %}>Emulator</option>
+                        <option value="pc" {% if request.GET.type == 'pc' %}selected{% endif %}>PC</option>
+                    </select>
+                </div>
+                <div class="vault-filter-row">
+                    <button type="submit" class="vault-search-btn">Search</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
     <div class="vault-cards-grid">
-        <!-- Example Save Card -->
-        <div class="vault-card">
-            <div class="vault-card-cover">
-                <a href="#">
-                    <img src="{% static 'images/temp_images/grand_theft_auto_san_andreas_playstation_2__2004__by_sonicloud1213_dig2fm4-fullview.jpg' %}" alt="GTA San Andreas Cover">
-                </a>
-            </div>
-            <div class="vault-card-content">
-                <div class="vault-card-title-row">
-                    <a href="#" class="vault-card-title">GTA San Andreas</a>
+        {% if saves %}
+            {% for save in saves %}
+                <div class="vault-card">
+                    <div class="vault-card-cover">
+                        <a href="{% url 'saves details' save.pk %}">
+                            {% if save.save_image %}
+                                <img src="{{ save.save_image.url }}" alt="{{ save.game_title }} Cover">
+                            {% else %}
+                                <img src="{% static 'images/placeholders/no_image.webp' %}" alt="{{ save.game_title }} Cover">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="vault-card-content">
+                        <div class="vault-card-title-row">
+                            <a href="{% url 'saves details' save.pk %}" class="vault-card-title">{{ save.game_title }}</a>
+                        </div>
+                        <div class="vault-card-meta">Platform: {{ save.platform }}</div>
+                        <div class="vault-card-meta">Save Type: {{ save.get_progress_display }} ({{ save.completion }}%)</div>
+                        <div class="vault-card-meta">Uploaded: {{ save.created_at|date:"M d, Y" }}</div>
+                        <div class="vault-card-meta">Size: {{ save.save_file.size|filesizeformat }}</div>
+                        <div class="vault-card-actions">
+                            <a href="{% url 'saves download' save.pk %}" class="vault-card-download-btn">Download</a>
+                            <a href="{% url 'saves delete' save.pk %}" class="vault-card-delete-btn" data-vault-delete="1">Delete</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="vault-card-meta">Platform: PC</div>
-                <div class="vault-card-meta">Save Type: Story (78%)</div>
-                <div class="vault-card-meta">Uploaded: Jan 14, 2026</div>
-                <div class="vault-card-meta">Size: 45 KB</div>
-                <div class="vault-card-actions">
-                    <a href="#" class="vault-card-download-btn">Download</a>
-                    <a href="#" class="vault-card-delete-btn" data-vault-delete="1">Delete</a>
+            {% endfor %}
                 </div>
-            </div>
-        </div>
-        <div class="vault-card">
-            <div class="vault-card-cover">
-                <a href="#">
-                    <img src="{% static 'images/temp_images/super_mario_64.jpg' %}" alt="Super Mario 64 Cover">
-                </a>
-            </div>
-            <div class="vault-card-content">
-                <div class="vault-card-title-row">
-                    <a href="#" class="vault-card-title">Super Mario 64</a>
-                </div>
-                <div class="vault-card-meta">Platform: Nintendo 64</div>
-                <div class="vault-card-meta">Save Type: 120 Stars (100%)</div>
-                <div class="vault-card-meta">Uploaded: Feb 2, 2026</div>
-                <div class="vault-card-meta">Size: 512 KB</div>
-                <div class="vault-card-actions">
-                    <a href="#" class="vault-card-download-btn">Download</a>
-                    <a href="#" class="vault-card-delete-btn" data-vault-delete="1">Delete</a>
-                </div>
-            </div>
-        </div>
-        <div class="vault-card">
-            <div class="vault-card-cover">
-                <a href="#">
-                    <img src="{% static 'images/temp_images/pokemon_fire_red.jpg' %}" alt="Pokemon Fire Red Cover">
-                </a>
-            </div>
-            <div class="vault-card-content">
-                <div class="vault-card-title-row">
-                    <a href="#" class="vault-card-title">Pokemon Fire Red</a>
-                </div>
-                <div class="vault-card-meta">Platform: Game Boy Advance</div>
-                <div class="vault-card-meta">Save Type: Elite Four Ready</div>
-                <div class="vault-card-meta">Uploaded: Mar 1, 2026</div>
-                <div class="vault-card-meta">Size: 256 KB</div>
-                <div class="vault-card-actions">
-                    <a href="#" class="vault-card-download-btn">Download</a>
-                    <a href="#" class="vault-card-delete-btn" data-vault-delete="1">Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="vault-pagination">
-        <a href="#" class="vault-page-link">&lt;&lt; Previous</a>
-        <a href="#" class="vault-page-link active">1</a>
-        <a href="#" class="vault-page-link">2</a>
-        <a href="#" class="vault-page-link">3</a>
-        <span class="vault-page-ellipsis">...</span>
-        <a href="#" class="vault-page-link">Next &gt;&gt;</a>
-    </div>
+        {% endif %}
 
-{# note: if vault is empty to display this instead #}
-    <div class="vault-empty-state">
-        <p>Your Vault is empty.</p>
-        <a href="{% url 'saves upload page' %}" class="saves-vault-btn">Upload Save</a>
+    {% if is_paginated %}
+    <div class="vault-pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">&lt;&lt; Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link active">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}" class="vault-page-link">Next &gt;&gt;</a>
+        {% endif %}
     </div>
+    {% endif %}
 </section>
+
+    {% if not saves %}
+        <div class="vault-empty-state">
+            <p>Your Vault is empty.</p>
+            <a href="{% url 'saves upload page' %}" class="saves-vault-btn">Upload Save</a>
+        </div>
+    {% endif %}
 
 <div class="vault-delete-modal" id="vault-delete-modal">
     <div class="vault-delete-modal-content">
