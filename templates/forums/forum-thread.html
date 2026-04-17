@@ -1,49 +1,101 @@
 {% extends 'common/base.html' %}
 {% load static %}
-{% block title %}Forum Thread | CHECKPOINT{% endblock %}
+{% block title %}{{ thread.title }} | CHECKPOINT{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/forum_thread.css' %}">
 <section class="forum-section">
-    <h1 class="bios-title">FORUM THREAD</h1>
+    <div class="thread-header">
+        <h1 class="bios-title">{{ thread.title|upper }}</h1>
+        {% if user.is_staff or user.groups.all.0.name == 'Moderators' %}
+        <form method="post" action="{% url 'forum thread delete' thread.pk %}" class="thread-delete-form">
+            {% csrf_token %}
+            <button type="submit" class="thread-delete-btn" onclick="return confirm('Are you sure you want to delete this thread?');">Delete Thread</button>
+        </form>
+        {% endif %}
+    </div>
     <div class="forum-thread-main">
-        <div class="forum-post">
+        {% if op_post %}
+        <div class="forum-post is-op">
+            {% if user.is_staff or user.groups.all.0.name == 'Moderators' %}
+            <form method="post" action="{% url 'forum post delete' op_post.pk %}" class="post-delete-form">
+                {% csrf_token %}
+                <button type="submit" class="post-delete-btn" onclick="return confirm('Delete this post?');">×</button>
+            </form>
+            {% endif %}
             <div class="forum-post-header">
                 <div class="forum-post-avatar">
-                    <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="User Avatar">
+                    {% if op_post.author.profile.avatar %}
+                    <img src="{{ op_post.author.profile.avatar.url }}" alt="{{ op_post.author.username }}">
+                    {% else %}
+                    <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="{{ op_post.author.username }}">
+                    {% endif %}
                 </div>
-                <div class="forum-post-author">user123</div>
-                <div class="forum-post-date">2026-03-14</div>
+                <span class="forum-post-author">{{ op_post.author.username }}</span>
+                <span class="forum-post-date">{{ op_post.created_at|date:"Y-m-d H:i" }}</span>
             </div>
-            <div class="forum-post-content">How do I fix BIOS not detected in PCSX2?</div>
+            <div class="forum-post-content">{{ op_post.content }}</div>
         </div>
-        <div class="forum-replies">
-            <div class="forum-reply">
-                <div class="forum-post-header">
-                    <div class="forum-post-avatar">
-                        <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="User Avatar">
-                    </div>
-                    <div class="forum-post-author">user456</div>
-                    <div class="forum-post-date">2026-03-14</div>
+        {% endif %}
+
+        {% for post in replies %}
+        <div class="forum-reply{% if post.author == thread.author %} is-op{% endif %}">
+            {% if user.is_staff or user.groups.all.0.name == 'Moderators' %}
+            <form method="post" action="{% url 'forum post delete' post.pk %}" class="post-delete-form">
+                {% csrf_token %}
+                <button type="submit" class="post-delete-btn" onclick="return confirm('Delete this post?');">×</button>
+            </form>
+            {% endif %}
+            <div class="forum-post-header">
+                <div class="forum-post-avatar">
+                    {% if post.author.profile.avatar %}
+                    <img src="{{ post.author.profile.avatar.url }}" alt="{{ post.author.username }}">
+                    {% else %}
+                    <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="{{ post.author.username }}">
+                    {% endif %}
                 </div>
-                <div class="forum-post-content">Check your BIOS folder path.</div>
+                <span class="forum-post-author">{{ post.author.username }}</span>
+                <span class="forum-post-date">{{ post.created_at|date:"Y-m-d H:i" }}</span>
             </div>
-            <div class="forum-reply">
-                <div class="forum-post-header">
-                    <div class="forum-post-avatar">
-                        <img src="{% static 'images/placeholders/no_avatar.webp' %}" alt="User Avatar">
-                    </div>
-                    <div class="forum-post-author">user789</div>
-                    <div class="forum-post-date">2026-03-14</div>
-                </div>
-                <div class="forum-post-content">Make sure the BIOS file is named correctly.</div>
-            </div>
+            <div class="forum-post-content">{{ post.content }}</div>
         </div>
+        {% empty %}
+        {% if not op_post %}
+        <div class="forum-post">
+            <p class="forum-empty-message">No posts yet.</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% if replies.has_other_pages %}
+        <div class="forum-pagination">
+            {% if replies.has_previous %}
+            <a href="?page=1" class="forum-page-link">First</a>
+            <a href="?page={{ replies.previous_page_number }}" class="forum-page-link">Previous</a>
+            {% endif %}
+
+            <span class="forum-page-current">Page {{ replies.number }} of {{ replies.paginator.num_pages }}</span>
+
+            {% if replies.has_next %}
+            <a href="?page={{ replies.next_page_number }}" class="forum-page-link">Next</a>
+            <a href="?page={{ replies.paginator.num_pages }}" class="forum-page-link">Last</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
         <div class="forum-reply-form">
-            <form>
-                <label for="reply-content">Reply:</label>
-                <textarea id="reply-content" name="reply-content" rows="4" placeholder="Write your reply..."></textarea>
+            <form method="post">
+                {% csrf_token %}
+                <label for="id_content">Reply:</label>
+                {{ form.content }}
                 <button type="submit" class="download-btn">Submit Reply</button>
             </form>
         </div>
+        {% else %}
+        <div class="forum-reply-form">
+            <p class="forum-empty-message">You must be <a href="{% url 'login' %}">logged in</a> to reply.</p>
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

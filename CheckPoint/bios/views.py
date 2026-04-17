@@ -8,6 +8,7 @@ from django.http import FileResponse, Http404
 from CheckPoint.bios.models import Bios
 from CheckPoint.bios.forms import BiosUploadForm
 from CheckPoint.common.permissions import OwnerOrModeratorMixin, ModeratorOrVerifiedMixin
+from CheckPoint.bios.tasks import increment_bios_downloads
 
 
 def bios(request):
@@ -108,7 +109,7 @@ class BiosDownloadView(View):
     def get(self, request, pk):
         try:
             bios_object = Bios.objects.get(pk=pk)
-            bios_object.increment_downloads()
+            increment_bios_downloads.delay(bios_object.pk)
             response = FileResponse(bios_object.bios_file.open('rb'))
             response['Content-Disposition'] = f'attachment; filename="{bios_object.bios_file.name.split("/")[-1]}"'
             return response

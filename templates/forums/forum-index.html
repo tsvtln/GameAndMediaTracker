@@ -1,29 +1,33 @@
 {% extends 'common/base.html' %}
+{% load static %}
 {% block title %}Forums | CHECKPOINT{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/forum.css' %}">
 <section class="forum-section">
     <h1 class="bios-title">FORUMS</h1>
     <div class="forum-category-list">
-        <div style="display: flex; gap: 32px; justify-content: center;">
+        <div class="forum-category-row">
             <div class="forum-category">
                 <h2 class="forum-category-title">HELP&SUPPORT</h2>
                 <ul class="forum-board-list">
                     <li><a href="{% url 'forum board' 'emulator-help' %}" class="forum-board-link">Emulator Help</a></li>
                     <li><a href="{% url 'forum board' 'bios-help' %}" class="forum-board-link">BIOS Help</a></li>
+                    <li><a href="{% url 'forum board' 'other' %}" class="forum-board-link">Other</a></li>
                 </ul>
             </div>
             <div class="forum-category">
                 <h2 class="forum-category-title">GENERAL</h2>
                 <ul class="forum-board-list">
                     <li><a href="{% url 'forum board' 'retro-gaming' %}" class="forum-board-link">Retro Gaming</a></li>
+                    <li><a href="{% url 'forum board' 'pc-gaming' %}" class="forum-board-link">PC Gaming</a></li>
                     <li><a href="{% url 'forum board' 'off-topic' %}" class="forum-board-link">Off Topic</a></li>
                 </ul>
             </div>
         </div>
-        <div style="margin: 0px auto 0 auto; max-width: 400px; display: flex; flex-direction: column; align-items: center;">
-            <div class="forum-category" style="width: 100%;">
-                <h2 class="forum-category-title" style="text-align: center; width: 100%;">GUIDES</h2>
-                <ul class="forum-board-list" style="width: 100%;">
+        <div class="forum-category-guides-wrapper">
+            <div class="forum-category forum-category-full-width">
+                <h2 class="forum-category-title forum-category-title-centered">GUIDES</h2>
+                <ul class="forum-board-list">
                     <li><a href="{% url 'forum board' 'game-guides' %}" class="forum-board-link">Game Guides</a></li>
                     <li><a href="{% url 'forum board' 'emulator-setup' %}" class="forum-board-link">Emulator Setup</a></li>
                     <li><a href="{% url 'forum board' 'bios-setup' %}" class="forum-board-link">BIOS Setup</a></li>

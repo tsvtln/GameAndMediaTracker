@@ -9,6 +9,7 @@ from django.http import FileResponse, Http404, JsonResponse
 from CheckPoint.saves.models import Save, SaveVote
 from CheckPoint.saves.forms import SaveUploadForm
 from CheckPoint.common.permissions import OwnerOrModeratorMixin, CanDeleteContextMixin
+from CheckPoint.saves.tasks import increment_save_downloads
 
 
 def saves_main(request):
@@ -202,7 +203,7 @@ class SaveDownloadView(View):
     def get(self, request, pk):
         try:
             save = Save.objects.get(pk=pk)
-            save.increment_downloads()
+            increment_save_downloads.delay(save.pk)
             response = FileResponse(save.save_file.open('rb'))
             response['Content-Disposition'] = f'attachment; filename="{save.game_title}.{save.save_file.name.split(".")[-1]}"'
 

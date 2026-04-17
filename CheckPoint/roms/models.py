@@ -5,7 +5,50 @@ from django.core.validators import FileExtensionValidator
 from CheckPoint.roms.choices import PLATFORM_CHOICES, GENRE_CHOICES
 
 
+class Tag(models.Model):
+    name = models.CharField(
+        max_length=50,
+        unique=True,
+        verbose_name=_('Tag Name')
+    )
+
+    slug = models.SlugField(
+        max_length=50,
+        unique=True,
+        verbose_name=_('Tag Slug')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Created At')
+    )
+
+    class Meta:
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class Rom(models.Model):
+    favorited_by = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        through='FavoriteRom',
+        related_name='favorite_roms',
+        verbose_name=_('Favorited By'),
+        blank=True
+    )
+
+    tags = models.ManyToManyField(
+        Tag,
+        related_name='roms',
+        verbose_name=_('Tags'),
+        blank=True,
+        help_text=_('Tags for categorizing ROMs (e.g., "multiplayer", "classic", "arcade")')
+    )
+
     title = models.CharField(
         max_length=200,
         verbose_name=_('Game Title')
@@ -158,6 +201,14 @@ class Review(models.Model):
         verbose_name=_('Review Text')
     )
 
+    liked_by = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        through='ReviewLike',
+        related_name='liked_reviews',
+        verbose_name=_('Liked By'),
+        blank=True
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_('Created At')
@@ -176,3 +227,67 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.user.username}: {self.rating}⭐ - {self.text}"
+
+    @property
+    def likes_count(self):
+        return self.liked_by.count()
+
+
+class ReviewLike(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='review_likes',
+        verbose_name=_('User')
+    )
+
+    review = models.ForeignKey(
+        Review,
+        on_delete=models.CASCADE,
+        related_name='likes',
+        verbose_name=_('Review')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Liked At')
+    )
+
+    class Meta:
+        verbose_name = _('Review Like')
+        verbose_name_plural = _('Review Likes')
+        unique_together = ('user', 'review')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} likes {self.review.user.username}'s review"
+
+
+class FavoriteRom(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='favorited_roms',
+        verbose_name=_('User')
+    )
+
+    rom = models.ForeignKey(
+        Rom,
+        on_delete=models.CASCADE,
+        related_name='rom_favorites',
+        verbose_name=_('ROM')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Favorited At')
+    )
+
+    class Meta:
+        verbose_name = _('Favorite ROM')
+        verbose_name_plural = _('Favorite ROMs')
+        unique_together = ('user', 'rom')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.rom.title}"

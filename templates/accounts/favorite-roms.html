@@ -8,99 +8,131 @@
 <div class="favorite-roms-section">
     <h1 class="favorite-roms-title">FAVORITE ROMS</h1>
     <div class="favorite-roms-desc">Your personal collection of saved ROMs.</div>
-    <div class="favorite-roms-stats">Total Favorites: 18</div>
+
+    {% if favorite_roms %}
+    <div class="favorite-roms-stats">Total Favorites: {{ paginator.count }}</div>
     <div class="favorite-roms-filters">
-        <form class="favorite-roms-filter-form">
-            <input type="text" id="favorite-roms-search" class="favorite-roms-search" placeholder="Search...">
+        <form class="favorite-roms-filter-form" method="get">
+            <input type="text" id="favorite-roms-search" class="favorite-roms-search" name="search" placeholder="Search..." value="{{ request.GET.search }}">
             <select id="favorite-roms-platform" class="favorite-roms-platform" name="platform">
-                <option>All</option>
-                <option>NES</option>
-                <option>Famicom</option>
-                <option>SNES</option>
-                <option>Super Famicom</option>
-                <option>Nintendo 64</option>
-                <option>GameCube</option>
-                <option>Wii</option>
-                <option>Wii U</option>
-                <option>Nintendo Switch</option>
-                <option>Game Boy</option>
-                <option>Game Boy Color</option>
-                <option>Game Boy Advance</option>
-                <option>Nintendo DS</option>
-                <option>Nintendo 3DS</option>
-                <option>Sega Master System</option>
-                <option>Sega Genesis / Mega Drive</option>
-                <option>Sega CD</option>
-                <option>32X</option>
-                <option>Sega Saturn</option>
-                <option>Sega Dreamcast</option>
-                <option>Game Gear</option>
-                <option>PlayStation</option>
-                <option>PlayStation 2</option>
-                <option>PlayStation 3</option>
-                <option>PlayStation Portable (PSP)</option>
-                <option>PlayStation Vita</option>
-                <option>Xbox</option>
-                <option>Xbox 360</option>
-                <option>Xbox One</option>
-                <option>Atari</option>
+                <option value="">All</option>
+                <option value="NES" {% if selected_platform == 'NES' %}selected{% endif %}>NES</option>
+                <option value="Famicom" {% if selected_platform == 'Famicom' %}selected{% endif %}>Famicom</option>
+                <option value="SNES" {% if selected_platform == 'SNES' %}selected{% endif %}>SNES</option>
+                <option value="Super Famicom" {% if selected_platform == 'Super Famicom' %}selected{% endif %}>Super Famicom</option>
+                <option value="Nintendo 64" {% if selected_platform == 'Nintendo 64' %}selected{% endif %}>Nintendo 64</option>
+                <option value="GameCube" {% if selected_platform == 'GameCube' %}selected{% endif %}>GameCube</option>
+                <option value="Wii" {% if selected_platform == 'Wii' %}selected{% endif %}>Wii</option>
+                <option value="Wii U" {% if selected_platform == 'Wii U' %}selected{% endif %}>Wii U</option>
+                <option value="Nintendo Switch" {% if selected_platform == 'Nintendo Switch' %}selected{% endif %}>Nintendo Switch</option>
+                <option value="Game Boy" {% if selected_platform == 'Game Boy' %}selected{% endif %}>Game Boy</option>
+                <option value="Game Boy Color" {% if selected_platform == 'Game Boy Color' %}selected{% endif %}>Game Boy Color</option>
+                <option value="Game Boy Advance" {% if selected_platform == 'Game Boy Advance' %}selected{% endif %}>Game Boy Advance</option>
+                <option value="Nintendo DS" {% if selected_platform == 'Nintendo DS' %}selected{% endif %}>Nintendo DS</option>
+                <option value="Nintendo 3DS" {% if selected_platform == 'Nintendo 3DS' %}selected{% endif %}>Nintendo 3DS</option>
+                <option value="Sega Master System" {% if selected_platform == 'Sega Master System' %}selected{% endif %}>Sega Master System</option>
+                <option value="Sega Genesis / Mega Drive" {% if selected_platform == 'Sega Genesis / Mega Drive' %}selected{% endif %}>Sega Genesis / Mega Drive</option>
+                <option value="Sega CD" {% if selected_platform == 'Sega CD' %}selected{% endif %}>Sega CD</option>
+                <option value="32X" {% if selected_platform == '32X' %}selected{% endif %}>32X</option>
+                <option value="Sega Saturn" {% if selected_platform == 'Sega Saturn' %}selected{% endif %}>Sega Saturn</option>
+                <option value="Sega Dreamcast" {% if selected_platform == 'Sega Dreamcast' %}selected{% endif %}>Sega Dreamcast</option>
+                <option value="Game Gear" {% if selected_platform == 'Game Gear' %}selected{% endif %}>Game Gear</option>
+                <option value="PlayStation" {% if selected_platform == 'PlayStation' %}selected{% endif %}>PlayStation</option>
+                <option value="PlayStation 2" {% if selected_platform == 'PlayStation 2' %}selected{% endif %}>PlayStation 2</option>
+                <option value="PlayStation 3" {% if selected_platform == 'PlayStation 3' %}selected{% endif %}>PlayStation 3</option>
+                <option value="PlayStation Portable (PSP)" {% if selected_platform == 'PlayStation Portable (PSP)' %}selected{% endif %}>PlayStation Portable (PSP)</option>
+                <option value="PlayStation Vita" {% if selected_platform == 'PlayStation Vita' %}selected{% endif %}>PlayStation Vita</option>
+                <option value="Xbox" {% if selected_platform == 'Xbox' %}selected{% endif %}>Xbox</option>
+                <option value="Xbox 360" {% if selected_platform == 'Xbox 360' %}selected{% endif %}>Xbox 360</option>
+                <option value="Xbox One" {% if selected_platform == 'Xbox One' %}selected{% endif %}>Xbox One</option>
+                <option value="Atari" {% if selected_platform == 'Atari' %}selected{% endif %}>Atari</option>
             </select>
             <select id="favorite-roms-sort" class="favorite-roms-sort" name="sort">
-                <option>Recently Added</option>
-                <option>Name</option>
-                <option>Platform</option>
+                <option value="recent" {% if selected_sort == 'recent' %}selected{% endif %}>Recently Added</option>
+                <option value="name" {% if selected_sort == 'name' %}selected{% endif %}>Name</option>
+                <option value="platform" {% if selected_sort == 'platform' %}selected{% endif %}>Platform</option>
             </select>
+            <button type="submit" class="search-btn">Apply</button>
         </form>
     </div>
     <div class="favorite-roms-grid">
+        {% for favorite in favorite_roms %}
         <div class="favorite-rom-card">
-            <div class="favorite-rom-card-art">
-                <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros">
-            </div>
-            <div class="favorite-rom-card-title">Super Mario Bros</div>
-            <div class="favorite-rom-card-meta">Platform: NES</div>
-            <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> 4.8</div>
+            <a href="{% url 'roms details' favorite.rom.pk %}" class="favorite-rom-card-link">
+                <div class="favorite-rom-card-art">
+                    <img src="{{ favorite.rom.box_art.url }}" alt="{{ favorite.rom.title }}">
+                </div>
+                <div class="favorite-rom-card-title">{{ favorite.rom.title }}</div>
+                <div class="favorite-rom-card-meta">Platform: {{ favorite.rom.platform }}</div>
+                <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> {{ favorite.rom.rating }}</div>
+            </a>
             <div class="favorite-rom-card-actions">
-                <a href="#" class="favorite-rom-card-btn">Download</a>
-                <button class="favorite-rom-card-fav-btn">♥ Remove</button>
+                <a href="{% url 'roms download' favorite.rom.pk %}" class="favorite-rom-card-btn" onclick="event.stopPropagation()">Download</a>
+                <button class="favorite-rom-card-fav-btn" data-rom-id="{{ favorite.rom.pk }}" onclick="event.stopPropagation()">♥ Remove</button>
             </div>
         </div>
-        <div class="favorite-rom-card">
-            <div class="favorite-rom-card-art">
-                <img src="{% static 'images/temp_images/pokemon_fire_red.jpg' %}" alt="Pokemon Fire Red">
-            </div>
-            <div class="favorite-rom-card-title">Pokemon Fire Red</div>
-            <div class="favorite-rom-card-meta">Platform: Game Boy Advance</div>
-            <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> 4.7</div>
-            <div class="favorite-rom-card-actions">
-                <a href="#" class="favorite-rom-card-btn">Download</a>
-                <button class="favorite-rom-card-fav-btn">♥ Remove</button>
-            </div>
-        </div>
-        <div class="favorite-rom-card">
-            <div class="favorite-rom-card-art">
-                <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda">
-            </div>
-            <div class="favorite-rom-card-title">Legend of Zelda</div>
-            <div class="favorite-rom-card-meta">Platform: NES</div>
-            <div class="favorite-rom-card-rating"><span class="rom-details-rating-star">⭐</span> 4.9</div>
-            <div class="favorite-rom-card-actions">
-                <a href="#" class="favorite-rom-card-btn">Download</a>
-                <button class="favorite-rom-card-fav-btn">♥ Remove</button>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+
+    {% if paginator.num_pages > 1 %}
     <div class="favorite-roms-pagination">
-        <a href="#" class="favorite-roms-page-link">&lt;&lt; Previous</a>
-        <a href="#" class="favorite-roms-page-link active">1</a>
-        <a href="#" class="favorite-roms-page-link">2</a>
-        <a href="#" class="favorite-roms-page-link">3</a>
-        <span class="favorite-roms-page-ellipsis">...</span>
-        <a href="#" class="favorite-roms-page-link">Next &gt;&gt;</a>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="favorite-roms-page-link">&lt;&lt; Previous</a>
+        {% endif %}
+
+        {% for num in paginator.page_range %}
+            {% if num == page_obj.number %}
+                <span class="favorite-roms-page-link active">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="favorite-roms-page-link">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="favorite-roms-page-link">Next &gt;&gt;</a>
+        {% endif %}
     </div>
+    {% endif %}
+
+    {% else %}
     <div class="favorites-empty-state">
         <p>You don't have any 👾<br> Go add some!</p>
         <a href="{% url 'roms most downloaded' %}" class="favorites-empty-link">Browse Most Downloaded ROMs</a>
     </div>
+    {% endif %}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const removeButtons = document.querySelectorAll('.favorite-rom-card-fav-btn');
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || '{{ csrf_token }}';
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const romId = this.dataset.romId;
+
+            fetch(`/roms/favorite/${romId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert(data.message || 'An error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update favorites');
+            });
+        });
+    });
+});
+</script>
 {% endblock %}

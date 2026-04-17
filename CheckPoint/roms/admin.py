@@ -1,5 +1,13 @@
 from django.contrib import admin
-from CheckPoint.roms.models import Rom, Comment, Review
+from CheckPoint.roms.models import Rom, Comment, Review, FavoriteRom, Tag
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'created_at')
+    search_fields = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+    ordering = ('name',)
 
 
 @admin.register(Rom)
@@ -9,10 +17,11 @@ class RomAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'uploaded_by__username')
     readonly_fields = ('downloads', 'created_at', 'updated_at')
     ordering = ('-created_at',)
+    filter_horizontal = ('tags',)
 
     fieldsets = (
         ('Game Information', {
-            'fields': ('title', 'platform', 'genre', 'description')
+            'fields': ('title', 'platform', 'genre', 'description', 'tags')
         }),
         ('Files', {
             'fields': ('rom_file', 'box_art')
@@ -24,6 +33,15 @@ class RomAdmin(admin.ModelAdmin):
             'fields': ('created_at', 'updated_at')
         }),
     )
+
+
+@admin.register(FavoriteRom)
+class FavoriteRomAdmin(admin.ModelAdmin):
+    list_display = ('user', 'rom', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('user__username', 'rom__title')
+    readonly_fields = ('created_at',)
+    ordering = ('-created_at',)
 
 
 @admin.register(Comment)

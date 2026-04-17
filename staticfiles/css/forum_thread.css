@@ -1,3 +1,33 @@
+.thread-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.thread-delete-form {
+    margin: 12px 0 0 0;
+}
+
+.thread-delete-btn {
+    background: #ff1818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-weight: bold;
+    box-shadow: 0 0 8px #ff1818;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.thread-delete-btn:hover {
+    background: #232323;
+    color: #ff1818;
+    box-shadow: 0 0 16px #ff1818;
+    text-shadow: 0 0 8px #ff1818;
+}
+
 .forum-thread-main {
     max-width: 800px;
     margin: 40px auto;
@@ -17,6 +47,50 @@
     padding: 18px 24px;
     margin-bottom: 12px;
     display: block;
+    position: relative;
+}
+
+.post-delete-form {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    margin: 0;
+}
+
+.post-delete-btn {
+    background: #ff1818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+    line-height: 1;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 6px #ff1818;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.post-delete-btn:hover {
+    background: #232323;
+    color: #ff1818;
+    box-shadow: 0 0 12px #ff1818;
+}
+
+.forum-post {
+    border: 2px solid #49ff18;
+    background: #1e2838;
+    box-shadow: 0 0 16px #49ff18;
+}
+
+.forum-reply {
+    border: 1px solid #49ff18;
+    background: #1a1a1a;
 }
 
 .forum-post-avatar img {
@@ -42,6 +116,17 @@
     font-family: 'Press Start 2P', monospace;
     font-size: 1rem;
     font-weight: bold;
+}
+
+.is-op .forum-post-author::after {
+    content: '[OP]';
+    color: #49ff18;
+    font-size: 0.85rem;
+    background: #232323;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    box-shadow: 0 0 6px #49ff18;
 }
 
 .forum-post-date {
@@ -115,4 +200,42 @@
     color: #49ff18;
     box-shadow: 0 0 20px #49ff18;
     text-shadow: 0 0 8px #49ff18;
+}
+
+.forum-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    padding: 18px;
+    background: #232323;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+}
+
+.forum-page-link {
+    background: #49ff18;
+    color: #232323;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 0 6px #49ff18;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.forum-page-link:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 12px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.forum-page-current {
+    color: #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    padding: 0 12px;
 }

@@ -147,8 +147,26 @@
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
     transition: box-shadow 0.2s;
 }
-.rom-details-screenshot-more:hover {
-    box-shadow: 0 0 16px #49ff18;
+
+.rom-details-no-screenshots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px;
+    background: #181818;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #49ff18;
+    min-height: 200px;
+}
+
+.rom-details-no-screenshots p {
+    color: #b6c2d2;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
 }
 
 .rom-details-description {

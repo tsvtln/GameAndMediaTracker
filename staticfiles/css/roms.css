@@ -255,13 +255,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.rom-details-favorite-btn:hover {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 
 .rom-details-heart-icon,
 .rom-details-review-heart-icon {
     transition: filter 0.2s, box-shadow 0.2s;
     filter: drop-shadow(0 0 6px #49ff18) brightness(1.2) contrast(1.2);
-    background: #f5e9d6;
+    background: #49ff18;
     border-radius: 6px;
     box-shadow: 0 0 8px #49ff18;
     padding: 4px;

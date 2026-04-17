@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView as DjangoPasswordChangeView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy as _
 from django.views.generic import CreateView, DetailView, UpdateView, TemplateView, ListView, DeleteView
-from CheckPoint.accounts.models import AppUser, Profile, Screenshot
+from django.http import JsonResponse
+from CheckPoint.accounts.models import AppUser, Profile, Screenshot, FavoriteScreenshot
 from CheckPoint.common.permissions import OwnerOrModeratorMixin
 from CheckPoint.accounts.forms import (
     AppUserRegistrationForm,
@@ -14,6 +16,7 @@ from CheckPoint.accounts.forms import (
     CustomPasswordChangeForm,
     ScreenshotUploadForm
 )
+from CheckPoint.accounts.tasks import sync_screenshot_favorite_counters
 
 
 class RegisterView(CreateView):
@@ -53,8 +56,6 @@ class AppUserLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        # redirect to home page when logged in
-        # NOTE: if have time to make it to redirect to the last page visited that redirected to login
         return _('home')
 
     def form_valid(self, form):
@@ -159,13 +160,116 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 class FavoritesView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/favorites.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        from CheckPoint.roms.models import FavoriteRom
+        
+        # get top 2 favorite ROMs
+        favorite_roms = FavoriteRom.objects.filter(
+            user=self.request.user
+        ).select_related('rom')[:2]
+        
+        # get top 8 favorite screenshots
+        favorite_screenshots = FavoriteScreenshot.objects.filter(
+            user=self.request.user
+        ).select_related('screenshot')[:8]
+        
+        context['favorite_roms'] = favorite_roms
+        context['favorite_screenshots'] = favorite_screenshots
+        context['has_favorite_roms'] = favorite_roms.exists()
+        context['has_favorite_screenshots'] = favorite_screenshots.exists()
+        
+        return context
 
-class FavoriteRomsView(LoginRequiredMixin, TemplateView):
+
+class FavoriteRomsView(LoginRequiredMixin, ListView):
     template_name = 'accounts/favorite-roms.html'
+    context_object_name = 'favorite_roms'
+    paginate_by = 10
+
+    def get_queryset(self):
+        from CheckPoint.roms.models import FavoriteRom
+        queryset = FavoriteRom.objects.filter(user=self.request.user).select_related('rom', 'rom__uploaded_by')
+        
+        platform = self.request.GET.get('platform', '')
+        search = self.request.GET.get('search', '')
+        sort_by = self.request.GET.get('sort', 'recent')
+        
+        if platform:
+            queryset = queryset.filter(rom__platform=platform)
+        
+        if search:
+            queryset = queryset.filter(rom__title__icontains=search)
+        
+        if sort_by == 'name':
+            queryset = queryset.order_by('rom__title')
+        elif sort_by == 'platform':
+            queryset = queryset.order_by('rom__platform', '-created_at')
+        else:  # recent
+            queryset = queryset.order_by('-created_at')
+        
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        platform = self.request.GET.get('platform', '')
+        sort_by = self.request.GET.get('sort', 'recent')
+
+        context['selected_platform'] = platform
+        context['selected_sort'] = sort_by
+
+        return context
 
 
-class FavoriteScreenshotsView(LoginRequiredMixin, TemplateView):
+class FavoriteScreenshotsView(LoginRequiredMixin, ListView):
     template_name = 'accounts/favorite-screenshots.html'
+    context_object_name = 'favorite_screenshots'
+    paginate_by = 12
+
+    def get_queryset(self):
+        queryset = FavoriteScreenshot.objects.filter(
+            user=self.request.user
+        ).select_related('screenshot', 'screenshot__uploaded_by')
+
+        # Apply filters
+        platform = self.request.GET.get('platform', '')
+        game = self.request.GET.get('game', '')
+        search = self.request.GET.get('search', '')
+        sort_by = self.request.GET.get('sort', 'recent')
+
+        if platform:
+            queryset = queryset.filter(screenshot__platform=platform)
+
+        if game:
+            queryset = queryset.filter(screenshot__game_name=game)
+
+        if search:
+            queryset = queryset.filter(screenshot__game_name__icontains=search)
+
+        if sort_by == 'game':
+            queryset = queryset.order_by('screenshot__game_name')
+        elif sort_by == 'platform':
+            queryset = queryset.order_by('screenshot__platform', '-created_at')
+        else:  # recent
+            queryset = queryset.order_by('-created_at')
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # get unique games from user favorited screenshots for filter
+        favorited_games = FavoriteScreenshot.objects.filter(
+            user=self.request.user
+        ).values_list('screenshot__game_name', flat=True).distinct().order_by('screenshot__game_name')
+
+        context['favorited_games'] = favorited_games
+        context['selected_platform'] = self.request.GET.get('platform', '')
+        context['selected_game'] = self.request.GET.get('game', '')
+        context['selected_sort'] = self.request.GET.get('sort', 'recent')
+
+        return context
 
 
 class PasswordChangeView(LoginRequiredMixin, DjangoPasswordChangeView):
@@ -183,7 +287,6 @@ class PasswordChangeView(LoginRequiredMixin, DjangoPasswordChangeView):
         return super().form_invalid(form)
 
 
-# keep these function-based views for now (will convert later if needed)
 def accounts(request):
     return render(request, 'accounts/accounts.html')
 
@@ -224,20 +327,67 @@ class LatestScreenshotsView(ListView):
     model = Screenshot
     template_name = 'screenshots/latest.html'
     context_object_name = 'screenshots'
-    paginate_by = 9
+    paginate_by = 12
 
     def get_queryset(self):
         return Screenshot.objects.select_related('uploaded_by').order_by('-created_at')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # add favorite status for each screenshot if user is authenticated
+        if self.request.user.is_authenticated:
+            screenshot_ids = [s.pk for s in context['screenshots']]
+            favorited_ids = FavoriteScreenshot.objects.filter(
+                user=self.request.user,
+                screenshot_id__in=screenshot_ids
+            ).values_list('screenshot_id', flat=True)
+
+            for screenshot in context['screenshots']:
+                screenshot.is_favorited = screenshot.pk in favorited_ids
+        else:
+            for screenshot in context['screenshots']:
+                screenshot.is_favorited = False
+
+        return context
 
 
 class TopRatedScreenshotsView(ListView):
     model = Screenshot
     template_name = 'screenshots/top-rated.html'
     context_object_name = 'screenshots'
-    paginate_by = 9
+    paginate_by = 12
 
     def get_queryset(self):
-        return Screenshot.objects.select_related('uploaded_by').order_by('-likes', '-created_at')
+        queryset = Screenshot.objects.select_related('uploaded_by')
+        game_filter = self.request.GET.get('game')
+
+        if game_filter:
+            queryset = queryset.filter(game_name__iexact=game_filter)
+        else:
+            queryset = queryset.filter(likes__gt=0)
+
+        return queryset.order_by('-likes', '-created_at')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['game_filter'] = self.request.GET.get('game', '')
+
+        # add favorite status for each screenshot if user is authenticated
+        if self.request.user.is_authenticated:
+            screenshot_ids = [s.pk for s in context['screenshots']]
+            favorited_ids = FavoriteScreenshot.objects.filter(
+                user=self.request.user,
+                screenshot_id__in=screenshot_ids
+            ).values_list('screenshot_id', flat=True)
+
+            for screenshot in context['screenshots']:
+                screenshot.is_favorited = screenshot.pk in favorited_ids
+        else:
+            for screenshot in context['screenshots']:
+                screenshot.is_favorited = False
+
+        return context
 
 
 class MyScreenshotsView(LoginRequiredMixin, ListView):
@@ -261,11 +411,59 @@ class ScreenshotDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
-        screenshot = self.get_object()
 
-        # decrement screenshot count on user profile
-        screenshot.uploaded_by.profile.decrement_screenshots()
+@login_required
+def check_favorite_screenshot(request, pk):
+    try:
+        screenshot = Screenshot.objects.get(pk=pk)
+        is_favorited = FavoriteScreenshot.objects.filter(user=request.user, screenshot=screenshot).exists()
+        return JsonResponse({
+            'status': 'success',
+            'is_favorited': is_favorited
+        })
+    except Screenshot.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Screenshot not found'}, status=404)
 
-        messages.success(request, f'Screenshot for "{screenshot.game_name}" deleted successfully!')
-        return super().delete(request, *args, **kwargs)
+
+@login_required
+def toggle_favorite_screenshot(request, pk):
+    if request.method == 'POST':
+        try:
+            screenshot = Screenshot.objects.get(pk=pk)
+
+            # prevent users from favoriting their own screenshots
+            if screenshot.uploaded_by == request.user:
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Cannot favorite own screenshot!'
+                }, status=400)
+
+            favorite, created = FavoriteScreenshot.objects.get_or_create(user=request.user, screenshot=screenshot)
+
+            if not created:
+                favorite.delete()
+                action = 'removed'
+                message = 'Screenshot removed from favorites'
+            else:
+                action = 'added'
+                message = 'Screenshot added to favorites'
+
+            sync_screenshot_favorite_counters.delay(screenshot.pk, request.user.pk)
+
+            return JsonResponse({
+                'status': 'success',
+                'action': action,
+                'message': message
+            })
+        except Screenshot.DoesNotExist:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Screenshot not found'
+            }, status=404)
+        except Exception as e:
+            return JsonResponse({
+                'status': 'error',
+                'message': str(e)
+            }, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)

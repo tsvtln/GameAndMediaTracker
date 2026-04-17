@@ -1,7 +1,7 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import Group
-from .models import AppUser, Profile
+from .models import AppUser, Profile, Screenshot
 
 
 @receiver(post_save, sender=AppUser)
@@ -23,3 +23,9 @@ def save_user_profile(sender, instance, **kwargs):
     if hasattr(instance, 'profile'):
         instance.profile.save()
 
+
+@receiver(post_delete, sender=Screenshot)
+def decrement_screenshot_count_on_delete(sender, instance, **kwargs):
+    # automatically decrement screenshot count when a screenshot is deleted
+    if instance.uploaded_by and hasattr(instance.uploaded_by, 'profile'):
+        instance.uploaded_by.profile.decrement_screenshots()

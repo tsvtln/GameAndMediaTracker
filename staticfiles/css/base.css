@@ -169,6 +169,7 @@ a {
 .favorite-card-fav-btn,
 .favorite-screenshots-view-btn,
 .favorite-screenshots-remove-btn,
+.favorite-screenshots-add-btn,
 .favorite-screenshots-delete-btn,
 .favorite-screenshot-modal-remove,
 .favorite-screenshot-modal-add,
@@ -188,6 +189,11 @@ a {
     text-decoration: none;
     display: inline-block;
 }
+
+.favorite-screenshots-add-btn {
+    padding: 8px 3px;
+}
+
 .favorite-card-btn:hover,
 .favorite-card-fav-btn:hover,
 .favorite-screenshots-view-btn:hover,
@@ -195,6 +201,7 @@ a {
 .favorite-screenshots-delete-btn:hover,
 .favorite-screenshots-add-btn:hover,
 .favorite-screenshot-modal-remove:hover,
+.favorite-screenshot-modal-add:hover,
 .favorite-screenshot-modal-download:hover,
 .favorites-empty-link:hover,
 .favorite-screenshots-empty-link:hover {

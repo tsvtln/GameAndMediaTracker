@@ -25,7 +25,7 @@
             <a href="{% url 'bios page' %}"><img src="{% static 'images/icons/bios.png' %}" alt="BIOS"></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'bios all files' %}">All BIOS Files</a></li>
-                <li><a href="{% url 'forum board' 'bios_setup' %}">Installation Guides</a></li>
+                <li><a href="{% url 'forum board' 'bios-setup' %}">Installation Guides</a></li>
                 <li><a href="{% url 'bios faq' %}">BIOS FAQ</a></li>
                 {% if user.is_staff or user|in_groups:"Moderators,Verified Users" %}
                     <li><a href="{% url 'bios upload' %}">BIOS Upload</a></li>
@@ -36,8 +36,8 @@
             <a href="{% url 'saves main page' %}"><img src="{% static 'images/icons/saves.png' %}" alt="SAVES"></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'saves all page' %}">All Saves</a></li>
-                <li><a href="{% url 'saves vault page' %}">My Vault</a></li>  {# note: if logged in #}
-                <li><a href="{% url 'saves upload page' %}">Upload Save</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'saves vault page' %}">My Vault</a></li>
+                <li><a href="{% url 'saves upload page' %}">Upload Save</a></li>
             </ul>
         </li>
         {% if user.is_authenticated %}
@@ -53,7 +53,7 @@
             <a href="{% url 'community page' %}"><img src="{% static 'images/icons/community.png' %}" alt="Community"></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'forum index' %}">Forums</a></li>
-                <li><a href="#">Guides</a></li>
+                <li><a href="{% url 'forum board' 'game-guides' %}">Guides</a></li>
                 <li><a href="{% url 'community events page' %}">Events</a></li>
             </ul>
         </li>
@@ -62,8 +62,8 @@
             <ul class="dropdown-menu">
                 <li><a href="{% url 'latest screenshots' %}">Latest Screenshots</a></li>
                 <li><a href="{% url 'top rated screenshots' %}">Top Rated Screenshots</a></li>
-                <li><a href="{% url 'my screenshots' %}">My Screenshots</a></li>  {# note: if logged in #}
-                <li><a href="{% url 'upload screenshot' %}">Submit Screenshot</a></li>  {# note: if logged in #}
+                <li><a href="{% url 'my screenshots' %}">My Screenshots</a></li>
+                <li><a href="{% url 'upload screenshot' %}">Submit Screenshot</a></li>
             </ul>
         </li>
     </ul>
@@ -86,11 +86,11 @@
                 <a class="auth-link" href="{% url 'register' %}"><img src="{% static 'images/icons/register.png' %}" alt="REGISTER"></a>
             {% endif %}
         </div>
-        <form class="nav-search" action="#" method="get">
-            <label>
-                <input type="text" name="q" placeholder="Search">
-            </label>
-            <button type="submit">Search</button>
-        </form>
+{#        <form class="nav-search" action="#" method="get">#}
+{#            <label>#}
+{#                <input type="text" name="q" placeholder="Search">#}
+{#            </label>#}
+{#            <button type="submit">Search</button>#}
+{#        </form>#}
     </div>
 </nav>

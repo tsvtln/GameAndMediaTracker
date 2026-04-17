@@ -4,12 +4,35 @@
     padding: 32px;
 }
 
+.forum-description {
+    text-align: center;
+    color: #b6c2d2;
+    margin-bottom: 24px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.forum-empty-message {
+    text-align: center;
+    color: #b6c2d2;
+    font-family: 'Press Start 2P', monospace;
+}
+
 .forum-category-list {
+    margin-bottom: 48px;
+}
+
+.forum-category-row {
     display: flex;
-    flex-wrap: wrap;
     gap: 32px;
     justify-content: center;
-    margin-bottom: 48px;
+}
+
+.forum-category-guides-wrapper {
+    margin: 32px auto 0 auto;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .forum-category {
@@ -27,12 +50,21 @@
     transition: box-shadow 0.2s;
 }
 
+.forum-category-full-width {
+    width: 100%;
+}
+
 .forum-category-title {
     color: #49ff18;
     font-size: 1.3rem;
     font-family: 'Press Start 2P', monospace;
     margin-bottom: 8px;
     text-shadow: 0 0 8px #49ff18;
+}
+
+.forum-category-title-centered {
+    text-align: center;
+    width: 100%;
 }
 
 .forum-board-list {

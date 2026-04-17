@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
         screenshotInput.addEventListener('change', function() {
             if (screenshotInput.files.length > 0) {
                 screenshotLabel.textContent = screenshotInput.files[0].name;
+                if (screenshotLabel.textContent.length > 30) {
+                    screenshotLabel.textContent = screenshotLabel.textContent.slice(0, 25) + '...' + screenshotLabel.textContent.slice(-4);
+                }
                 const file = screenshotInput.files[0];
                 if (file && file.type.match('image.*')) {
                     const reader = new FileReader();

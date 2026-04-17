@@ -62,3 +62,30 @@
     text-shadow: 0 0 8px #49ff18;
 }
 
+.forum-form-input,
+.forum-form-select,
+.forum-form-textarea {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #49ff18;
+    background: #181818;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 0 8px #49ff18;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.forum-form-input:focus,
+.forum-form-select:focus,
+.forum-form-textarea:focus {
+    border: 1.5px solid #49ff18;
+    box-shadow: 0 0 16px #49ff18;
+    outline: none;
+}
+
+.forum-form-textarea {
+    resize: vertical;
+}

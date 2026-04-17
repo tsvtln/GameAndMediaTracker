@@ -6,12 +6,15 @@ from django.views.generic import CreateView, DetailView, DeleteView, ListView
 from django.views import View
 from django.urls import reverse_lazy as _
 from django.db.models import Count, Avg
-from django.http import FileResponse, Http404
+from django.http import FileResponse, Http404, JsonResponse
 from django.utils import timezone
 from datetime import timedelta
-from CheckPoint.roms.models import Rom, Comment, Review
+from CheckPoint.roms.models import Rom, Comment, Review, FavoriteRom, ReviewLike
 from CheckPoint.roms.forms import RomUploadForm, CommentForm, ReviewForm
 from CheckPoint.common.permissions import OwnerOrModeratorMixin, CanDeleteContextMixin
+from django.contrib.auth.decorators import login_required
+from CheckPoint.accounts.models import Screenshot
+from CheckPoint.roms.tasks import recalculate_rom_rating, increment_rom_downloads
 
 
 def roms(request):
@@ -268,13 +271,23 @@ class RomDetailView(CanDeleteContextMixin, DetailView):
         context['comment_form'] = CommentForm()
         context['review_form'] = ReviewForm()
 
+        screenshots = Screenshot.objects.filter(game_name__iexact=rom.title).order_by('-likes', '-created_at')[:8]
+        context['screenshots'] = screenshots
+        context['has_more_screenshots'] = Screenshot.objects.filter(game_name__iexact=rom.title).count() > 8
+
         # check if user has already reviewed this ROM so we can hide it in the front end if true
         if user.is_authenticated:
             context['user_has_reviewed'] = rom.reviews.filter(user=user).exists()
             context['is_moderator'] = user.groups.filter(name='Moderators').exists()
+            context['is_favorited'] = FavoriteRom.objects.filter(user=user, rom=rom).exists()
+            context['user_liked_reviews'] = set(
+                ReviewLike.objects.filter(user=user, review__rom=rom).values_list('review_id', flat=True)
+            )
         else:
             context['user_has_reviewed'] = False
             context['is_moderator'] = False
+            context['is_favorited'] = False
+            context['user_liked_reviews'] = set()
 
         return context
 
@@ -293,7 +306,7 @@ class RomDetailView(CanDeleteContextMixin, DetailView):
                         form = ReviewForm(request.POST, instance=review)
                         if form.is_valid():
                             form.save()
-                            self.object.update_rating()
+                            recalculate_rom_rating.delay(self.object.pk)
                             messages.success(request, 'Review updated successfully!')
                         else:
                             messages.error(request, 'Error updating review.')
@@ -313,7 +326,7 @@ class RomDetailView(CanDeleteContextMixin, DetailView):
                         review.rom = self.object
                         review.user = request.user
                         review.save()
-                        self.object.update_rating()
+                        recalculate_rom_rating.delay(self.object.pk)
                         messages.success(request, 'Review posted successfully!')
                 else:
                     if not request.user.is_authenticated:
@@ -421,18 +434,91 @@ class ReviewDeleteView(LoginRequiredMixin, OwnerOrModeratorMixin, DeleteView):
         )
 
     def delete(self, request, *args, **kwargs):
+        rom_id = self.get_object().rom.pk
         messages.success(request, 'Review deleted successfully!')
-        return super().delete(request, *args, **kwargs)
+        response = super().delete(request, *args, **kwargs)
+        recalculate_rom_rating.delay(rom_id)
+        return response
 
 class RomDownloadView(View):
     def get(self, request, pk):
         try:
             rom = Rom.objects.get(pk=pk)
-            rom.increment_downloads()
+            increment_rom_downloads.delay(rom.pk)
 
-            # return file for download
             response = FileResponse(rom.rom_file.open('rb'))
             response['Content-Disposition'] = f'attachment; filename="{rom.title}.{rom.rom_file.name.split(".")[-1]}"'
             return response
         except Rom.DoesNotExist:
             raise Http404("ROM not found")
+
+
+@login_required
+def toggle_favorite_rom(request, pk):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
+
+    try:
+        rom = Rom.objects.get(pk=pk)
+        favorite, created = FavoriteRom.objects.get_or_create(user=request.user, rom=rom)
+
+        if not created:
+            favorite.delete()
+            is_favorited = False
+            message = 'ROM removed from favorites'
+
+            # decrement favorites count
+            profile = request.user.profile
+            profile.decrement_favorites()
+        else:
+            is_favorited = True
+            message = 'ROM added to favorites'
+
+            # increment favorites count
+            profile = request.user.profile
+            profile.increment_favorites()
+
+        return JsonResponse({
+            'status': 'success',
+            'is_favorited': is_favorited,
+            'message': message
+        })
+
+    except Rom.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'ROM not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+
+@login_required
+def toggle_review_like(request, review_id):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': 'Invalid method'}, status=405)
+
+    try:
+        review = Review.objects.get(pk=review_id)
+        user = request.user
+
+        like, created = ReviewLike.objects.get_or_create(user=user, review=review)
+
+        if not created:
+            like.delete()
+            is_liked = False
+            message = 'Review unliked'
+        else:
+            is_liked = True
+            message = 'Review liked'
+
+        likes_count = review.likes_count
+
+        return JsonResponse({
+            'status': 'success',
+            'is_liked': is_liked,
+            'likes_count': likes_count,
+            'message': message
+        })
+
+    except Review.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Review not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)

@@ -1,21 +1,24 @@
 {% extends 'common/base.html' %}
-{% block title %}Forum Board | CHECKPOINT{% endblock %}
+{% load static %}
+{% block title %}{{ board.name }} | CHECKPOINT{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/forum_board.css' %}">
 <section class="forum-section">
-    <h1 class="bios-title">FORUM BOARD</h1>
+    <h1 class="bios-title">{{ board.name|upper }}</h1>
+    {% if board.description %}
+    <p class="forum-description">{{ board.description }}</p>
+    {% endif %}
     <div class="forum-thread-list">
-        <div class="forum-thread-card">
-            <a href="{% url 'forum thread' board_slug 'how-to-configure-pcsx2' %}" class="forum-thread-title">How to configure PCSX2</a>
-            <div class="forum-thread-meta">Author: user123 | Replies: 4 | Last Post: 2026-03-14</div>
-        </div>
-        <div class="forum-thread-card">
-            <a href="{% url 'forum thread' board_slug 'bios-not-detected' %}" class="forum-thread-title">BIOS not detected</a>
-            <div class="forum-thread-meta">Author: user456 | Replies: 2 | Last Post: 2026-03-13</div>
-        </div>
-        <div class="forum-thread-card">
-            <a href="{% url 'forum thread' board_slug 'best-retroarch-settings' %}" class="forum-thread-title">Best RetroArch settings</a>
-            <div class="forum-thread-meta">Author: user789 | Replies: 7 | Last Post: 2026-03-12</div>
-        </div>
+        {% if threads_data %}
+            {% for data in threads_data %}
+            <div class="forum-thread-card">
+                <a href="{% url 'forum thread' board_slug data.thread.slug %}" class="forum-thread-title">{{ data.thread.title }}</a>
+                <div class="forum-thread-meta">Author: {{ data.thread.author.username }} | Replies: {{ data.reply_count }} | Last Post: {% if data.last_post %}{{ data.last_post.created_at|date:"Y-m-d" }}{% else %}{{ data.thread.created_at|date:"Y-m-d" }}{% endif %}</div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="forum-empty-message">No topics in this board yet. Be the first to create one!</p>
+        {% endif %}
     </div>
     <div class="forum-new-topic-btn">
         <a href="{% url 'forum new topic' %}" class="download-btn">Create New Topic</a>

@@ -13,6 +13,8 @@ urlpatterns = [
     path('download/<int:pk>/', views.RomDownloadView.as_view(), name='roms download'),
     path('comment/delete/<int:pk>/', views.CommentDeleteView.as_view(), name='comment delete'),
     path('review/delete/<int:pk>/', views.ReviewDeleteView.as_view(), name='review delete'),
+    path('review/like/<int:review_id>/', views.toggle_review_like, name='review like toggle'),
+    path('favorite/<int:pk>/', views.toggle_favorite_rom, name='roms favorite toggle'),
 
     # Genre pages
     path('genres/', views.genres, name='roms genres'),

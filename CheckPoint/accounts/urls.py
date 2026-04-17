@@ -21,4 +21,6 @@ urlpatterns = [
     path('screenshots/my/', views.MyScreenshotsView.as_view(), name='my screenshots'),
     path('screenshots/upload/', views.ScreenshotUploadView.as_view(), name='upload screenshot'),
     path('screenshots/delete/<int:pk>/', views.ScreenshotDeleteView.as_view(), name='delete screenshot'),
+    path('screenshots/check-favorite/<int:pk>/', views.check_favorite_screenshot, name='check favorite screenshot'),
+    path('screenshots/favorite/<int:pk>/', views.toggle_favorite_screenshot, name='toggle favorite screenshot'),
 ]

@@ -1,16 +1,34 @@
 .favorite-roms-section {
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 32px;
-    background: #232a3a;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 0 16px 32px 16px;
+    box-sizing: border-box;
+}
+
+.favorite-roms-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #49ff18;
+    text-shadow: 0 0 12px #49ff18;
+    margin-bottom: 12px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.favorite-roms-desc {
+    text-align: center;
+    font-size: 1rem;
+    color: #b6c2d2;
+    margin-bottom: 24px;
+    font-family: 'Press Start 2P', monospace;
 }
 
 .favorite-roms-stats {
+    text-align: center;
     font-size: 1rem;
     color: #49ff18;
     margin-bottom: 16px;
+    font-family: 'Press Start 2P', monospace;
 }
 
 .favorite-roms-filters {
@@ -19,63 +37,95 @@
 
 .favorite-roms-filter-form {
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    background: #232323;
+    border-radius: 10px;
+    padding: 18px 16px;
+    box-shadow: 0 0 8px #49ff1822;
 }
 
 .favorite-roms-search,
 .favorite-roms-platform,
 .favorite-roms-sort {
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
     border: 1px solid #49ff18;
+    background: #181818;
+    color: #49ff18;
     font-size: 1rem;
-    background: #181e2a;
-    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
 }
 
 .favorite-roms-platform {
-    width: 50%;
-    min-width: 120px;
-    max-width: 320px;
+    /*width: 50%;*/
+    min-width: 180px;
+}
+
+.favorite-roms-platform:hover,
+.favorite-roms-sort:hover,
+.favorite-roms-search:hover {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 
 .favorite-roms-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-bottom: 32px;
+    gap: 32px;
+    margin-top: 32px;
 }
 
 .favorite-rom-card {
-    background: #2a3344;
+    background: #232323;
     border-radius: 12px;
-    box-shadow: 0 2px 8px #49ff18;
-    padding: 18px;
+    box-shadow: 0 0 12px #49ff1844;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
+
 .favorite-rom-card:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 0 16px #49ff18, 0 2px 8px #49ff18;
+    box-shadow: 0 0 24px #49ff18, 0 0 8px #49ff18;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.favorite-rom-card-link {
+    display: block;
+    text-decoration: none !important;
+    color: inherit !important;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.favorite-rom-card-link:hover {
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.favorite-rom-card-art {
+    text-align: center;
+    margin-bottom: 16px;
 }
 
 .favorite-rom-card-art img {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 12px;
+    /*margin-bottom: 12px;*/
     box-shadow: 0 0 8px #49ff18;
 }
 
 .favorite-rom-card-title {
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     color: #fff;
     text-shadow: 0 0 6px #49ff18;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
 }
 
 .favorite-rom-card-meta,
@@ -83,36 +133,72 @@
     font-size: 0.95rem;
     color: #b6c2d2;
     margin-bottom: 4px;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
 }
 
 .favorite-rom-card-actions {
-    margin-top: 12px;
+    margin-top: 16px;
     display: flex;
-    gap: 8px;
+    gap: 12px;
+    justify-content: center;
 }
 
 .favorite-rom-card-btn,
 .favorite-rom-card-fav-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 8px;
     border: none;
     background: #49ff18;
-    color: #232a3a;
-    font-weight: 500;
-    cursor: url('/staticfiles/images/cursor/cursor.png'), pointer !important;
+    color: #232323;
+    font-weight: bold;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
     text-decoration: none;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 6px #49ff18;
+    box-shadow: 0 0 8px #49ff18;
 }
+
 .favorite-rom-card-btn:hover,
 .favorite-rom-card-fav-btn:hover {
     background: #232323 !important;
     color: #49ff18 !important;
-    box-shadow: 0 0 12px #49ff18;
+    box-shadow: 0 0 16px #49ff18;
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 
-.favorite-roms-platform:hover,
-.favorite-roms-sort:hover {
+.favorite-roms-pagination {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.favorite-roms-page-link {
+    padding: 10px 16px;
+    background: #232323;
+    color: #49ff18;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    box-shadow: 0 0 8px #49ff1833;
+    transition: background 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.favorite-roms-page-link:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 16px #49ff18;
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.favorite-roms-page-link.active {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
 }

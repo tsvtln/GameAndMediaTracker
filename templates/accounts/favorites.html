@@ -11,83 +11,52 @@
         <div class="favorites-box">
             <h2 class="favorites-box-title">Favorite ROMs</h2>
             <div class="favorites-roms-list">
+                {% if not has_favorite_roms %}
                 <!-- Empty state for favorite ROMs -->
                 <div class="favorites-empty-state">
                     <p>You don't have any, go add some!</p>
                     <a href="{% url 'roms most downloaded' %}" class="favorites-empty-link">Browse ROMs</a>
                 </div>
+                {% else %}
+                {% for favorite in favorite_roms %}
                 <div class="favorites-rom-item">
-                    <a href="#" class="favorites-rom-link">
-                        <img src="{% static 'images/temp_images/Super_Mario_Bros._box.png' %}" alt="Super Mario Bros" class="favorites-rom-img">
-                        <span class="favorites-rom-name">Super Mario Bros</span>
+                    <a href="{% url 'roms details' favorite.rom.pk %}" class="favorites-rom-link">
+                        <img src="{{ favorite.rom.box_art.url }}" alt="{{ favorite.rom.title }}" class="favorites-rom-img">
+                        <span class="favorites-rom-name">{{ favorite.rom.title }}</span>
                     </a>
                 </div>
-                <div class="favorites-rom-item">
-                    <a href="#" class="favorites-rom-link">
-                        <img src="{% static 'images/temp_images/zelda.png' %}" alt="Legend of Zelda" class="favorites-rom-img">
-                        <span class="favorites-rom-name">Legend of Zelda</span>
-                    </a>
-                </div>
+                {% endfor %}
                 <div class="favorites-rom-item favorites-rom-more">
                     <a href="{% url 'accounts favorite roms page' %}" class="favorites-rom-link">
                         <span class="favorites-rom-more-text">View all your favorite ROMs</span>
                     </a>
                 </div>
+                {% endif %}
             </div>
         </div>
         <div class="favorites-box">
             <h2 class="favorites-box-title">Favorite Screenshots</h2>
+            {% if not has_favorite_screenshots %}
             <div class="favorites-empty-state">
                 <p>You don't have any favorite screenshots yet!</p>
-                <a href="#" class="favorites-empty-link favorites-screenshot-link">Browse Screenshots</a>
+                <a href="{% url 'screenshots latest' %}" class="favorites-empty-link favorites-screenshot-link">Browse Screenshots</a>
             </div>
+            {% else %}
             <div class="favorites-screenshots-list">
+                {% for favorite in favorite_screenshots %}
                 <div class="favorites-screenshot-item">
                     <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 1" class="favorites-screenshot-img">
+                        <img src="{{ favorite.screenshot.screenshot.url }}" alt="{{ favorite.screenshot.game_name }}" class="favorites-screenshot-img">
                     </a>
                 </div>
+                {% endfor %}
                 <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 2" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 3" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 4" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 5" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 6" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 7" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link">
-                        <img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 8" class="favorites-screenshot-img">
-                    </a>
-                </div>
-                <div class="favorites-screenshot-item">
-                    <a href="#" class="favorites-screenshot-link favorites-screenshot-more">
+                    <a href="{% url 'accounts favorite screenshots page' %}" class="favorites-screenshot-link favorites-screenshot-more">
                         <span class="favorites-screenshot-more-text">...</span>
                     </a>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </section>

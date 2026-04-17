@@ -22,9 +22,11 @@
             </div>
             <div class="rom-details-actions">
                 <a href="{% url 'roms download' rom.pk %}" class="download-btn-small">Download ROM</a>
-                <button class="rom-details-favorite-btn" title="Add to Favorites">
-                    <img src="{% static 'images/icons/heart_empty.png' %}" alt="Favorite" class="rom-details-heart-icon">
+                {% if user.is_authenticated %}
+                <button id="favorite-rom-btn" class="rom-details-favorite-btn" data-rom-id="{{ rom.pk }}" title="{% if is_favorited %}Remove from Favorites{% else %}Add to Favorites{% endif %}">
+                    <img src="{% if is_favorited %}{% static 'images/icons/heart_full.png' %}{% else %}{% static 'images/icons/heart_empty.png' %}{% endif %}" alt="Favorite" class="rom-details-heart-icon">
                 </button>
+                {% endif %}
             </div>
             <div>
                 Rating: {{ rom.rating }}<span class="rom-details-rating-star">🌟</span>  ({{ reviews|length }} reviews)
@@ -37,15 +39,28 @@
             {% endif %}
         </div>
         <div class="rom-details-screenshots-grid">
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Screenshot 1"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_2.webp' %}" alt="Screenshot 2"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 3"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 4"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 5"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 6"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 7"></a>
-            <a href="#" class="rom-details-screenshot"><img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Screenshot 8"></a>
-            <a href="#" class="rom-details-screenshot rom-details-screenshot-more">...</a>
+            {% if screenshots %}
+                {% for screenshot in screenshots %}
+                <a href="#" class="rom-details-screenshot"
+                   data-screenshot-id="{{ screenshot.pk }}"
+                   data-game="{{ screenshot.game_name }}"
+                   data-platform="{{ screenshot.platform }}"
+                   data-uploader="{{ screenshot.uploaded_by.username }}"
+                   data-uploader-id="{{ screenshot.uploaded_by.pk }}">
+                    <img src="{{ screenshot.screenshot.url }}" alt="{{ screenshot.game_name }}">
+                </a>
+                {% endfor %}
+                {% if has_more_screenshots %}
+                <a href="{% url 'top rated screenshots' %}?game={{ rom.title|urlencode }}" class="rom-details-screenshot rom-details-screenshot-more">...</a>
+                {% endif %}
+            {% else %}
+            <div class="rom-details-no-screenshots">
+                <p>No Screenshots for that game</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'upload screenshot' %}" class="download-btn-small">Upload?</a>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="rom-details-community">
@@ -92,10 +107,16 @@
                         {% endif %}
                     {% endif %}
                     <div class="rom-details-review-favorite-wrapper">
-                        <button class="rom-details-review-favorite-btn" title="Favorite Review">
-                            <span class="rom-details-review-favorite-count">0</span>
-                            <img src="{% static 'images/icons/heart_empty.png' %}" alt="Favorite" class="rom-details-review-heart-icon">
+                    {% if user.is_authenticated %}
+                        <button class="rom-details-review-favorite-btn" data-review-id="{{ review.id }}" title="Like Review">
+                            <span class="rom-details-review-favorite-count">{{ review.likes_count }}</span>
+                            {% if review.id in user_liked_reviews %}
+                            <img src="{% static 'images/icons/heart_full.png' %}" alt="Unlike" class="rom-details-review-heart-icon">
+                            {% else %}
+                            <img src="{% static 'images/icons/heart_empty.png' %}" alt="Like" class="rom-details-review-heart-icon">
+                            {% endif %}
                         </button>
+                    {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -252,5 +273,9 @@
         </div>
     </div>
 </div>
+<script>
+    window.currentUserId = {% if user.is_authenticated %}{{ user.pk }}{% else %}null{% endif %};
+</script>
 <script src="{% static 'js/rom-details.js' %}"></script>
+<script src="{% static 'js/favorite_rom.js' %}"></script>
 {% endblock %}

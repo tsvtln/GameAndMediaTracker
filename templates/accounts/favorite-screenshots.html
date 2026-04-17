@@ -8,117 +8,108 @@
 <div class="favorite-screenshots-section">
     <h1 class="favorite-screenshots-title">FAVORITE SCREENSHOTS</h1>
     <div class="favorite-screenshots-desc">Screenshots you have saved from the gallery.</div>
-    <div class="favorite-screenshots-stats">Total Favorites: 24</div>
+
+    {% if favorite_screenshots %}
+    <div class="favorite-screenshots-stats">Total Favorites: {{ paginator.count }}</div>
     <div class="favorite-screenshots-quicklink">
-        <a href="#" class="favorite-screenshots-browse-link">Browse Screenshots</a>
+        <a href="{% url 'latest screenshots' %}" class="favorite-screenshots-browse-link">Browse Screenshots</a>
     </div>
     <div class="favorite-screenshots-filters">
-        <form class="favorite-screenshots-filter-form">
-            <input type="text" id="favorite-screenshots-search" class="favorite-screenshots-search" placeholder="Search...">
+        <form class="favorite-screenshots-filter-form" method="get">
+{#            <input type="text" id="favorite-screenshots-search" class="favorite-screenshots-search" name="search" placeholder="Search..." value="{{ request.GET.search }}">#}
             <select id="favorite-screenshots-platform" class="favorite-screenshots-platform" name="platform">
-                <option>All Platforms</option>
-                <option>PC</option>
-                <option>NES</option>
-                <option>Famicom</option>
-                <option>SNES</option>
-                <option>Super Famicom</option>
-                <option>Nintendo 64</option>
-                <option>GameCube</option>
-                <option>Wii</option>
-                <option>Wii U</option>
-                <option>Nintendo Switch</option>
-                <option>Game Boy</option>
-                <option>Game Boy Color</option>
-                <option>Game Boy Advance</option>
-                <option>Nintendo DS</option>
-                <option>Nintendo 3DS</option>
-                <option>Sega Master System</option>
-                <option>Sega Genesis / Mega Drive</option>
-                <option>Sega CD</option>
-                <option>32X</option>
-                <option>Sega Saturn</option>
-                <option>Sega Dreamcast</option>
-                <option>Game Gear</option>
-                <option>PlayStation</option>
-                <option>PlayStation 2</option>
-                <option>PlayStation 3</option>
-                <option>PlayStation Portable (PSP)</option>
-                <option>PlayStation Vita</option>
-                <option>Xbox</option>
-                <option>Xbox 360</option>
-                <option>Xbox One</option>
-                <option>Atari</option>
+                <option value="">All Platforms</option>
+                <option value="PC" {% if selected_platform == 'PC' %}selected{% endif %}>PC</option>
+                <option value="NES" {% if selected_platform == 'NES' %}selected{% endif %}>NES</option>
+                <option value="Famicom" {% if selected_platform == 'Famicom' %}selected{% endif %}>Famicom</option>
+                <option value="SNES" {% if selected_platform == 'SNES' %}selected{% endif %}>SNES</option>
+                <option value="Super Famicom" {% if selected_platform == 'Super Famicom' %}selected{% endif %}>Super Famicom</option>
+                <option value="Nintendo 64" {% if selected_platform == 'Nintendo 64' %}selected{% endif %}>Nintendo 64</option>
+                <option value="GameCube" {% if selected_platform == 'GameCube' %}selected{% endif %}>GameCube</option>
+                <option value="Wii" {% if selected_platform == 'Wii' %}selected{% endif %}>Wii</option>
+                <option value="Wii U" {% if selected_platform == 'Wii U' %}selected{% endif %}>Wii U</option>
+                <option value="Nintendo Switch" {% if selected_platform == 'Nintendo Switch' %}selected{% endif %}>Nintendo Switch</option>
+                <option value="Game Boy" {% if selected_platform == 'Game Boy' %}selected{% endif %}>Game Boy</option>
+                <option value="Game Boy Color" {% if selected_platform == 'Game Boy Color' %}selected{% endif %}>Game Boy Color</option>
+                <option value="Game Boy Advance" {% if selected_platform == 'Game Boy Advance' %}selected{% endif %}>Game Boy Advance</option>
+                <option value="Nintendo DS" {% if selected_platform == 'Nintendo DS' %}selected{% endif %}>Nintendo DS</option>
+                <option value="Nintendo 3DS" {% if selected_platform == 'Nintendo 3DS' %}selected{% endif %}>Nintendo 3DS</option>
+                <option value="Sega Master System" {% if selected_platform == 'Sega Master System' %}selected{% endif %}>Sega Master System</option>
+                <option value="Sega Genesis / Mega Drive" {% if selected_platform == 'Sega Genesis / Mega Drive' %}selected{% endif %}>Sega Genesis / Mega Drive</option>
+                <option value="Sega CD" {% if selected_platform == 'Sega CD' %}selected{% endif %}>Sega CD</option>
+                <option value="32X" {% if selected_platform == '32X' %}selected{% endif %}>32X</option>
+                <option value="Sega Saturn" {% if selected_platform == 'Sega Saturn' %}selected{% endif %}>Sega Saturn</option>
+                <option value="Sega Dreamcast" {% if selected_platform == 'Sega Dreamcast' %}selected{% endif %}>Sega Dreamcast</option>
+                <option value="Game Gear" {% if selected_platform == 'Game Gear' %}selected{% endif %}>Game Gear</option>
+                <option value="PlayStation" {% if selected_platform == 'PlayStation' %}selected{% endif %}>PlayStation</option>
+                <option value="PlayStation 2" {% if selected_platform == 'PlayStation 2' %}selected{% endif %}>PlayStation 2</option>
+                <option value="PlayStation 3" {% if selected_platform == 'PlayStation 3' %}selected{% endif %}>PlayStation 3</option>
+                <option value="PlayStation Portable (PSP)" {% if selected_platform == 'PlayStation Portable (PSP)' %}selected{% endif %}>PlayStation Portable (PSP)</option>
+                <option value="PlayStation Vita" {% if selected_platform == 'PlayStation Vita' %}selected{% endif %}>PlayStation Vita</option>
+                <option value="Xbox" {% if selected_platform == 'Xbox' %}selected{% endif %}>Xbox</option>
+                <option value="Xbox 360" {% if selected_platform == 'Xbox 360' %}selected{% endif %}>Xbox 360</option>
+                <option value="Xbox One" {% if selected_platform == 'Xbox One' %}selected{% endif %}>Xbox One</option>
+                <option value="Atari" {% if selected_platform == 'Atari' %}selected{% endif %}>Atari</option>
+                <option value="Other" {% if selected_platform == 'Other' %}selected{% endif %}>Other</option>
             </select>
             <select id="favorite-screenshots-game" class="favorite-screenshots-game" name="game">
-                <option>All Games</option>
-                <option>GTA San Andreas</option>
-                <option>Super Mario Bros</option>
-                <option>Pokemon Fire Red</option>
-                {# note: dynamic based on favorited games available #}
+                <option value="">All Games</option>
+                {% for game in favorited_games %}
+                <option value="{{ game }}" {% if selected_game == game %}selected{% endif %}>{{ game }}</option>
+                {% endfor %}
             </select>
             <select id="favorite-screenshots-sort" class="favorite-screenshots-sort" name="sort">
-                <option>Recently Added</option>
-                <option>Game</option>
-                <option>Platform</option>
+                <option value="recent" {% if selected_sort == 'recent' %}selected{% endif %}>Recently Added</option>
+                <option value="game" {% if selected_sort == 'game' %}selected{% endif %}>Game</option>
+                <option value="platform" {% if selected_sort == 'platform' %}selected{% endif %}>Platform</option>
             </select>
+            <button type="submit" class="search-btn">Apply</button>
         </form>
     </div>
     <div class="favorite-screenshots-grid">
+        {% for favorite in favorite_screenshots %}
         <div class="favorite-screenshots-card">
             <div class="favorite-screenshots-img">
-                <img src="{% static 'images/temp_images/grand_theft_auto_san_andreas_playstation_2__2004__by_sonicloud1213_dig2fm4-fullview.jpg' %}" alt="GTA San Andreas Screenshot">
+                <img src="{{ favorite.screenshot.screenshot.url }}" alt="{{ favorite.screenshot.game_name }} Screenshot">
             </div>
             <div class="favorite-screenshots-info">
-                <span class="favorite-screenshots-game">Game:<br> GTA San Andreas</span>
-                <span class="favorite-screenshots-platform">Platform:<br> PC</span>
+                <span class="favorite-screenshots-game">Game:<br> {{ favorite.screenshot.game_name }}</span>
+                <span class="favorite-screenshots-platform">Platform:<br> {{ favorite.screenshot.platform }}</span>
             </div>
             <div class="favorite-screenshots-actions">
-                <button class="favorite-screenshots-view-btn">View</button>
-                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
+                <button class="favorite-screenshots-view-btn" data-screenshot-id="{{ favorite.screenshot.pk }}" data-screenshot-url="{{ favorite.screenshot.screenshot.url }}" data-game="{{ favorite.screenshot.game_name }}" data-platform="{{ favorite.screenshot.platform }}" data-uploader="{{ favorite.screenshot.uploaded_by.username }}">View</button>
+                <button class="favorite-screenshots-remove-btn" data-screenshot-id="{{ favorite.screenshot.pk }}">❤ Remove</button>
             </div>
         </div>
-        <div class="favorite-screenshots-card">
-            <div class="favorite-screenshots-img">
-                <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Super Mario Screenshot">
-            </div>
-            <div class="favorite-screenshots-info">
-                <span class="favorite-screenshots-game">Game:<br> Super Mario Bros</span>
-                <span class="favorite-screenshots-platform">Platform:<br> NES</span>
-            </div>
-            <div class="favorite-screenshots-actions">
-                <button class="favorite-screenshots-view-btn">View</button>
-                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
-            </div>
-        </div>
-        <div class="favorite-screenshots-card">
-            <div class="favorite-screenshots-img">
-                <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Pokemon Fire Red Screenshot">
-            </div>
-            <div class="favorite-screenshots-info">
-                <span class="favorite-screenshots-game">Game:<br> Pokémon Fire Red</span>
-                <span class="favorite-screenshots-platform">Platform:<br> Game Boy Advance</span>
-            </div>
-            <div class="favorite-screenshots-actions">
-                <button class="favorite-screenshots-view-btn">View</button>
-                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
-            </div>
-        </div>
-
+        {% endfor %}
     </div>
+
+    {% if paginator.num_pages > 1 %}
     <div class="favorite-screenshots-pagination">
-        <a href="#" class="favorite-screenshots-page-link">&lt;&lt; Previous</a>
-        <a href="#" class="favorite-screenshots-page-link active">1</a>
-        <a href="#" class="favorite-screenshots-page-link">2</a>
-        <a href="#" class="favorite-screenshots-page-link">3</a>
-        <span class="favorite-screenshots-page-ellipsis">...</span>
-        <a href="#" class="favorite-screenshots-page-link">Next &gt;&gt;</a>
-    </div>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="favorite-screenshots-page-link">&lt;&lt; Previous</a>
+        {% endif %}
 
+        {% for num in paginator.page_range %}
+            {% if num == page_obj.number %}
+                <span class="favorite-screenshots-page-link active">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="favorite-screenshots-page-link">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.platform %}&platform={{ request.GET.platform }}{% endif %}{% if request.GET.game %}&game={{ request.GET.game }}{% endif %}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="favorite-screenshots-page-link">Next &gt;&gt;</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
     <div class="favorite-screenshots-empty-state">
         <p>You haven't added any screenshots to your favorites yet.</p>
-        <a href="#" class="favorite-screenshots-empty-link">Browse Screenshots</a>
+        <a href="{% url 'latest screenshots' %}" class="favorite-screenshots-empty-link">Browse Screenshots</a>
     </div>
-
+    {% endif %}
 </div>
 
 {# screenshot box #}
@@ -134,10 +125,43 @@
             <span class="favorite-screenshot-modal-uploader"></span>
         </div>
         <div class="favorite-screenshot-modal-actions">
-            <button class="favorite-screenshot-modal-remove">❤ Remove from Favorites</button>
+            <button class="favorite-screenshot-modal-remove" data-screenshot-id="">❤ Remove from Favorites</button>
             <button class="favorite-screenshot-modal-download">Download</button>
         </div>
     </div>
 </div>
 <script src="{% static 'js/favorite-screenshots.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const removeButtons = document.querySelectorAll('.favorite-screenshots-remove-btn');
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || '{{ csrf_token }}';
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const screenshotId = this.dataset.screenshotId;
+
+            fetch(`/accounts/screenshots/favorite/${screenshotId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    location.reload();
+                } else {
+                    alert(data.message || 'An error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update favorites');
+            });
+        });
+    });
+});
+</script>
 {% endblock %}

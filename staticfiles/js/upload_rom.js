@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         romInput.addEventListener('change', function() {
             if (romInput.files.length > 0) {
                 romLabel.textContent = romInput.files[0].name;
+                if (romLabel.textContent.length > 30) {
+                    romLabel.textContent = romLabel.textContent.slice(0,25) + '...' + romLabel.textContent.slice(-4);
+                }
             } else {
                 romLabel.textContent = 'Select ROM File';
             }
@@ -20,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
         boxArtInput.addEventListener('change', function() {
             if (boxArtInput.files.length > 0) {
                 boxArtLabel.textContent = boxArtInput.files[0].name;
+                if (boxArtLabel.textContent.length > 30) {
+                    boxArtLabel.textContent = boxArtLabel.textContent.slice(0, 25) + '...' + boxArtLabel.textContent.slice(-4);
+                }
                 const file = boxArtInput.files[0];
                 if (file && file.type.match('image.*')) {
                     const reader = new FileReader();

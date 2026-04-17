@@ -1,38 +1,61 @@
 .favorite-screenshots-section {
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 32px;
-    background: #232a3a;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 0 16px 32px 16px;
+    box-sizing: border-box;
+}
+
+.favorite-screenshots-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #49ff18;
+    text-shadow: 0 0 12px #49ff18;
+    margin-bottom: 12px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.favorite-screenshots-desc {
+    text-align: center;
+    font-size: 1rem;
+    color: #b6c2d2;
+    margin-bottom: 24px;
+    font-family: 'Press Start 2P', monospace;
 }
 
 .favorite-screenshots-stats {
+    text-align: center;
     font-size: 1rem;
     color: #49ff18;
     margin-bottom: 16px;
+    font-family: 'Press Start 2P', monospace;
 }
 
 .favorite-screenshots-quicklink {
-    margin-bottom: 16px;
-    text-align: right;
+    margin-bottom: 24px;
+    text-align: center;
 }
 
 .favorite-screenshots-browse-link {
     display: inline-block;
-    padding: 8px 18px;
+    padding: 10px 24px;
     background: #49ff18;
-    color: #232a3a;
+    color: #232323;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
-    transition: background 0.2s, color 0.2s;
+    font-weight: bold;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     box-shadow: 0 0 8px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
 }
+
 .favorite-screenshots-browse-link:hover {
     background: #232323 !important;
     color: #49ff18 !important;
     box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 
 .favorite-screenshots-filters {
@@ -41,91 +64,65 @@
 
 .favorite-screenshots-filter-form {
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    background: #232323;
+    border-radius: 10px;
+    padding: 18px 16px;
+    box-shadow: 0 0 8px #49ff1822;
 }
 
-.favorite-screenshots-filter-form select {
-    padding: 8px 18px;
-    border-radius: 8px;
-    border: 1px solid #49ff18;
-    font-size: 0.65rem;
-    background: #181e2a;
-    color: #fff;
-    font-family: 'Press Start 2P', monospace;
-    box-shadow: 0 0 6px #49ff18;
-    outline: none;
-    margin-right: 8px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    min-width: 193px;
-    max-width: 240px;
-    width: auto;
-}
-.favorite-screenshots-filter-form select:hover,
-.favorite-screenshots-filter-form select:focus {
-    border-color: #49ff18;
-    box-shadow: 0 0 12px #49ff18;
-    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
-}
-.favorite-screenshots-filter-form select {
-    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%2349ff18' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 18px 18px;
-}
 .favorite-screenshots-search,
 .favorite-screenshots-platform,
 .favorite-screenshots-game,
 .favorite-screenshots-sort {
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
     border: 1px solid #49ff18;
+    background: #181818;
+    color: #49ff18;
     font-size: 1rem;
-    background: #181e2a;
-    color: #fff;
     font-family: 'Press Start 2P', monospace;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 8px #49ff18;
-    appearance: none;
-    outline: none;
-    margin-right: 8px;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
 }
+
+.favorite-screenshots-platform,
+.favorite-screenshots-game {
+    min-width: 180px;
+}
+
 .favorite-screenshots-platform:hover,
 .favorite-screenshots-game:hover,
 .favorite-screenshots-sort:hover,
-.favorite-screenshots-platform:focus,
-.favorite-screenshots-game:focus,
-.favorite-screenshots-sort:focus {
-    border-color: #49ff18;
-    box-shadow: 0 0 12px #49ff18;
+.favorite-screenshots-search:hover {
     cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
-.favorite-screenshots-game,
-.favorite-screenshots-platform {
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-}
+
 .favorite-screenshots-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-bottom: 32px;
+    margin-top: 32px;
 }
+
 .favorite-screenshots-card {
-    background: #2a3344;
+    background: #232323;
     border-radius: 12px;
-    box-shadow: 0 2px 8px #49ff18;
+    box-shadow: 0 0 12px #49ff1844;
     padding: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
 }
+
 .favorite-screenshots-card:hover {
     transform: translateY(-4px) scale(1.03);
     box-shadow: 0 0 16px #49ff18, 0 2px 8px #49ff18;
 }
+
 .favorite-screenshots-img img {
     width: 240px;
     height: 135px;
@@ -134,46 +131,130 @@
     margin-bottom: 12px;
     box-shadow: 0 0 12px #49ff18;
 }
+
 .favorite-screenshots-info {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #b6c2d2;
     margin-bottom: 8px;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 0 0 0 4px;
-    box-shadow: none;
+    text-align: center;
     font-family: 'Press Start 2P', monospace;
-    text-shadow: 0 0 4px #232a3a;
     line-height: 1.5;
     width: 100%;
-    word-break: break-all;
-    white-space: normal;
-    overflow-wrap: break-word;
 }
-.favorite-screenshots-game,
-.favorite-screenshots-platform,
-.favorite-screenshots-uploader {
+
+.favorite-screenshots-info .favorite-screenshots-game,
+.favorite-screenshots-info .favorite-screenshots-platform {
     display: block;
     color: #49ff18;
     text-shadow: 0 0 8px #49ff18;
     font-family: 'Press Start 2P', monospace;
-    margin-bottom: 2px;
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    margin-bottom: 4px;
+    font-size: 0.85rem;
     background: none;
     border: none;
     padding: 0;
     box-shadow: none;
-    width: 100%;
-    word-break: break-all;
-    white-space: normal;
-    overflow-wrap: break-word;
-    text-align: left;
+    pointer-events: auto;
+    cursor: default;
 }
+
 .favorite-screenshots-actions {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     margin-top: 8px;
+}
+
+.favorite-screenshots-view-btn,
+.favorite-screenshots-remove-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background: #49ff18;
+    color: #232323;
+    font-weight: bold;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 8px #49ff18;
+}
+
+.favorite-screenshots-view-btn:hover,
+.favorite-screenshots-remove-btn:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.favorite-screenshots-pagination {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.favorite-screenshots-page-link {
+    padding: 10px 16px;
+    background: #232323;
+    color: #49ff18;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    box-shadow: 0 0 8px #49ff1833;
+    transition: background 0.2s, box-shadow 0.2s;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.favorite-screenshots-page-link:hover {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+}
+
+.favorite-screenshots-page-link.active {
+    background: #49ff18;
+    color: #232323;
+    box-shadow: 0 0 12px #49ff18;
+}
+
+.favorite-screenshots-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #b6c2d2;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.favorite-screenshots-empty-state p {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    color: #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.favorite-screenshots-empty-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #49ff18;
+    color: #232323;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Press Start 2P', monospace;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 8px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor.png'), auto !important;
+}
+
+.favorite-screenshots-empty-link:hover {
+    background: #232323 !important;
+    color: #49ff18 !important;
+    box-shadow: 0 0 16px #49ff18;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
 }
 .favorite-screenshot-modal {
     position: fixed;

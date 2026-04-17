@@ -6,62 +6,67 @@
 <div class="favorite-screenshots-section">
     <h1 class="favorite-screenshots-title">LATEST SCREENSHOTS</h1>
     <div class="favorite-screenshots-desc">The most recent screenshots uploaded by the community.</div>
-    <div class="favorite-screenshots-grid">
-        <div class="favorite-screenshots-card">
-            <div class="favorite-screenshots-img">
-                <img src="{% static 'images/temp_images/chrono_trigger.jpg' %}" alt="Chrono Trigger">
-            </div>
-            <div class="favorite-screenshots-info">
-                <span class="favorite-screenshots-game">Game:<br> Chrono Trigger</span>
-                <span class="favorite-screenshots-platform">Platform:<br> SNES</span>
-                <span class="favorite-screenshots-uploader">Uploaded by: user123</span>
-            </div>
-            <div class="favorite-screenshots-actions">
-                <button class="favorite-screenshots-view-btn">View</button>
-                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
-            </div>
+
+    {% if screenshots %}
+        <div class="favorite-screenshots-grid">
+            {% for screenshot in screenshots %}
+                <div class="favorite-screenshots-card" data-screenshot-id="{{ screenshot.id }}">
+                    <div class="favorite-screenshots-img">
+                        <img src="{{ screenshot.screenshot.url }}" alt="{{ screenshot.game_name }}">
+                    </div>
+                    <div class="favorite-screenshots-info">
+                        <span class="favorite-screenshots-game">Game:<br> {{ screenshot.game_name }}</span>
+                        <span class="favorite-screenshots-platform">Platform:<br> {{ screenshot.get_platform_display }}</span>
+                        <span class="favorite-screenshots-uploader">Uploaded by:<br>
+                            <a href="{% url 'public profile' screenshot.uploaded_by.pk %}" class="favorite-screenshot-modal-uploader-link">{{ screenshot.uploaded_by.username }}</a>
+                        </span>
+                    </div>
+                    <div class="favorite-screenshots-actions">
+                        <button class="favorite-screenshots-view-btn">View</button>
+                        {% if user.is_authenticated %}
+                            {% if screenshot.uploaded_by == user %}
+                                <button class="favorite-screenshots-add-btn" disabled style="opacity: 0.5; cursor: not-allowed;">Your Screenshot</button>
+                            {% else %}
+                                {% if screenshot.is_favorited %}
+                                    <button class="favorite-screenshots-remove-btn favorite-toggle-btn" data-screenshot-id="{{ screenshot.id }}" data-favorited="true">❤ Remove</button>
+                                {% else %}
+                                    <button class="favorite-screenshots-add-btn favorite-toggle-btn" data-screenshot-id="{{ screenshot.id }}" data-favorited="false">❤ Favorite</button>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        <div class="favorite-screenshots-card">
-            <div class="favorite-screenshots-img">
-                <img src="{% static 'images/temp_images/smw_1.jpg' %}" alt="Super Mario Screenshot">
+
+        {% if is_paginated %}
+            <div class="favorite-screenshots-pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="favorite-screenshots-page-link">&lt;&lt; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="favorite-screenshots-page-link">&lt; Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a href="?page={{ num }}" class="favorite-screenshots-page-link active">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a href="?page={{ num }}" class="favorite-screenshots-page-link">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="favorite-screenshots-page-link">Next &gt;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="favorite-screenshots-page-link">Last &gt;&gt;</a>
+                {% endif %}
             </div>
-            <div class="favorite-screenshots-info">
-                <span class="favorite-screenshots-game">Game:<br> Super Mario Bros</span>
-                <span class="favorite-screenshots-platform">Platform:<br> NES</span>
-                <span class="favorite-screenshots-uploader">Uploaded by:<br> user456</span>
-            </div>
-            <div class="favorite-screenshots-actions">
-                <button class="favorite-screenshots-view-btn">View</button>
-                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
-            </div>
+        {% endif %}
+    {% else %}
+        <div class="favorite-screenshots-empty-state">
+            <p>No screenshots yet. Be the first to upload one!</p>
+            <a href="{% url 'upload screenshot' %}" class="favorite-screenshots-empty-link">Upload Screenshot</a>
         </div>
-        <div class="favorite-screenshots-card">
-            <div class="favorite-screenshots-img">
-                <img src="{% static 'images/temp_images/smw_3.gif' %}" alt="Pokemon Fire Red Screenshot">
-            </div>
-            <div class="favorite-screenshots-info">
-                <span class="favorite-screenshots-game">Game:<br> Pokémon Fire Red</span>
-                <span class="favorite-screenshots-platform">Platform:<br> Game Boy Advance</span>
-                <span class="favorite-screenshots-uploader">Uploaded by:<br> user789</span>
-            </div>
-            <div class="favorite-screenshots-actions">
-                <button class="favorite-screenshots-view-btn">View</button>
-                <button class="favorite-screenshots-remove-btn">❤ Remove</button>
-            </div>
-        </div>
-    </div>
-    <div class="favorite-screenshots-pagination">
-        <a href="#" class="favorite-screenshots-page-link">&lt;&lt; Previous</a>
-        <a href="#" class="favorite-screenshots-page-link active">1</a>
-        <a href="#" class="favorite-screenshots-page-link">2</a>
-        <a href="#" class="favorite-screenshots-page-link">3</a>
-        <span class="favorite-screenshots-page-ellipsis">...</span>
-        <a href="#" class="favorite-screenshots-page-link">Next &gt;&gt;</a>
-    </div>
-    <div class="favorite-screenshots-empty-state">
-        <p>No screenshots yet. Be the first to upload one!</p>
-        <a href="{% url 'upload screenshot' %}" class="download-btn">Upload Screenshot</a>
-    </div>
+    {% endif %}
+
     <div id="favorite-screenshot-modal" class="favorite-screenshot-modal" style="display:none;">
         <div class="favorite-screenshot-modal-content">
             <span class="favorite-screenshot-modal-close">&times;</span>
@@ -74,8 +79,10 @@
                 <span class="favorite-screenshot-modal-uploader"></span>
             </div>
             <div class="favorite-screenshot-modal-actions">
-                <button class="favorite-screenshot-modal-add">❤ Add to Favorites</button>
-                <button class="favorite-screenshot-modal-remove" style="display:none;">❤ Remove from Favorites</button>
+                {% if user.is_authenticated %}
+                    <button class="favorite-screenshot-modal-add">❤ Add to Favorites</button>
+                    <button class="favorite-screenshot-modal-remove" style="display:none;">❤ Remove from Favorites</button>
+                {% endif %}
                 <button class="favorite-screenshot-modal-download">Download</button>
             </div>
         </div>

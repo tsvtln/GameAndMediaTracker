@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         saveInput.addEventListener('change', function() {
             if (saveInput.files.length > 0) {
                 saveLabel.textContent = saveInput.files[0].name;
+                if (saveLabel.textContent.length > 30) {
+                    saveLabel.textContent = saveLabel.textContent.slice(0, 24) + '...' + saveLabel.textContent.slice(-6);
+                }
             } else {
                 saveLabel.textContent = 'Select Save File';
             }
@@ -31,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
         imageInput.addEventListener('change', function() {
             if (imageInput.files.length > 0) {
                 imageLabel.textContent = imageInput.files[0].name;
+                if (imageLabel.textContent.length > 30) {
+                    imageLabel.textContent = imageLabel.textContent.slice(0, 25) + '...' + imageLabel.textContent.slice(-4);
+                }
                 const file = imageInput.files[0];
                 const reader = new FileReader();
                 reader.onload = function(e) {

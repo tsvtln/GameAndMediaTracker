@@ -1,5 +1,6 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
+from django.db.models import F
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as gtl
 from CheckPoint.accounts.managers import AppUserManager
@@ -53,7 +54,6 @@ class AppUser(AbstractUser):
 
 
 class Profile(models.Model):
-
     user = models.OneToOneField(
         AppUser,
         on_delete=models.CASCADE,
@@ -109,31 +109,28 @@ class Profile(models.Model):
         return f"{self.user.username}'s Profile"
 
     def increment_favorites(self):
-        self.favorites_count += 1
-        self.save(update_fields=['favorites_count'])
+        Profile.objects.filter(pk=self.pk).update(favorites_count=F('favorites_count') + 1)
+        self.refresh_from_db()
 
     def decrement_favorites(self):
-        if self.favorites_count > 0:
-            self.favorites_count -= 1
-            self.save(update_fields=['favorites_count'])
+        Profile.objects.filter(pk=self.pk, favorites_count__gt=0).update(favorites_count=F('favorites_count') - 1)
+        self.refresh_from_db()
 
     def increment_saves(self):
-        self.saves_count += 1
-        self.save(update_fields=['saves_count'])
+        Profile.objects.filter(pk=self.pk).update(saves_count=F('saves_count') + 1)
+        self.refresh_from_db()
 
     def decrement_saves(self):
-        if self.saves_count > 0:
-            self.saves_count -= 1
-            self.save(update_fields=['saves_count'])
+        Profile.objects.filter(pk=self.pk, saves_count__gt=0).update(saves_count=F('saves_count') - 1)
+        self.refresh_from_db()
 
     def increment_screenshots(self):
-        self.screenshots_count += 1
-        self.save(update_fields=['screenshots_count'])
+        Profile.objects.filter(pk=self.pk).update(screenshots_count=F('screenshots_count') + 1)
+        self.refresh_from_db()
 
     def decrement_screenshots(self):
-        if self.screenshots_count > 0:
-            self.screenshots_count -= 1
-            self.save(update_fields=['screenshots_count'])
+        Profile.objects.filter(pk=self.pk, screenshots_count__gt=0).update(screenshots_count=F('screenshots_count') - 1)
+        self.refresh_from_db()
 
 
 class Screenshot(models.Model):

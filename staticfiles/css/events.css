@@ -6,10 +6,12 @@
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
+
 .events-admin-bar {
-    text-align: right;
+    text-align: center;
     margin-bottom: 24px;
 }
+
 .events-add-btn {
     padding: 8px 18px;
     background: #49ff18;
@@ -236,3 +238,86 @@
     box-shadow: 0 0 12px #49ff18;
     text-decoration: none;
 }
+
+.event-delete-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.event-delete-modal-content {
+    background: #232a3a;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #49ff18;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    border: 2px solid #49ff18;
+}
+
+.event-delete-modal-text {
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 400px;
+}
+
+.event-delete-modal-buttons {
+    display: flex;
+    gap: 18px;
+}
+
+.event-delete-yes, .event-delete-no {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: url('/staticfiles/images/cursor/cursor-click.png'), pointer !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.event-delete-yes {
+    background: #ff1818;
+    color: #232a3a;
+    box-shadow: 0 0 10px #ff1818;
+}
+
+.event-delete-yes:hover {
+    background: #232323;
+    color: #ff1818;
+    box-shadow: 0 0 20px #ff1818;
+    text-shadow: 0 0 8px #ff1818;
+}
+
+.event-delete-no {
+    background: #49ff18;
+    color: #232a3a;
+    box-shadow: 0 0 10px #49ff18;
+}
+
+.event-delete-no:hover {
+    background: #232323;
+    color: #49ff18;
+    box-shadow: 0 0 20px #49ff18;
+    text-shadow: 0 0 8px #49ff18;
+}
+
+.error-message {
+    color: #ff1818;
+    font-size: 0.85rem;
+    font-family: 'Press Start 2P', monospace;
+    margin-top: 4px;
+}
+

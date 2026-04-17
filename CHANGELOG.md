@@ -1,3 +1,25 @@
+[2026-04-17]
+- Accounts
+  - Fixed screenshot counter decrement on profile via signal when screenshot is unfavorited
+  - Added screenshot favoriting flow and related behavior updates
+- Common
+  - Implemented Events backend functionality (create/delete/mark passed with permissions)
+  - Implemented Forums backend functionality (boards, threads/topics, posts/replies)
+  - Added new boards: HELP&SUPPORT → Other, GENERAL → PC Gaming
+  - Added forum board population command (`populate_forum`)
+- ROMs
+  - Added like/unlike functionality for reviews
+  - Linked ROM details screenshots to real uploaded screenshots by matching game name
+  - Added screenshot favorite actions inside ROM details modal
+- Saves
+  - Fixed profile saves counter to increment/decrement correctly
+- Async integration with Celery and Redis
+  - Added Celery + Redis integration
+  - Moved rating recalculation and download/favorite counter updates to async tasks
+  - Added periodic profile counter checks task
+- Tests
+  - Added unit tests for user registration, BIOS upload permissions/validation, Events create/delete, and ROM upload/delete
+
 [2026-04-15]
 - Implemented SAVES app backend functionality
   - Created Save model with upload, download, and delete operations
@@ -88,18 +110,15 @@
   - Added Add/Remove Favorites toggle in screenshot modals (behaves like Favorites page) 
       and synced behavior across all screenshot pages.
   - Standardized screenshot box sizing and object-fit behavior so thumbnails are uniform and contained.
-
 - Forums
   - Added forum pages: index, board, thread, new-topic templates and basic views/urls in 'common' for display during HTML/CSS development.
   - Thread posts show a small left avatar with username/date inline and message on the next line. Replies use the same layout.
   - Adjusted a bit the Forum index layout.
   - Basic reply form, create topic form and thread view implemented (HTML-only).
-
 - Accounts (login / register / profile)
   - Styled and completed login, profile and register pages.
   - Implemented avatar upload modal with preview and a Change Avatar flow (JS + CSS).
   - Implemented Change Password modal (fields + basic client-side behavior) to match avatar modal UX.
-
 - Other fixes & improvements
   - Added/updated JS handlers for multiple pages (favorite-screenshots, rom-details) to improve UX and match behaviors.
   - Small layout and interaction fixes across ROMs, BIOS, SAVES, Favorites and Community pages (dropdowns, cursors, hover effects, buttons etc.).

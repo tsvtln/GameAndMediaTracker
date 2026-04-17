@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // comments edit buttons - inline editing
+    // comments edit buttons-inline editing
     const editBtns = document.querySelectorAll('.rom-details-comment-edit-btn');
     editBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -332,50 +332,159 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalAdd = document.querySelector('.rom-details-screenshot-modal-add');
     const modalRemove = document.querySelector('.rom-details-screenshot-modal-remove');
     const modalDownload = document.querySelector('.rom-details-screenshot-modal-download');
-    let isFavorited = false;
+    let currentScreenshotId = null;
 
     document.querySelectorAll('.rom-details-screenshot').forEach(function(link) {
         if (link.classList.contains('rom-details-screenshot-more')) return;
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const img = link.querySelector('img');
+            currentScreenshotId = link.dataset.screenshotId;
+            const uploaderId = link.dataset.uploaderId;
+
             modalImg.src = img.src;
             modalImg.alt = img.alt;
-            modalGame.textContent = 'Game: Super Mario World';
-            modalPlatform.textContent = 'Platform: SNES';
-            modalUploader.textContent = 'Uploaded by: GoombaLover';
-            isFavorited = false;
-            modalAdd.style.display = 'inline-block';
-            modalRemove.style.display = 'none';
+            modalGame.textContent = 'Game: ' + (link.dataset.game || 'Unknown');
+            modalPlatform.textContent = 'Platform: ' + (link.dataset.platform || 'Unknown');
+            modalUploader.textContent = 'Uploaded by: ' + (link.dataset.uploader || 'Unknown');
+
+            if (!window.currentUserId) {
+                modalAdd.style.display = 'none';
+                modalRemove.style.display = 'none';
+            } else if (uploaderId && parseInt(uploaderId) === parseInt(window.currentUserId)) {
+                modalAdd.style.display = 'none';
+                modalRemove.style.display = 'none';
+            } else if (currentScreenshotId) {
+                fetch(`/accounts/screenshots/check-favorite/${currentScreenshotId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.is_favorited) {
+                            modalAdd.style.display = 'none';
+                            modalRemove.style.display = 'inline-block';
+                        } else {
+                            modalAdd.style.display = 'inline-block';
+                            modalRemove.style.display = 'none';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error checking favorite status:', error);
+                        modalAdd.style.display = 'none';
+                        modalRemove.style.display = 'none';
+                    });
+            }
+
             modal.style.display = 'flex';
         });
     });
 
-    modalClose.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
+    if (modalClose) {
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
     window.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
     });
+
     if (modalAdd) {
         modalAdd.addEventListener('click', function() {
-            isFavorited = true;
-            modalAdd.style.display = 'none';
-            modalRemove.style.display = 'inline-block';
+            if (!currentScreenshotId) return;
+
+            fetch(`/accounts/screenshots/favorite/${currentScreenshotId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    modalAdd.style.display = 'none';
+                    modalRemove.style.display = 'inline-block';
+                }
+            });
         });
     }
+
     if (modalRemove) {
         modalRemove.addEventListener('click', function() {
-            isFavorited = false;
-            modalRemove.style.display = 'none';
-            modalAdd.style.display = 'inline-block';
+            if (!currentScreenshotId) return;
+
+            fetch(`/accounts/screenshots/favorite/${currentScreenshotId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    modalRemove.style.display = 'none';
+                    modalAdd.style.display = 'inline-block';
+                }
+            });
         });
     }
+
     if (modalDownload) {
         modalDownload.addEventListener('click', function() {
-            alert('Download functionality coming soon!');
+            if (currentScreenshotId && modalImg.src) {
+                window.open(modalImg.src, '_blank');
+            }
         });
+    }
+
+    const reviewLikeBtns = document.querySelectorAll('.rom-details-review-favorite-btn');
+    reviewLikeBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const reviewId = this.dataset.reviewId;
+            const heartIcon = this.querySelector('.rom-details-review-heart-icon');
+            const countSpan = this.querySelector('.rom-details-review-favorite-count');
+
+            fetch(`/roms/review/like/${reviewId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    countSpan.textContent = data.likes_count;
+                    if (data.is_liked) {
+                        heartIcon.src = heartIcon.src.replace('heart_empty.png', 'heart_full.png');
+                        heartIcon.alt = 'Unlike';
+                    } else {
+                        heartIcon.src = heartIcon.src.replace('heart_full.png', 'heart_empty.png');
+                        heartIcon.alt = 'Like';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
 });

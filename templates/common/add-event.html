@@ -8,71 +8,43 @@
 <div class="add-event-section">
     <h1 class="add-event-title">ADD COMMUNITY EVENT</h1>
     <div class="add-event-desc">Create a new event for the community calendar.</div>
-    <div class="add-event-note">Events will appear on the Community &gt; Events page.</div>
-    <form class="add-event-form">
+    <div class="add-event-note">Events will appear on the Community ➜ Events page.</div>
+    <form class="add-event-form" method="post">
+        {% csrf_token %}
         <div class="add-event-form-row">
-            <label for="event-title">Event Title</label>
-            <input type="text" id="event-title" name="event-title" placeholder="SNES Speedrun Challenge" required>
+            <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <span class="error-message">{{ form.title.errors.0 }}</span>
+            {% endif %}
         </div>
         <div class="add-event-form-row">
-            <label for="event-date">Event Date</label>
-            <input type="date" id="event-date" name="event-date" required>
+            <label for="{{ form.event_date.id_for_label }}">{{ form.event_date.label }}</label>
+            {{ form.event_date }}
+            {% if form.event_date.errors %}
+                <span class="error-message">{{ form.event_date.errors.0 }}</span>
+            {% endif %}
         </div>
         <div class="add-event-form-row">
-            <label for="event-time">Event Time <span class="add-event-optional">(Optional)</span></label>
-            <input type="time" id="event-time" name="event-time">
+            <label for="{{ form.platform.id_for_label }}">{{ form.platform.label }}</label>
+            {{ form.platform }}
+            {% if form.platform.errors %}
+                <span class="error-message">{{ form.platform.errors.0 }}</span>
+            {% endif %}
         </div>
         <div class="add-event-form-row">
-            <label for="event-platform">Platform <span class="add-event-optional">(Optional)</span></label>
-            <select id="event-platform" name="event-platform">
-                <option>All Platforms</option>
-                <option>PC</option>
-                <option>NES</option>
-                <option>Famicom</option>
-                <option>SNES</option>
-                <option>Super Famicom</option>
-                <option>Nintendo 64</option>
-                <option>GameCube</option>
-                <option>Wii</option>
-                <option>Wii U</option>
-                <option>Nintendo Switch</option>
-                <option>Game Boy</option>
-                <option>Game Boy Color</option>
-                <option>Game Boy Advance</option>
-                <option>Nintendo DS</option>
-                <option>Nintendo 3DS</option>
-                <option>Sega Master System</option>
-                <option>Sega Genesis / Mega Drive</option>
-                <option>Sega CD</option>
-                <option>32X</option>
-                <option>Sega Saturn</option>
-                <option>Sega Dreamcast</option>
-                <option>Game Gear</option>
-                <option>PlayStation</option>
-                <option>PlayStation 2</option>
-                <option>PlayStation 3</option>
-                <option>PlayStation Portable (PSP)</option>
-                <option>PlayStation Vita</option>
-                <option>Xbox</option>
-                <option>Xbox 360</option>
-                <option>Xbox One</option>
-                <option>Atari</option>
-            </select>
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                <span class="error-message">{{ form.description.errors.0 }}</span>
+            {% endif %}
         </div>
         <div class="add-event-form-row">
-            <label for="event-type">Event Type <span class="add-event-optional">(Optional)</span></label>
-            <input type="text" id="event-type" name="event-type" placeholder="Speedrun, Tournament, Meetup, etc.">
-        </div>
-        <div class="add-event-form-row">
-            <label for="event-description">Description</label>
-            <textarea id="event-description" name="event-description" rows="5" placeholder="Join the community speedrun challenge for Super Mario World. Post your best time in the forum thread." required></textarea>
-        </div>
-        <div class="add-event-form-row">
-            <label for="event-status">Status <span class="add-event-optional">(Optional)</span></label>
-            <select id="event-status" name="event-status">
-                <option>Upcoming</option>
-                <option>Passed</option>
-            </select>
+            <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+            {{ form.status }}
+            {% if form.status.errors %}
+                <span class="error-message">{{ form.status.errors.0 }}</span>
+            {% endif %}
         </div>
         <div class="add-event-form-actions">
             <button type="submit" class="add-event-submit-btn">Create Event</button>
