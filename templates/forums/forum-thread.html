@@ -33,7 +33,7 @@
                 <span class="forum-post-author">{{ op_post.author.username }}</span>
                 <span class="forum-post-date">{{ op_post.created_at|date:"Y-m-d H:i" }}</span>
             </div>
-            <div class="forum-post-content">{{ op_post.content }}</div>
+            <div class="forum-post-content">{{ op_post.content|linebreaksbr }}</div>
         </div>
         {% endif %}
 
@@ -56,7 +56,7 @@
                 <span class="forum-post-author">{{ post.author.username }}</span>
                 <span class="forum-post-date">{{ post.created_at|date:"Y-m-d H:i" }}</span>
             </div>
-            <div class="forum-post-content">{{ post.content }}</div>
+            <div class="forum-post-content">{{ post.content|linebreaksbr }}</div>
         </div>
         {% empty %}
         {% if not op_post %}
