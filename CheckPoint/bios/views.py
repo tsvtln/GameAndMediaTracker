@@ -7,13 +7,25 @@ from django.urls import reverse_lazy as _
 from django.http import FileResponse, Http404
 from CheckPoint.bios.models import Bios
 from CheckPoint.bios.forms import BiosUploadForm
+from CheckPoint.common.models import Board, Thread
 from CheckPoint.common.permissions import OwnerOrModeratorMixin, ModeratorOrVerifiedMixin
 from CheckPoint.bios.tasks import increment_bios_downloads
 
 
 def bios(request):
     recent_bios = Bios.objects.select_related('uploaded_by').order_by('-created_at')[:3]
-    return render(request, 'bios/bios.html', {'recent_bios': recent_bios})
+
+    bios_setup_threads = []
+    try:
+        bios_setup_board = Board.objects.get(slug='bios-setup')
+        bios_setup_threads = Thread.objects.filter(board=bios_setup_board).order_by('-is_pinned', '-updated_at')[:3]
+    except Board.DoesNotExist:
+        pass
+
+    return render(request, 'bios/bios.html', {
+        'recent_bios': recent_bios,
+        'bios_setup_threads': bios_setup_threads,
+    })
 
 
 def bios_faq(request):

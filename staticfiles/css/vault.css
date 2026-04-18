@@ -262,7 +262,8 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 2px;
+    margin-top: 32px;
 }
 .vault-page-ellipsis {
     color: #49ff18;

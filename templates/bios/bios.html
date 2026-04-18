@@ -22,13 +22,17 @@
             <a href="{% url 'bios all files' %}" class="roms-box-more bottom-right">...</a>
         </div>
         <div class="roms-box">
-            <a href="{% url 'forum board' 'bios_setup' %}" class="roms-box-title">Installation Guides</a>
+            <a href="{% url 'forum board' 'bios-setup' %}" class="roms-box-title">Installation Guides</a>
             <ul class="roms-box-list">
-                <li><a href="#">EmuDECK installation</a></li>
-                <li><a href="#">XBOX PC Installation</a></li>
-                <li><a href="#">PlayStation 1 BIOS Installation</a></li>
+                {% if bios_setup_threads %}
+                    {% for thread in bios_setup_threads %}
+                        <li><a href="{% url 'forum thread' 'bios-setup' thread.slug %}">{{ thread.title }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li>No guides posted yet</li>
+                {% endif %}
             </ul>
-            <a href="#" class="roms-box-more bottom-right">...</a>
+            <a href="{% url 'forum board' 'bios-setup' %}" class="roms-box-more bottom-right">...</a>
         </div>
         <div class="roms-box">
             <a href="{% url 'bios faq' %}" class="roms-box-title">BIOS FAQ</a>
