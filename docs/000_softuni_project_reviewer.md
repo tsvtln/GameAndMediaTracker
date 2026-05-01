@@ -1,27 +1,9 @@
-# For the Project Reviewer
-
 ## Live Demo
 
 The application is deployed and accessible at:
 
 **🌐 URL: https://tsvtln.com**
 
----
-
-## Test Account Credentials
-
-Use the following account to log in and explore the platform:
-
-| Field    | Value               |
-|----------|---------------------|
-| Username | `SoftUni`           |
-| Password | `QtvMX28QVL@H1Bq3P` |
-
-> **Note:**  
-> This account has full permissions (**is_staff**).  
-> To access the Django admin panel, navigate to **https://tsvtln.com/admin/**  
-The standard Django admin login is replaced by the site's own login page. 
-Log in with the credentials above and you will have access to the Admin panel from the navigation bar as well.
 
 ---
 
@@ -34,8 +16,6 @@ Log in with the credentials above and you will have access to the Admin panel fr
 | **Web Server**      | nginx - reverse proxy in front of the application to handle request routing, serve static assets and improve scalability and performance.                                                                                                                              |
 | **App Server**      | Gunicorn - serves the Django application.                                                                                                                                                                                                                              |
 | **Task Queue**      | Redis + Celery - used for async task processing and periodic jobs.                                                                                                                                                                                                     |
-
-![azureResource](/docs/_assets/azure_resource.png)
 
 ---
 
