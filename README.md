@@ -19,10 +19,6 @@ PostgreSQL as the database, and WhiteNoise for static file serving.
 
 ## Contents
 
-### For SoftUni the Project Reviewer
-
-- [Live Demo & Test Credentials](docs/000_softuni_project_reviewer.md)
-
 ---
 
 ### Setup Tutorials
